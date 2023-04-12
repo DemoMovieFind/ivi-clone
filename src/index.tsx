@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import MainPage from './pages/MainPage';
+import { IntlProvider } from 'react-intl'; 
+import { LOCALES } from './i18n/locales'
+import { messages } from './i18n/messages'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const locale = LOCALES.RUSSIAN;
+
 root.render(
   <React.StrictMode>
-    <App />
+    <IntlProvider messages={messages[locale]}
+      locale={locale}
+      defaultLocale={LOCALES.RUSSIAN}>
+      <MainPage />
+    </IntlProvider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
