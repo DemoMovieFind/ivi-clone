@@ -1,15 +1,53 @@
 import { Button, ButtonProps } from "./Button";
+import { ImgIcon } from "../icons/ImgIcon";
+import { FontIcon } from "../icons/FontIcon";
+import styles from "./DeviceButton.module.css";
+import clsx from "clsx";
 
-type Props = Omit<ButtonProps, "appearance" | "size" | "children"> & {
-  name: "app-store" | "google-play" | "smart-tv" | "all-devices";
+const primaryText = {
+  "app-store": "App Store",
+  "google-play": "Google Play",
+  "smart-tv": "Smart TV",
+  "all-devices": "Все устройства",
 };
 
-export const DeviceButton: React.FC<Props> = () => {
+const secondaryText = {
+  "app-store": "Загрузить в",
+  "google-play": "Доступно в",
+  "smart-tv": "Смотрите на",
+  "all-devices": "",
+};
+
+export interface DeviceButtonProps
+  extends Omit<ButtonProps, "size" | "children"> {
+  name: "app-store" | "google-play" | "smart-tv" | "all-devices";
+}
+
+export const DeviceButton: React.FC<DeviceButtonProps> = ({
+  name,
+  className,
+  ...props
+}) => {
   return (
-    <Button appearance="default" size="medium">
-      {/* <FontIcon name={iconName}/> */}
-      <span>Загрузить в</span>
-      <span>App Store</span>
+    <Button size="medium" className={clsx(styles.button, className)} {...props}>
+      {name === "app-store" && (
+        <ImgIcon appearance="apple" className={styles.icons} />
+      )}
+      {name === "google-play" && (
+        <ImgIcon appearance="google" className={styles.icons} />
+      )}
+      {name === "smart-tv" && (
+        <FontIcon appearance="smartTV" className={styles.icons} />
+      )}
+      {name === "all-devices" && (
+        <FontIcon appearance="allDevices" className={styles.icons} />
+      )}
+      <div className={styles.textBlock}>
+        {secondaryText[name] && (
+          <div className={styles.secondaryText}>{secondaryText[name]}</div>
+        )}
+        <div className={styles.primaryText}>{primaryText[name]}</div>
+      </div>
     </Button>
   );
 };

@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("../../fonts/iconfont.woff2") format("woff2"),
+    url("../../fonts/iconfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.icon {
+  padding-top: 1px;
+
+  display: inline-block;
+  font-family: iconfont !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #fff;
+}
+
+.play::before {
+  content: "\E28D";
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.favorite::before {
+  content: "\E12F";
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.download::before {
+  content: "\E356";
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.smartTV::before {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  content: "\E35C";
+}
+
+.allDevices::before {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  content: "\E02B";
+}
