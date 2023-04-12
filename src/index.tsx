@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import MainPage from './pages/MainPage';
 import { IntlProvider } from 'react-intl'; 
@@ -13,10 +14,15 @@ const locale = LOCALES.RUSSIAN;
 
 root.render(
   <React.StrictMode>
-    <IntlProvider messages={messages[locale]}
+    <IntlProvider 
+      messages={messages[locale]}
       locale={locale}
       defaultLocale={LOCALES.RUSSIAN}>
-      <MainPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<MainPage/>} />
+        </Routes>
+      </BrowserRouter>
     </IntlProvider>
   </React.StrictMode>
 );
