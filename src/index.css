@@ -1,13 +1,38 @@
+@font-face {
+  font-family: "iviSans";
+  src: url("./fonts/iviSans-Bold.woff2") format("woff2"),
+    url("./fonts/iviSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "iviSans";
+  src: url("./fonts/iviSansMedium.woff2") format("woff2"),
+    url("./fonts/iviSansMedium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "iviSans";
+  src: url("./fonts/iviSans-Regular.woff2") format("woff2"),
+    url("./fonts/iviSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
