@@ -9,13 +9,13 @@ import { messages } from "./i18n/messages";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-const locale = LOCALES.RUSSIAN;
+const browserLocale = navigator.language;
 
 root.render(
   <React.StrictMode>
     <IntlProvider
-      messages={messages[locale]}
-      locale={locale}
+      messages={messages[browserLocale]}
+      locale={browserLocale}
       defaultLocale={LOCALES.RUSSIAN}
     >
       <MainPage />
