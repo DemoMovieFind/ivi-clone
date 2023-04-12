@@ -1,16 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "./Button";
-import { spawn } from "child_process";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta = {
   title: "Example/Button",
   component: Button,
   tags: ["autodocs"],
-  // argTypes: {
-  // backgroundColor: { control: "color" },
-  // },
 } satisfies Meta<typeof Button>;
 
 export default meta;

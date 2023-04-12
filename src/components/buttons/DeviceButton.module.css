@@ -1,0 +1,35 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icons {
+  margin-left: 12px;
+  margin-right: 8px;
+}
+
+.textBlock {
+  margin-right: 12px;
+  text-align: left;
+}
+
+.primaryText {
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  height: 20px;
+  font-weight: 500;
+}
+
+.secondaryText {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 500;
+  font-style: normal;
+  height: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
