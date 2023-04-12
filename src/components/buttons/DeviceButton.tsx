@@ -7,7 +7,7 @@ type Props = Omit<ButtonProps, "appearance" | "size" | "children"> & {
 export const DeviceButton: React.FC<Props> = () => {
   return (
     <Button appearance="default" size="medium">
-      {/* <Icon name={iconName}/> */}
+      {/* <FontIcon name={iconName}/> */}
       <span>Загрузить в</span>
       <span>App Store</span>
     </Button>
