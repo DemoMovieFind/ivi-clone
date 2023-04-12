@@ -1,0 +1,13 @@
+.icon {
+  width: 20px;
+  height: 20px;
+  align-self: center;
+}
+
+.apple {
+  background-image: url("../../image/buttonIcon/appleLogo.svg");
+}
+
+.google {
+  background-image: url("../../image/buttonIcon/googlePlayLogo.svg");
+}
