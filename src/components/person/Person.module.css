@@ -1,0 +1,29 @@
+.personСontainer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image{
+  width: 88px;
+  height: 88px;
+  border-radius: 100%;
+}
+
+.noImage {
+  background: url('./icon/no-image.svg') #1f1b2e;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  width: 88px;
+  height: 88px;
+  border-radius: 100%;
+}
+
+.profession{
+  color: #a5a1b2;
+}
+
+.firstName, .lastName{
+  color: #d9d7e0;
+}
