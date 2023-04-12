@@ -1,9 +1,0 @@
-.nav-list {
-  font-family: var(--main-font);
-  display: flex;
-}
-
-.item {
-  color: inherit;
-  text-decoration: none;
-}
