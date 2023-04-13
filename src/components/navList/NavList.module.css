@@ -1,0 +1,42 @@
+.nav-list {
+  font-family: var(--main-font);
+}
+
+.links {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  color: white;
+  font-weight: 700px;
+  gap: 20px;
+}
+
+.links-horizontal {
+  flex-direction: row;
+}
+
+.links-vertical {
+  flex-direction: column;
+}
+
+.link {
+  list-style-type: none;
+  color: rgb(136, 122, 122);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+  max-width: 200px;
+}
+
+.link:hover {
+  color: rgb(211, 206, 206);
+}
+
+.link-marked {
+  font-weight: 500;
+  color: rgb(238, 8, 8);
+}
+
+.link-marked:hover {
+  font-weight: 600;
+}

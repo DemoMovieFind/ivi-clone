@@ -37,6 +37,30 @@ code {
     monospace;
 }
 
+:root {
+  --main-font: Arial,sans-serif;
+}
+
 button {
   font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+input {
+  outline: none;
 }
