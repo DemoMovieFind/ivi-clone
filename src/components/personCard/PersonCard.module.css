@@ -1,0 +1,159 @@
+.personCardContainer {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.image{
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+}
+
+.noImage {
+  background: url('./icon/no-image.svg') #1f1b2e;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+}
+
+.titleName {
+  font-size: 56px;
+  font-weight: 700;
+  margin-top: 16px;
+  color: #ffffff;
+}
+
+.name {
+  font-size: 15px;
+  margin-top: 16px;
+  color: #a5a1b2;
+}
+
+.personStory{
+  margin-top: 16px;
+  color: #d9d7e0;
+}
+
+.hide, .show {
+  margin-top: 6px;
+  color: #a5a1b2;
+}
+
+.hide:hover, .show:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.totalFilmsContainer {
+  margin-top: 40px;
+  display: flex;
+  gap: 8px;
+  color: #ffffffe0;
+  font-size: 18px;
+}
+
+.totalFilmsContainer a {
+  color: #ffffffe0;
+  text-decoration: none;
+}
+
+.totalFilmsContainer a:hover {
+  color: #fff;
+}
+
+.fullFilmTitleContainer{
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+
+.fullFilmTitle{
+  font-size: 25px;
+  font-weight: 700;
+  color: #fff;
+}
+
+
+.fullFilmTitleTotal {
+  color: #a5a1b2;
+  font-size: 15px;
+}
+
+.filmsContainer {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filmCard {
+  height: 123px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filmCardInfo{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.filmPoster {
+  width: 80px;
+  height: 123px;
+  border-radius: 4px;
+  background-color: #1f1b2e;
+}
+
+.filmInfoContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filmCardYear, .filmCardTitle{
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.filmCardRate{
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #a5a1b2;
+}
+
+.personCardBreadCrumbs{
+  margin-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.personCardBreadCrumbsLink {
+  text-decoration: solid white;
+  color: #ffffff;
+  box-shadow: 0 2px 0 #7e798f, inset 0 0 0 #7e798f;
+  transition: all 80ms linear;
+  font-size: 100%;
+  font-weight: 500;
+}
+
+.personCardBreadCrumbsLink:hover {
+  box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
+}
+
+.personCardBreadCrumbsName{
+  font-size: 100%;
+  font-weight: 500;
+  color: rgba(255,255,255,.56);
+}
