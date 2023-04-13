@@ -3,6 +3,7 @@ import { LOCALES } from './locales'
 export const messages = {
   [LOCALES.ENGLISH]: {
     header: `Ivi Clone`,
+    "empty_string":' ',
     "nav_list_myIvi":'My IVI',
     "nav_list_new":'What\'s new',
     "nav_list_films":'Films',
@@ -18,6 +19,7 @@ export const messages = {
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
+    "empty_string":' ',
     "nav_list_myIvi":'Мой ИВИ',
     "nav_list_new":'Что нового',
     "nav_list_films":'Фильмы',

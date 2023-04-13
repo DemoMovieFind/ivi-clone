@@ -22,6 +22,7 @@ const NavList = ({
   vertical=false,
   headerTranslationId='nav_list_sections'
 }:NavListPropsType) => {
+  const headerId = headerTranslationId === '' ? "empty_string" : headerTranslationId
   
   const items = links.map((link,index) => {
     const {href,translationId,marked} = link;
@@ -40,7 +41,7 @@ const NavList = ({
     <nav className={styles["nav-list"]}>
       <BrowserRouter>
         <ul className={clsx(styles.links, vertical ? styles['links-vertical'] : styles['links-horizontal'])}>
-          {<FormattedMessage id={headerTranslationId} />}
+          {<FormattedMessage id={headerId} />}
           {items}
         </ul>
       </BrowserRouter>
