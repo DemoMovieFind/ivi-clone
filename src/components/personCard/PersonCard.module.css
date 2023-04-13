@@ -1,0 +1,89 @@
+.personCardContainer {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.image{
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+}
+
+.noImage {
+  background: url('./icon/no-image.svg') #1f1b2e;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+}
+
+.titleName {
+  font-size: 56px;
+  font-weight: 700;
+  margin-top: 16px;
+  color: #ffffff;
+}
+
+.name {
+  font-size: 15px;
+  margin-top: 16px;
+  color: #a5a1b2;
+}
+
+.personStory{
+  margin-top: 16px;
+  color: #d9d7e0;
+}
+
+.hide, .show {
+  margin-top: 6px;
+  color: #a5a1b2;
+}
+
+.hide:hover, .show:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.totalFilmsContainer {
+  margin-top: 40px;
+  display: flex;
+  gap: 8px;
+  color: #ffffffe0;
+  font-size: 18px;
+}
+
+.totalFilmsContainer a {
+  color: #ffffffe0;
+  text-decoration: none;
+}
+
+.totalFilmsContainer a:hover {
+  color: #fff;
+}
+
+.fullFilmTitleContainer{
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+
+.fullFilmTitle{
+  font-size: 25px;
+  font-weight: 700;
+  color: #fff;
+}
+
+
+.fullFilmTitleTotal {
+  color: #a5a1b2;
+  font-size: 15px;
+}
+
+.filmsContainer {
+  margin-top: 24px;
+}
