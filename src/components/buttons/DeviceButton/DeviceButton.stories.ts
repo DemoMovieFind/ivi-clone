@@ -4,7 +4,7 @@ import { DeviceButton } from "./DeviceButton";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta = {
-  title: "Example/DeviceButton",
+  title: "UI Components/DeviceButton",
   component: DeviceButton,
   tags: ["autodocs"],
 } satisfies Meta<typeof DeviceButton>;

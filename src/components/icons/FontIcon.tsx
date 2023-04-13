@@ -6,7 +6,14 @@ export interface FontIconProps {
   /**
    * Icon appearance
    */
-  appearance?: "play" | "favorite" | "download" | "smartTV" | "allDevices";
+  appearance?:
+    | "play"
+    | "favorite"
+    | "download"
+    | "smartTV"
+    | "allDevices"
+    | "mail"
+    | "tel";
 
   /**
    * Icon className
