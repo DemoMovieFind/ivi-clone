@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
+import { Button } from '../buttons/Button';
 
 export interface PersonCardPropsType {
   image?: string;
@@ -39,6 +40,13 @@ const PersonCard = ({
       year: '2021',
       title: "Холодный расчет",
       rate: '5.5'
+    },
+    {
+      id: 2,
+      img: '',
+      year: '2020',
+      title: "Синатра",
+      rate: '7.1'
     },
   ],
 }: PersonCardPropsType) => {
@@ -117,9 +125,13 @@ const PersonCard = ({
                 <span className={styles.filmCardRate}>{<FormattedMessage id='person_card_rate' />}: {film.rate}</span>
               </div>
             </div>
-            <button>Подробнее</button>
+            <Button {...{ size: 'large', children: <FormattedMessage id='person_card_watch_movie' /> }} />
           </div>
         })}
+      </div>
+      <div className={styles.personCardBreadCrumbs}>
+        <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>
+        <span className={styles.personCardBreadCrumbsName}>/ {firstName} {lastName}</span>
       </div>
     </div>
   )

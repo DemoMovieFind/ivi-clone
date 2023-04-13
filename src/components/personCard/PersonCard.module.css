@@ -130,3 +130,30 @@
   font-weight: 500;
   color: #a5a1b2;
 }
+
+.personCardBreadCrumbs{
+  margin-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.personCardBreadCrumbsLink {
+  text-decoration: solid white;
+  color: #ffffff;
+  box-shadow: 0 2px 0 #7e798f, inset 0 0 0 #7e798f;
+  transition: all 80ms linear;
+  font-size: 100%;
+  font-weight: 500;
+}
+
+.personCardBreadCrumbsLink:hover {
+  box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
+}
+
+.personCardBreadCrumbsName{
+  font-size: 100%;
+  font-weight: 500;
+  color: rgba(255,255,255,.56);
+}
