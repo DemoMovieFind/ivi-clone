@@ -1,8 +1,9 @@
-import { Button, ButtonProps } from "./Button";
-import { ImgIcon } from "../icons/ImgIcon";
-import { FontIcon } from "../icons/FontIcon";
+import { Button, ButtonProps } from "../Button";
+import { ImgIcon } from "../../icons/ImgIcon";
+import { FontIcon } from "../../icons/FontIcon";
 import styles from "./DeviceButton.module.css";
 import clsx from "clsx";
+import { FormattedMessage } from "react-intl";
 
 const primaryText = {
   "app-store": "App Store",
@@ -12,7 +13,7 @@ const primaryText = {
 };
 
 const secondaryText = {
-  "app-store": "Загрузить в",
+  "app-store": <FormattedMessage id="button_device_apple" />,
   "google-play": "Доступно в",
   "smart-tv": "Смотрите на",
   "all-devices": "",
