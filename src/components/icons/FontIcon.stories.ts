@@ -48,3 +48,27 @@ export const Tel: Story = {
     appearance: "tel",
   },
 };
+
+export const posterFavorite: Story = {
+  args: {
+    appearance: "posterFavorite",
+  },
+};
+
+export const posterSimilar: Story = {
+  args: {
+    appearance: "posterSimilar",
+  },
+};
+
+export const posterEstimate: Story = {
+  args: {
+    appearance: "posterEstimate",
+  },
+};
+
+export const posterDontLike: Story = {
+  args: {
+    appearance: "posterDontLike",
+  },
+};

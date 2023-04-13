@@ -13,19 +13,31 @@ export interface FontIconProps {
     | "smartTV"
     | "allDevices"
     | "mail"
-    | "tel";
+    | "tel"
+    | "posterFavorite"
+    | "posterSimilar"
+    | "posterEstimate"
+    | "posterDontLike";
 
   /**
    * Icon className
    */
   className?: string;
+  toollip?: string;
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const FontIcon = ({ appearance = "play", className }: FontIconProps) => {
+export const FontIcon = ({
+  appearance = "play",
+  className,
+  toollip = "",
+}: FontIconProps) => {
   return (
-    <div className={clsx(styles.icon, styles[appearance], className)}></div>
+    <div
+      className={clsx(styles.icon, styles[appearance], className)}
+      data-tooltip={toollip ? toollip : null}
+    ></div>
   );
 };

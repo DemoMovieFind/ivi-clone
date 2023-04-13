@@ -1,0 +1,82 @@
+.card {
+  position: relative;
+  font-family: iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
+}
+
+.card a {
+  display: block;
+}
+
+.default {
+  width: 153px;
+  height: 278px;
+}
+
+.truncated img {
+  width: 80px;
+  height: 122px;
+  border-radius: 8px;
+}
+
+.default .imageWrapper {
+  position: relative;
+  width: 153px;
+  height: 234px;
+}
+
+.default img {
+  width: 153px;
+  height: 234px;
+  border-radius: 8px;
+  transition: 1s;
+}
+
+.posterWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(7, 5, 14, 0.8);
+  z-index: 4;
+  opacity: 0;
+  transition: 1s;
+  border-radius: 8px;
+}
+
+.default:hover .posterWrapper {
+  opacity: 1;
+  transform: scale(1.04) translateY(0);
+}
+
+.default:hover .filmImage {
+  transform: scale(1.04) translateY(0);
+}
+
+.posterHoardsWrapper {
+  z-index: 2;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.propertiesInner {
+  z-index: 1;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+  color: #d9d7e0;
+}
+
+.propertiesWrapper {
+  margin-top: 12px;
+}
+
+.nameWrapper {
+  margin-top: 8px;
+}

@@ -1,0 +1,13 @@
+.price {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.free {
+  color: #a5a1b2;
+}
+
+.bye {
+  color: #ea003d;
+}
