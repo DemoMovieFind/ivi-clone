@@ -6,7 +6,7 @@
   padding: 0;
   margin: 0;
   display: flex;
-  color: rgb(211, 206, 206);
+  color: white;
   font-weight: 700px;
   gap: 20px;
 }
@@ -25,6 +25,7 @@
   font-size: 15px;
   line-height: 20px;
   font-weight: 400;
+  max-width: 200px;
 }
 
 .link:hover {
@@ -33,9 +34,9 @@
 
 .link-marked {
   font-weight: 500;
-  color: rgb(104, 13, 13);
+  color: rgb(238, 8, 8);
 }
 
 .link-marked:hover {
-  color: rgb(204, 28, 28);
+  font-weight: 600;
 }

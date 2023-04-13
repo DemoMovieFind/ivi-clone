@@ -1,33 +1,38 @@
 import clsx from "clsx";
 import styles from "./NavList.module.css";
 import { Link, BrowserRouter } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export type NavListPropsType = {
   links:Array<{
     href:string,
-    text:string,
+    translationId:string,
     marked?:boolean,
   }>,
   vertical?:boolean,
-  header?:string
+  headerTranslationId?:string
 }
 
 const NavList = ({
   links = [
-    { href:'link1', text:'Фильмы' },
-    { href:'link2', text:'Сериалы' },
-    { href:'link3', text:'Активация сертификата', marked:true },
+    { href:'link1', translationId:'nav_list_films' },
+    { href:'link2', translationId:'nav_list_series' },
+    { href:'link3', translationId:'nav_list_certificate_activation', marked:true },
   ],
   vertical=false,
-  header='Разделы'
+  headerTranslationId='nav_list_sections'
 }:NavListPropsType) => {
   
   const items = links.map((link,index) => {
-    const {href,text,marked} = link;
+    const {href,translationId,marked} = link;
     return( 
       <li className={clsx(styles.link, link.marked && styles["item-marked"])} 
       key={index}>
-        <Link className={marked ? styles['link-marked'] : ''} to={href}>{text}</Link>
+        <Link 
+          className={marked ? styles['link-marked'] : ''} 
+          to={href}>
+            {<FormattedMessage id={translationId} />}
+        </Link>
       </li>
     )
   }) 
@@ -35,7 +40,7 @@ const NavList = ({
     <nav className={styles["nav-list"]}>
       <BrowserRouter>
         <ul className={clsx(styles.links, vertical ? styles['links-vertical'] : styles['links-horizontal'])}>
-          {header}
+          {<FormattedMessage id={headerTranslationId} />}
           {items}
         </ul>
       </BrowserRouter>
