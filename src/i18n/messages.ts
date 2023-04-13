@@ -10,6 +10,7 @@ export const messages = {
     person_card_film_3: 'movies',
     person_card_biography: 'Biography',
     person_card_filmography: 'Full filmography',
+    person_card_rate: 'Rating',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -20,5 +21,6 @@ export const messages = {
     person_card_film_3: 'фильмов',
     person_card_biography: 'Биография',
     person_card_filmography: 'Полная фильмография',
+    person_card_rate: 'Рейтинг',
   },
 }

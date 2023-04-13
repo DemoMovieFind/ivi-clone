@@ -86,4 +86,47 @@
 
 .filmsContainer {
   margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filmCard {
+  height: 123px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filmCardInfo{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.filmPoster {
+  width: 80px;
+  height: 123px;
+  border-radius: 4px;
+  background-color: #1f1b2e;
+}
+
+.filmInfoContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filmCardYear, .filmCardTitle{
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.filmCardRate{
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #a5a1b2;
 }

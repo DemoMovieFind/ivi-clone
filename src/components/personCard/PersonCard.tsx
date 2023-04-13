@@ -109,7 +109,15 @@ const PersonCard = ({
       <div className={styles.filmsContainer}>
         {films.map((film, index) => {
           return <div key={(index).toString()} className={styles.filmCard}>
-            <div>{film.title}</div>
+            <div className={styles.filmCardInfo}>
+              <div className={styles.filmPoster}></div>
+              <div className={styles.filmInfoContainer}>
+                <span className={styles.filmCardYear}>{film.year}</span>
+                <span className={styles.filmCardTitle}>{film.title}</span>
+                <span className={styles.filmCardRate}>{<FormattedMessage id='person_card_rate' />}: {film.rate}</span>
+              </div>
+            </div>
+            <button>Подробнее</button>
           </div>
         })}
       </div>
