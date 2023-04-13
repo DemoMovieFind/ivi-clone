@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "./Button";
+import { ButtonLink } from "./Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta = {
-  title: "UI Components/Button",
-  component: Button,
+  title: "UI Components/ButtonLink",
+  component: ButtonLink,
   tags: ["autodocs"],
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof ButtonLink>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -37,26 +37,5 @@ export const Small: Story = {
   args: {
     size: "small",
     children: "Button",
-  },
-};
-
-export const Support: Story = {
-  args: {
-    style: { width: 196, height: 40, fontSize: 15 },
-    children: "Написать в чате",
-  },
-};
-
-export const СмотретьПоПодписке: Story = {
-  args: {
-    appearance: "primary",
-    style: {
-      paddingTop: 9,
-      paddingBottom: 9,
-      paddingLeft: 15,
-      paddingRight: 15,
-      fontSize: 15,
-    },
-    children: "Смотреть по подписке",
   },
 };

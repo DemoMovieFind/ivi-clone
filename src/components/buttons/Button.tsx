@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Button.module.css";
+import clsx from "clsx";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps {
   /**
    * Button appearance
    */
@@ -19,16 +19,44 @@ export interface ButtonProps
    * Button contents
    */
   children?: React.ReactNode;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
 }
 
 /**
- * Primary UI component for user interaction
+ * Base button
  */
-export const Button = ({
+export const Button: React.FC<
+  ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({
+  appearance = "default",
+  size = "medium",
+  children,
+  className,
+
+  ...props
+}: ButtonProps) => {
+  return (
+    <button
+      type="button"
+      className={clsx(
+        styles.button,
+        styles[appearance],
+        styles[size],
+
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+/**
+ * Base link looking as button
+ */
+export const ButtonLink: React.FC<
+  ButtonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
+> = ({
   appearance = "default",
   size = "medium",
   children,
@@ -36,8 +64,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button
-      type="button"
+    <a
       className={[
         styles.button,
         styles[appearance] ?? "",
@@ -47,6 +74,6 @@ export const Button = ({
       {...props}
     >
       {children}
-    </button>
+    </a>
   );
 };
