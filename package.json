@@ -76,6 +76,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.2",
+    "storybook-react-intl": "^2.0.1",
     "webpack": "^5.78.0"
   }
 }
