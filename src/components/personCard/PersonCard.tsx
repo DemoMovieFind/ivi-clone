@@ -1,52 +1,62 @@
 import React, { ReactNode, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
-import { ActerCardFilm } from '../acterCardFilm/ActerCardFilm';
+import { ActorCardFilm } from '../acterCardFilm/ActorCardFilm';
+import { Film } from '../../types/entities/Film';
 
 export interface PersonCardPropsType {
   image?: string;
   firstName?: string;
   lastName?: string;
   desc?: string;
-  films?: FilmPropsType[];
+  films?: Film[];
 }
-
-export interface FilmPropsType {
-  id: number;
-  img: string;
-  year: string;
-  title: string;
-  rating: string;
-}
-
 
 
 const PersonCard = ({
-  image = '',
+  image = 'https://thumbs.dfs.ivi.ru/storage28/contents/2/c/24c47ebcba862600ed5c5d7e72e598.jpg/120x144/?q=85',
   firstName = 'Мартин',
   lastName = 'Скорсезе',
   desc = `Мартин Скорсезе (Martin Scorsese) — американский кинорежиссер, продюсер и сценарист. Обладатель множества наград киноиндустрии, в том числе премии «Оскар».`,
   films = [
     {
       id: 0,
-      img: 'https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85',
-      year: '2022',
       title: "Убийцы цветочной луны",
-      rating: '7.1'
+      year: 2022,
+      posters: {
+        small: {
+          url: 'https://thumbs.dfs.ivi.ru/storage4/contents/1/b/8c8ebc907995aee3e57439f8a38702.jpg/172x264/?q=85'
+        }
+      },
+      rating: {
+        ivi: 7.1
+      }
     },
     {
       id: 1,
-      img: 'https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85',
-      year: '2021',
       title: "Холодный расчет",
-      rating: '5.5'
+      year: 2021,
+      posters: {
+        small: {
+          url: 'https://thumbs.dfs.ivi.ru/storage8/contents/4/1/80d1f637cee8773fd331947249a840.jpg/172x264/?q=85'
+        }
+      },
+      rating: {
+        ivi: 5.5
+      }
     },
     {
       id: 2,
-      img: 'https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85',
-      year: '2020',
       title: "Синатра",
-      rating: '7.1'
+      year: 2020,
+      posters: {
+        small: {
+          url: 'https://thumbs.dfs.ivi.ru/storage33/contents/6/a/a700332f290b273bc1437ae389696c.jpg/172x264/?q=85'
+        }
+      },
+      rating: {
+        ivi: 7.1
+      }
     },
   ],
 }: PersonCardPropsType) => {
@@ -115,7 +125,7 @@ const PersonCard = ({
         <div className={styles.fullFilmTitleTotal}>{films.length} {filmsWords[ending(films.length)]}</div>
       </div>
       <div className={styles.filmsContainer}>
-        {films.map(film => <ActerCardFilm key={film.id} img={film.img} year={film.year} title={film.title} rating={film.rating} />)}
+        {films.map(film => <ActorCardFilm key={film.id} film={film} />)}
       </div>
       <div className={styles.personCardBreadCrumbs}>
         <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>
