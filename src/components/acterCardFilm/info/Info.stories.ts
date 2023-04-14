@@ -13,8 +13,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    year: "1995",
+    year: 1995,
     title: "Форест Гамп",
-    rating: "9,9",
+    rating: 9.9,
   },
 };
