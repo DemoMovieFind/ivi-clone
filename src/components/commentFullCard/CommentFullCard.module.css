@@ -1,0 +1,96 @@
+.commentFullContainer{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.commentAvatar{
+  margin-right: 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background-color: darkcyan;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commentFullMainContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.commentNameAndDate{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.commentName, .commentDate {
+  color: #a5a1b2;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 700;
+}
+
+.commentDate{
+  font-weight: 400;
+}
+
+.commentText{
+  max-width: 414px;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+  font-style: normal;
+  color: #d9d7e0;
+}
+
+.hide, .show {
+  color: rgba(255,255,255,.88);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.hide:hover, .show:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.commentLikesContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.totalLikes {
+  color: #73a32f;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+.like{
+  background: url('../../image/likesIcons/like.svg') no-repeat;
+}
+
+.dislike{
+  background: url('../../image/likesIcons/dislike.svg') no-repeat;
+}
+
+.like, .dislike{
+  filter: invert(49%) sepia(7%) saturate(793%) hue-rotate(213deg) brightness(96%) contrast(88%);
+  width: 28px;
+  height: 28px;
+  transition: all 0.2s linear;
+}
+
+.like:hover, .dislike:hover {
+  filter: invert(77%) sepia(3%) saturate(972%) hue-rotate(211deg) brightness(85%) contrast(82%);
+  cursor: pointer;
+}
