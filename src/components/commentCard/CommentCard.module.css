@@ -57,11 +57,11 @@
 }
 
 .like{
-  background: url('./icons/like.svg') no-repeat;
+  background: url('../../image/likesIcons/like.svg') no-repeat;
 }
 
 .dislike{
-  background: url('./icons/dislike.svg') no-repeat;
+  background: url('../../image/likesIcons/dislike.svg') no-repeat;
 }
 
 .like, .dislike{

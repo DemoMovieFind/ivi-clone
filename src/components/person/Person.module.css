@@ -11,7 +11,7 @@
 }
 
 .noImage {
-  background: url('./icon/no-image.svg') #1f1b2e;
+  background: url('../../image/personIcon/no-image.svg') #1f1b2e;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 70%;
