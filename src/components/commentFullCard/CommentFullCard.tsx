@@ -30,8 +30,11 @@ const CommentFullCard = ({
     }
   }, [])
 
+
+  const textElem = document.getElementById(id.toString())
   const toggle = () => {
     setShowMore(showMore ? false : true)
+    showMore ? textElem?.classList.remove(styles.preLine) : textElem?.classList.add(styles.preLine)
   }
 
   let smallText = ''

@@ -49,6 +49,10 @@
   color: #d9d7e0;
 }
 
+.preLine {
+  white-space: pre-line;
+}
+
 .hide, .show {
   color: rgba(255,255,255,.88);
   font-size: 15px;
