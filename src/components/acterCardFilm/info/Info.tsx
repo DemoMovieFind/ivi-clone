@@ -4,9 +4,9 @@ import clsx from "clsx";
 
 export interface InfoProps {
   className?: string;
-  year: string;
-  title: string;
-  rating: string;
+  year?: number;
+  title?: string;
+  rating?: number | null;
 }
 
 export const Info: React.FC<InfoProps> = ({
