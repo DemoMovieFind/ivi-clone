@@ -3,9 +3,11 @@ import styles from "./Button.module.css";
 import { ButtonProps } from "./Button";
 import clsx from "clsx";
 
-/**
- * Base link looking as button
- */
+export interface ButtonLinkProps
+  extends Omit<ButtonProps, "size" | "children"> {
+  href?: string;
+}
+
 export const ButtonLink: React.FC<
   ButtonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
 > = ({
@@ -13,10 +15,12 @@ export const ButtonLink: React.FC<
   size = "medium",
   children,
   className,
+  href,
   ...props
-}: ButtonProps) => {
+}) => {
   return (
     <a
+      href={href}
       className={clsx(
         styles.button,
         styles[appearance],
