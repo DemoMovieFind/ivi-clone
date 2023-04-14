@@ -8,12 +8,19 @@ export interface ActerCardFilmProps {
   appearance?: "default";
   className?: string;
   img?: string;
+  year: string;
+  title: string;
+  rating: string;
 }
 
 export const ActerCardFilm = ({
   appearance = "default",
   className,
   img,
+  year,
+  title,
+  rating,
+
   ...props
 }: ActerCardFilmProps) => {
   return (
@@ -23,7 +30,7 @@ export const ActerCardFilm = ({
     >
       <img src={img} alt="img_film" className={styles.filmImage} />
       <div className={styles.main}>
-        <Info year="1999" title="Терминатор" rating="9,9" />
+        <Info year={year} title={title} rating={rating} />
         <Button size="large">Подробнее</Button>
       </div>
     </div>

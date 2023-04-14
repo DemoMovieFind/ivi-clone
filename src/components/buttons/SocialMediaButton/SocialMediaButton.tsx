@@ -1,18 +1,24 @@
-import { Button, ButtonProps } from "../Button";
 import { ImgIcon } from "../../icons/ImgIcon";
 import styles from "./SocialMediaButton.module.css";
+import { ButtonLink, ButtonLinkProps } from "../ButtonLink";
 
 export interface SocialMediaButtonProps
-  extends Omit<ButtonProps, "size" | "children"> {
+  extends Omit<ButtonLinkProps, "size" | "children"> {
   name: "vk" | "ok" | "tw" | "vb" | "in" | "tl";
 }
 
 export const SocialMediaButton: React.FC<SocialMediaButtonProps> = ({
   name,
+  href,
   ...props
 }) => {
   return (
-    <Button size="medium" className={styles.socialMediaButton} {...props}>
+    <ButtonLink
+      href={href}
+      size="medium"
+      className={styles.socialMediaButton}
+      {...props}
+    >
       {name === "vk" && (
         <ImgIcon appearance="vk" className={styles.socialMediaIcon} />
       )}
@@ -31,6 +37,6 @@ export const SocialMediaButton: React.FC<SocialMediaButtonProps> = ({
       {name === "tl" && (
         <ImgIcon appearance="tl" className={styles.socialMediaIcon} />
       )}
-    </Button>
+    </ButtonLink>
   );
 };
