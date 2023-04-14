@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
-import { Button } from '../buttons/Button';
+import { ActerCardFilm } from '../acterCardFilm/ActerCardFilm';
 
 export interface PersonCardPropsType {
   image?: string;
@@ -16,7 +16,7 @@ export interface FilmPropsType {
   img: string;
   year: string;
   title: string;
-  rate: string;
+  rating: string;
 }
 
 
@@ -29,24 +29,24 @@ const PersonCard = ({
   films = [
     {
       id: 0,
-      img: '',
+      img: 'https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85',
       year: '2022',
       title: "Убийцы цветочной луны",
-      rate: '7.1'
+      rating: '7.1'
     },
     {
       id: 1,
-      img: '',
+      img: 'https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85',
       year: '2021',
       title: "Холодный расчет",
-      rate: '5.5'
+      rating: '5.5'
     },
     {
       id: 2,
-      img: '',
+      img: 'https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85',
       year: '2020',
       title: "Синатра",
-      rate: '7.1'
+      rating: '7.1'
     },
   ],
 }: PersonCardPropsType) => {
@@ -115,19 +115,7 @@ const PersonCard = ({
         <div className={styles.fullFilmTitleTotal}>{films.length} {filmsWords[ending(films.length)]}</div>
       </div>
       <div className={styles.filmsContainer}>
-        {films.map((film, index) => {
-          return <div key={(index).toString()} className={styles.filmCard}>
-            <div className={styles.filmCardInfo}>
-              <div className={styles.filmPoster}></div>
-              <div className={styles.filmInfoContainer}>
-                <span className={styles.filmCardYear}>{film.year}</span>
-                <span className={styles.filmCardTitle}>{film.title}</span>
-                <span className={styles.filmCardRate}>{<FormattedMessage id='person_card_rate' />}: {film.rate}</span>
-              </div>
-            </div>
-            <Button {...{ size: 'large', children: <FormattedMessage id='person_card_watch_movie' /> }} />
-          </div>
-        })}
+        {films.map(film => <ActerCardFilm key={film.id} img={film.img} year={film.year} title={film.title} rating={film.rating} />)}
       </div>
       <div className={styles.personCardBreadCrumbs}>
         <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>
