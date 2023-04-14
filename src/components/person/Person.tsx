@@ -10,25 +10,28 @@ export interface PersonProps {
   films?: number;
 }
 
-const Person = (props: PersonProps) => {
+const Person = ({
+  image = 'https://thumbs.dfs.ivi.ru/storage38/contents/b/c/45102370a23e374f4146fe2d106f26.jpeg/88x88/?q=85',
+  firstName = 'Джеки',
+  lastName = 'Чан',
+  profession = 'актёр',
+}: PersonProps) => {
   return (
     <>
-      {/* <NavLink to={`./card/:${props.id}`} state={props}> */}
       <div className={styles.personСontainer}>
         {
-          props?.image ?
-            <img src={props.image} className={styles.image} />
+          image ?
+            <img src={image} className={styles.image} />
             :
             <div className={styles.noImage}>
             </div>
         }
         <div className="text-section">
-          <div className={styles.firstName}>{props.firstName}</div>
-          <div className={styles.lastName}>{props.lastName}</div>
-          <div className={styles.profession}>{props.profession}</div>
+          <div className={styles.firstName}>{firstName}</div>
+          <div className={styles.lastName}>{lastName}</div>
+          <div className={styles.profession}>{profession}</div>
         </div>
       </div>
-      {/* </NavLink> */}
     </>
   )
 }
