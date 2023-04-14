@@ -1,0 +1,25 @@
+.barChart {
+  width: 100%;
+  max-width: 104px;
+}
+
+.barChartName {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+  color: #a5a1b2;
+  margin-bottom: 4px;
+}
+
+.barChartGraph {
+  height: 4px;
+  border-radius: 2px;
+  background-color: rgba(126, 121, 143, 0.32);
+}
+
+.barChartGraph div {
+  height: 4px;
+  border-radius: 2px;
+  background-color: #ea003d;
+}

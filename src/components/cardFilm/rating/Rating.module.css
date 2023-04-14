@@ -1,0 +1,23 @@
+.ratingValue {
+  display: flex;
+  color: #fff;
+  font-weight: 700;
+  font-style: normal;
+  height: 28px;
+}
+
+.ratingValue div:nth-child(1) {
+  display: flex;
+  align-self: center;
+  font-size: 24px;
+  line-height: 28px;
+  height: 28px;
+}
+
+.ratingValue div:nth-child(2) {
+  display: flex;
+  align-self: center;
+  font-size: 20px;
+  line-height: 24px;
+  height: 24px;
+}

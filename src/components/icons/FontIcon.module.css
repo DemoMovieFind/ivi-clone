@@ -7,6 +7,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "ivi-icons";
+  src: url("../../fonts/ivi-icons.woff2") format("woff2"),
+    url("../../fonts/ivi-icons.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .icon {
   padding-top: 1px;
 
@@ -71,4 +80,59 @@
   font-size: 16px;
   line-height: 16px;
   content: "\E06A";
+}
+
+.posterFavorite::before {
+  font-family: ivi-icons;
+  content: "\E02D";
+  font-style: normal;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.posterSimilar::before {
+  font-family: ivi-icons;
+  content: "\E05B";
+  font-style: normal;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.posterEstimate::before {
+  content: "\E311";
+  font-style: normal;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.posterDontLike::before {
+  font-family: ivi-icons;
+  content: "\E023";
+  font-style: normal;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+[data-tooltip]::after {
+  position: absolute;
+  content: attr(data-tooltip);
+  background-color: #1f1b2e;
+  box-shadow: 0 20px 40px rgba(7, 5, 14, 0.4);
+  padding: 6px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: 1s;
+  pointer-events: none;
+
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: 0 0;
+  text-decoration: none;
+  font-family: iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
 }
