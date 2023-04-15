@@ -3,9 +3,6 @@ import styles from "./FontIcon.module.css";
 import { clsx } from "clsx";
 
 export interface FontIconProps {
-  /**
-   * Icon appearance
-   */
   appearance?:
     | "play"
     | "favorite"
@@ -17,18 +14,14 @@ export interface FontIconProps {
     | "posterFavorite"
     | "posterSimilar"
     | "posterEstimate"
-    | "posterDontLike";
+    | "posterDontLike"
+    | "leftArrow"
+    | "rightArrow";
 
-  /**
-   * Icon className
-   */
   className?: string;
   toollip?: string;
 }
 
-/**
- * Primary UI component for user interaction
- */
 export const FontIcon = ({
   appearance = "play",
   className,
