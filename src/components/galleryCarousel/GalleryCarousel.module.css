@@ -1,0 +1,121 @@
+.pageSection__container {
+  width: 1216px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  position: relative;
+}
+
+.pageSection__containerInner {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.gallery {
+  position: relative;
+}
+
+.blockHeader {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+.nblBlockHeader {
+  display: inline-flex;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  font-style: normal;
+  color: #fff;
+}
+
+.carousel {
+  margin-top: 24px;
+  position: relative;
+}
+
+.viewport {
+  margin-left: 12px;
+  margin-right: 12px;
+  position: relative;
+}
+
+.viewportInner {
+  margin-left: -12px;
+  margin-right: -12px;
+  margin-top: -12px;
+  padding-top: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  overflow: hidden;
+}
+
+.slickSlider {
+  margin-right: -20px;
+  position: relative;
+}
+
+.slickList {
+  position: relative;
+  display: block;
+  overflow: visible;
+}
+
+.slickTrack {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: flex;
+  gap: 24px;
+  margin-left: 0;
+  margin-right: auto;
+  transition: 1s;
+}
+
+.slickPrev {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  left: -48px;
+  top: 12px;
+  z-index: 1;
+  width: 60px;
+  bottom: 0;
+}
+
+.iconWrapper {
+  display: block;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  margin-top: -22px;
+  width: 12px;
+  height: 32px;
+}
+
+.slickNext {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  /* opacity: 0; */
+  /* pointer-events: none; */
+  right: -48px;
+  top: 12px;
+  z-index: 1;
+  width: 60px;
+  bottom: 0;
+}
+
+.slickNext .iconWrapper {
+  left: auto;
+}

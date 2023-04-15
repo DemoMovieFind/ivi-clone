@@ -113,6 +113,24 @@
   line-height: 20px;
 }
 
+.leftArrow::before {
+  content: "\E009";
+  font-family: ivi-icons;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.rightArrow::before {
+  content: "\E00B";
+  font-family: ivi-icons;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 32px;
+}
+
 [data-tooltip]::after {
   position: absolute;
   content: attr(data-tooltip);

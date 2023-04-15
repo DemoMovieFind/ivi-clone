@@ -72,3 +72,15 @@ export const posterDontLike: Story = {
     appearance: "posterDontLike",
   },
 };
+
+export const arrowLeft: Story = {
+  args: {
+    appearance: "leftArrow",
+  },
+};
+
+export const arrowRight: Story = {
+  args: {
+    appearance: "rightArrow",
+  },
+};

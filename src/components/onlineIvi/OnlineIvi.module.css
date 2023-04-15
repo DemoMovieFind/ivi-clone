@@ -1,0 +1,85 @@
+.seoBlock {
+  width: 1216px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  position: relative;
+}
+
+.containerInner {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.clause {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 75%;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+  font-style: normal;
+  color: #a5a1b2;
+}
+
+.header {
+  display: flex;
+
+  align-items: baseline;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 900;
+  font-style: normal;
+  color: #fff;
+}
+
+.text {
+  margin-top: 12px;
+}
+
+.textInnerit {
+  display: block;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+.close {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.close p:nth-child(1) {
+  margin-top: 0px;
+}
+
+.textInnerit p {
+  margin-top: 8px;
+}
+
+.textInnerit p:nth-child(1) {
+  margin-top: 0px;
+}
+
+.textInnerit li {
+  position: relative;
+  padding-left: 16px;
+  margin-left: 12px;
+  margin-top: 8px;
+}
+
+.toggle {
+  display: inline-block;
+  margin-top: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+}
