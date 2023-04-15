@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import PersonContainer from './PersonContainer';
 
 const meta = {
-  title: "PersonContainer",
+  title: "Persons Components/PersonContainer",
   component: PersonContainer,
   tags: ["autodocs"],
 } satisfies Meta<typeof PersonContainer>;
