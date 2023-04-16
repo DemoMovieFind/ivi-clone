@@ -18,4 +18,4 @@ export const Default: Story = {
 
 type Story = StoryObj<typeof meta>;
 
-export const signInForm: Story = {}
+export const authForm: Story = {}
