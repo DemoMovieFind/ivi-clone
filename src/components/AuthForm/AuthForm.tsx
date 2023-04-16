@@ -20,7 +20,6 @@ const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
       password,
     }
     handleSubmit(dataToSend)
-    console.log(dataToSend);
   }
   const intl = useIntl();
   const signInForm = <SignInForm onHandleSubmit={handleForm}/>;
