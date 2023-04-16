@@ -3,17 +3,12 @@ import styles from "./SignUpForm.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Button } from "../buttons/Button";
 
-export type OutputAuthForm = {
-  email:string,
-  password:string,
-}
-
 export type SignUpFormProps = {
-  onHandleSubmit:(data:OutputAuthForm)=>void
+  onHandleSubmit:(data:FieldValues)=>void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SignUpForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignUpFormProps) => {
+const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormProps) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -22,18 +17,9 @@ const SignUpForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignUpForm
     watch,
     } = useForm();
   const intl = useIntl();
-
-  const handle = (data:FieldValues) =>{
-    const {email,password} = data;
-    const dataToSend:OutputAuthForm = {
-      email,
-      password,
-    }
-    onHandleSubmit(dataToSend);
-  }
   
   return(
-    <form className={styles.signUp} onSubmit={handleSubmit(handle)}>
+    <form className={styles.signUp} onSubmit={handleSubmit(onHandleSubmit)}>
       <h5 className={styles.title}><FormattedMessage id="sign_up_title" /></h5>
       <div>
         <label 
@@ -118,7 +104,7 @@ const SignUpForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignUpForm
           )}
       </div>
       <Button type="submit" children={intl.formatMessage({
-            id:'sign_in_enter'
+            id:'sign_in_register'
           })}/>
     </form>
   )

@@ -1,21 +1,20 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import SignInForm from './SignInForm';
+import AuthForm from './AuthForm';
 
 const meta = {
-  title: "Forms/SignInForm",
-  component: SignInForm,
+  title: "Forms/AuthForm",
+  component: AuthForm,
   tags: ["autodocs"],
-} satisfies Meta<typeof SignInForm>;
+} satisfies Meta<typeof AuthForm>;
 
 export default meta;
 
 export const Default: Story = {
   args: {
-    onHandleSubmit: undefined
+    handleSubmit: undefined
   },
 };
-
 
 type Story = StoryObj<typeof meta>;
 

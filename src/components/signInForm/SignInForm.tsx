@@ -3,18 +3,12 @@ import styles from "./SignInForm.module.css";
 import { FieldValues, useForm } from 'react-hook-form';
 import { Button } from "../buttons/Button";
 
-export type OutputAuthForm = {
-  email:string,
-  password:string,
-}
-
-
 export type SignInFormProps = {
-  onHandleSubmit:(data:OutputAuthForm)=>void
+  onHandleSubmit:(data:FieldValues)=>void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInFormProps)=> {
+const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormProps)=> {
   const {
     handleSubmit,
     formState: { errors },
@@ -23,17 +17,8 @@ const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInForm
     } = useForm();
   const intl = useIntl();
 
-  const handle = (data:FieldValues) =>{
-    const {email,password} = data;
-    const dataToSend:OutputAuthForm = {
-      email,
-      password,
-    }
-    onHandleSubmit(dataToSend);
-  }
-
   return (
-    <form className={styles.signIn} onSubmit={handleSubmit(handle)}>
+    <form className={styles.signIn} onSubmit={handleSubmit(onHandleSubmit)}>
       <h5 className={styles.title}><FormattedMessage id="sign_in_title" /></h5>
       <div>
         <label 
