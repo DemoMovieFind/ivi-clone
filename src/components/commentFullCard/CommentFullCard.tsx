@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './CommentFullCard.module.css'
 import { FormattedMessage } from 'react-intl';
+import { Button } from '../buttons/Button';
+import CommentAnswerFrom from '../commentAnswerForm/CommentAnswerFrom';
 
 export interface CommentFullCardPropsType {
   id?: number;
@@ -55,23 +57,44 @@ const CommentFullCard = ({
     <div className={styles.show} onClick={toggle}><FormattedMessage id='person_card_roll_down' /></div>
 
 
+  const [answersList, setAnswersList] = useState<JSX.Element[]>([])
+
+
+  const createAnswer = () => {
+    // const forms: any = document.querySelector(`.${styles.commentFormContainer}`);
+    // console.log(forms);
+
+    setAnswersList([...answersList, <CommentAnswerFrom />])
+  }
+
+
   return (
-    <div className={styles.commentFullContainer} id={id.toString()}>
-      <div className={styles.commentAvatar}>{name[0]}</div>
-      <div className={styles.commentFullMainContainer}>
-        <div className={styles.commentNameAndDate}>
-          <div className={styles.commentName}>{name}</div>
-          <div className={styles.commentDate}>{date}</div>
+    <ul className={styles.ul} id={id.toString()}>
+      <div className={styles.commentFullContainer} id={id.toString()}>
+        <div className={styles.commentLeftSide}>
+          <div className={styles.commentAvatar}>{name[0]}</div>
+          <div className={styles.commentFullMainContainer}>
+            <div className={styles.commentNameAndDate}>
+              <div className={styles.commentName}>{name}</div>
+              <div className={styles.commentDate}>{date}</div>
+            </div>
+            <div className={styles.commentText}>{currentText}</div>
+            <div className={styles.commentReactionContainer}>
+              {showExpandElem ? more : <></>}
+              <div className={styles.commentToAnswerContainer}>
+                <Button onClick={createAnswer} id={id.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className={styles.commentText}>{currentText}</div>
-        {showExpandElem ? more : <></>}
+        <div className={styles.commentLikesContainer}>
+          <div className={styles.like}></div>
+          <span className={styles.totalLikes}>36</span>
+          <div className={styles.dislike}></div>
+        </div>
       </div>
-      <div className={styles.commentLikesContainer}>
-        <div className={styles.like}></div>
-        <span className={styles.totalLikes}>36</span>
-        <div className={styles.dislike}></div>
-      </div>
-    </div>
+      {answersList.map((elem, index) => <li className={styles.answerElem} key={index.toString()}>{elem}</li>)}
+    </ul>
   )
 }
 
