@@ -1,7 +1,8 @@
 .commentContainer {
   padding: 20px;
   background-color: #1f1b2e;
-  width: 310px;
+  max-width: 310px;
+  flex: 1 0 auto;
   height: 162px;
   border-radius: 8px;
   transition: all .2s linear;
