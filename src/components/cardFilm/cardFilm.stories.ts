@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import store from "../../miniDb.json";
+
 import { CardFilm } from "./cardFilm";
+
+import { FilmMainCard } from "../../types/entities/FilmMainCard";
 
 const meta = {
   title: "Card components/CardFilm",
@@ -11,9 +15,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const OnePlusOne: Story = {
+  args: {
+    appearance: "default",
+    film: store[0] as FilmMainCard,
+  },
+};
+
 export const Default: Story = {
   args: {
     appearance: "default",
-    img: "https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85",
+    film: store[1] as FilmMainCard,
   },
 };

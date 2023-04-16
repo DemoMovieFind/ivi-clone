@@ -1,7 +1,21 @@
 .commentFullContainer{
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.commentLeftSide{
+  display: flex;
+  align-items: flex-start;
+}
+
+.ul {
+  padding: 0;
+  max-width: 532px;
+  margin: 0 auto;
 }
 
 .commentAvatar{
@@ -10,7 +24,7 @@
   font-weight: 700;
   color: #fff;
   background-color: darkcyan;
-  padding: 10px 15px;
+  padding: 5px 10px;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -41,7 +55,10 @@
 }
 
 .commentText{
-  max-width: 414px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  max-width: 380px;
+  /* min-width: 214px; */
   font-size: 15px;
   line-height: 22px;
   font-weight: 400;
@@ -63,6 +80,12 @@
 .hide:hover, .show:hover {
   color: #ffffff;
   cursor: pointer;
+}
+
+.commentReactionContainer{
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .commentLikesContainer{
@@ -97,4 +120,9 @@
 .like:hover, .dislike:hover {
   filter: invert(77%) sepia(3%) saturate(972%) hue-rotate(211deg) brightness(85%) contrast(82%);
   cursor: pointer;
+}
+
+.answerElem {
+  padding-left: 56px;
+  list-style: none;
 }
