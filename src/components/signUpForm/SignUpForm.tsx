@@ -1,6 +1,6 @@
-import { FormattedMessage,useIntl } from "react-intl";
-import styles from "./SignInForm.module.css";
-import { FieldValues, useForm } from 'react-hook-form';
+import { FieldValues, useForm } from "react-hook-form";
+import styles from "./SignUpForm.module.css";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Button } from "../buttons/Button";
 
 export type OutputAuthForm = {
@@ -8,18 +8,18 @@ export type OutputAuthForm = {
   password:string,
 }
 
-
-export type SignInFormProps = {
+export type SignUpFormProps = {
   onHandleSubmit:(data:OutputAuthForm)=>void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInFormProps)=> {
+const SignUpForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignUpFormProps) => {
   const {
     handleSubmit,
     formState: { errors },
     trigger,
     register,
+    watch,
     } = useForm();
   const intl = useIntl();
 
@@ -31,10 +31,10 @@ const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInForm
     }
     onHandleSubmit(dataToSend);
   }
-
-  return (
-    <form className={styles.signIn} onSubmit={handleSubmit(handle)}>
-      <h5 className={styles.title}><FormattedMessage id="sign_in_title" /></h5>
+  
+  return(
+    <form className={styles.signUp} onSubmit={handleSubmit(handle)}>
+      <h5 className={styles.title}><FormattedMessage id="sign_up_title" /></h5>
       <div>
         <label 
           htmlFor="email" 
@@ -59,7 +59,7 @@ const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInForm
           onKeyUp={() => {trigger("email")}}
         ></input>
         {errors.email && (
-        <span className={styles.error}>{`${errors.email.message}`}</span>
+        <small className={styles.error}>{`${errors.email.message}`}</small>
         )}
       </div>
       <div>
@@ -72,7 +72,7 @@ const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInForm
           id="password"
           type= 'password'
           autoComplete='off'
-          className={`${styles.input} ${errors.password && "invalid"}`}
+          className={styles.input}
           required={true}
           {...register("password", {
           required: intl.formatMessage({
@@ -91,6 +91,32 @@ const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInForm
         <small className={styles.error}>{`${errors.password.message}`}</small>
         )}
       </div>
+      <div>
+        <label 
+          htmlFor="confirmPassword"
+          className={styles.title}>
+            {intl.formatMessage({id:'sign_up_confirm_password'})}
+        </label>
+        <input
+          id="confirmPassword"
+          type='password'
+          className={styles.input}
+          {...register( 'confirmPassword', {
+          validate: value =>
+          value === watch("password", "") || `${intl.formatMessage({id:'sign_up_password_not_match'})}`
+          })}
+          autoComplete='off'
+          onPaste={(e) =>{
+          e.preventDefault();
+          return false
+          }}
+          required={true}
+          onKeyUp={() => {trigger("confirmPassowrd")}}
+        />
+          {errors.confirmPassword && (
+          <small className={styles.error}>{`${errors.confirmPassword.message}`}</small>
+          )}
+      </div>
       <Button type="submit" children={intl.formatMessage({
             id:'sign_in_enter'
           })}/>
@@ -98,4 +124,4 @@ const SignInForm = ({onHandleSubmit=(data:OutputAuthForm)=>undefined}:SignInForm
   )
 }
 
-export default SignInForm;
+export default SignUpForm;

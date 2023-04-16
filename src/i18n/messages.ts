@@ -26,7 +26,7 @@ export const messages = {
     person_card_filmography: 'Full filmography',
     person_card_rate: 'Rating',
     person_card_watch_movie: 'Watch',
-    sign_in_title: 'Register your account',
+    sign_in_title: 'Sign In',
     sign_in_your_email:'Input your Email:',
     sign_in_invalid_email:'Invalid email address',
     sign_in_email_required:'Email is required',
@@ -34,7 +34,10 @@ export const messages = {
     sign_in_password_required:'Password is required',
     sign_in_your_password:'Input your Password:',
     sign_in_enter:'Enter',
-    sign_in_passwore_min_limit:'Password must be more than 8 characters'
+    sign_in_password_min_limit:'Password must be more than 8 characters',
+    sign_up_title: 'Sign Up',
+    sign_up_password_not_match:"The passwords do not match",
+    sign_up_confirm_password:"Confirm password",
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -69,6 +72,9 @@ export const messages = {
     sign_in_password_required:'Введите пароль',
     sign_in_your_password:'Введите ваш пароль:',
     sign_in_enter:'Войти',
-    sign_in_passwore_min_limit:'Пароль должен быть более 8 символов',
+    sign_in_password_min_limit:'Пароль должен быть более 8 символов',
+    sign_up_title: 'Зарегистрируйтесь',
+    sign_up_password_not_match:"Пароли не совпадают",
+    sign_up_confirm_password:"Подтвердите пароль",
   },
 };
