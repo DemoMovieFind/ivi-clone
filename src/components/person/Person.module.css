@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  cursor: pointer;
+}
+
+.personСontainer:hover .firstName {
+  color: #fff;
+}
+.personСontainer:hover .lastName {
+  color: #fff;
 }
 
 .image{
@@ -26,4 +34,5 @@
 
 .firstName, .lastName{
   color: #d9d7e0;
+  transition: all 0.1s linear;
 }

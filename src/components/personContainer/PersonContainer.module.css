@@ -1,7 +1,7 @@
 .container {
   display: flex;
+  flex-wrap: wrap;
   overflow: hidden;
   gap: 24px;
-  background-color: #100e19;
   padding: 12px;
 }

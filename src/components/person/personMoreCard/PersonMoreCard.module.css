@@ -1,0 +1,27 @@
+.personMoreContainer{
+  background-color: #1f1b2e;
+  width: 88px;
+  height: 88px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s linear;
+}
+
+.personMoreContainer:hover {
+  background-color: #231f34;
+  cursor: pointer;
+}
+
+.personMoreContainer:hover .moreText{
+  color: #fff;
+}
+
+.moreText {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #a5a1b2;
+  transition: all 0.2s linear;
+}
