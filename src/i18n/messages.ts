@@ -33,6 +33,10 @@ export const messages = {
     comment_error_username: 'Use only letters',
     comment_error_text_1: `Minimum 10 characters`,
     comment_error_text_2: `Maximum 300 characters`,
+    ivi_rating: 'Raiting Ivi',
+    ivi_interesting_plot: 'Intersting plot',
+    ivi_marks: 'marks',
+    ivi_button_mark: 'Rate',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -66,5 +70,9 @@ export const messages = {
     comment_error_username: 'Используйте только буквы',
     comment_error_text_1: `Минимум 10 символов`,
     comment_error_text_2: `Максимум 300 символов`,
+    ivi_rating: 'Рейтинг Иви',
+    ivi_interesting_plot: 'Интересный сюжет',
+    ivi_marks: 'оценки',
+    ivi_button_mark: 'Оценить',
   },
 };
