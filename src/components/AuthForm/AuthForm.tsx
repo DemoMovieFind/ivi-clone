@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button } from "../buttons/Button";
-import SignInForm from "../signInForm/SignInForm";
+import SignInForm from "./SignInForm";
 import { useIntl } from "react-intl";
-import SignUpForm from "../signUpForm/SignUpForm";
+import SignUpForm from "./SignUpForm";
 import styles from './AuthForm.module.css';
 import { FieldValues } from "react-hook-form";
 
@@ -26,7 +26,8 @@ const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
   const signUpForm = <SignUpForm onHandleSubmit={handleForm}/>;
   const [form,setForm] = useState(signInForm);
   const [typeOfForm,setTypeOfForm] = useState<'signin'|'signup'>('signin');
-  const [textId,setTextId] = useState<'sign_up_have_account'|'sign_up_have_not_account'>('sign_up_have_not_account')
+  const [textId,setTextId] = 
+    useState<'sign_up_have_account'|'sign_up_have_not_account'>('sign_up_have_not_account');
 
   const handleFormSwitch = () => {
     if (typeOfForm === 'signin') {
