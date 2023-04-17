@@ -44,9 +44,11 @@ const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
   return (
     <div className={styles.auth}>
       {form}
-      <Button onPointerDown={handleFormSwitch} appearance='default' size="small" children={intl.formatMessage({
-            id:textId
-          })}/>
+      <Button 
+        onPointerDown={handleFormSwitch} 
+        appearance='default' 
+        size="small" 
+        children={intl.formatMessage({id:textId})}/>
     </div>
   )
 }
