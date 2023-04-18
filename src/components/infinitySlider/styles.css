@@ -78,37 +78,3 @@ body {
   left: 2000px;
   background-color: pink;
 }
-/* .swiper-slide:nth-child(3) {
-  position: absolute;
-  left: -1040px;
-  background-color: purple;
-  display: block;
-}
-
-.swiper-slide:nth-child(4) {
-  position: absolute;
-  left: 1040px;
-  background-color: teal;
-  display: block;
-} */
-
-/* .swiper-slide-next {
-  position: absolute;
-  left: 9200px;
-  background-color: green;
-  display: block;
-}
-
-.swiper-slide-active {
-  position: absolute;
-  left: 0px;
-  background-color: plum;
-  display: block;
-}
-
-.swiper-slide-prev {
-  position: absolute;
-  left: 2000px;
-  background-color: purple;
-  display: block;
-} */

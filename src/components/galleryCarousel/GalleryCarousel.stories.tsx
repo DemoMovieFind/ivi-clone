@@ -66,17 +66,6 @@ export const GalleryCardFilm: Story = {
   ),
 };
 
-// const commentStyle: React.CSSProperties = {
-//   width: 286,
-//   height: 162,
-//   border: "1px solid black",
-//   backgroundColor: "aqua",
-// };
-
-// const CommentCard: React.FC<{ item: (typeof items)[number] }> = ({ item }) => (
-//   <div style={commentStyle}>{item.name}</div>
-// );
-
 const commentsCards = [
   <CommentCard text="" />,
   <CommentCard text="" />,
