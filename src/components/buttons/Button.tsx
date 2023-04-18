@@ -6,7 +6,7 @@ export interface ButtonProps {
   /**
    * Button appearance
    */
-  appearance?: "default" | "primary";
+  appearance?: "default" | "primary" | "movie" | "iviRating";
   /**
    * Button size
    */
@@ -34,22 +34,22 @@ export const Button: React.FC<
 
   ...props
 }: ButtonProps) => {
-  return (
-    <button
-      type="button"
-      className={clsx(
-        styles.button,
-        styles[appearance],
-        styles[size],
+    return (
+      <button
+        type="button"
+        className={clsx(
+          styles.button,
+          styles[appearance],
+          styles[size],
 
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  };
 
 /**
  * Base link looking as button
@@ -63,17 +63,17 @@ export const ButtonLink: React.FC<
   className,
   ...props
 }: ButtonProps) => {
-  return (
-    <a
-      className={[
-        styles.button,
-        styles[appearance] ?? "",
-        styles[size] ?? "",
-        className ?? "",
-      ].join(" ")}
-      {...props}
-    >
-      {children}
-    </a>
-  );
-};
+    return (
+      <a
+        className={[
+          styles.button,
+          styles[appearance] ?? "",
+          styles[size] ?? "",
+          className ?? "",
+        ].join(" ")}
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  };

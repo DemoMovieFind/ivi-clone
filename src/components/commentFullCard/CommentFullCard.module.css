@@ -58,7 +58,6 @@
   overflow: hidden;
   overflow-wrap: break-word;
   max-width: 380px;
-  /* min-width: 214px; */
   font-size: 15px;
   line-height: 22px;
   font-weight: 400;
@@ -123,6 +122,6 @@
 }
 
 .answerElem {
-  padding-left: 56px;
+  padding-left: 44px;
   list-style: none;
 }

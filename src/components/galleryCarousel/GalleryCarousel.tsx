@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import { SlickArrowLeft } from "../buttons/SlickArrow/SlickArrowLeft";
 import { SlickArrowRight } from "../buttons/SlickArrow/SlickArrowRight";
 import { CardViewAll } from "./CardViewAll/CardViewAll";
+import { ButtonLink } from "../buttons/ButtonLink";
 
 export interface GalleryCarouselProps<T> {
   className?: string;
   nameCategory?: string;
   items?: T[];
   itemComponent?: React.FC<{ item: T }>;
+  typeSlider?: string;
 }
 
 export const GalleryCarousel = <T,>({
@@ -19,30 +21,48 @@ export const GalleryCarousel = <T,>({
   nameCategory,
   items,
   itemComponent: ItemComponent,
+  typeSlider,
 }: GalleryCarouselProps<T>) => {
   const [valueTranslate, setValueTranslate] = useState(0);
   const [isVisible, setIsVisible] = useState(0.5);
+  const widthCarousel = typeSlider === "comment" ? "3696px" : "3363px";
 
   const goLeft = () => {
-    if (valueTranslate === -2478) {
-      setValueTranslate(valueTranslate + 354);
-    } else if (valueTranslate !== 0) {
-      setValueTranslate(valueTranslate + 1062);
+    if (typeSlider === "comment") {
+      if (valueTranslate === -2480) {
+        setValueTranslate(valueTranslate + 620);
+      } else if (valueTranslate !== 0) {
+        setValueTranslate(valueTranslate + 930);
+      }
+    } else {
+      if (valueTranslate === -2478) {
+        setValueTranslate(valueTranslate + 354);
+      } else if (valueTranslate !== 0) {
+        setValueTranslate(valueTranslate + 1062);
+      }
     }
   };
 
   const goRight = () => {
-    if (valueTranslate === -2124) {
-      setValueTranslate(valueTranslate - 354);
-    } else if (valueTranslate > -2124 && valueTranslate <= 0) {
-      setValueTranslate(valueTranslate - 1062);
+    if (typeSlider === "comment") {
+      if (valueTranslate === -1860) {
+        setValueTranslate(valueTranslate - 620);
+      } else if (valueTranslate <= 0) {
+        setValueTranslate(valueTranslate - 930);
+      }
+    } else {
+      if (valueTranslate === -2124) {
+        setValueTranslate(valueTranslate - 354);
+      } else if (valueTranslate > -2124 && valueTranslate <= 0) {
+        setValueTranslate(valueTranslate - 1062);
+      }
     }
   };
 
   useEffect(() => {
     if (valueTranslate === 0) {
       setIsVisible(0);
-    } else if (valueTranslate === -2478) {
+    } else if (valueTranslate === -2478 || valueTranslate === -2480) {
       setIsVisible(1);
     } else {
       setIsVisible(0.5);
@@ -55,11 +75,44 @@ export const GalleryCarousel = <T,>({
         <div className={styles.pageSection__containerInner}>
           <div className={styles.gallery}>
             <div className={styles.blockHeader}>
-              <Link to={"#"} className={styles.nblBlockHeader}>
-                <div className={styles.title}>
-                  <div className={styles.titleText}>{nameCategory}</div>
+              <div>
+                <div style={{ display: "flex" }}>
+                  <Link to={"#"} className={styles.nblBlockHeader}>
+                    <div className={styles.title}>
+                      <div
+                        className={
+                          typeSlider === "comment"
+                            ? clsx(styles.titleText, styles.commentShadow)
+                            : styles.titleText
+                        }
+                      >
+                        {typeSlider === "comment" ? "Отзывы" : nameCategory}
+                      </div>
+                    </div>
+                  </Link>
+                  {typeSlider === "comment" ? (
+                    <div className={styles.allComment}>
+                      <div className={styles.textCount}>63</div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
-              </Link>
+                {typeSlider === "comment" ? (
+                  <div className={styles.about}>
+                    о мультфильме «Лунтик и его друзья»
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+              {typeSlider === "comment" ? (
+                <ButtonLink className={styles.buttonComment}>
+                  Оставить отзыв
+                </ButtonLink>
+              ) : (
+                ""
+              )}
             </div>
             <div className={styles.carousel}>
               <div className={styles.viewport}>
@@ -69,14 +122,14 @@ export const GalleryCarousel = <T,>({
                       <div
                         className={styles.slickTrack}
                         style={{
-                          width: "3363px",
+                          width: `${widthCarousel}`,
                           opacity: "1",
                           transform: `translateX(${valueTranslate}px)`,
                         }}
                       >
                         {ItemComponent &&
                           items?.map((item) => <ItemComponent item={item} />)}
-                        <CardViewAll />
+                        {typeSlider === "comment" ? "" : <CardViewAll />}
                       </div>
                     </div>
                   </div>

@@ -26,7 +26,7 @@ const Person = ({
             <div className={styles.noImage}>
             </div>
         }
-        <div className="text-section">
+        <div className={styles.textSection}>
           <div className={styles.firstName}>{firstName}</div>
           <div className={styles.lastName}>{lastName}</div>
           <div className={styles.profession}>{profession}</div>

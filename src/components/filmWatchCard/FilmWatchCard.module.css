@@ -1,0 +1,230 @@
+.filmWatchCardContainer {
+  padding-bottom: 40px;
+}
+
+.filmWatchCardBreadCrumbsContainer {
+  color: rgba(255,255,255,.56);
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.breadCrumbsItem{
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  transition-duration: 0.2s;
+}
+
+.breadCrumbsItem:hover {
+  color: #fff;
+}
+.breadCrumbsItem:active {
+  color: rgba(255,255,255,.56);
+}
+
+.breadCrumbsItem::before {
+  display: inline-block;
+  content: '';
+  width: 2px;
+  height: 2px;
+  background-color: rgba(255,255,255,.56);
+  margin-left: 7px;
+  margin-right: 7px;
+  margin-bottom: 3px;
+}
+
+.breadCrumbsItem:first-child::before {
+  display: none;
+}
+
+.filmWathMainContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  position: relative;
+}
+
+.filmWatchMovieSide {
+  position: sticky;
+  top: 32px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 55%;
+}
+
+.filmWatchMovieContainer{
+  width: 100%;
+  height: 360px;
+}
+
+.noFilm {
+  background: url('../../image/filmIcon/no-film.svg') no-repeat center center;
+  background-size: 30%;
+  background-color: #1f1b2e;
+}
+
+.filmWatchButtonsContainer{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btnTrailerContent{
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filmWatchInfoSide {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  gap: 20px;
+}
+
+.filmWatchTitle {
+  font-size: 56px;
+  line-height: 56px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.filmWatchParamsContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.filmWatchMovieInfo {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: rgba(255,255,255,.8);
+}
+
+.filmWatchYear{
+  transition-duration: 0.4s;
+}
+
+.filmWatchYear:hover {
+  color: #fff;
+}
+
+.filmWatchGenreNav {
+  color: rgba(255,255,255,.56);
+  display: flex;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;  
+}
+
+.filmWatchGenreNavCountry{
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  transition-duration: 0.2s;
+}
+
+.filmWatchGenreNavCountry:hover {
+  color: #fff;
+}
+.filmWatchGenreNavCountry:active {
+  color: rgba(255,255,255,.56);
+}
+
+.filmWatchQualityContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filmWatchQualityContainer:last-child {
+  justify-content: flex-start;
+}
+
+.filmWatchQuality {
+  background-color: rgba(255,255,255,.16);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.filmWatchAudio, .filmWatchText {
+  display: flex;
+  align-items: center;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgba(255,255,255,.8);
+}
+
+.filmWatchActorsContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.filmWatchDescription, .filmWatchLangContainer, .filmWatchSubContainer, .filmWatchQualityDesc, .filmWatchDetailsBtn {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.filmWatchDescription, .filmWatchParamsBottomContainer {
+  color: rgba(255,255,255,.72);
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  padding-bottom: 32px;
+}
+
+.filmWatchParamsBottomContainer {
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.filmWatchLangContainer, .filmWatchSubContainer, .filmWatchParamsBottomContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.filmWatchLangTitle, .filmWatchSubTitle, .filmWatchQualityDesc span {
+  color: rgba(255,255,255,.72);
+}
+
+.filmWatchLang, .filmWatchSub {
+  color:  #fff;
+}
+
+.filmWatchQualityDesc{
+  color: rgba(255,255,255,.4);;
+}
+
+.filmWatchDetailsBtn {
+  color: rgba(255,255,255,.48);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.filmWatchDetailsBtn:hover {
+  color: #fff;
+}
+.filmWatchDetailsBtn:active {
+  color: rgba(255,255,255,.72);
+}

@@ -61,9 +61,6 @@ const CommentFullCard = ({
 
 
   const createAnswer = () => {
-    // const forms: any = document.querySelector(`.${styles.commentFormContainer}`);
-    // console.log(forms);
-
     setAnswersList([...answersList, <CommentAnswerFrom />])
   }
 

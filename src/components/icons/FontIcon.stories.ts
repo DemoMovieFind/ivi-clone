@@ -22,6 +22,24 @@ export const Favorite: Story = {
   },
 };
 
+export const Notification: Story = {
+  args: {
+    appearance: "notification",
+  },
+};
+
+export const Audio: Story = {
+  args: {
+    appearance: "audio",
+  },
+};
+
+export const Text: Story = {
+  args: {
+    appearance: "text",
+  },
+};
+
 export const Download: Story = {
   args: {
     appearance: "download",

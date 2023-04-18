@@ -26,6 +26,13 @@ export const Primary: Story = {
   },
 };
 
+export const Movie: Story = {
+  args: {
+    appearance: "movie",
+    children: "Button",
+  },
+};
+
 export const Large: Story = {
   args: {
     size: "large",

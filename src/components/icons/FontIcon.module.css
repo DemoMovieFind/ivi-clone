@@ -23,7 +23,7 @@
   font-family: iconfont !important;
   font-weight: 400 !important;
   font-style: normal !important;
-  color: #fff;
+  color: #ffffffe8;
 }
 
 .play::before {
@@ -40,6 +40,32 @@
   height: 16px;
   font-size: 16px;
   line-height: 16px;
+}
+
+.notification::before {
+  content: "\E2FA";
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.audio::before {
+  content: "\E2E6";
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+}
+
+.text::before {
+  content: "\E2DF";
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  margin-right: 4px;
 }
 
 .download::before {
