@@ -4,19 +4,22 @@ import { clsx } from "clsx";
 
 export interface FontIconProps {
   appearance?:
-    | "play"
-    | "favorite"
-    | "download"
-    | "smartTV"
-    | "allDevices"
-    | "mail"
-    | "tel"
-    | "posterFavorite"
-    | "posterSimilar"
-    | "posterEstimate"
-    | "posterDontLike"
-    | "leftArrow"
-    | "rightArrow";
+  | "play"
+  | "favorite"
+  | "notification"
+  | "download"
+  | "smartTV"
+  | "allDevices"
+  | "mail"
+  | "tel"
+  | "posterFavorite"
+  | "posterSimilar"
+  | "posterEstimate"
+  | "posterDontLike"
+  | "leftArrow"
+  | "rightArrow"
+  | "audio"
+  | "text";
 
   className?: string;
   toollip?: string;

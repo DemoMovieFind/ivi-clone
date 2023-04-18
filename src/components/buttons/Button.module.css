@@ -34,6 +34,33 @@
   border-color: #ff0f4d;
 }
 
+.movie {
+  color: #ffffffe8;
+  background-color: rgba(255,255,255,.08);
+}
+
+.movie:hover {
+  background-color: rgba(255,255,255,.16);
+}
+
+.movie:active {
+  background-color: rgba(255,255,255,.08);
+}
+
+.iviRating {
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,.32);
+}
+
+.iviRating:hover {
+  border: 1px solid rgba(255,255,255,.72);
+}
+
+.iviRating:active {
+  background-color: rgba(255,255,255,.08);
+}
+
 .small {
   font-size: 12px;
   padding: 10px 16px;

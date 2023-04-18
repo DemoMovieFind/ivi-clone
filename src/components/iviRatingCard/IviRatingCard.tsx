@@ -20,7 +20,7 @@ const IviRatingCard = ({
           <div className={styles.iviRatingCardMarks}>143 442 <FormattedMessage id='ivi_marks' /></div>
         </div>
       </div>
-      <Button size='small' children={<FormattedMessage id='ivi_button_mark' />} />
+      <Button size='small' appearance='iviRating' children={<FormattedMessage id='ivi_button_mark' />} />
     </div>
   )
 }
