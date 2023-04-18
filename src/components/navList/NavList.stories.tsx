@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import NavList from "./NavList";
 
 const meta: Meta<typeof NavList> = {
-  title: "NavList",
+  title: "UI Components/NavList",
   component: NavList,
   tags: ["autodocs"],
 };
