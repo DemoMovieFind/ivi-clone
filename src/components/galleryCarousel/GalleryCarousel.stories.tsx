@@ -4,6 +4,7 @@ import { GalleryCarousel } from "./GalleryCarousel";
 import React from "react";
 import { CardFilm } from "../cardFilm/cardFilm";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import CommentCard from "../commentCard/CommentCard";
 
 import films from "../../miniDb";
 
@@ -27,6 +28,8 @@ const items = [
   { name: "Item 8" },
   { name: "Item 9" },
   { name: "Item 10" },
+  { name: "Item 11" },
+  { name: "Item 12" },
 ];
 
 const cardStyle: React.CSSProperties = {
@@ -59,6 +62,35 @@ export const GalleryCardFilm: Story = {
       items={films.slice(0, 20)}
       itemComponent={CardFilmItem}
       nameCategory="Зарубежное кино"
+    />
+  ),
+};
+
+const commentsCards = [
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+  <CommentCard text="" />,
+];
+const CardCommentItem: React.FC<{ item: any }> = () => <CommentCard />;
+
+export const CommentCarousel: Story = {
+  args: {},
+  render: (args) => (
+    <GalleryCarousel
+      {...args}
+      items={commentsCards}
+      itemComponent={CardCommentItem}
+      nameCategory="Отзывы"
+      typeSlider="comment"
     />
   ),
 };
