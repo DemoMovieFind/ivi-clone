@@ -12,16 +12,14 @@ type Story = StoryObj<typeof meta>
 
 export const personCardMini: Story = {
   args: {
-    firstName: 'Омар',
-    lastName: 'Си',
+    name: 'Омар Си',
     img: 'https://thumbs.dfs.ivi.ru/storage28/contents/5/4/5b9430c9601da3b2b00770fb7e08f0.jpeg/44x44/?q=85',
   }
 }
 
 export const iviCardMini: Story = {
   args: {
-    firstName: 'Рейтинг',
-    lastName: 'Иви',
+    name: 'Рейтинг Иви',
     rating: '7.1',
   }
 }

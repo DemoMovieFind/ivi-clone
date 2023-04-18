@@ -7,6 +7,8 @@
   line-height: 16px;
   font-weight: 400;
   transition: all .2s linear;
+  width: 60px;
+  overflow: hidden;
 }
 
 .container:hover {
@@ -15,8 +17,15 @@
 }
 
 .container:hover .imgContainer{
-  background-color: rgba(255,255,255,.24);;
+  background-color: rgba(255,255,255,.24);
+}
 
+.container:active {
+  color: rgba(255,255,255,.48);;
+}
+
+.container:active .imgContainer{
+  background-color: rgba(255,255,255,.16);
 }
 
 .imgContainer{
@@ -57,4 +66,9 @@
   font-weight: 500;
   border-radius: 8px;
   color: #fff;
+}
+
+.name {
+  word-wrap: break-word;
+  text-align: center;
 }

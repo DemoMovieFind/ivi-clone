@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 390px;
+  width: 100%;
 }
 
 .iviRatingCardInfoContainer{
