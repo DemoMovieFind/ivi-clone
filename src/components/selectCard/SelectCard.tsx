@@ -14,9 +14,10 @@ const SelectCard = ({
 
   const intl = useIntl();
 
-  const addChecked = (e: Event) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const addChecked = (e: any) => {
     document.querySelectorAll(`.${styles.checked}`).forEach(elem => elem.classList.remove(`${styles.checked}`));
-    (e.target as Element)?.classList.add(`${styles.checked}`)
+    e.target?.classList.add(`${styles.checked}`)
   }
 
 
@@ -44,13 +45,13 @@ const SelectCard = ({
           <img className={styles.selectBoxIcon} src={arrow} alt="Arrow Icon" aria-hidden />
         </div>
         <ul className={styles.selectBoxList}>
-          <li onClick={() => addChecked}>
+          <li onClick={addChecked}>
             <label className={styles.selectBoxOption} htmlFor="0" aria-hidden>
               <div className={styles.selectBoxExtra}><FormattedMessage id='select_card_all_years' /></div>
             </label>
           </li>
           {items.map((item, index) => {
-            return <li key={index} onClick={() => addChecked}>
+            return <li key={index} onClick={addChecked}>
               <label className={styles.selectBoxOption} htmlFor={(index + 1).toString()} aria-hidden>
                 <div className={styles.selectBoxExtra}>
                   {item.trim().length == 4 ? `${item} ${intl.formatMessage({ id: `select_card_year` })}` : item}
