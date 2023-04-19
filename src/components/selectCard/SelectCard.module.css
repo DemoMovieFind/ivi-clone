@@ -1,0 +1,158 @@
+
+.selectBox {
+  position: relative;
+  display: block;
+  width: 25%;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #60666d;
+}
+
+.selectBoxCurrent {
+  position: relative;
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+}
+.selectBoxCurrent:focus + .selectBoxList {
+  opacity: 1;
+  animation-name: none;
+}
+.selectBoxCurrent:focus + .selectBoxList .selectBoxOption {
+  cursor: pointer;
+  background-color: #312b45;
+}
+.selectBoxCurrent:focus .selectBoxIcon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.selectBoxIcon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 20px;
+  opacity: 0.3;
+  transition: 0.2s ease;
+}
+.selectBoxValue {
+  display: flex;
+}
+.selectBoxInput {
+  display: none;
+}
+
+.selectBoxTitle {
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.selectBoxExtra{
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: rgba(217,215,224,.8);
+  transition: all 0.2s linear;
+  position: relative;
+}
+
+.selectBoxExtra:not(:not(:first-child)):hover {
+  color: #fff;
+}
+.selectBoxExtra:not(:not(:first-child)):hover::before {
+  content: '';
+  position: absolute;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(217,215,224,.72);;
+  border-radius: 100%;
+}
+
+.selectBoxInput:checked {
+  background-color: #fff;
+}
+
+.selectBoxInput:checked + .selectBoxInputText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #312b45;
+  border-radius: 4px;
+}
+
+.selectBoxInputText {
+  display: none;
+  width: 100%;
+  height: 56px;
+  margin: 0;
+  padding: 0 15px;
+  background-color: #fff;
+  transition: all 0.2s linear;
+}
+.selectBoxList {
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  opacity: 0;
+  animation-name: HideList;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: step-start;
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #312b45;
+}
+
+.selectBoxOption {
+  display: block;
+  padding: 0px;
+  background-color: #fff;
+}
+
+
+.selectBoxOption:hover, .selectBoxOption:focus {
+  color: #546c84;
+  background-color: #fbfbfb;
+}
+
+.checked::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  right: 6.5px;
+  width: 2px;
+  height: 2px;
+  border: 2px solid #fff;
+  border-radius: 100%;
+}
+
+.checked::before {
+  content: '';
+  position: absolute;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-radius: 100%;
+}
+
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
