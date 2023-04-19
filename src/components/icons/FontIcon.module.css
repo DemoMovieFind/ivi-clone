@@ -18,7 +18,7 @@
 
 .icon {
   padding-top: 1px;
-
+  position: relative;
   display: inline-block;
   font-family: iconfont !important;
   font-weight: 400 !important;
@@ -155,6 +155,116 @@
   font-style: normal;
   font-size: 32px;
   line-height: 32px;
+}
+
+.genre_drama::before {
+  content: "\E181";
+  position: absolute;
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+.genre_drama::after {
+  content: "\E182";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_comedy {
+  content: "\E165";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_action {
+  content: "\E143";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_triller {
+  content: "\E1F4";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_adventure {
+  content: "\E14C";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_foreign {
+  content: "\E19E";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_melodrama {
+  content: "\E1BB";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_fantastic {
+  content: "\E190";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_fantasy {
+  content: "\E195";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+}
+
+.genre_family {
+  content: "\E18B";
+  font-family: iconfont !important;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
 }
 
 [data-tooltip]::after {

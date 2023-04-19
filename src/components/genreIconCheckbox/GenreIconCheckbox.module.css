@@ -1,0 +1,51 @@
+.icon {
+  background-color: #312b45;
+  border-color: rgba(255, 255, 255, 0.32);
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  height: 88px;
+  width: 108px;
+  padding: 16px 8px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: #7e798f;
+  border-color: #7e798f;
+  transition-duration: 80ms;
+}
+
+.icon:active {
+  background-color: #7e798f;
+  border-color: #7e798f;
+  transition-duration: 80ms;
+}
+
+.iconWrapper {
+  position: relative;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  font-style: normal;
+  height: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 8px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
