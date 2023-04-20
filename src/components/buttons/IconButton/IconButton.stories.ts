@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { SocialMediaButton } from "./SocialMediaButton";
+import { IconButton } from "./IconButton";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta = {
-  title: "UI Components/SocialMediaButton",
-  component: SocialMediaButton,
+  title: "UI Components/IconButton",
+  component: IconButton,
   tags: ["autodocs"],
-} satisfies Meta<typeof SocialMediaButton>;
+} satisfies Meta<typeof IconButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

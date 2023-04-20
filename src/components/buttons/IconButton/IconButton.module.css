@@ -1,11 +1,11 @@
-.socialMediaIcon {
+.icon {
   width: 16px;
   height: 16px;
   align-self: center;
   background-size: 16px;
 }
 
-.socialMediaButton {
+.button {
   border-radius: 50%;
   width: 40px;
   height: 40px;
