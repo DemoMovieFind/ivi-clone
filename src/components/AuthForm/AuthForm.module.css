@@ -17,12 +17,13 @@
 
 .error {
   color: red;
+  font-size: 12px;
 }
 
 .title {
   color: #fff;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 20px;
+  line-height: 25px;
   font-weight: 700;
   margin: 0;
   text-align: center;

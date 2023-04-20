@@ -9,18 +9,21 @@ import { FieldValues } from "react-hook-form";
 export type OutputAuthForm = {
   email:string,
   password:string,
+  typeOfData:'signin'|'signup'
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
   const handleForm = (data:FieldValues) => {
-    const {email,password} = data;
+    const { email, password } = data;
     const dataToSend:OutputAuthForm = {
       email,
       password,
+      typeOfData:typeOfForm
     }
     handleSubmit(dataToSend)
   }
+  
   const intl = useIntl();
   const signInForm = <SignInForm onHandleSubmit={handleForm}/>;
   const signUpForm = <SignUpForm onHandleSubmit={handleForm}/>;

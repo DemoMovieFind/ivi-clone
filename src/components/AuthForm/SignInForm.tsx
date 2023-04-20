@@ -44,7 +44,7 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
           onKeyUp={() => {trigger("email")}}
         ></input>
         {errors.email && (
-        <span className={styles.error}>{`${errors.email.message}`}</span>
+        <small className={styles.error}>{`${errors.email.message}`}</small>
         )}
       </div>
       <div>
