@@ -102,3 +102,55 @@ export const arrowRight: Story = {
     appearance: "rightArrow",
   },
 };
+
+export const genre_drama: Story = {
+  args: {
+    appearance: "genre_drama",
+  },
+};
+
+export const genre_comedy: Story = {
+  args: {
+    appearance: "genre_comedy",
+  },
+};
+export const genre_action: Story = {
+  args: {
+    appearance: "genre_action",
+  },
+};
+export const genre_triller: Story = {
+  args: {
+    appearance: "genre_triller",
+  },
+};
+export const genre_adventure: Story = {
+  args: {
+    appearance: "genre_adventure",
+  },
+};
+export const genre_foreign: Story = {
+  args: {
+    appearance: "genre_foreign",
+  },
+};
+export const genre_melodrama: Story = {
+  args: {
+    appearance: "genre_melodrama",
+  },
+};
+export const genre_fantastic: Story = {
+  args: {
+    appearance: "genre_fantastic",
+  },
+};
+export const genre_fantasy: Story = {
+  args: {
+    appearance: "genre_fantasy",
+  },
+};
+export const genre_family: Story = {
+  args: {
+    appearance: "genre_family",
+  },
+};

@@ -1,0 +1,82 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("../../../fonts/iconfont.woff2") format("woff2"),
+    url("../../../fonts/iconfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.itemCheckbox {
+  margin-top: 12px;
+  list-style: none;
+}
+
+.label {
+  position: relative;
+  display: block;
+  font-family: iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
+}
+
+.input {
+  display: none;
+  opacity: 1;
+  color: inherit;
+}
+
+.inputText {
+  color: rgba(217, 215, 224, 0.8);
+  transition: color 80ms;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inputText.active {
+  color: #fff;
+}
+.label:hover .inputText {
+  color: #fff;
+}
+
+.checkbox {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  color: #fff;
+  transition: opacity 400ms;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  position: relative;
+  opacity: 0;
+}
+.icon.active {
+  opacity: 1;
+}
+
+.label:hover .icon {
+  opacity: 0.32;
+}
+.label:hover .icon.active {
+  opacity: 1;
+}
+
+.icon::before {
+  content: "\E348";
+  display: block;
+  transition-property: color;
+  font-size: 16px;
+  line-height: 16px;
+  font-family: iconfont !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}

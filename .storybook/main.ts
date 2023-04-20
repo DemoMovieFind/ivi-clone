@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     "@storybook/preset-create-react-app",
     "@storybook/addon-interactions",
     "storybook-react-intl",
+    "storybook-addon-react-router-v6",
   ],
   framework: {
     name: "@storybook/react-webpack5",

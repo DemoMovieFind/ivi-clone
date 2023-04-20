@@ -15,7 +15,7 @@ export type NavListPropsType = {
 
 const NavList = ({
   links, 
-  vertical,
+  vertical=false,
   headerTranslationId=''
 }:NavListPropsType) => {
   const headerId = headerTranslationId === '' ? "empty_string" : headerTranslationId
