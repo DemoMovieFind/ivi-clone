@@ -4,7 +4,7 @@ import { ButtonLink, ButtonLinkProps } from "../ButtonLink";
 
 export interface SocialMediaButtonProps
   extends Omit<ButtonLinkProps, "size" | "children"> {
-  name: "vk" | "ok" | "tw" | "vb" | "in" | "tl";
+  name: "vk" | "ok" | "tw" | "vb" | "in" | "tl" | "user";
 }
 
 export const SocialMediaButton: React.FC<SocialMediaButtonProps> = ({
@@ -36,6 +36,9 @@ export const SocialMediaButton: React.FC<SocialMediaButtonProps> = ({
       )}
       {name === "tl" && (
         <ImgIcon appearance="tl" className={styles.socialMediaIcon} />
+      )}
+      {name === "user" && (
+        <ImgIcon appearance="user" className={styles.socialMediaIcon} />
       )}
     </ButtonLink>
   );

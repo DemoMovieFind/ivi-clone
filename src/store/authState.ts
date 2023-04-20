@@ -37,7 +37,7 @@ export const sendAuth = createAsyncThunk(
 
 
 export const authReducer = createSlice({
-  name: 'cart',
+  name: 'auth',
   initialState,
   reducers: {
     setAuth: (state,action: PayloadAction<string>) => {

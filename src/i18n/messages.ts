@@ -63,6 +63,7 @@ export const messages = {
     film_watch_russian: 'Russian',
     film_watch_rus: 'Rus',
     film_watch_subtitles: 'Subtitles',
+    auth_greeting: 'Hello',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -126,5 +127,6 @@ export const messages = {
     film_watch_russian: 'Русский',
     film_watch_rus: 'Рус',
     film_watch_subtitles: 'Субтитры',
+    auth_greeting: 'Здравствуйте',
   },
 };
