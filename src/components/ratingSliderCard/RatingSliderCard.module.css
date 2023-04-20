@@ -1,0 +1,181 @@
+.container {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #312b45;
+  width: 350px;
+  border-radius: 4px;
+}
+
+.mainSliderContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider {
+  position: relative;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sliderTrack,
+.sliderRange {
+  height: 5px;
+  position: absolute;
+  top: 50%;
+}
+
+.sliderTrack {
+  background-color: #ced4da;
+  width: 100%;
+  z-index: 1;
+}
+
+.sliderRange {
+  background-color: #ea003e9a;
+  z-index: 2;
+}
+
+.sliderRatingInputTitle,
+.sliderValuesContainer{
+  color: #fff;
+  font-weight: 600;
+}
+
+.sliderLeftValue,
+.sliderRightValue {
+  font-size: 14px;
+  font-weight: 600;
+  width: 30px;
+  text-align: center;
+  background-color: #312b45;
+  border: none;
+  color: #fff;
+  box-shadow: 0 2px 0 #7e798f, inset 0 0 0 #7e798f;
+  transition: all 80ms linear;
+}
+
+.sliderLeftValue:hover,
+.sliderLeftValue:focus,
+.sliderRightValue:focus, 
+.sliderRightValue:hover {
+  box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
+}
+
+.thumb,
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.thumb {
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 200px;
+  outline: none;
+}
+
+.thumbZindex3 {
+  z-index: 3;
+}
+
+.thumbZindex4 {
+  z-index: 4;
+}
+
+.thumbZindex5 {
+  z-index: 5;
+}
+
+.thumb::-webkit-slider-thumb {
+  background-color: #f1f5f7;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ea003e;
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+.thumb::-moz-range-thumb {
+  background-color: #f1f5f7;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ea003e;
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+.rangeTickContainer{
+  width: 100%;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  margin-left: 0px;
+}
+
+.rangeTickBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.rangeTick {
+  background-color: #a5a1b2;
+  width: 1px;
+  height: 10px;
+  z-index: 1;
+}
+
+.rangeTickBox:first-child::before, .rangeTickBox:last-child::before{
+  position: absolute;
+  content: ' ';
+  bottom: 8px;
+  width: 10px;
+  height: 10px;
+  background-color: #312b45;
+  z-index: 3;
+}
+
+.rangeTickBox:first-child::before{
+  left: -5.5px;
+}
+
+.rangeTickBox:last-child::before{
+  right: -5.5px;
+}
+
+.rangeNum {
+  color: #a5a1b2;
+  top: 2px;
+  width: 10px;
+  font-size: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.sliderRatingInputContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderValuesContainer{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
