@@ -2,12 +2,12 @@ import { ImgIcon } from "../../icons/ImgIcon";
 import styles from "./IconButton.module.css";
 import { ButtonLink, ButtonLinkProps } from "../ButtonLink";
 
-export interface IconButtonButtonProps
+export interface IconButtonProps
   extends Omit<ButtonLinkProps, "size" | "children"> {
   name: "vk" | "ok" | "tw" | "vb" | "in" | "tl";
 }
 
-export const IconButton: React.FC<IconButtonButtonProps> = ({
+export const IconButton: React.FC<IconButtonProps> = ({
   name,
   href,
   ...props
