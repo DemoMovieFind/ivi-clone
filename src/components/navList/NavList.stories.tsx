@@ -11,14 +11,28 @@ const meta: Meta<typeof NavList> = {
 type Story = StoryObj<typeof meta>;
 
 export const navList: Story = {
-  render: () => <BrowserRouter>
-    <NavList 
-      links={
-        [{ href:'link1', translationId:'nav_list_films' },
-        { href:'link2', translationId:'nav_list_series' },
-        { href:'link3', translationId:'nav_list_certificate_activation', marked:true },]
-      }
-    vertical={false} 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  render: (data,...args) => <BrowserRouter>
+    <NavList {...data}
     /></BrowserRouter>,
+    args: {
+      vertical: false,
+      links:[
+        {
+          href:'/',
+          translationId:'nav_list_films',
+        },
+        {
+          href:'/',
+          translationId:'nav_list_series',
+        },
+        {
+          href:'/',
+          translationId:'nav_list_certificate_activation',
+          marked:true, 
+        }
+      ],
+      headerTranslationId:''
+    }
 };
 export default meta;
