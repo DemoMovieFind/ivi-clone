@@ -12,7 +12,7 @@
   background-image: url('../../image/iviIcon/iviIcon.svg');
 }
 
-@media (max-width:600px) {
+@media (max-width:720px) {
   .header ul {
     display: none;
   }

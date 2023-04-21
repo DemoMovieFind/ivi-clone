@@ -14,17 +14,16 @@ export type OutputAuthForm = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
+  const intl = useIntl();
   const handleForm = (data:FieldValues) => {
     const { email, password } = data;
     const dataToSend:OutputAuthForm = {
       email,
       password,
-      typeOfData:typeOfForm
+      typeOfData:data['confirmPassword'] === undefined ? 'signin' : 'signup'
     }
     handleSubmit(dataToSend)
   }
-  
-  const intl = useIntl();
   const signInForm = <SignInForm onHandleSubmit={handleForm}/>;
   const signUpForm = <SignUpForm onHandleSubmit={handleForm}/>;
   const [form,setForm] = useState(signInForm);
