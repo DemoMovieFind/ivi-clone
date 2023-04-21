@@ -65,6 +65,9 @@ export const messages = {
     film_watch_subtitles: 'Subtitles',
     persons_filter_actors: 'Actors',
     persons_filter_directors: 'Directors',
+    select_card_year: 'year',
+    select_card_years: 'Years',
+    select_card_all_years: 'All years',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -130,5 +133,8 @@ export const messages = {
     film_watch_subtitles: 'Субтитры',
     persons_filter_actors: 'Актёры',
     persons_filter_directors: 'Режиссёры',
+    select_card_year: 'год',
+    select_card_years: 'Годы',
+    select_card_all_years: 'Все годы',
   },
 };
