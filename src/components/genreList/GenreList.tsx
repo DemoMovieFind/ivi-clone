@@ -49,16 +49,10 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
     if (searchParams.getAll("genre").indexOf(event.target.value) === -1) {
       a.push(event.target.value);
     } else {
-      console.log("Такой уже есть");
       a.splice(searchParams.getAll("genre").indexOf(event.target.value), 1);
     }
 
-    // event.preventDefault();
-
     setSearchParams({ genre: a });
-    console.log(searchParams.getAll("genre"));
-    // console.log("Form::onChange", event.target.value);
-    // console.log("Form::onChange", event.target.checked);
   };
 
   return (

@@ -27,8 +27,6 @@ export const sendAuth = createAsyncThunk(
     const {email,password,typeOfData} = payload;
     try {
       const response = await AuthService.auth(email,password,typeOfData);
-      console.log('response inside sendAuth');
-      console.log(response)
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -75,8 +73,6 @@ export const authReducer = createSlice({
     }),
     builder.addCase(sendAuth.rejected, (state,action) => {
       state.status = 'rejected';
-      console.log('inside error');
-      console.log(action.error.message)
       state.error = action.error.message;
     })
   },

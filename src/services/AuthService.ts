@@ -20,13 +20,8 @@ export type JWTTokenDecodedType = {
 export class AuthService {
 
   static async auth(email:string,password:string,typeOfRequest:"signin" | "signup"){
-    const endpoint = typeOfRequest === 'signin' ? '/login' : '/register';
-    console.log(endpoint);
-    console.log(email);
-    console.log(password)
+    const endpoint = typeOfRequest === 'signin' ? '/login' : '/registration';
     const response = (await api.post(endpoint,{email,password}));
-    console.log('response');
-    console.log(response);
     if (response.status === 201) {
       const token:string = response.data.token;
       const decoded:JWTTokenDecodedType = jwt_decode(token);

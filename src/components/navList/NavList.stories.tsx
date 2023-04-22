@@ -11,8 +11,7 @@ const meta: Meta<typeof NavList> = {
 type Story = StoryObj<typeof meta>;
 
 export const navList: Story = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render: (data,...args) => <BrowserRouter>
+  render: (data) => <BrowserRouter>
     <NavList {...data}
     /></BrowserRouter>,
     args: {
