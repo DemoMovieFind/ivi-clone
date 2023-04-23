@@ -15,6 +15,7 @@ export interface ButtonProps {
    * Button className
    */
   className?: string;
+  title?: string,
   /**
    * Button contents
    */

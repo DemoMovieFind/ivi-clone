@@ -47,3 +47,9 @@ export const Telegram: Story = {
     name: "tl",
   },
 };
+
+export const USER: Story = {
+  args: {
+    name: "user",
+  },
+};

@@ -1,0 +1,19 @@
+.header {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.logo {
+  width: 77px;
+  height: 56px;
+  background-image: url('../../image/iviIcon/iviIcon.svg');
+}
+
+@media (max-width:720px) {
+  .header ul {
+    display: none;
+  }
+}
