@@ -19,7 +19,7 @@ export type JWTTokenDecodedType = {
 
 export class AuthService {
 
-  static async auth(email:string,password:string,typeOfRequest:"signin" | "signup"){
+  static async getTokenOrNull(email:string,password:string,typeOfRequest:"signin" | "signup"){
     const endpoint = typeOfRequest === 'signin' ? '/login' : '/registration';
     const response = (await api.post(endpoint,{email,password}));
     if (response.status === 201) {
@@ -28,6 +28,10 @@ export class AuthService {
       return {decoded,token};
     }
     return null;
+  }
+
+  static getDecodedToken(token:string):JWTTokenDecodedType{
+    return jwt_decode(token);
   }
 
 }

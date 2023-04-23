@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { OutputAuthForm } from '../components/AuthForm/AuthForm';
 import { AuthService, JWTTokenDecodedType } from '../services/AuthService';
@@ -21,12 +21,22 @@ const initialState: AuthState = {
   decoded:null,
 };
 
+if (localStorage.getItem('token')!== undefined) {
+  const token = localStorage.getItem('token')??'';
+  if (token.length>0) {
+    initialState.token = token;
+    initialState.decoded = AuthService.getDecodedToken(token);
+    initialState.isAuthenticated = true;
+    initialState.status = 'resolved';
+  }
+}
+
 export const sendAuth = createAsyncThunk(
   'auth/sendAuth',
   async (payload:OutputAuthForm,{ rejectWithValue }) => {
     const {email,password,typeOfData} = payload;
     try {
-      const response = await AuthService.auth(email,password,typeOfData);
+      const response = await AuthService.getTokenOrNull(email,password,typeOfData);
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -42,15 +52,13 @@ export const authReducer = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuth: (state,action: PayloadAction<boolean>) => {
-      state.isAuthenticated = action.payload
-    },
     logOut: (state)=> {
       state.isAuthenticated = false;
       state.decoded = null;
       state.token = '';
       state.status = null;
       state.error = null;
+      localStorage.setItem('token','');
     },
   },
   extraReducers: (builder) => {
@@ -65,6 +73,7 @@ export const authReducer = createSlice({
         state.decoded = action.payload.decoded;
         state.isAuthenticated = true;
         state.error = null;
+        localStorage.setItem('token',action.payload.token);
       } else {
         state.isAuthenticated = false;
         state.token = '';
@@ -78,7 +87,7 @@ export const authReducer = createSlice({
   },
 });
 
-export const { setAuth, logOut } = authReducer.actions;
+export const { logOut } = authReducer.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 
