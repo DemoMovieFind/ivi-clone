@@ -70,6 +70,9 @@ export const messages = {
     persons_filter_directors: 'Directors',
     modal_close: 'Close',
     modal_error_header: 'An error has occurred',
+    select_card_year: 'year',
+    select_card_years: 'Years',
+    select_card_all_years: 'All years',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -140,5 +143,8 @@ export const messages = {
     persons_filter_directors: 'Режиссёры',
     modal_close: 'Закрыть',
     modal_error_header: 'Произошла ошибка',
+    select_card_year: 'год',
+    select_card_years: 'Годы',
+    select_card_all_years: 'Все годы',
   },
 };
