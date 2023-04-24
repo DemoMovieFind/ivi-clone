@@ -37,6 +37,7 @@ export const sendAuth = createAsyncThunk(
     const {email,password,typeOfData} = payload;
     try {
       const response = await AuthService.getTokenOrNull(email,password,typeOfData);
+      console.log(response);
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {

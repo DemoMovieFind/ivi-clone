@@ -3,7 +3,6 @@ import { IconButton } from "../buttons/IconButton/IconButton";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { logOut, selectAuth } from "../../store/authState";
 import { useEffect, useState } from "react";
-import { Button } from "../buttons/Button";
 import { useIntl } from "react-intl";
 
 const AuthIcon = ({href='/auth'}) => {
@@ -34,11 +33,9 @@ const AuthIcon = ({href='/auth'}) => {
               className={styles.userInfo}>
                 {`${intl.formatMessage({id:'auth_greeting'})}: ${authState.decoded?.email}`}
             </span>
-            <Button 
+            <IconButton 
               title={intl.formatMessage({id:'auth_title_log_out'})} 
-              size="small" 
-              appearance="primary" 
-              children='Выйти' 
+              name='logout' 
               onPointerDown={handleLogOut}
             />
           </div> 

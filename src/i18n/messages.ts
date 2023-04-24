@@ -73,6 +73,7 @@ export const messages = {
     select_card_year: 'year',
     select_card_years: 'Years',
     select_card_all_years: 'All years',
+    lang_switcher_title: 'Choose language',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -146,5 +147,6 @@ export const messages = {
     select_card_year: 'год',
     select_card_years: 'Годы',
     select_card_all_years: 'Все годы',
+    lang_switcher_title: 'Выберите язык',
   },
 };

@@ -1,8 +1,15 @@
+import { ChangeEvent } from 'react';
 import AuthIcon from '../AuthIcon/AuthIcon';
 import NavList from '../navList/NavList';
 import styles from './Header.module.css';
+import LanguageSwitch from '../languageSwitch/LanguageSwitch';
+
+export type HeaderPropsType = {
+  languageSwitchHandler:(event:ChangeEvent<HTMLSelectElement>)=>void
+}
 
 const Header = () => {
+  
   return (
     <header className={styles.header}>
       <div className={styles.logo}></div>
@@ -17,7 +24,10 @@ const Header = () => {
         vertical={false}
         headerTranslationId=''
       />
-      <AuthIcon/>
+      <div className={styles.wrapper}>
+        <LanguageSwitch/>
+        <AuthIcon/>
+      </div>
     </header>
   )
 }

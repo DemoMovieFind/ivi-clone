@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authReducer from './authState';
+import langReducer from './langState';
 
 export const store = configureStore({
   reducer: {
     auth:authReducer,
+    lang:langReducer,
   },
 });
 
