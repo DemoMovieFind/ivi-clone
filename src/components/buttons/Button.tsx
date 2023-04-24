@@ -7,6 +7,7 @@ export interface ButtonProps {
    * Button appearance
    */
   appearance?: "default" | "primary" | "movie" | "iviRating";
+  onPointerDown?:()=>void
   /**
    * Button size
    */

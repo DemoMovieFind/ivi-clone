@@ -39,3 +39,7 @@
 .user {
   background-image: url("../../image/userIcon/user.svg");
 }
+
+.logout {
+  background-image: url("../../image/logOut/logOut.svg");
+}

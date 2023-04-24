@@ -12,6 +12,12 @@
   background-image: url('../../image/iviIcon/iviIcon.svg');
 }
 
+.wrapper {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
 @media (max-width:720px) {
   .header ul {
     display: none;
