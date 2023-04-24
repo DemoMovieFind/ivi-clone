@@ -1,9 +1,7 @@
 import styles from "./GenreList.module.css";
 import { clsx } from "clsx";
-import { LiElement } from "./liElement/LiElement";
-import { Formik, Field, Form } from "formik";
-import { useState } from "react";
-import { Router, Routes, useSearchParams } from "react-router-dom";
+import { LiElement } from "../../liElement/LiElement";
+import { useSearchParams } from "react-router-dom";
 
 export interface GenreListProps {
   appearance?: "";
@@ -43,22 +41,18 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const a: string[] = searchParams.getAll("genre") || [];
+  const arrayQueryParams: string[] = searchParams.getAll("genres") || [];
 
   const handleOnChange = (event: any) => {
-    if (searchParams.getAll("genre").indexOf(event.target.value) === -1) {
-      a.push(event.target.value);
+    if (searchParams.getAll("genres").indexOf(event.target.value) === -1) {
+      arrayQueryParams.push(event.target.value);
     } else {
-      console.log("Такой уже есть");
-      a.splice(searchParams.getAll("genre").indexOf(event.target.value), 1);
+      arrayQueryParams.splice(
+        searchParams.getAll("genres").indexOf(event.target.value),
+        1
+      );
     }
-
-    // event.preventDefault();
-
-    setSearchParams({ genre: a });
-    console.log(searchParams.getAll("genre"));
-    // console.log("Form::onChange", event.target.value);
-    // console.log("Form::onChange", event.target.checked);
+    setSearchParams({ genres: arrayQueryParams });
   };
 
   return (
@@ -72,7 +66,7 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
       <form onChange={handleOnChange}>
         <ul className={styles.list}>
           {genre.map((nameGenre) => {
-            return <LiElement value={nameGenre} />;
+            return <LiElement value={nameGenre} argument={"genres"} />;
           })}
         </ul>
       </form>

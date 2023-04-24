@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { LiElement } from "./LiElement";
+import { GenreIcon } from "./GenreIcon";
 
 const meta = {
-  title: "LiElement",
-  component: LiElement,
+  title: "Filters/Genres/GenreIcon",
+  component: GenreIcon,
   tags: ["autodocs"],
-} satisfies Meta<typeof LiElement>;
+} satisfies Meta<typeof GenreIcon>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Drama: Story = {
   args: {
-    appearance: "",
+    genre: "Драмы",
   },
 };

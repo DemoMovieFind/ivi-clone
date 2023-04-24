@@ -1,0 +1,48 @@
+.plankWrapper {
+  position: relative;
+}
+
+.plank {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #312b45;
+  border-radius: 4px;
+  height: 56px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.plank.active {
+  background-color: #7e798f !important;
+}
+
+.textWrapper {
+  min-width: 30px;
+  width: 100%;
+  align-self: center;
+}
+
+.text {
+  color: #fff;
+  font-weight: 500;
+  font-style: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  line-height: 20px;
+  height: 20px;
+}
+
+.dropdownIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownIcon.active {
+  transform: rotate(180deg);
+}

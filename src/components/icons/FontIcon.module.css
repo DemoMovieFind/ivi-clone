@@ -144,8 +144,16 @@
   font-family: ivi-icons;
   font-weight: 400;
   font-style: normal;
-  font-size: 32px;
+
   line-height: 32px;
+}
+
+.leftArrow:hover {
+  color: white;
+}
+
+.rightArrow:hover {
+  color: white;
 }
 
 .rightArrow::before {
@@ -153,52 +161,64 @@
   font-family: ivi-icons;
   font-weight: 400;
   font-style: normal;
-  font-size: 32px;
+
   line-height: 32px;
 }
 
-.genre_drama::before {
-  content: "\E181";
-  position: absolute;
+.genre_drama {
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
   font-size: 32px;
   line-height: 32px;
   color: rgb(255, 255, 255);
+}
+
+.genre_drama::before {
+  content: "\E181";
+  position: absolute;
 }
 .genre_drama::after {
   content: "\E182";
-  font-family: iconfont !important;
-  width: 32px;
-  height: 32px;
-  font-size: 32px;
-  line-height: 32px;
-  color: rgb(255, 255, 255);
 }
 
 .genre_comedy {
-  content: "\E165";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
   font-size: 32px;
   line-height: 32px;
   color: rgb(255, 255, 255);
+}
+
+.genre_comedy::after {
+  content: "\E165";
+}
+
+.genre_comedy::before {
+  content: "\E164";
+  position: absolute;
 }
 
 .genre_action {
-  content: "\E143";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
   font-size: 32px;
   line-height: 32px;
   color: rgb(255, 255, 255);
+}
+
+.genre_action::after {
+  content: "\E142";
+}
+
+.genre_action::before {
+  content: "\E143";
+  position: absolute;
 }
 
 .genre_triller {
-  content: "\E1F4";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
@@ -207,14 +227,31 @@
   color: rgb(255, 255, 255);
 }
 
+.genre_triller::before {
+  content: "\E1F4";
+  position: absolute;
+}
+
+.genre_triller::after {
+  content: "\E1F3";
+}
+
 .genre_adventure {
-  content: "\E14C";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
   font-size: 32px;
   line-height: 32px;
   color: rgb(255, 255, 255);
+}
+
+.genre_adventure::before {
+  position: absolute;
+  content: "\E14B";
+}
+
+.genre_adventure::after {
+  content: "\E14C";
 }
 
 .genre_foreign {
@@ -227,28 +264,51 @@
   color: rgb(255, 255, 255);
 }
 
+.genre_foreign::after {
+  content: "\E19E";
+}
+.genre_foreign::before {
+  position: absolute;
+  content: "\E19D";
+}
+
 .genre_melodrama {
-  content: "\E1BB";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
   font-size: 32px;
   line-height: 32px;
   color: rgb(255, 255, 255);
+}
+
+.genre_melodrama::before {
+  content: "\E1BA";
+  position: absolute;
+}
+
+.genre_melodrama::after {
+  content: "\E1BB";
 }
 
 .genre_fantastic {
-  content: "\E190";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
   font-size: 32px;
   line-height: 32px;
   color: rgb(255, 255, 255);
+}
+
+.genre_fantastic::before {
+  content: "\E18F";
+  position: absolute;
+}
+
+.genre_fantastic::after {
+  content: "\E190";
 }
 
 .genre_fantasy {
-  content: "\E195";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
@@ -257,14 +317,46 @@
   color: rgb(255, 255, 255);
 }
 
+.genre_fantasy::before {
+  content: "\E195";
+  position: absolute;
+}
+
+.genre_fantasy::after {
+  content: "\E194";
+}
+
 .genre_family {
-  content: "\E18B";
   font-family: iconfont !important;
   width: 32px;
   height: 32px;
   font-size: 32px;
   line-height: 32px;
   color: rgb(255, 255, 255);
+}
+
+.genre_family::before {
+  content: "\E18A";
+  position: absolute;
+}
+
+.genre_family::after {
+  content: "\E18B";
+}
+
+.dropDownArrow {
+  font-family: iconfont !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  width: 16px;
+  height: 6px;
+  font-size: 6px;
+  line-height: 6px;
+}
+
+.dropDownArrow::before {
+  content: "\E033";
+  color: #fff;
 }
 
 [data-tooltip]::after {

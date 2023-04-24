@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("../../../../fonts/iconfont.woff2") format("woff2"),
+    url("../../../../fonts/iconfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.list {
+  margin-top: 16px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.32);
+  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+
+  grid-column-gap: 40px;
+  list-style: none;
+  width: 598px;
+  height: 257px;
+  padding-left: 0;
+}
