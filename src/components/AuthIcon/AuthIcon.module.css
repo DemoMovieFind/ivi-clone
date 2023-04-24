@@ -1,0 +1,19 @@
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authenticated {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  color: white;
+}
+
+.userInfo {
+  text-align: center;
+  width: min-content;
+  font-size: 12px;
+}

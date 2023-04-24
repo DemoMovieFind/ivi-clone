@@ -15,18 +15,31 @@
 .vk {
   background-image: url("../../image/buttonIcon/social_vkontakte.svg");
 }
+
 .ok {
   background-image: url("../../image/buttonIcon/social_odnoklassniki.svg");
 }
+
 .tw {
   background-image: url("../../image/buttonIcon/social_twitter.svg");
 }
+
 .vb {
   background-image: url("../../image/buttonIcon/social_viber.svg");
 }
+
 .in {
   background-image: url("../../image/buttonIcon/social_linkedin.svg");
 }
+
 .tl {
   background-image: url("../../image/buttonIcon/social_telegram.svg");
+}
+
+.user {
+  background-image: url("../../image/userIcon/user.svg");
+}
+
+.logout {
+  background-image: url("../../image/logOut/logOut.svg");
 }
