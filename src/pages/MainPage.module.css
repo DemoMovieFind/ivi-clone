@@ -1,5 +1,7 @@
 .main {
   margin: 0 auto;
+  max-width: 1212px;
+  width: 100%;
 }
 
 .title {
