@@ -17,7 +17,7 @@
   transition-duration: 80ms;
 }
 
-.icon:active {
+.icon.active {
   background-color: #7e798f;
   border-color: #7e798f;
   transition-duration: 80ms;

@@ -29,7 +29,8 @@ export interface FontIconProps {
     | "genre_melodrama"
     | "genre_fantastic"
     | "genre_fantasy"
-    | "genre_family";
+    | "genre_family"
+    | "dropDownArrow";
 
   className?: string;
   toollip?: string;

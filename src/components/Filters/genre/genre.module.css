@@ -1,0 +1,11 @@
+.dropListWrapper {
+  background-color: rgb(49, 43, 69);
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 6px;
+  position: absolute;
+}
+
+.genreWrapper {
+  width: 20%;
+}
