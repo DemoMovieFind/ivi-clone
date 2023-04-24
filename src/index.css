@@ -32,6 +32,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -40,6 +45,7 @@ code {
 :root {
   --main-font: Arial,sans-serif;
   background-color: #100e19;
+  
 }
 
 button {
@@ -64,4 +70,9 @@ body {
 
 input {
   outline: none;
+}
+
+#root {
+  height: 100%;
+  padding: 10px;
 }

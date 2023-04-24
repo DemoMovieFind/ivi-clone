@@ -1,0 +1,109 @@
+.footer {
+  max-width: 1212px;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.top {
+  min-height: 350px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  padding-top: 50px;
+  flex-direction: row;
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+}
+
+.navWrapper {
+  display: flex;
+  gap: 80px;
+}
+
+.support {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 286px;
+  width: 100%;
+}
+
+.title {
+  font-size: 16px;
+  color: white;
+  margin: 0;
+}
+
+.description,.descriptionBottom {
+  color: white;
+  line-height: 20px;
+}
+
+.buttonTopWrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.bottom {
+  min-height: 300px;
+  padding: 40px 0;
+}
+
+.buttonDownloadWrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.buttonIconsWrapper {
+  display: flex;
+    gap: 15px;
+}
+
+.buttonsBottomWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width:950px) {
+  .buttonsBottomWrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .descriptionBottom {
+    text-align: center;
+  }
+}
+
+@media (max-width:850px) {
+  .top {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    gap: 20px;
+  }
+  .navWrapper {
+    justify-content: center;
+  }
+  .support {
+    align-items: center;
+  }
+  .description {
+    text-align: center;
+  }
+}
+
+@media (max-width:640px) {
+  .buttonDownloadWrapper {
+    flex-direction: column;
+  }
+}
+
+@media (max-width:500px) {
+  .navWrapper {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+}
