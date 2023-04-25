@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react"
-import SelectCard from "./SelectCard"
+import YearsFilter from "./YearsFilter"
 
 const meta = {
-  title: 'Filters/selectCard',
-  component: SelectCard,
+  title: 'Filters/YearsFilter',
+  component: YearsFilter,
   tags: ['autodocs'],
-} satisfies Meta<typeof SelectCard>
+} satisfies Meta<typeof YearsFilter>
 
 export default meta;
 type Story = StoryObj<typeof meta>
@@ -22,7 +22,7 @@ const yearsList = [
   '1980-1990', 'до 1980',
 ]
 
-export const selectCardYears: Story = {
+export const yearsFilter: Story = {
   args: {
     items: yearsList,
   }

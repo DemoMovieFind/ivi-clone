@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./CounterList.module.css";
 import { clsx } from "clsx";
 import { LiElement } from "../../liElement/LiElement";
@@ -51,20 +52,28 @@ export const CounterList = ({
     "Япония",
   ];
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
+  const urlParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlParams.entries())
 
-  const arrayQueryParams: string[] = searchParams.getAll("countries") || [];
 
-  const handleOnChange = (event: any) => {
-    if (searchParams.getAll("countries").indexOf(event.target.value) === -1) {
-      arrayQueryParams.push(event.target.value);
+  const handleOnChange = (e: any) => {
+    if (params["countries"] && params["countries"].split(' ').includes(e.target.value)) {
+      const currentParams = params["countries"].split(' ');
+      currentParams.splice(currentParams.indexOf(e.target.value), 1);
+      currentParams.length != 0 ?
+        setSearchParams({ ...params, countries: currentParams.join(' ') })
+        :
+        setSearchParams({ ...params, countries: [] })
     } else {
-      arrayQueryParams.splice(
-        searchParams.getAll("countries").indexOf(event.target.value),
-        1
-      );
+      let currentValue = '';
+      if (params["countries"]) {
+        currentValue = `${params["countries"]} ${e.target.value}`
+      } else {
+        currentValue = `${e.target.value}`
+      }
+      setSearchParams({ ...params, countries: currentValue })
     }
-    setSearchParams({ countries: arrayQueryParams });
   };
 
   return (
@@ -77,8 +86,8 @@ export const CounterList = ({
     >
       <form onChange={handleOnChange}>
         <ul className={styles.list}>
-          {countries.map((nameCountry) => {
-            return <LiElement value={nameCountry} argument={"countries"} />;
+          {countries.map((nameCountry, index) => {
+            return <LiElement key={index} value={nameCountry} argument={"countries"} />;
           })}
         </ul>
       </form>

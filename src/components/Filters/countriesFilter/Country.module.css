@@ -4,8 +4,18 @@
   border-radius: 8px;
   margin-top: 6px;
   position: absolute;
+  z-index: 6;
 }
 
 .countryWrapper {
   width: 20%;
+  padding: 0 6px;
+}
+
+.nonActiveColor {
+  background-color: #312b45 !important;
+}
+
+.nonActiveRotate {
+  transform: rotate(0deg) !important;
 }

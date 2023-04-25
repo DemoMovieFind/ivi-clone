@@ -47,8 +47,8 @@ export const CountrySlider = ({ className }: CountrySliderProps) => {
                     transform: `translateX(${valueTranslate}px)`,
                   }}
                 >
-                  {countries.map((country) => {
-                    return <SliderElement country={country} />;
+                  {countries.map((country, index) => {
+                    return <SliderElement key={index} country={country} />;
                   })}
                 </div>
               </div>
