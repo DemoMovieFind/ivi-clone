@@ -34,9 +34,9 @@ if (localStorage.getItem('token')!== undefined) {
 export const sendAuth = createAsyncThunk(
   'auth/sendAuth',
   async (payload:OutputAuthForm,{ rejectWithValue }) => {
-    const {email,password,typeOfData} = payload;
+    const {email,password,typeOfData,userType} = payload;
     try {
-      const response = await AuthService.getTokenOrNull(email,password,typeOfData);
+      const response = await AuthService.getTokenOrNull(email,password,typeOfData,userType);
       console.log(response);
       return response;
     } catch (error) {

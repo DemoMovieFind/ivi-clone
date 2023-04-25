@@ -2,6 +2,8 @@ import { FieldValues, useForm } from "react-hook-form";
 import styles from "./AuthForm.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Button } from "../buttons/Button";
+import { selectAuth } from "../../store/authState";
+import { useAppSelector } from "../../store/hooks";
 
 export type SignUpFormProps = {
   onHandleSubmit:(data:FieldValues)=>void
@@ -17,6 +19,7 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
     watch,
     } = useForm();
   const intl = useIntl();
+  const authState = useAppSelector(selectAuth);
   
   return(
     <form className={styles.form} onSubmit={handleSubmit(onHandleSubmit)}>
@@ -103,7 +106,28 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
           <small className={styles.error}>{`${errors.confirmPassword.message}`}</small>
           )}
       </div>
-      <Button type="submit" children={intl.formatMessage({
+      <fieldset>
+        <legend className={styles.title}>Выберите тип пользователя:</legend>
+          <div>
+            <input 
+              type="radio" 
+              id="user" 
+              value="user" 
+              {...register("userType")}
+              checked 
+            />
+            <label className={styles.title} htmlFor="user">User</label>
+          </div>
+          <div>
+            <input 
+            type="radio" 
+            id="admin" 
+            value="admin" 
+            {...register("userType")}/>
+            <label className={styles.title} htmlFor="admin">Admin</label>
+          </div>
+      </fieldset>
+      <Button disabled={authState.status==='loading'} type="submit" children={intl.formatMessage({
             id:'sign_in_register'
           })}/>
     </form>

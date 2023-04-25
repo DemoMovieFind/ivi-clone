@@ -5,11 +5,12 @@ import { logOut, selectAuth } from "../../store/authState";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
-const AuthIcon = ({href='/auth'}) => {
+const AuthIcon = ({href='/auth',adminRef='/admin'}) => {
   const authState = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const [authenticated,setAuthenticated] = useState(false);
+  const [isAdmin,setIsAdmin] = useState(false);
   const handleLogOut = () => {
     dispatch(logOut())
   }
@@ -17,6 +18,9 @@ const AuthIcon = ({href='/auth'}) => {
   useEffect(()=>{
     if (authState.isAuthenticated) {
       setAuthenticated(true)
+      if (authState.decoded?.roles.find(role=>role.value==='admin')) {
+        setIsAdmin(true);
+      }
     } else setAuthenticated(false);
   },[authState]);
 
@@ -33,11 +37,18 @@ const AuthIcon = ({href='/auth'}) => {
               className={styles.userInfo}>
                 {`${intl.formatMessage({id:'auth_greeting'})}: ${authState.decoded?.email}`}
             </span>
-            <IconButton 
+            <div className={styles.buttons}>
+              <IconButton 
               title={intl.formatMessage({id:'auth_title_log_out'})} 
               name='logout' 
               onPointerDown={handleLogOut}
             />
+            {isAdmin && <IconButton 
+              name='admin' 
+              href={adminRef}
+              title={intl.formatMessage({id:'auth_title_admin_page'})}
+            />}
+            </div>
           </div> 
       }
     </div>

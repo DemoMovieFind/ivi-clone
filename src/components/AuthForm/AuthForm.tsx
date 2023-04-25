@@ -9,18 +9,21 @@ import { FieldValues } from "react-hook-form";
 export type OutputAuthForm = {
   email:string,
   password:string,
-  typeOfData:'signin'|'signup'
+  typeOfData:'signin'|'signup',
+  userType:'user'|'admin',
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
   const intl = useIntl();
   const handleForm = (data:FieldValues) => {
-    const { email, password } = data;
+    console.log(data);
+    const { email, password,confirmPassword,userType } = data;
     const dataToSend:OutputAuthForm = {
       email,
       password,
-      typeOfData:data['confirmPassword'] === undefined ? 'signin' : 'signup'
+      typeOfData:confirmPassword === undefined ? 'signin' : 'signup',
+      userType,
     }
     handleSubmit(dataToSend)
   }
