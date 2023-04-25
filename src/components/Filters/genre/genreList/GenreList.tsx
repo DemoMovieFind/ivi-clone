@@ -13,7 +13,7 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
   const genre = [
     "Артхаус",
     "Вестерн",
-    "Для детей",
+    "Для\u00A0детей",
     "Зарубежные",
     "Комедии",
     "Мистические",
@@ -34,7 +34,7 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
     "Драмы",
     "Катастрофы",
     "Мелодрамы",
-    "По комиксам",
+    "По\u00A0комиксам",
     "Семейные",
     "Триллеры",
     "Фэнтези",
