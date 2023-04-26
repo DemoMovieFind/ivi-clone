@@ -9,7 +9,7 @@
 .logo {
   width: 77px;
   height: 56px;
-  background-image: url('../../image/iviIcon/iviIcon.svg');
+  background-image: url("../../image/iviIcon/iviIcon.svg");
 }
 
 .wrapper {
@@ -18,8 +18,12 @@
   align-items: center;
 }
 
-@media (max-width:720px) {
+@media (max-width: 720px) {
   .header ul {
     display: none;
   }
+}
+
+.navList {
+  font-weight: 500;
 }

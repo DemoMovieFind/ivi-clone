@@ -2,12 +2,13 @@
   max-width: 1212px;
   width: 100%;
   flex: 0 0 auto;
+  font-family: iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
 }
 
 .top {
   min-height: 350px;
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
   padding-top: 50px;
   flex-direction: row;
   display: flex;
@@ -29,13 +30,17 @@
 }
 
 .title {
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 20px;
+  font-style: normal;
   color: white;
   margin: 0;
 }
 
-.description,.descriptionBottom {
-  color: white;
+.description,
+.descriptionBottom {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.48);
   line-height: 20px;
 }
 
@@ -56,7 +61,7 @@
 
 .buttonIconsWrapper {
   display: flex;
-    gap: 15px;
+  gap: 15px;
 }
 
 .buttonsBottomWrapper {
@@ -65,7 +70,7 @@
   justify-content: space-between;
 }
 
-@media (max-width:950px) {
+@media (max-width: 950px) {
   .buttonsBottomWrapper {
     flex-direction: column;
     align-items: center;
@@ -76,7 +81,7 @@
   }
 }
 
-@media (max-width:850px) {
+@media (max-width: 850px) {
   .top {
     flex-direction: column;
     align-items: center;
@@ -94,13 +99,13 @@
   }
 }
 
-@media (max-width:640px) {
+@media (max-width: 640px) {
   .buttonDownloadWrapper {
     flex-direction: column;
   }
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .navWrapper {
     flex-direction: column;
     gap: 20px;

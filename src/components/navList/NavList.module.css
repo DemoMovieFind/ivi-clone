@@ -1,5 +1,5 @@
 .nav-list {
-  font-family: var(--main-font);
+  font-family: iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
 }
 
 .links {
@@ -7,7 +7,7 @@
   margin: 0;
   display: flex;
   color: white;
-  font-weight: 700px;
+  font-weight: 700;
   gap: 20px;
 }
 
@@ -21,7 +21,7 @@
 
 .link {
   list-style-type: none;
-  color: rgb(136, 122, 122);
+  color: rgba(255, 255, 255, 0.48);
   font-size: 15px;
   line-height: 20px;
   font-weight: 400;
@@ -29,14 +29,26 @@
 }
 
 .link:hover {
-  color: rgb(211, 206, 206);
+  color: #fff;
 }
 
 .link-marked {
   font-weight: 600;
-  color: rgb(238, 8, 8);
+  background-image: linear-gradient(-45deg, #c447ff, #ea003d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .link-marked:hover {
   color: rgb(238, 71, 71);
+}
+
+.headerId {
+  display: block;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  font-style: normal;
 }
