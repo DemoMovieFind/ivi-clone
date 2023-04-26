@@ -6,15 +6,17 @@ export interface FilterPlankProps {
   className?: string;
   isActive?: boolean;
   text: string;
+  id?: string;
 }
 
 export const FilterPlank: React.FC<FilterPlankProps> = ({
   className,
   isActive,
   text,
+  id,
 }) => {
   return (
-    <div className={clsx(styles.plankWrapper, className)}>
+    <div className={clsx(styles.plankWrapper, className)} id={id}>
       <div className={clsx(styles.plank, isActive ? styles.active : "")}>
         <div className={styles.textWrapper}>
           <div className={styles.text}>{text}</div>

@@ -12,11 +12,10 @@ export interface FilterBarProps {
 
 export const FilterBar: React.FC<FilterBarProps> = ({ className }) => {
   return (
-    <div className={clsx(styles.filterBar, className)}>
+    <div className={clsx(styles.filterBar, className)} id="filterBar">
       <Genre />
       <Country />
       <YearsFilter />
-
       <PersonsFilter placeholder="actor" />
       <PersonsFilter placeholder="director" />
       <RatingFilter />

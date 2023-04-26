@@ -8,6 +8,7 @@
 }
 
 .genreWrapper {
+  position: relative;
   width: 20%;
   padding: 0 6px;
 }
@@ -19,3 +20,12 @@
 .nonActiveRotate {
   transform: rotate(0deg) !important;
 }
+
+/* .genreWrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+} */
