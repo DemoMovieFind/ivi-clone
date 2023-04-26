@@ -145,7 +145,7 @@ export default function FilmsPage() {
       <FilterBar />
       <section className={styles.filmsList}>
         {films.map(filmz => {
-          return <CardFilm film={filmz} />
+          return <NavLink to={`/movies/${filmz?.name}`} state={filmz} ><CardFilm film={filmz} /></NavLink>
         })}
       </section>
 
