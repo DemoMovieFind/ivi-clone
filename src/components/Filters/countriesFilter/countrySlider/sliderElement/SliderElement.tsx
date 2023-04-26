@@ -32,13 +32,12 @@ export default function SliderElement({
   };
 
   useEffect(() => {
-    console.log(country, "country");
-    console.log(searchParams.getAll("countries"), "countries");
+
     if (searchParams.getAll("countries").indexOf(country) === -1) {
-      console.log("false");
+  
       setIsActive(false);
     } else {
-      console.log("true");
+   
       setIsActive(true);
     }
   }, [searchParams]);

@@ -9,7 +9,7 @@ export type FilmMainCard = {
   genre: string[];
   description?: string;
 
-  actors?: Actor[];
+  actors?: string[];
   mainImg?: string;
   rating?: {
     ivi?: number | null;

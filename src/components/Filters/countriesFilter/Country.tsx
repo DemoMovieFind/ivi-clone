@@ -16,7 +16,7 @@ export const Country = ({ className }: CountryProps) => {
 
   useEffect(() => {
     const src = searchParams.toString();
-    console.log(decodeURI(src));
+    // console.log(decodeURI(src));
     // fetch(`http://localhost:3000/films/?${decodeURI(src).toLowerCase()}`)
     //   .then((response) => response.json())
     //   .then((data) => console.log(data, "data"));
