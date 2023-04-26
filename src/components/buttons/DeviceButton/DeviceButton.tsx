@@ -17,18 +17,18 @@ export const DeviceButton: React.FC<DeviceButtonProps> = ({
 }) => {
   const intl = useIntl();
   const primaryText = {
-  "app-store": "App Store",
-  "google-play": "Google Play",
-  "smart-tv": "Smart TV",
-  "all-devices": intl.formatMessage({id:'button_device_all'}),
-};
+    "app-store": "App Store",
+    "google-play": "Google Play",
+    "smart-tv": "Smart TV",
+    "all-devices": intl.formatMessage({id:'button_device_all'}),
+  };
 
-const secondaryText = {
-  "app-store": intl.formatMessage({id:'button_device_apple'}),
-  "google-play": intl.formatMessage({id:'button_device_google'}),
-  "smart-tv": intl.formatMessage({id:'button_device_smart'}),
-  "all-devices": "",
-};
+  const secondaryText = {
+    "app-store": intl.formatMessage({id:'button_device_apple'}),
+    "google-play": intl.formatMessage({id:'button_device_google'}),
+    "smart-tv": intl.formatMessage({id:'button_device_smart'}),
+    "all-devices": "",
+  };
 
   return (
     <Button size="medium" className={clsx(styles.button, className)} {...props}>

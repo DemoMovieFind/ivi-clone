@@ -8,7 +8,6 @@ export type FilmMainCard = {
   country: string[];
   genre: string[];
   description?: string;
-
   actors?: Actor[];
   mainImg?: string;
   rating?: {

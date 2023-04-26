@@ -4,11 +4,14 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { logOut, selectAuth } from "../../store/authState";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
+import { useLocation } from "react-router-dom";
 
 const AuthIcon = ({href='/auth',adminRef='/admin'}) => {
   const authState = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const intl = useIntl();
+  const location = useLocation();
+  const isAdminPage = location.pathname === '/admin';
   const [authenticated,setAuthenticated] = useState(false);
   const [isAdmin,setIsAdmin] = useState(false);
   const handleLogOut = () => {
@@ -43,7 +46,7 @@ const AuthIcon = ({href='/auth',adminRef='/admin'}) => {
               name='logout' 
               onPointerDown={handleLogOut}
             />
-            {isAdmin && <IconButton 
+            {isAdmin && !isAdminPage && <IconButton 
               name='admin' 
               href={adminRef}
               title={intl.formatMessage({id:'auth_title_admin_page'})}

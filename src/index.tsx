@@ -11,6 +11,7 @@ import FilmsPage from "./pages/films/FilmsPage";
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminPage from "./pages/admin/AdminPage";
 import PageNotFound from "./pages/notFound/PageNotFound";
+import ChangePage from "./pages/change/ChangePage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -25,7 +26,8 @@ root.render(
           <Route path="/auth" element={<Template content={<AuthPage />} />} />
           <Route path="/movies" element={<Template content={<FilmsPage />} />} />
           <Route element={<PrivateRoute/>}>
-            <Route path='/admin' element={<AdminPage/>} />
+            <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
+            <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
           </Route>
           <Route path="*" element={<PageNotFound/>} />
         </Routes>
