@@ -24,7 +24,7 @@ export const LiElement = ({
   }
 
   useEffect(() => {
-    if (searchParams.getAll(argument).indexOf(value) === -1) {
+    if (searchParams.getAll(argument).join(' ').split(' ').indexOf(value) === -1) {
       setIsChecked(false);
     } else {
       setIsChecked(true);
@@ -35,11 +35,12 @@ export const LiElement = ({
     <li className={clsx(styles.itemCheckbox, styles[appearance], className)}>
       <label className={styles.label} onChange={handleChange}>
         <input
+          // onChange={() => { '' }}
           className={styles.input}
           type="checkbox"
           name="checked"
           value={value}
-          checked={isChecked}
+          defaultChecked={isChecked}
         />
         <div className={clsx(styles.inputText, isChecked ? styles.active : "")}>
           {value}

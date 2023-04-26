@@ -1,16 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react"
-import RatingSliderCard from "./RatingSliderCard";
+import RatingFilter from "./RatingFilter";
 
 const meta = {
-  title: 'Filters/RatingSliderCard',
-  component: RatingSliderCard,
+  title: 'Filters/RatingFilter',
+  component: RatingFilter,
   tags: ['autodocs'],
-} satisfies Meta<typeof RatingSliderCard>
+} satisfies Meta<typeof RatingFilter>
 
 export default meta;
 type Story = StoryObj<typeof meta>
 
-export const ratingSliderCard: Story = {
+export const ratingFilter: Story = {
   args: {
     min: 1,
     max: 10,

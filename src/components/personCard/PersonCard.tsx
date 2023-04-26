@@ -1,8 +1,9 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
 import { ActorCardFilm } from '../acterCardFilm/ActorCardFilm';
 import { Film } from '../../types/entities/Film';
+import db from '../../miniDb.json'
 
 export interface PersonCardPropsType {
   image?: string;
@@ -63,6 +64,12 @@ const PersonCard = ({
 
   const [showMore, setShowMore] = useState(false)
 
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/fill-db', {
+  //     method: 'POST',
+  //     body: JSON.stringify(db)
+  //   })
+  // }, [])
 
   let smallDesc = ''
   if (desc.split(" ").length < 12) {

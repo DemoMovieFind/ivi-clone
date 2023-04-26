@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./GenreList.module.css";
 import { clsx } from "clsx";
 import { LiElement } from "../../liElement/LiElement";
@@ -12,7 +13,7 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
   const genre = [
     "Артхаус",
     "Вестерн",
-    "Для детей",
+    "Для\u00A0детей",
     "Зарубежные",
     "Комедии",
     "Мистические",
@@ -33,26 +34,33 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
     "Драмы",
     "Катастрофы",
     "Мелодрамы",
-    "По комиксам",
+    "По\u00A0комиксам",
     "Семейные",
     "Триллеры",
     "Фэнтези",
   ];
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
+  const urlParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlParams.entries())
 
-  const arrayQueryParams: string[] = searchParams.getAll("genres") || [];
-
-  const handleOnChange = (event: any) => {
-    if (searchParams.getAll("genres").indexOf(event.target.value) === -1) {
-      arrayQueryParams.push(event.target.value);
+  const handleOnChange = (e: any) => {
+    if (params["genres"] && params["genres"].split(' ').includes(e.target.value)) {
+      const currentParams = params["genres"].split(' ');
+      currentParams.splice(currentParams.indexOf(e.target.value), 1);
+      currentParams.length != 0 ?
+        setSearchParams({ ...params, genres: currentParams.join(' ') })
+        :
+        setSearchParams({ ...params, genres: [] })
     } else {
-      arrayQueryParams.splice(
-        searchParams.getAll("genres").indexOf(event.target.value),
-        1
-      );
+      let currentValue = '';
+      if (params["genres"]) {
+        currentValue = `${params["genres"]} ${e.target.value}`
+      } else {
+        currentValue = `${e.target.value}`
+      }
+      setSearchParams({ ...params, genres: currentValue })
     }
-    setSearchParams({ genres: arrayQueryParams });
   };
 
   return (
@@ -65,8 +73,8 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
     >
       <form onChange={handleOnChange}>
         <ul className={styles.list}>
-          {genre.map((nameGenre) => {
-            return <LiElement value={nameGenre} argument={"genres"} />;
+          {genre.map((nameGenre, index) => {
+            return <LiElement key={index} value={nameGenre} argument={"genres"} />;
           })}
         </ul>
       </form>
