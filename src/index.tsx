@@ -8,6 +8,8 @@ import AuthPage from "./pages/AuthPage";
 import "./index.css";
 import Template from "./pages/Template";
 import FilmsPage from "./pages/FilmsPage";
+import FilmWatchCard from "./components/filmWatchCard/FilmWatchCard";
+import PersonCard from "./components/personCard/PersonCard";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -23,6 +25,14 @@ root.render(
           <Route
             path="/movies"
             element={<Template content={<FilmsPage />} />}
+          />
+          <Route
+            path="/movies/:id"
+            element={<Template content={<FilmWatchCard />} />}
+          />
+          <Route
+            path="/persons/:id"
+            element={<Template content={<PersonCard />} />}
           />
         </Routes>
       </BrowserRouter>

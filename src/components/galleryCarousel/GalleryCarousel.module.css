@@ -8,8 +8,8 @@
 }
 
 .pageSection__containerInner {
-  margin-left: -12px;
-  margin-right: -12px;
+  max-width: 1216px;
+  width: 100%;
 }
 
 .gallery {
@@ -19,8 +19,6 @@
 .blockHeader {
   display: flex;
   justify-content: space-between;
-  padding-left: 12px;
-  padding-right: 12px;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 16px;
