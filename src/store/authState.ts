@@ -37,7 +37,6 @@ export const sendAuth = createAsyncThunk(
     const {email,password,typeOfData,userType} = payload;
     try {
       const response = await AuthService.getTokenOrNull(email,password,typeOfData,userType);
-      console.log(response);
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -70,20 +69,18 @@ export const authReducer = createSlice({
     builder.addCase(sendAuth.fulfilled, (state,action) => {
       state.status = 'resolved';
       if (action.payload !== null) {
-        state.token = action.payload.token;
-        state.decoded = action.payload.decoded;
-        state.isAuthenticated = true;
-        state.error = null;
-        localStorage.setItem('token',action.payload.token);
-      } else {
-        state.isAuthenticated = false;
-        state.token = '';
-        state.decoded = null;
+        if (action.payload.status === 201) {
+          state.token = action.payload.token??'';
+          state.decoded = action.payload.decoded;
+          state.isAuthenticated = true;
+          state.error = null;
+          localStorage.setItem('token',action.payload.token??'');
+        } 
       }
     }),
     builder.addCase(sendAuth.rejected, (state,action) => {
       state.status = 'rejected';
-      state.error = action.error.message;
+      state.error = action.payload;
     })
   },
 });

@@ -28,12 +28,11 @@ export class AuthService {
         endpoint = '/create-test-admin'
       } else endpoint = '/registration';
     }
-    console.log('endpoint='+endpoint);
     const response = (await api.post(endpoint,{email,password}));
     if (response.status === 201) {
       const token:string = response.data.token;
       const decoded:JWTTokenDecodedType = jwt_decode(token);
-      return {decoded,token};
+      return {decoded,token,status:201};
     }
     return null;
   }

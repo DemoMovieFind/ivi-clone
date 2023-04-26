@@ -46,12 +46,12 @@
 
 .inputGenre {
   height: 40px;
-    border-radius: 8px;
-    background: white;
-    border: none;
-    padding: 0 10px;
-    max-width: 150px;
-    width: 100%;
+  border-radius: 8px;
+  background: white;
+  border: none;
+  padding: 0 10px;
+  max-width: 150px;
+  width: 100%;
 }
 
 .wrapperGenre {

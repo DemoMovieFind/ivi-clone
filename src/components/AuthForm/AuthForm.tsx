@@ -17,7 +17,6 @@ export type OutputAuthForm = {
 const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
   const intl = useIntl();
   const handleForm = (data:FieldValues) => {
-    console.log(data);
     const { email, password,confirmPassword,userType } = data;
     const dataToSend:OutputAuthForm = {
       email,

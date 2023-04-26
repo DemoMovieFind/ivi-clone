@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import styles from './ChangePage.module.css';
 import { useIntl } from "react-intl";
-import { Controller, FieldValues, useFieldArray, useForm } from "react-hook-form";
+import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import films from "../../miniDb";
 import { Button } from "../../components/buttons/Button";
 
@@ -23,8 +23,8 @@ const ChangePage = () => {
       })
     }
   });
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray<Inputs>({
-    control, // control props comes from useForm (optional: if you are using FormContext)
+  const { fields, append, remove} = useFieldArray<Inputs>({
+    control, 
     name: "genres",
     rules:{
       minLength:1
