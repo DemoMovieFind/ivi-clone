@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import styles from './ChangePage.module.css';
 import { useIntl } from "react-intl";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { Controller, FieldValues, useFieldArray, useForm } from "react-hook-form";
 import films from "../../miniDb";
 import { Button } from "../../components/buttons/Button";
 
@@ -31,7 +31,7 @@ const ChangePage = () => {
     }
   });
 
-  const onSubmit = (data:any) => {
+  const onSubmit = (data:FieldValues) => {
     console.log(data);
   }
 
