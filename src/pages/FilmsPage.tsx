@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { FilterBar } from "../components/filterBar/FilterBar";
-import { useSearchParams } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../components/cardFilm/cardFilm";
 
 import styles from "./FilmsPage.module.css";
@@ -27,6 +27,8 @@ export default function FilmsPage() {
   };
 
   // const [films, setFilms] = useState(Array<User>)
+
+
 
   // useEffect(() => {
   //   const src = searchParams.toString();
@@ -142,10 +144,11 @@ export default function FilmsPage() {
       <ParametersInfo />
       <FilterBar />
       <section className={styles.filmsList}>
-        {films.map((filmz) => {
-          return <CardFilm film={filmz} />;
+        {films.map(filmz => {
+          return <NavLink to={`/movies/${filmz?.name}`} state={filmz} ><CardFilm film={filmz} /></NavLink>
         })}
       </section>
+
     </div>
   );
 }

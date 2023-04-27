@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styles from "./GalleryCarousel.module.css";
 import clsx from "clsx";
-import { BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { SlickArrowLeft } from "../buttons/SlickArrow/SlickArrowLeft";
 import { SlickArrowRight } from "../buttons/SlickArrow/SlickArrowRight";
 import { CardViewAll } from "./CardViewAll/CardViewAll";
 import { ButtonLink } from "../buttons/ButtonLink";
+import { FormattedMessage } from "react-intl";
 
 export interface GalleryCarouselProps<T> {
   className?: string;
+  typeFilm?: string;
+  filmName?: string;
   nameCategory?: string;
   items?: T[];
   itemComponent?: React.FC<{ item: T }>;
@@ -18,6 +20,8 @@ export interface GalleryCarouselProps<T> {
 
 export const GalleryCarousel = <T,>({
   className,
+  typeFilm,
+  filmName,
   nameCategory,
   items,
   itemComponent: ItemComponent,
@@ -71,100 +75,98 @@ export const GalleryCarousel = <T,>({
 
   return (
     <div className={clsx(styles.pageSection__container, className)}>
-      <BrowserRouter>
-        <div className={styles.pageSection__containerInner}>
-          <div className={styles.gallery}>
-            <div className={styles.blockHeader}>
-              <div>
-                <div style={{ display: "flex" }}>
-                  <Link to={"#"} className={styles.nblBlockHeader}>
-                    <div className={styles.title}>
-                      <div
-                        className={
-                          typeSlider === "comment"
-                            ? clsx(styles.titleText, styles.commentShadow)
-                            : styles.titleText
-                        }
-                      >
-                        {typeSlider === "comment" ? "Отзывы" : nameCategory}
-                      </div>
+      <div className={styles.pageSection__containerInner}>
+        <div className={styles.gallery}>
+          <div className={styles.blockHeader}>
+            <div>
+              <div style={{ display: "flex" }}>
+                <Link to={"#"} className={styles.nblBlockHeader}>
+                  <div className={styles.title}>
+                    <div
+                      className={
+                        typeSlider === "comment"
+                          ? clsx(styles.titleText, styles.commentShadow)
+                          : styles.titleText
+                      }
+                    >
+                      {typeSlider === "comment" ? <FormattedMessage id="comment_container_reviews" /> : nameCategory}
                     </div>
-                  </Link>
-                  {typeSlider === "comment" ? (
-                    <div className={styles.allComment}>
-                      <div className={styles.textCount}>63</div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
+                  </div>
+                </Link>
                 {typeSlider === "comment" ? (
-                  <div className={styles.about}>
-                    о мультфильме «Лунтик и его друзья»
+                  <div className={styles.allComment}>
+                    <div className={styles.textCount}>63</div>
                   </div>
                 ) : (
                   ""
                 )}
               </div>
               {typeSlider === "comment" ? (
-                <ButtonLink className={styles.buttonComment}>
-                  Оставить отзыв
-                </ButtonLink>
+                <div className={styles.about}>
+                  <FormattedMessage id={`comment_about_${typeFilm}`} /> «{filmName}»
+                </div>
               ) : (
                 ""
               )}
             </div>
-            <div className={styles.carousel}>
-              <div className={styles.viewport}>
-                <div className={styles.viewportInner}>
-                  <div className={styles.slickSlider}>
-                    <div className={styles.slickList}>
-                      <div
-                        className={styles.slickTrack}
-                        style={{
-                          width: `${widthCarousel}`,
-                          opacity: "1",
-                          transform: `translateX(${valueTranslate}px)`,
-                        }}
-                      >
-                        {ItemComponent &&
-                          items?.map((item) => <ItemComponent item={item} />)}
-                        {typeSlider === "comment" ? "" : <CardViewAll />}
-                      </div>
+            {typeSlider === "comment" ? (
+              <ButtonLink className={styles.buttonComment}>
+                <FormattedMessage id='comment_leave_review' />
+              </ButtonLink>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className={styles.carousel}>
+            <div className={styles.viewport}>
+              <div className={styles.viewportInner}>
+                <div className={styles.slickSlider}>
+                  <div className={styles.slickList}>
+                    <div
+                      className={styles.slickTrack}
+                      style={{
+                        width: `${widthCarousel}`,
+                        opacity: "1",
+                        transform: `translateX(${valueTranslate}px)`,
+                      }}
+                    >
+                      {ItemComponent &&
+                        items?.map((item) => <ItemComponent item={item} />)}
+                      {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
                   </div>
                 </div>
               </div>
-              <span
-                className={styles.slickPrev}
-                onClick={goLeft}
-                style={
-                  isVisible === 0
-                    ? { opacity: "0", pointerEvents: "none" }
-                    : { opacity: "1", pointerEvents: "auto" }
-                }
-              >
-                <div className={styles.iconWrapper}>
-                  <SlickArrowLeft />
-                </div>
-              </span>
-              <span
-                className={styles.slickNext}
-                onClick={goRight}
-                style={
-                  isVisible === 1
-                    ? { opacity: "0", pointerEvents: "none" }
-                    : { opacity: "1", pointerEvents: "auto" }
-                }
-              >
-                <div className={styles.iconWrapper}>
-                  <SlickArrowRight />
-                </div>
-              </span>
             </div>
+            <span
+              className={styles.slickPrev}
+              onClick={goLeft}
+              style={
+                isVisible === 0
+                  ? { opacity: "0", pointerEvents: "none" }
+                  : { opacity: "1", pointerEvents: "auto" }
+              }
+            >
+              <div className={styles.iconWrapper}>
+                <SlickArrowLeft />
+              </div>
+            </span>
+            <span
+              className={styles.slickNext}
+              onClick={goRight}
+              style={
+                isVisible === 1
+                  ? { opacity: "0", pointerEvents: "none" }
+                  : { opacity: "1", pointerEvents: "auto" }
+              }
+            >
+              <div className={styles.iconWrapper}>
+                <SlickArrowRight />
+              </div>
+            </span>
           </div>
         </div>
-      </BrowserRouter>
+      </div>
     </div>
   );
 };

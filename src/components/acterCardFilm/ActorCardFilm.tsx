@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Info } from "./info/Info";
 import { ButtonLink } from "../buttons/ButtonLink";
 import { Film } from "../../types/entities/Film";
+import { FormattedMessage } from "react-intl";
 
 export interface ActorCardFilmProps {
   appearance?: "default";
@@ -31,7 +32,7 @@ export const ActorCardFilm = ({
       <div className={styles.main}>
         <Info year={film.year} title={film.title} rating={film.rating?.ivi} />
         <ButtonLink href={href} size="large">
-          Подробнее
+          <FormattedMessage id="actor_card_film_detailed" />
         </ButtonLink>
       </div>
     </div>
