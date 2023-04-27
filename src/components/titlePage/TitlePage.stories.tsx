@@ -11,19 +11,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Stock: Story = {
-  args: {
-    title: "Фильмы смотреть онлайн",
-  },
-};
-
-export const OneGenre: Story = {
-  args: {
-    title: "Фильмы: Артхаус",
-  },
-};
-
-export const moreGenre: Story = {
-  args: {
-    title: "Фильмы",
-  },
+  args: {},
 };
