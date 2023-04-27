@@ -13,10 +13,8 @@
   border-top: 1px solid rgba(255, 255, 255, 0.32);
   grid-template-columns: repeat(3, 1fr);
   display: grid;
-
   grid-column-gap: 40px;
   list-style: none;
   width: 598px;
-  height: 257px;
   padding-left: 0;
 }

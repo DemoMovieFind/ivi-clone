@@ -2,6 +2,27 @@
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  gap: 24px;
-  padding: 12px;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.personsContainerTitle{
+  min-height: 52px;
+  margin: 48px 0 8px 0;
+}
+
+.personsContainerTitleText{
+  padding: 5px 0;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  font-style: normal;
+  box-shadow: 0 1px 0 rgba(255,255,255,.16), inset 0 0 0 rgba(255,255,255,.16);
+  color: #fff;
+  transition: all 0.2s linear;
+}
+
+.personsContainerTitleText:hover {
+  box-shadow: 0 1px 0 #fff, inset 0 0 0 #fff;
+  cursor: pointer;
 }

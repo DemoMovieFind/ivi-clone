@@ -40,13 +40,13 @@ const people = [
 export const actorsFilter: Story = {
   args: {
     persons: people,
-    placeholder: 'actors'
+    placeholder: 'actor'
   }
 }
 
 export const directorFilter: Story = {
   args: {
     persons: people,
-    placeholder: 'directors'
+    placeholder: 'director'
   }
 }

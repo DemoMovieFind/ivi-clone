@@ -12,6 +12,8 @@ import PrivateRoute from "./routes/PrivateRoute";
 import AdminPage from "./pages/admin/AdminPage";
 import PageNotFound from "./pages/notFound/PageNotFound";
 import ChangePage from "./pages/change/ChangePage";
+import FilmWatchCard from "./components/filmWatchCard/FilmWatchCard";
+import PersonCard from "./components/personCard/PersonCard";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -29,6 +31,18 @@ root.render(
             <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
             <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
           </Route>
+          <Route
+            path="/movies"
+            element={<Template content={<FilmsPage />} />}
+          />
+          <Route
+            path="/movies/:id"
+            element={<Template content={<FilmWatchCard />} />}
+          />
+          <Route
+            path="/persons/:id"
+            element={<Template content={<PersonCard />} />}
+          />
           <Route path="*" element={<PageNotFound/>} />
         </Routes>
       </BrowserRouter>

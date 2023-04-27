@@ -1,6 +1,5 @@
 import styles from "./FilterPlank.module.css";
 import clsx from "clsx";
-import { FormattedMessage } from "react-intl";
 import { FontIcon } from "../icons/FontIcon";
 
 export interface FilterPlankProps {

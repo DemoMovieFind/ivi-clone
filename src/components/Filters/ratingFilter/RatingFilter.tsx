@@ -6,21 +6,26 @@ import {
   useState,
   useRef
 } from "react";
-import styles from './RatingSliderCard.module.css'
+import styles from './RatingFilter.module.css'
 import clsx from "clsx";
 import { FormattedMessage } from "react-intl";
+import { useSearchParams } from "react-router-dom";
 
-interface RangeSliderCardProps {
-  min: number;
-  max: number;
-  onChange: ({ ...args }: { min: number; max: number }) => void;
+interface RatingFilterProps {
+  min?: number;
+  max?: number;
+  onChange?: ({ ...args }: { min: number; max: number }) => void;
 }
 
-const RangeSliderCard: FC<RangeSliderCardProps> = ({
-  min,
-  max,
-  onChange
+const RatingFilter: FC<RatingFilterProps> = ({
+  min = 1,
+  max = 10,
+  onChange = () => { '' }
 }) => {
+  const [, setSearchParams] = useSearchParams()
+  const urlParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlParams.entries())
+
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef<HTMLInputElement>(null);
@@ -63,9 +68,13 @@ const RangeSliderCard: FC<RangeSliderCardProps> = ({
     onChange({ min: minVal, max: maxVal });
   }, [minVal, maxVal, onChange]);
 
+  useEffect(() => {
+    setSearchParams({ ...params, rating: `${minVal} ${maxVal}` })
+  }, [minVal, maxVal])
 
-  const sliderLeftValue = (document.getElementById('0') as HTMLInputElement)
-  const sliderRightValue = (document.getElementById('1') as HTMLInputElement)
+
+  const refLeftValue = useRef<HTMLInputElement>(null)
+  const refRightValue = useRef<HTMLInputElement>(null)
 
   const setInputMinValues = (e: ChangeEvent<HTMLInputElement>) => {
     if (!+e.target.value && +e.target.value < minVal) {
@@ -98,7 +107,7 @@ const RangeSliderCard: FC<RangeSliderCardProps> = ({
 
   const rects = []
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = min - 1; i < max; i++) {
     rects.push(<div key={i} className={styles.rangeTickBox} >
       <div className={styles.rangeNum} >{i + 1}</div>
       <div className={styles.rangeTick}></div>
@@ -114,18 +123,18 @@ const RangeSliderCard: FC<RangeSliderCardProps> = ({
         <div className={styles.sliderValuesContainer}>
           <input
             type="text"
-            id="0"
             className={styles.sliderLeftValue}
             onChange={setInputMinValues}
             defaultValue={minVal}
+            ref={refLeftValue}
           />
           —
           <input
             type="text"
-            id="1"
             className={styles.sliderRightValue}
             onChange={setInputMaxValues}
             defaultValue={maxVal}
+            ref={refRightValue}
           />
         </div>
       </div>
@@ -142,7 +151,7 @@ const RangeSliderCard: FC<RangeSliderCardProps> = ({
             const value = Math.min(+e.target.value, maxVal - 0.5);
             setMinVal(value);
             e.target.value = value.toString();
-            sliderLeftValue ? sliderLeftValue.value = value.toString() : ''
+            refLeftValue.current ? refLeftValue.current.value = value.toString() : ''
           }}
           className={clsx(styles.thumb, styles.thumbZindex3, minVal > max - 100 ? styles.thumbZindex5 : '')}
 
@@ -158,7 +167,7 @@ const RangeSliderCard: FC<RangeSliderCardProps> = ({
             const value = Math.max(+e.target.value, minVal + 0.5);
             setMaxVal(value);
             e.target.value = value.toString();
-            sliderRightValue ? sliderRightValue.value = value.toString() : ''
+            refRightValue.current ? refRightValue.current.value = value.toString() : ''
           }}
           className={clsx(styles.thumb, styles.thumbZindex4)}
         />
@@ -176,4 +185,4 @@ const RangeSliderCard: FC<RangeSliderCardProps> = ({
   );
 };
 
-export default RangeSliderCard;
+export default RatingFilter;

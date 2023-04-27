@@ -1,5 +1,3 @@
-import { Actor } from "./Actor";
-
 export type FilmMainCard = {
   name: string;
   name_en?: string;
@@ -8,7 +6,7 @@ export type FilmMainCard = {
   country: string[];
   genre: string[];
   description?: string;
-  actors?: Actor[];
+  actors?: string[];
   mainImg?: string;
   rating?: {
     ivi?: number | null;

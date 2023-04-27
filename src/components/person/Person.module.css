@@ -3,12 +3,10 @@
   flex-direction: column;
   gap: 10px;
   cursor: pointer;
+  width: 95px;
 }
 
-.personСontainer:hover .firstName {
-  color: #fff;
-}
-.personСontainer:hover .lastName {
+.personСontainer:hover .name {
   color: #fff;
 }
 
@@ -32,7 +30,8 @@
   color: #a5a1b2;
 }
 
-.firstName, .lastName{
+.name{
   color: #d9d7e0;
   transition: all 0.1s linear;
+  word-wrap: break-word;
 }

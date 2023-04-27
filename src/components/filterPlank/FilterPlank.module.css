@@ -1,5 +1,6 @@
 .plankWrapper {
   position: relative;
+  cursor: pointer;
 }
 
 .plank {
@@ -16,7 +17,7 @@
 }
 
 .plank.active {
-  background-color: #7e798f !important;
+  background-color: #7e798f;
 }
 
 .textWrapper {

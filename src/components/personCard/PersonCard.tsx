@@ -3,20 +3,19 @@ import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
 import { ActorCardFilm } from '../acterCardFilm/ActorCardFilm';
 import { Film } from '../../types/entities/Film';
+import { useLocation } from 'react-router';
 
 export interface PersonCardPropsType {
   image?: string;
-  firstName?: string;
-  lastName?: string;
+  name?: string;
   desc?: string;
   films?: Film[];
 }
 
 
 const PersonCard = ({
-  image = 'https://thumbs.dfs.ivi.ru/storage28/contents/2/c/24c47ebcba862600ed5c5d7e72e598.jpg/120x144/?q=85',
-  firstName = 'Мартин',
-  lastName = 'Скорсезе',
+  image,
+  name,
   desc = `Мартин Скорсезе (Martin Scorsese) — американский кинорежиссер, продюсер и сценарист. Обладатель множества наград киноиндустрии, в том числе премии «Оскар».`,
   films = [
     {
@@ -60,6 +59,9 @@ const PersonCard = ({
     },
   ],
 }: PersonCardPropsType) => {
+
+  const { state } = useLocation()
+  name = state
 
   const [showMore, setShowMore] = useState(false)
 
@@ -109,27 +111,27 @@ const PersonCard = ({
           <div className={styles.noImage}>
           </div>
       }
-      <div className={styles.titleName}>{firstName} {lastName}</div>
-      <div className={styles.name}>{firstName} {lastName}</div>
+      <div className={styles.titleName}>{name}</div>
+      <div className={styles.name}>{name}</div>
       <div className={styles.personStory}>
         {currentDesc}
         {more}
       </div>
       <div className={styles.totalFilmsContainer}>
-        <a href='#' ><div className={styles.totalFilms}>{films.length} {filmsWords[ending(films.length)]}</div></a>
+        <a href='#' ><div className={styles.totalFilms}>{films?.length} {filmsWords[ending(films?.length)]}</div></a>
         <span>•</span>
         <a href="#"><FormattedMessage id='person_card_biography' /></a>
       </div>
       <div className={styles.fullFilmTitleContainer}>
         <div className={styles.fullFilmTitle}><FormattedMessage id='person_card_filmography' /></div>
-        <div className={styles.fullFilmTitleTotal}>{films.length} {filmsWords[ending(films.length)]}</div>
+        <div className={styles.fullFilmTitleTotal}>{films?.length} {filmsWords[ending(films?.length)]}</div>
       </div>
       <div className={styles.filmsContainer}>
         {films.map(film => <ActorCardFilm key={film.id} film={film} />)}
       </div>
       <div className={styles.personCardBreadCrumbs}>
         <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>
-        <span className={styles.personCardBreadCrumbsName}>/ {firstName} {lastName}</span>
+        <span className={styles.personCardBreadCrumbsName}>/ {name}</span>
       </div>
     </div>
   )

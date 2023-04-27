@@ -1,5 +1,5 @@
 .filmWatchCardContainer {
-  padding-bottom: 40px;
+  padding-bottom: 48px;
 }
 
 .filmWatchCardBreadCrumbsContainer {
@@ -58,6 +58,18 @@
 .filmWatchMovieContainer{
   width: 100%;
   height: 360px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.filmWatchMovieContainer:hover {
+  cursor: pointer;
+}
+
+.filmWatchMovieContainer img {
+  height: 100%;
+  background-size: contain;
 }
 
 .noFilm {
