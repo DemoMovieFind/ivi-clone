@@ -95,6 +95,7 @@
   gap: 12px;
   background-color: #312b45;
   margin-top: 6px;
+  z-index: 5;
 }
 
 .selectBoxOption {
