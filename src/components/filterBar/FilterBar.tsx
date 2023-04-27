@@ -5,6 +5,7 @@ import { Country } from "../Filters/countriesFilter/Country";
 import YearsFilter from "../Filters/yearsFilter/YearsFilter";
 import RatingFilter from "../Filters/ratingFilter/RatingFilter";
 import PersonsFilter from "../Filters/personsFilter/PersonsFilter";
+import { DefaultFilter } from "../Filters/defaultFilter/DefaultFilter";
 
 export interface FilterBarProps {
   className?: string;
@@ -19,6 +20,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ className }) => {
       <PersonsFilter placeholder="actor" />
       <PersonsFilter placeholder="director" />
       <RatingFilter />
+      <DefaultFilter />
     </div>
   );
 };

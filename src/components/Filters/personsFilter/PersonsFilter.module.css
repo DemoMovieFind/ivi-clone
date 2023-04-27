@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  width: 20%;
+  width: 17%;
   padding: 0 6px;
 }
 
@@ -27,7 +27,7 @@
 
 .input:focus {
   outline: none;
-  border: 1px solid #7e798f
+  border: 1px solid #7e798f;
 }
 
 .containerOpen .input {
@@ -64,7 +64,7 @@
 .suggestion {
   cursor: pointer;
   padding: 10px 20px;
-  color: rgba(217,215,224,.8);
+  color: rgba(217, 215, 224, 0.8);
 }
 
 .suggestion:not(:first-child) {

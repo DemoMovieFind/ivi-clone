@@ -1,7 +1,7 @@
 .selectBox {
   position: relative;
   display: block;
-  width: 20%;
+  width: 15%;
   padding: 0 6px;
   min-width: 150px;
   font-size: 18px;
@@ -40,11 +40,11 @@
   font-weight: 500;
 }
 
-.selectBoxExtra{
+.selectBoxExtra {
   font-size: 13px;
   line-height: 16px;
   font-weight: 500;
-  color: rgba(217,215,224,.8);
+  color: rgba(217, 215, 224, 0.8);
   transition: all 0.2s linear;
   position: relative;
 }
@@ -54,12 +54,12 @@
 }
 
 .selectBoxExtra:not(:not(:first-child)):hover::before {
-  content: '';
+  content: "";
   position: absolute;
   right: 0px;
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(217,215,224,.72);;
+  border: 2px solid rgba(217, 215, 224, 0.72);
   border-radius: 100%;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .checked::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 7px;
   right: 6.5px;
@@ -116,7 +116,7 @@
 }
 
 .checked::before {
-  content: '';
+  content: "";
   position: absolute;
   right: 0px;
   width: 16px;
@@ -124,7 +124,6 @@
   border: 2px solid #fff;
   border-radius: 100%;
 }
-
 
 .nonActiveColor {
   background-color: #312b45 !important;

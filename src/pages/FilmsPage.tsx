@@ -26,20 +26,6 @@ export default function FilmsPage() {
     setIsVisible(!isVisible);
   };
 
-  // const [films, setFilms] = useState(Array<User>)
-
-
-
-  // useEffect(() => {
-  //   const src = searchParams.toString();
-  //   // console.log(decodeURI(src));
-  //   fetch(`http://localhost:3000/films/?${decodeURI(src).toLowerCase()}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setFilms(data));
-
-  //     console.log(films)
-  // }, [searchParams]);
-
   return (
     <div className={styles.filmsPage}>
       <BreadCrumbs genre={searchParams.get("genres")} />
@@ -148,13 +134,16 @@ export default function FilmsPage() {
       )}
 
       <ParametersInfo />
-      <FilterBar />
+      <FilterBar className={styles.filterBar} />
       <section className={styles.filmsList}>
-        {films.map(filmz => {
-          return <NavLink to={`/movies/${filmz?.name}`} state={filmz} ><CardFilm film={filmz} /></NavLink>
+        {films.map((filmz) => {
+          return (
+            <NavLink to={`/movies/${filmz?.name}`} state={filmz}>
+              <CardFilm film={filmz} />
+            </NavLink>
+          );
         })}
       </section>
-
     </div>
   );
 }
