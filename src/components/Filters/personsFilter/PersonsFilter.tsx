@@ -90,11 +90,16 @@ const Filter = ({
     const parts = AutosuggestHighlightParse(suggestionText, matches);
 
     return (
-      <span className={styles.suggestionContent} style={{
-        backgroundImage: suggestion.image ?
-          `url(${suggestion.image})` :
-          `url(${noImage})`
-      }}>
+      <span className={styles.suggestionContent}>
+        <img
+          className={styles.personImg}
+          src={suggestion.image
+            ?
+            suggestion.image
+            :
+            noImage}
+          alt='personImg'
+        />
         <span className={styles.name}>
           {
             parts.map((part: {
