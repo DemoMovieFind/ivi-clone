@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authReducer from './authState';
 import langReducer from './langState';
+import filmsUploadReducer from './filmsInitDBstate';
 
 export const store = configureStore({
   reducer: {
     auth:authReducer,
     lang:langReducer,
+    filmsUpload:filmsUploadReducer
   },
 });
 

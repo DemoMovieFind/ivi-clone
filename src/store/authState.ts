@@ -47,7 +47,6 @@ export const sendAuth = createAsyncThunk(
   }
 )
 
-
 export const authReducer = createSlice({
   name: 'auth',
   initialState,
