@@ -136,9 +136,9 @@ export default function FilmsPage() {
       <ParametersInfo />
       <FilterBar className={styles.filterBar} />
       <section className={styles.filmsList}>
-        {films.map((filmz) => {
+        {films.map((filmz, index) => {
           return (
-            <NavLink to={`/movies/${filmz?.name}`} state={filmz}>
+            <NavLink to={`/movies/${filmz?.name}`} state={filmz} key={index}>
               <CardFilm film={filmz} />
             </NavLink>
           );

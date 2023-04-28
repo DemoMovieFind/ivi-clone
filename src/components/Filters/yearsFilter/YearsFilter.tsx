@@ -38,8 +38,10 @@ const YearsFilter = ({
   const params = Object.fromEntries(urlParams.entries());
 
   useEffect(() => {
-    console.log(params);
-
+    params["year"] ? ''
+      : document
+        .querySelectorAll(`.${styles.checked}`)
+        .forEach((elem) => elem.classList.remove(`${styles.checked}`));
   }, [params])
 
   const [isActive, setIsActive] = useState(false);

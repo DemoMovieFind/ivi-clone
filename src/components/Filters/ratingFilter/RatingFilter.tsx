@@ -40,6 +40,15 @@ const RatingFilter: FC<RatingFilterProps> = ({
   );
 
   useEffect(() => {
+    if (!params["rating"]) {
+      setMinVal(1);
+      setMaxVal(10);
+      refLeftValue.current?.value ? refLeftValue.current.value = '1' : '';
+      refRightValue.current?.value ? refRightValue.current.value = '10' : '';
+    }
+  }, [params])
+
+  useEffect(() => {
     if (maxValRef.current) {
       const minPercent = getPercent(minVal);
       const maxPercent = getPercent(+maxValRef.current.value);

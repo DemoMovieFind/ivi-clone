@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Autosuggest from 'react-autosuggest';
 import styles from './PersonsFilter.module.css'
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
@@ -53,6 +53,14 @@ const Filter = ({
   const [value, setValue] = useState('')
   const [suggestion, setSuggestion] = useState<{ name?: string; image?: string; }[]>([])
   const intl = useIntl()
+
+
+  const inputElem = document.querySelectorAll(`.${styles.input}`)
+
+  useEffect(() => {
+    params["actor"] ? '' : (inputElem[0] as HTMLInputElement)?.value ? (inputElem[0] as HTMLInputElement).value = '' : '';
+    params["director"] ? '' : (inputElem[1] as HTMLInputElement)?.value ? (inputElem[1] as HTMLInputElement).value = '' : '';
+  }, [params])
 
 
   const escapeRegexCharacters = (str: string) => {
