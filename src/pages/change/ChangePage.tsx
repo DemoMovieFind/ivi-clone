@@ -4,6 +4,8 @@ import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import films from "../../miniDb";
 import { Button } from "../../components/buttons/Button";
+import { useAppSelector } from "../../store/hooks";
+import { selectAuth } from "../../store/authState";
 
 type Inputs = {
   name_ru:string,
@@ -13,6 +15,8 @@ type Inputs = {
 
 const ChangePage = () => {
   const params = useParams();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const authState = useAppSelector(selectAuth);
   const intl = useIntl();
   const filmName = params.id ?? '';
   const film = films.find(film => film.name === filmName);

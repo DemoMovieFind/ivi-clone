@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { api } from '../services/AuthService';
 import axios from 'axios';
+import { api } from '../services/HttpService';
 
 export type FilmUploadState = {
   status: null | 'loading' | 'resolved' | 'rejected',
@@ -17,7 +17,7 @@ const initialState: FilmUploadState = {
 };
 
 export type PayloadType = {
-  file:any
+  file:Record<string,unknown>
 }
 
 export const uploadFilms = createAsyncThunk(
@@ -31,7 +31,6 @@ export const uploadFilms = createAsyncThunk(
       if (axios.isAxiosError(error)) {
         return  rejectWithValue(error.message);
       }
-      return  rejectWithValue(error);
     }
   }
 )
@@ -46,13 +45,16 @@ export const filmsUploadReducer = createSlice({
       state.error = null;
     }),
     builder.addCase(uploadFilms.fulfilled, (state,action) => {
-      state.status = 'resolved';
-      state.uploaded = true;
-      state.error = null;
+      if (action.payload?.status === 200) {
+        state.status = 'resolved';
+        state.uploaded = true;
+        state.error = null;
+      }
     }),
     builder.addCase(uploadFilms.rejected, (state,action) => {
       state.status = 'rejected';
       state.error = action.payload;
+      state.uploaded = false;
     })
   },
 });

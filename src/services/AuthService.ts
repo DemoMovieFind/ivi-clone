@@ -1,9 +1,6 @@
-import axios from "axios";
-import jwt_decode from "jwt-decode";
 
-export const api = axios.create({
-  baseURL:'http://localhost:3000'
-});
+import jwt_decode from "jwt-decode";
+import { api } from "./HttpService";
 
 export type JWTTokenDecodedType = {
   email: string,
