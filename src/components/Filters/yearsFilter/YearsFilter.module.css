@@ -68,7 +68,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  background-color: #312b45;
   border-radius: 4px;
 }
 
@@ -83,7 +82,7 @@
 
 .dropListWrapper {
   position: absolute;
-  width: 100%;
+  width: 93%;
   list-style: none;
   display: none;
   opacity: 1;

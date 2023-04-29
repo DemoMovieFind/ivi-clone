@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./YearsFilter.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import { FontIcon } from "../../icons/FontIcon";
 import clsx from "clsx";
 import { useSearchParams } from "react-router-dom";
+import { useClickAway } from "react-use";
 
 export interface YearsFilterPropsType {
   items?: string[];
@@ -36,85 +37,27 @@ const YearsFilter = ({
   const urlParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlParams.entries());
 
+  useEffect(() => {
+    params["year"] ? ''
+      : document
+        .querySelectorAll(`.${styles.checked}`)
+        .forEach((elem) => elem.classList.remove(`${styles.checked}`));
+  }, [params])
+
   const [isActive, setIsActive] = useState(false);
-  const refUl = useRef<HTMLUListElement>(null);
-  const refInputText = useRef<HTMLDivElement>(null);
 
-  const openList = (e: any) => {
-    let list = [];
-    let dropDownArrow: any = "";
+  const ref = useRef(null);
 
+  useClickAway(ref, () => {
+    setIsActive(false);
+  });
+
+  const openList = () => {
     setIsActive(!isActive);
-    if (isActive) {
-      refUl.current ? (refUl.current.style.display = `none`) : "";
-      refInputText.current
-        ? (refInputText.current.style.backgroundColor = `#312b45`)
-        : "";
-      if (
-        e.target.classList[0] == styles.selectBoxTitle ||
-        e.target.classList[0] == styles.selectBoxExtra ||
-        e.target.classList[2] == styles.selectBoxIcon
-      ) {
-        list =
-          e.target.parentElement.parentElement.parentElement.parentElement
-            .parentElement.children;
-      } else {
-        list =
-          e.target.parentElement.parentElement.parentElement.parentElement
-            .children;
-      }
-      for (let i = 0; i < list.length; i++) {
-        if (i == 0 || i == 1) {
-          list[i].children[1].style.display = "none";
-          list[i].children[0].children[0].children[0].classList.remove(
-            styles.nonActiveColor
-          );
-          dropDownArrow =
-            list[i].children[0].children[0].children[0].children[1];
-          if (dropDownArrow.classList.length > 1) {
-            dropDownArrow.classList.remove(styles.nonActiveColor);
-            dropDownArrow.classList.remove(styles.nonActiveRotate);
-          }
-        }
-      }
-    } else if (!isActive) {
-      refUl.current ? (refUl.current.style.display = `flex`) : "";
-      refInputText.current
-        ? (refInputText.current.style.backgroundColor = `#7e798f`)
-        : "";
-      if (
-        e.target.classList[0] == styles.selectBoxTitle ||
-        e.target.classList[0] == styles.selectBoxExtra ||
-        e.target.classList[2] == styles.selectBoxIcon
-      ) {
-        list =
-          e.target.parentElement.parentElement.parentElement.parentElement
-            .parentElement.children;
-      } else {
-        list =
-          e.target.parentElement.parentElement.parentElement.parentElement
-            .children;
-      }
-      for (let i = 0; i < list.length; i++) {
-        if (i == 0 || i == 1) {
-          list[i].children[1].style.display = "none";
-          list[i].children[0].children[0].children[0].classList.add(
-            styles.nonActiveColor
-          );
-          dropDownArrow =
-            list[i].children[0].children[0].children[0].children[1];
-          if (dropDownArrow.classList.length > 1) {
-            dropDownArrow.classList.add(styles.nonActiveColor);
-            dropDownArrow.classList.add(styles.nonActiveRotate);
-          }
-        }
-      }
-    }
   };
 
   const intl = useIntl();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const addChecked = (e: any) => {
     document
       .querySelectorAll(`.${styles.checked}`)
@@ -138,7 +81,7 @@ const YearsFilter = ({
 
   return (
     <>
-      <div className={styles.selectBox}>
+      <div className={styles.selectBox} ref={ref}>
         <div
           className={styles.selectBoxCurrent}
           tabIndex={1}
@@ -151,8 +94,12 @@ const YearsFilter = ({
               id="0"
               name="year"
               defaultChecked
+            // defaultChecked={params['year'] ? false : true}
             />
-            <div className={styles.selectBoxInputText} ref={refInputText}>
+            <div
+              className={styles.selectBoxInputText}
+              style={isActive ? { backgroundColor: '#7e798f' } : { backgroundColor: '#312b45' }}
+            >
               <div className={styles.selectBoxTitle}>
                 <FormattedMessage id="select_card_years" />
               </div>
@@ -174,15 +121,20 @@ const YearsFilter = ({
                   id={(index + 1).toString()}
                   name="year"
                 />
-                <div className={styles.selectBoxInputText}>
-                  <div className={styles.selectBoxTitle}>
+                <div className={styles.selectBoxInputText}
+                  style={isActive ? { backgroundColor: '#7e798f' } : { backgroundColor: '#312b45' }}
+                >
+                  <div className={styles.selectBoxTitle}
+                  >
                     <FormattedMessage id="select_card_years" />
                   </div>
-                  <div className={styles.selectBoxExtra}>
+                  <div className={styles.selectBoxExtra}
+                    style={params['year'] ? { display: 'flex' } : { display: 'none' }}
+                  >
                     {item.trim().length == 4
                       ? `${item} ${intl.formatMessage({
-                          id: `select_card_year`,
-                        })}`
+                        id: `select_card_year`,
+                      })}`
                       : item}
                   </div>
                   <FontIcon
@@ -197,7 +149,10 @@ const YearsFilter = ({
             );
           })}
         </div>
-        <ul className={styles.dropListWrapper} id="ul" ref={refUl}>
+        <ul
+          className={styles.dropListWrapper} id="ul"
+          style={isActive ? { display: 'flex' } : { display: 'none' }}
+        >
           <li onClick={addChecked}>
             <label className={styles.selectBoxOption} htmlFor="0" aria-hidden>
               <div className={styles.selectBoxExtra}>
@@ -216,8 +171,8 @@ const YearsFilter = ({
                   <div className={styles.selectBoxExtra}>
                     {item.trim().length == 4
                       ? `${item} ${intl.formatMessage({
-                          id: `select_card_year`,
-                        })}`
+                        id: `select_card_year`,
+                      })}`
                       : item}
                   </div>
                 </label>
