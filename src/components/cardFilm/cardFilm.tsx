@@ -33,7 +33,7 @@ export const CardFilm = ({
             <BarChart count="сюжет" value="70" />
             <Properties
               years={film.year}
-              country={film.country[0]}
+              country={film.countries[0].name}
               genre={film.genres[0].name}
               duration="4 сезона"
               className={styles.propertiesWrapper}

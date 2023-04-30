@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import store from "../../miniDb.json";
+import store from "../../miniDb2.json";
 
 import { CardFilm } from "./cardFilm";
 
