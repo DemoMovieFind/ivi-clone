@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 
 interface BreadCrumbsProps {
   className?: string;
-  genre?: string[];
+  genre: string | null;
   country?: string[];
 }
 
@@ -14,6 +14,7 @@ export const BreadCrumbs = ({
   genre,
   country,
 }: BreadCrumbsProps) => {
+  console.log(genre?.slice(0, 27));
   return (
     <div className={clsx(styles.wrapper, className)}>
       <a href="/" className={styles.link}>
@@ -33,18 +34,13 @@ export const BreadCrumbs = ({
         </span>
       )}
 
-      {genre?.length ? (
+      {genre?.split(" ").length ? (
         <span className={styles.filter}>
           <span className={styles.slash}>/</span>
-          {genre}
-        </span>
-      ) : (
-        ""
-      )}
-      {country?.length ? (
-        <span className={styles.filter}>
-          <span className={styles.slash}>/</span>
-          {country}
+
+          {genre?.length > 27
+            ? genre.slice(0, 27).split(" ").join(", ") + "..."
+            : genre.split(" ").join(", ")}
         </span>
       ) : (
         ""

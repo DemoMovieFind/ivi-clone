@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  pointer-events: none;
+  opacity: 0.32;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+  font-style: normal;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  height: 32px;
+  padding: 8px;
+  -webkit-transition: color 400ms;
+  -o-transition: color 400ms;
+  transition: color 400ms;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  position: relative;
+  top: 2px;
+  margin-right: 8px;
+  display: inline-block;
+  font-family: iconfont !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+.icon::after {
+  content: "\E092";
+  transition-property: color;
+}
+
+.button.active {
+  color: #fff;
+  opacity: 1;
+}
+
+.wrapper:hover .button.active {
+  color: #ea003d;
+  /* opacity: 1; */
+  transition: color 80ms;
+}

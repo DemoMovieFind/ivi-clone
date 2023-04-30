@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Autosuggest from 'react-autosuggest';
 import styles from './PersonsFilter.module.css'
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
@@ -55,6 +55,14 @@ const Filter = ({
   const intl = useIntl()
 
 
+  const inputElem = document.querySelectorAll(`.${styles.input}`)
+
+  useEffect(() => {
+    params["actor"] ? '' : (inputElem[0] as HTMLInputElement)?.value ? (inputElem[0] as HTMLInputElement).value = '' : '';
+    params["director"] ? '' : (inputElem[1] as HTMLInputElement)?.value ? (inputElem[1] as HTMLInputElement).value = '' : '';
+  }, [params])
+
+
   const escapeRegexCharacters = (str: string) => {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
@@ -90,11 +98,16 @@ const Filter = ({
     const parts = AutosuggestHighlightParse(suggestionText, matches);
 
     return (
-      <span className={styles.suggestionContent} style={{
-        backgroundImage: suggestion.image ?
-          `url(${suggestion.image})` :
-          `url(${noImage})`
-      }}>
+      <span className={styles.suggestionContent}>
+        <img
+          className={styles.personImg}
+          src={suggestion.image
+            ?
+            suggestion.image
+            :
+            noImage}
+          alt='personImg'
+        />
         <span className={styles.name}>
           {
             parts.map((part: {

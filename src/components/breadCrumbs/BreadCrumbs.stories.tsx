@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const breadCrumbs: Story = {
   args: {
-    genre: ["Ужасы, Комедия"],
+    genre: "Ужасы Комедия",
     country: ["Россия, США"],
   },
 };

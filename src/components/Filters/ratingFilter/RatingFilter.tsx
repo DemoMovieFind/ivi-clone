@@ -4,9 +4,9 @@ import {
   useCallback,
   useEffect,
   useState,
-  useRef
+  useRef,
 } from "react";
-import styles from './RatingFilter.module.css'
+import styles from "./RatingFilter.module.css";
 import clsx from "clsx";
 import { FormattedMessage } from "react-intl";
 import { useSearchParams } from "react-router-dom";
@@ -20,11 +20,13 @@ interface RatingFilterProps {
 const RatingFilter: FC<RatingFilterProps> = ({
   min = 1,
   max = 10,
-  onChange = () => { '' }
+  onChange = () => {
+    ("");
+  },
 }) => {
-  const [, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams();
   const urlParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlParams.entries())
+  const params = Object.fromEntries(urlParams.entries());
 
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
@@ -32,12 +34,19 @@ const RatingFilter: FC<RatingFilterProps> = ({
   const maxValRef = useRef<HTMLInputElement>(null);
   const range = useRef<HTMLDivElement>(null);
 
-
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
     [min, max]
   );
 
+  useEffect(() => {
+    if (!params["rating"]) {
+      setMinVal(1);
+      setMaxVal(10);
+      refLeftValue.current?.value ? refLeftValue.current.value = '1' : '';
+      refRightValue.current?.value ? refRightValue.current.value = '10' : '';
+    }
+  }, [params])
 
   useEffect(() => {
     if (maxValRef.current) {
@@ -51,7 +60,6 @@ const RatingFilter: FC<RatingFilterProps> = ({
     }
   }, [minVal, getPercent]);
 
-
   useEffect(() => {
     if (minValRef.current) {
       const minPercent = getPercent(+minValRef.current.value);
@@ -63,63 +71,70 @@ const RatingFilter: FC<RatingFilterProps> = ({
     }
   }, [maxVal, getPercent]);
 
-
   useEffect(() => {
     onChange({ min: minVal, max: maxVal });
   }, [minVal, maxVal, onChange]);
 
   useEffect(() => {
-    setSearchParams({ ...params, rating: `${minVal} ${maxVal}` })
-  }, [minVal, maxVal])
+    setSearchParams({ ...params, rating: `${minVal} ${maxVal}` });
+  }, [minVal, maxVal]);
 
-
-  const refLeftValue = useRef<HTMLInputElement>(null)
-  const refRightValue = useRef<HTMLInputElement>(null)
+  const refLeftValue = useRef<HTMLInputElement>(null);
+  const refRightValue = useRef<HTMLInputElement>(null);
 
   const setInputMinValues = (e: ChangeEvent<HTMLInputElement>) => {
     if (!+e.target.value && +e.target.value < minVal) {
-      ''
-    } else if (+e.target.value < minVal || +e.target.value < 0 || isNaN(+e.target.value)) {
-      e.target.value = ' '
-      setMinVal(1)
+      ("");
+    } else if (
+      +e.target.value < minVal ||
+      +e.target.value < 0 ||
+      isNaN(+e.target.value)
+    ) {
+      e.target.value = " ";
+      setMinVal(1);
     } else if (+e.target.value >= maxVal || maxVal - +e.target.value < 0.5) {
-      e.target.value = (maxVal - 0.5).toFixed(1).toString()
-      setMinVal(maxVal - 0.5)
+      e.target.value = (maxVal - 0.5).toFixed(1).toString();
+      setMinVal(maxVal - 0.5);
     } else {
-      setMinVal(+e.target.value)
+      setMinVal(+e.target.value);
     }
-  }
+  };
 
   const setInputMaxValues = (e: ChangeEvent<HTMLInputElement>) => {
     if (!+e.target.value && +e.target.value > maxVal) {
-      ''
-    } else if (+e.target.value > maxVal || +e.target.value > 10 || isNaN(+e.target.value)) {
-      e.target.value = ' '
-      setMaxVal(10)
+      ("");
+    } else if (
+      +e.target.value > maxVal ||
+      +e.target.value > 10 ||
+      isNaN(+e.target.value)
+    ) {
+      e.target.value = " ";
+      setMaxVal(10);
     } else if (+e.target.value <= minVal) {
-      e.target.value = (minVal + 0.5).toFixed(1)
-      setMaxVal(minVal + 0.5)
+      e.target.value = (minVal + 0.5).toFixed(1);
+      setMaxVal(minVal + 0.5);
     } else {
-      setMaxVal(+e.target.value)
+      setMaxVal(+e.target.value);
     }
-  }
+  };
 
-
-  const rects = []
+  const rects = [];
 
   for (let i = min - 1; i < max; i++) {
-    rects.push(<div key={i} className={styles.rangeTickBox} >
-      <div className={styles.rangeNum} >{i + 1}</div>
-      <div className={styles.rangeTick}></div>
-    </div>
-    )
+    rects.push(
+      <div key={i} className={styles.rangeTickBox}>
+        <div className={styles.rangeNum}>{i + 1}</div>
+        <div className={styles.rangeTick}></div>
+      </div>
+    );
   }
-
 
   return (
     <div className={styles.container}>
       <div className={styles.sliderRatingInputContainer}>
-        <div className={styles.sliderRatingInputTitle}><FormattedMessage id="person_card_rate" /></div>
+        <div className={styles.sliderRatingInputTitle}>
+          <FormattedMessage id="person_card_rate" />
+        </div>
         <div className={styles.sliderValuesContainer}>
           <input
             type="text"
@@ -151,10 +166,15 @@ const RatingFilter: FC<RatingFilterProps> = ({
             const value = Math.min(+e.target.value, maxVal - 0.5);
             setMinVal(value);
             e.target.value = value.toString();
-            refLeftValue.current ? refLeftValue.current.value = value.toString() : ''
+            refLeftValue.current
+              ? (refLeftValue.current.value = value.toString())
+              : "";
           }}
-          className={clsx(styles.thumb, styles.thumbZindex3, minVal > max - 100 ? styles.thumbZindex5 : '')}
-
+          className={clsx(
+            styles.thumb,
+            styles.thumbZindex3,
+            minVal > max - 100 ? styles.thumbZindex5 : ""
+          )}
         />
         <input
           type="range"
@@ -167,18 +187,17 @@ const RatingFilter: FC<RatingFilterProps> = ({
             const value = Math.max(+e.target.value, minVal + 0.5);
             setMaxVal(value);
             e.target.value = value.toString();
-            refRightValue.current ? refRightValue.current.value = value.toString() : ''
+            refRightValue.current
+              ? (refRightValue.current.value = value.toString())
+              : "";
           }}
           className={clsx(styles.thumb, styles.thumbZindex4)}
         />
 
-
         <div className={styles.slider}>
           <div className={styles.sliderTrack}></div>
           <div ref={range} className={styles.sliderRange}></div>
-          <div className={styles.rangeTickContainer}>
-            {rects}
-          </div>
+          <div className={styles.rangeTickContainer}>{rects}</div>
         </div>
       </div>
     </div>
