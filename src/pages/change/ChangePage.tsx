@@ -2,10 +2,12 @@ import { useParams } from "react-router-dom";
 import styles from './ChangePage.module.css';
 import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
-import films from "../../miniDb";
 import { Button } from "../../components/buttons/Button";
 import { useAppSelector } from "../../store/hooks";
 import { selectAuth } from "../../store/authState";
+import Loader from "../../components/loader/Loader";
+import useAxios, { api } from "../../services/HttpService";
+import { FilmMainCard } from "../../types/entities/FilmMainCard";
 
 type Inputs = {
   name_ru:string,
@@ -18,12 +20,16 @@ const ChangePage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const authState = useAppSelector(selectAuth);
   const intl = useIntl();
-  const filmName = params.id ?? '';
-  const film = films.find(film => film.name === filmName);
+  const id = params.id ?? '';
+  const {response,loaded} = useAxios({method:'get',url:`/films/${id}`});
+  let film:FilmMainCard|null = null;
+  if (response) {
+    film = response as FilmMainCard;
+  }
   const { register, control, handleSubmit, formState: { errors } } = useForm<Inputs>({
     defaultValues:{
-      genres:film?.genre.map(genre=>{
-        return {value:genre}
+      genres:film?.genres?.map(genre=>{
+        return {value:genre.name}
       })
     }
   });
@@ -35,8 +41,20 @@ const ChangePage = () => {
     }
   });
 
-  const onSubmit = (data:FieldValues) => {
-    console.log(data);
+  const onSubmit = async (data:FieldValues) => {
+    const dataTosave = {...film};
+    dataTosave.name = data.nane;
+    dataTosave.name_en = data.name_en;
+    dataTosave.genres = data.genres;
+    const response = await api.request({
+          data: dataTosave,
+          method:'put',
+          url:'/film-update',
+          headers:{
+            Authorization: `Bearer ${authState.token}`,
+            Accept: 'application/json'
+          }
+        });
   }
 
   const handleDelete = () => {
@@ -46,7 +64,8 @@ const ChangePage = () => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{intl.formatMessage({id:'change_title'})}</h1>
-      <form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      {!loaded && <Loader/>}
+      {loaded && <form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="name">
           {intl.formatMessage({id:'admin_name'})}
         </label>
@@ -93,7 +112,7 @@ const ChangePage = () => {
           appearance="primary" 
           title={intl.formatMessage({id:'change_delete'})} 
           children={intl.formatMessage({id:'change_delete'})}/>
-      </form>
+      </form>}
     </div>
   )
 }

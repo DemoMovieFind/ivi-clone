@@ -8,7 +8,8 @@ export const api = axios.create({
 });
 
 export type AxiosPropsType = {
-  body?:Record<string,string>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body?:Record<string,any>,
   method:'get'|'put'|'post'|'delete'|'patch',
   token?:string,
   url?:string,

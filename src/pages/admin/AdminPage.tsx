@@ -23,7 +23,6 @@ const AdminPage = ()=> {
     formState: { errors },
     register,
     } = useForm();
-//Authorization: Bearer <token>  
 
   const onHandleSearch = (data:FieldValues) => {
     console.log(data);
@@ -69,10 +68,10 @@ const AdminPage = ()=> {
     </form>
     {
       currentItems.map((film) => {
-        return <ShortCardFilm id={film.id} key={film.id} name={film.name} name_en={film.name_en} genres={film.genre}/>
+        return <ShortCardFilm key={film.id} film={film}/>
       })
     }
-    <div className="goods__pagination">
+    <div className={styles.pagination}>
       <ReactPaginate
         breakLabel="..."
         nextLabel=">"
