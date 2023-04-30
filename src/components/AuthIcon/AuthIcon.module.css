@@ -17,3 +17,8 @@
   width: min-content;
   font-size: 12px;
 }
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}

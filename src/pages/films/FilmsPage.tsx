@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { FilterBar } from "../components/filterBar/FilterBar";
+import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
-import { CardFilm } from "../components/cardFilm/cardFilm";
-
+import { CardFilm } from "../../components/cardFilm/cardFilm";
 import styles from "./FilmsPage.module.css";
+import films from "../../miniDb.json";
+import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
+import { TitlePage } from "../../components/titlePage/TitlePage";
+import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 
-import films from "../miniDb.json";
-import { BreadCrumbs } from "../components/breadCrumbs/BreadCrumbs";
-import { TitlePage } from "../components/titlePage/TitlePage";
-import { ParametersInfo } from "../components/parametersInfo/ParametersInfo";
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface User {
   name: string;
   year: string;
@@ -19,6 +18,7 @@ interface User {
 }
 
 export default function FilmsPage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
 

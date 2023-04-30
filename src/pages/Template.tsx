@@ -8,10 +8,11 @@ import { selectLang } from "../store/langState";
 import Footer from "../components/footer/Footer";
 
 export type TemplateTypeProps = {
-  content:JSX.Element
+  content:JSX.Element,
+  isAdminPage?:boolean,
 }
 
-const Template = ({content}:TemplateTypeProps) => {
+const Template = ({content,isAdminPage = false}:TemplateTypeProps) => {
   const lang = useAppSelector(selectLang);
 
   return (
@@ -24,7 +25,7 @@ const Template = ({content}:TemplateTypeProps) => {
       <div className={styles.content}>
         {content}
       </div>
-      <Footer/>
+      {!isAdminPage && <Footer/>}
       </IntlProvider>
     </div>
   );

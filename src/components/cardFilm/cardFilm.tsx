@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./cardFilm.module.css";
 import clsx from "clsx";
 import { HoardsContainer } from "./hoardsContainer/hoardsContainer";
@@ -35,7 +34,7 @@ export const CardFilm = ({
             <Properties
               years={film.year}
               country={film.country[0]}
-              genre={film.genre[0]}
+              genre={film.genres[0].name}
               duration="4 сезона"
               className={styles.propertiesWrapper}
             />

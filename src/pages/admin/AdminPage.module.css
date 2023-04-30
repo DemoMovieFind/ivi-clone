@@ -1,0 +1,71 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background: white;
+  border: none;
+  padding: 0 10px;
+}
+
+.title {
+  color: white;
+  font-size: 32px;
+  text-align: center;
+}
+
+.label {
+  color: #fff;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+}
+
+.pagination {
+  color:white;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination ul {
+  display: flex;
+  flex-direction: row;
+  gap: 21px;
+  align-items: center;
+}
+
+.pagination li {
+  list-style-type: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: white;
+  outline: none;
+}
+
+.pagination li.previous,
+li.next {
+  color: #FFC85E;
+}
+
+.pagination li.selected a {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+  border-radius: 50%;
+}

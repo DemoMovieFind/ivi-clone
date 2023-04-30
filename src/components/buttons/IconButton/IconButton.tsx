@@ -4,7 +4,7 @@ import { ButtonLink, ButtonLinkProps } from "../ButtonLink";
 
 export interface IconButtonProps
   extends Omit<ButtonLinkProps, "size" | "children"> {
-  name: "vk" | "ok" | "tw" | "vb" | "in" | "tl" | "user" | "logout";
+  name: "vk" | "ok" | "tw" | "vb" | "in" | "tl" | "user" | "logout" | "admin";
 }
 
 export const IconButton: React.FC<IconButtonProps> = ({
@@ -42,6 +42,9 @@ export const IconButton: React.FC<IconButtonProps> = ({
       )}
       {name === "logout" && (
         <ImgIcon appearance="logout" className={styles.icon} />
+      )}
+      {name === "admin" && (
+        <ImgIcon appearance="admin" className={styles.icon} />
       )}
     </ButtonLink>
   );

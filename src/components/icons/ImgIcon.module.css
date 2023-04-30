@@ -43,3 +43,7 @@
 .logout {
   background-image: url("../../image/logOut/logOut.svg");
 }
+
+.admin {
+  background-image: url("../../image/adminIcon/admin-icon.svg");
+}
