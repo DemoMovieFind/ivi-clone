@@ -5,7 +5,7 @@ export interface ImgIconProps {
   /**
    * Icon appearance
    */
-  appearance?: "apple" | "google" | "vk" | "ok" | "tw" | "vb" | "in" | "tl" |"user"|"logout";
+  appearance?: "apple" | "google" | "vk" | "ok" | "tw" | "vb" | "in" | "tl" |"user"|"logout"|"admin";
 
   /**
    * Icon className

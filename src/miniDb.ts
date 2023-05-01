@@ -1,4 +1,4 @@
-import data from "./miniDb.json";
+import data from "./miniDb2.json";
 import { FilmMainCard } from "./types/entities/FilmMainCard";
 
 const films = data as FilmMainCard[];

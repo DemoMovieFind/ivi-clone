@@ -14,7 +14,6 @@ export const BreadCrumbs = ({
   genre,
   country,
 }: BreadCrumbsProps) => {
-  console.log(genre?.slice(0, 27));
   return (
     <div className={clsx(styles.wrapper, className)}>
       <a href="/" className={styles.link}>

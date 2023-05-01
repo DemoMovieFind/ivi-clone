@@ -1,9 +1,6 @@
-import axios from "axios";
-import jwt_decode from "jwt-decode";
 
-export const api = axios.create({
-  baseURL:'http://localhost:3000'
-});
+import jwt_decode from "jwt-decode";
+import { api } from "./HttpService";
 
 export type JWTTokenDecodedType = {
   email: string,
@@ -19,13 +16,20 @@ export type JWTTokenDecodedType = {
 
 export class AuthService {
 
-  static async getTokenOrNull(email:string,password:string,typeOfRequest:"signin" | "signup"){
-    const endpoint = typeOfRequest === 'signin' ? '/login' : '/registration';
+  static async getTokenOrNull(email:string,password:string,typeOfRequest:"signin" | "signup",userType:'user'|'admin'){
+    let endpoint = '';
+    if (typeOfRequest === 'signin') {
+      endpoint = '/login';
+    } else {
+      if (userType === 'admin') {
+        endpoint = '/create-test-admin'
+      } else endpoint = '/registration';
+    }
     const response = (await api.post(endpoint,{email,password}));
     if (response.status === 201) {
       const token:string = response.data.token;
       const decoded:JWTTokenDecodedType = jwt_decode(token);
-      return {decoded,token};
+      return {decoded,token,status:201};
     }
     return null;
   }

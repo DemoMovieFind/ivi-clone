@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 export interface PropertiesProps {
   className?: string;
-  years: string;
+  years: number;
   country: string;
   genre: string;
   duration: string;

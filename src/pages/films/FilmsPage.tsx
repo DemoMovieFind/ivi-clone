@@ -1,26 +1,35 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { FilterBar } from "../components/filterBar/FilterBar";
+import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
-import { CardFilm } from "../components/cardFilm/cardFilm";
-
+import { CardFilm } from "../../components/cardFilm/cardFilm";
 import styles from "./FilmsPage.module.css";
+// import films from "../../miniDb.json";
+import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
+import { TitlePage } from "../../components/titlePage/TitlePage";
+import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
+import { FilmMainCard } from "../../types/entities/FilmMainCard";
 
-import films from "../miniDb.json";
-import { BreadCrumbs } from "../components/breadCrumbs/BreadCrumbs";
-import { TitlePage } from "../components/titlePage/TitlePage";
-import { ParametersInfo } from "../components/parametersInfo/ParametersInfo";
-
-interface User {
-  name: string;
-  year: string;
-  country: string[];
-  genre: string[];
-}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 export default function FilmsPage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
+
+  const [films, setFilms] = useState<FilmMainCard[]>([]);
+
+  useEffect(() => {
+    fetch(`https://641b23c71f5d999a445c652b.mockapi.io/Films`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data, "data");
+        setFilms(data);
+      })
+      .catch((error) => {
+        console.log(error, "error");
+      });
+  }, []);
 
   const expand = () => {
     setIsVisible(!isVisible);
@@ -135,15 +144,18 @@ export default function FilmsPage() {
 
       <ParametersInfo />
       <FilterBar className={styles.filterBar} />
-      <section className={styles.filmsList}>
-        {films.map((filmz, index) => {
-          return (
-            <NavLink to={`/movies/${filmz?.name}`} state={filmz} key={index}>
-              <CardFilm film={filmz} />
-            </NavLink>
-          );
-        })}
-      </section>
+
+      {films && (
+        <section className={styles.filmsList}>
+          {films.map((film, index) => {
+            return (
+              <NavLink to={`/movies/${film?.name}`} state={film} key={index}>
+                <CardFilm film={film} />
+              </NavLink>
+            );
+          })}
+        </section>
+      )}
     </div>
   );
 }

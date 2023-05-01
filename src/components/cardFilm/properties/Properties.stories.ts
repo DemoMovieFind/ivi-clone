@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    years: "2010-2015",
+    years: 2010 - 2015,
     country: "Россия",
     genre: "Приключения",
     duration: "3 сезона",

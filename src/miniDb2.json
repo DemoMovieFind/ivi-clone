@@ -1,0 +1,1466 @@
+[
+  {
+    "id": 1,
+    "name": "1+1 (2011)",
+    "name_en": "Intouchables",
+    "type": "фильм",
+    "mainImg": "//avatars.mds.yandex.net/get-kinopoisk-image/1946459/bf93b465-1189-4155-9dd1-cb9fb5cb1bb5/300x450",
+    "year": 2011,
+    "tagline": "«Sometimes you have to reach into someone else's world to find out what's missing in your own»",
+    "budget": "€9&nbsp;500&nbsp;000",
+    "fees": "+ $416&nbsp;389&nbsp;690 = $426&nbsp;588&nbsp;510",
+    "feesUS": "$10&nbsp;198&nbsp;820",
+    "feesRU": "$1&nbsp;725&nbsp;813",
+    "premiere": "23 сентября 2011",
+    "premiereRU": "26 апреля 2012",
+    "releaseDVD": "28 мая 2012, «Новый Диск»",
+    "releaseBluRay": "25 июня 2012, «Новый Диск»",
+    "age": "16+",
+    "ratingMPAA": "R",
+    "time": "112 мин. / 01:52",
+    "description": "Пострадав в результате несчастного случая, богатый аристократ Филипп нанимает в помощники человека, который менее всего подходит для этой работы, – молодого жителя предместья Дрисса, только что освободившегося из тюрьмы. Несмотря на то, что Филипп прикован к инвалидному креслу, Дриссу удается привнести в размеренную жизнь аристократа дух приключений.",
+    "scoreAVG": null,
+    "createdAt": "2023-04-29T16:30:36.996Z",
+    "updatedAt": "2023-04-29T16:30:36.996Z",
+    "genres": [
+      {
+        "id": 3,
+        "name": "биография",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": { "id": 3, "filmId": 1, "genreId": 3 }
+      }
+    ],
+    "countries": [
+      {
+        "id": 1,
+        "name": "Франция",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 1, "filmId": 1, "countryId": 1 }
+      }
+    ],
+    "actors": [
+      {
+        "id": 12,
+        "name": "Франсуа Клюзе",
+        "createdAt": "2023-04-29T16:30:27.797Z",
+        "updatedAt": "2023-04-29T16:30:27.797Z",
+        "FilmActors": { "id": 12, "filmId": 1, "staffId": 12 }
+      },
+      {
+        "id": 13,
+        "name": "Омар Си",
+        "createdAt": "2023-04-29T16:30:27.816Z",
+        "updatedAt": "2023-04-29T16:30:27.816Z",
+        "FilmActors": { "id": 13, "filmId": 1, "staffId": 13 }
+      },
+      {
+        "id": 14,
+        "name": "Анн Ле Ни",
+        "createdAt": "2023-04-29T16:30:27.866Z",
+        "updatedAt": "2023-04-29T16:30:27.866Z",
+        "FilmActors": { "id": 14, "filmId": 1, "staffId": 14 }
+      },
+      {
+        "id": 15,
+        "name": "Одри Флеро",
+        "createdAt": "2023-04-29T16:30:27.894Z",
+        "updatedAt": "2023-04-29T16:30:27.894Z",
+        "FilmActors": { "id": 15, "filmId": 1, "staffId": 15 }
+      },
+      {
+        "id": 16,
+        "name": "Жозефин де Мо",
+        "createdAt": "2023-04-29T16:30:27.911Z",
+        "updatedAt": "2023-04-29T16:30:27.911Z",
+        "FilmActors": { "id": 16, "filmId": 1, "staffId": 16 }
+      },
+      {
+        "id": 17,
+        "name": "Клотильд Молле",
+        "createdAt": "2023-04-29T16:30:27.923Z",
+        "updatedAt": "2023-04-29T16:30:27.923Z",
+        "FilmActors": { "id": 17, "filmId": 1, "staffId": 17 }
+      },
+      {
+        "id": 18,
+        "name": "Альба Гайя Крагеде Беллуджи",
+        "createdAt": "2023-04-29T16:30:27.937Z",
+        "updatedAt": "2023-04-29T16:30:27.937Z",
+        "FilmActors": { "id": 18, "filmId": 1, "staffId": 18 }
+      },
+      {
+        "id": 19,
+        "name": "Сирил Менди",
+        "createdAt": "2023-04-29T16:30:27.956Z",
+        "updatedAt": "2023-04-29T16:30:27.956Z",
+        "FilmActors": { "id": 19, "filmId": 1, "staffId": 19 }
+      },
+      {
+        "id": 20,
+        "name": "Салимата Камате",
+        "createdAt": "2023-04-29T16:30:27.969Z",
+        "updatedAt": "2023-04-29T16:30:27.969Z",
+        "FilmActors": { "id": 20, "filmId": 1, "staffId": 20 }
+      },
+      {
+        "id": 21,
+        "name": "Абса Дьяту Тур",
+        "createdAt": "2023-04-29T16:30:27.992Z",
+        "updatedAt": "2023-04-29T16:30:27.992Z",
+        "FilmActors": { "id": 21, "filmId": 1, "staffId": 21 }
+      }
+    ],
+    "directors": [
+      {
+        "id": 1,
+        "name": "Оливье Накаш",
+        "createdAt": "2023-04-29T16:30:27.465Z",
+        "updatedAt": "2023-04-29T16:30:27.465Z",
+        "FilmDirectors": { "id": 1, "filmId": 1, "staffId": 1 }
+      },
+      {
+        "id": 2,
+        "name": "Эрик Толедано",
+        "createdAt": "2023-04-29T16:30:27.570Z",
+        "updatedAt": "2023-04-29T16:30:27.570Z",
+        "FilmDirectors": { "id": 2, "filmId": 1, "staffId": 2 }
+      }
+    ],
+    "operators": [
+      {
+        "id": 7,
+        "name": "Матьё Вадпьед",
+        "createdAt": "2023-04-29T16:30:27.693Z",
+        "updatedAt": "2023-04-29T16:30:27.693Z",
+        "FilmOperators": { "id": 7, "filmId": 1, "staffId": 7 }
+      }
+    ],
+    "compositors": [
+      {
+        "id": 8,
+        "name": "Людовико Эйнауди",
+        "createdAt": "2023-04-29T16:30:27.716Z",
+        "updatedAt": "2023-04-29T16:30:27.716Z",
+        "FilmCompositors": { "id": 8, "filmId": 1, "staffId": 8 }
+      }
+    ],
+    "artists": [
+      {
+        "id": 7,
+        "name": "Матьё Вадпьед",
+        "createdAt": "2023-04-29T16:30:27.693Z",
+        "updatedAt": "2023-04-29T16:30:27.693Z",
+        "FilmArtists": { "id": 7, "filmId": 1, "staffId": 7 }
+      },
+      {
+        "id": 9,
+        "name": "Франсуа Эммануэлли",
+        "createdAt": "2023-04-29T16:30:27.735Z",
+        "updatedAt": "2023-04-29T16:30:27.735Z",
+        "FilmArtists": { "id": 9, "filmId": 1, "staffId": 9 }
+      },
+      {
+        "id": 10,
+        "name": "Изабель Паннетье",
+        "createdAt": "2023-04-29T16:30:27.753Z",
+        "updatedAt": "2023-04-29T16:30:27.753Z",
+        "FilmArtists": { "id": 10, "filmId": 1, "staffId": 10 }
+      }
+    ],
+    "montages": [
+      {
+        "id": 11,
+        "name": "Дориан Ригаль-Ансу",
+        "createdAt": "2023-04-29T16:30:27.770Z",
+        "updatedAt": "2023-04-29T16:30:27.770Z",
+        "FilmMontages": { "id": 11, "filmId": 1, "staffId": 11 }
+      }
+    ],
+    "scenario": [
+      {
+        "id": 1,
+        "name": "Оливье Накаш",
+        "createdAt": "2023-04-29T16:30:27.465Z",
+        "updatedAt": "2023-04-29T16:30:27.465Z",
+        "FilmScenario": { "id": 1, "filmId": 1, "staffId": 1 }
+      },
+      {
+        "id": 2,
+        "name": "Эрик Толедано",
+        "createdAt": "2023-04-29T16:30:27.570Z",
+        "updatedAt": "2023-04-29T16:30:27.570Z",
+        "FilmScenario": { "id": 2, "filmId": 1, "staffId": 2 }
+      },
+      {
+        "id": 3,
+        "name": "Филипп Поццо ди Борго",
+        "createdAt": "2023-04-29T16:30:27.596Z",
+        "updatedAt": "2023-04-29T16:30:27.596Z",
+        "FilmScenario": { "id": 3, "filmId": 1, "staffId": 3 }
+      }
+    ],
+    "spectators": []
+  },
+  {
+    "id": 3,
+    "name": "Волк с Уолл-стрит (2013)",
+    "name_en": "The Wolf of Wall Street",
+    "type": "фильм",
+    "mainImg": "//avatars.mds.yandex.net/get-kinopoisk-image/1946459/5c758ac0-7a5c-4f00-a94f-1be680a312fb/300x450",
+    "year": 2013,
+    "tagline": "«Earn. Spend. Party»",
+    "budget": "$100&nbsp;000&nbsp;000",
+    "fees": "+ $275&nbsp;100&nbsp;000 = $392&nbsp;000&nbsp;694",
+    "feesUS": "$116&nbsp;900&nbsp;694",
+    "feesRU": "$13&nbsp;796&nbsp;916",
+    "premiere": "9 декабря 2013",
+    "premiereRU": "6 февраля 2014",
+    "releaseDVD": "4 декабря 2014, «West Video»",
+    "releaseBluRay": "4 декабря 2014, «West Video»",
+    "age": "18+",
+    "ratingMPAA": "R",
+    "time": "180 мин. / 03:00",
+    "description": "1987 год. Джордан Белфорт становится брокером в успешном инвестиционном банке. Вскоре банк закрывается после внезапного обвала индекса Доу-Джонса. По совету жены Терезы Джордан устраивается в небольшое заведение, занимающееся мелкими акциями. Его настойчивый стиль общения с клиентами и врождённая харизма быстро даёт свои плоды. Он знакомится с соседом по дому Донни, торговцем, который сразу находит общий язык с Джорданом и решает открыть с ним собственную фирму. В качестве сотрудников они нанимают нескольких друзей Белфорта, его отца Макса и называют компанию «Стрэттон Оукмонт». В свободное от работы время Джордан прожигает жизнь: лавирует от одной вечеринки к другой, вступает в сексуальные отношения с проститутками, употребляет множество наркотических препаратов, в том числе кокаин и кваалюд. Однажды наступает момент, когда быстрым обогащением Белфорта начинает интересоваться агент ФБР...",
+    "scoreAVG": null,
+    "createdAt": "2023-04-29T16:30:36.996Z",
+    "updatedAt": "2023-04-29T16:30:36.996Z",
+    "genres": [
+      {
+        "id": 3,
+        "name": "биография",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": { "id": 43, "filmId": 3, "genreId": 3 }
+      }
+    ],
+    "countries": [
+      {
+        "id": 5,
+        "name": "США",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 49, "filmId": 3, "countryId": 5 }
+      }
+    ],
+    "actors": [
+      {
+        "id": 34,
+        "name": "Мэттью МакКонахи",
+        "createdAt": "2023-04-29T16:30:28.173Z",
+        "updatedAt": "2023-04-29T16:30:28.173Z",
+        "FilmActors": { "id": 1828, "filmId": 3, "staffId": 34 }
+      },
+      {
+        "id": 48,
+        "name": "Леонардо ДиКаприо",
+        "createdAt": "2023-04-29T16:30:28.336Z",
+        "updatedAt": "2023-04-29T16:30:28.336Z",
+        "FilmActors": { "id": 1842, "filmId": 3, "staffId": 48 }
+      },
+      {
+        "id": 54,
+        "name": "Джона Хилл",
+        "createdAt": "2023-04-29T16:30:28.376Z",
+        "updatedAt": "2023-04-29T16:30:28.376Z",
+        "FilmActors": { "id": 1848, "filmId": 3, "staffId": 54 }
+      },
+      {
+        "id": 55,
+        "name": "Марго Робби",
+        "createdAt": "2023-04-29T16:30:28.383Z",
+        "updatedAt": "2023-04-29T16:30:28.383Z",
+        "FilmActors": { "id": 1849, "filmId": 3, "staffId": 55 }
+      },
+      {
+        "id": 56,
+        "name": "Кайл Чандлер",
+        "createdAt": "2023-04-29T16:30:28.389Z",
+        "updatedAt": "2023-04-29T16:30:28.389Z",
+        "FilmActors": { "id": 1850, "filmId": 3, "staffId": 56 }
+      },
+      {
+        "id": 57,
+        "name": "Роб Райнер",
+        "createdAt": "2023-04-29T16:30:28.397Z",
+        "updatedAt": "2023-04-29T16:30:28.397Z",
+        "FilmActors": { "id": 1851, "filmId": 3, "staffId": 57 }
+      },
+      {
+        "id": 58,
+        "name": "П.Дж. Бирн",
+        "createdAt": "2023-04-29T16:30:28.411Z",
+        "updatedAt": "2023-04-29T16:30:28.411Z",
+        "FilmActors": { "id": 1852, "filmId": 3, "staffId": 58 }
+      },
+      {
+        "id": 59,
+        "name": "Джон Бернтал",
+        "createdAt": "2023-04-29T16:30:28.418Z",
+        "updatedAt": "2023-04-29T16:30:28.418Z",
+        "FilmActors": { "id": 1853, "filmId": 3, "staffId": 59 }
+      },
+      {
+        "id": 60,
+        "name": "Кристин Милиоти",
+        "createdAt": "2023-04-29T16:30:28.429Z",
+        "updatedAt": "2023-04-29T16:30:28.429Z",
+        "FilmActors": { "id": 1854, "filmId": 3, "staffId": 60 }
+      },
+      {
+        "id": 61,
+        "name": "Жан Дюжарден",
+        "createdAt": "2023-04-29T16:30:28.438Z",
+        "updatedAt": "2023-04-29T16:30:28.438Z",
+        "FilmActors": { "id": 1855, "filmId": 3, "staffId": 61 }
+      }
+    ],
+    "directors": [
+      {
+        "id": 44,
+        "name": "Мартин Скорсезе",
+        "createdAt": "2023-04-29T16:30:28.268Z",
+        "updatedAt": "2023-04-29T16:30:28.268Z",
+        "FilmDirectors": { "id": 1838, "filmId": 3, "staffId": 44 }
+      }
+    ],
+    "operators": [
+      {
+        "id": 49,
+        "name": "Родриго Прието",
+        "createdAt": "2023-04-29T16:30:28.343Z",
+        "updatedAt": "2023-04-29T16:30:28.343Z",
+        "FilmOperators": { "id": 1843, "filmId": 3, "staffId": 49 }
+      }
+    ],
+    "compositors": [],
+    "artists": [
+      {
+        "id": 50,
+        "name": "Боб Шоу",
+        "createdAt": "2023-04-29T16:30:28.351Z",
+        "updatedAt": "2023-04-29T16:30:28.351Z",
+        "FilmArtists": { "id": 1844, "filmId": 3, "staffId": 50 }
+      },
+      {
+        "id": 51,
+        "name": "Крис Шрайвер",
+        "createdAt": "2023-04-29T16:30:28.358Z",
+        "updatedAt": "2023-04-29T16:30:28.358Z",
+        "FilmArtists": { "id": 1845, "filmId": 3, "staffId": 51 }
+      },
+      {
+        "id": 52,
+        "name": "Dave Asling",
+        "createdAt": "2023-04-29T16:30:28.365Z",
+        "updatedAt": "2023-04-29T16:30:28.365Z",
+        "FilmArtists": { "id": 1846, "filmId": 3, "staffId": 52 }
+      }
+    ],
+    "montages": [
+      {
+        "id": 53,
+        "name": "Тельма Скунмейкер",
+        "createdAt": "2023-04-29T16:30:28.371Z",
+        "updatedAt": "2023-04-29T16:30:28.371Z",
+        "FilmMontages": { "id": 1847, "filmId": 3, "staffId": 53 }
+      }
+    ],
+    "scenario": [
+      {
+        "id": 45,
+        "name": "Теренс Уинтер",
+        "createdAt": "2023-04-29T16:30:28.293Z",
+        "updatedAt": "2023-04-29T16:30:28.293Z",
+        "FilmScenario": { "id": 1839, "filmId": 3, "staffId": 45 }
+      },
+      {
+        "id": 46,
+        "name": "Джордан Белфорт",
+        "createdAt": "2023-04-29T16:30:28.309Z",
+        "updatedAt": "2023-04-29T16:30:28.309Z",
+        "FilmScenario": { "id": 1840, "filmId": 3, "staffId": 46 }
+      }
+    ],
+    "spectators": []
+  },
+  {
+    "id": 21,
+    "name": "Зеленая книга (2018)",
+    "name_en": "Green Book",
+    "type": "фильм",
+    "mainImg": "//avatars.mds.yandex.net/get-kinopoisk-image/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/300x450",
+    "year": 2018,
+    "tagline": "«Inspired by a True Friendship»",
+    "budget": "$23&nbsp;000&nbsp;000",
+    "fees": "+ $236&nbsp;672&nbsp;485 = $321&nbsp;752&nbsp;656",
+    "feesUS": "$85&nbsp;080&nbsp;171",
+    "feesRU": "$9&nbsp;319&nbsp;859",
+    "premiere": "11 сентября 2018",
+    "premiereRU": "24 января 2019",
+    "releaseDVD": "",
+    "releaseBluRay": "",
+    "age": "16+",
+    "ratingMPAA": "PG-13",
+    "time": "130 мин. / 02:10",
+    "description": "1960-е годы. После закрытия нью-йоркского ночного клуба на ремонт вышибала Тони по прозвищу Болтун ищет подработку на пару месяцев. Как раз в это время Дон Ширли — утонченный светский лев, богатый и талантливый чернокожий музыкант, исполняющий классическую музыку — собирается в турне по южным штатам, где ещё сильны расистские убеждения и царит сегрегация. Он нанимает Тони в качестве водителя, телохранителя и человека, способного решать текущие проблемы. У этих двоих так мало общего, и эта поездка навсегда изменит жизнь обоих.",
+    "scoreAVG": null,
+    "createdAt": "2023-04-29T16:30:36.996Z",
+    "updatedAt": "2023-04-29T16:30:36.996Z",
+    "genres": [
+      {
+        "id": 3,
+        "name": "биография",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": { "id": 403, "filmId": 21, "genreId": 3 }
+      }
+    ],
+    "countries": [
+      {
+        "id": 5,
+        "name": "США",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 445, "filmId": 21, "countryId": 5 }
+      },
+      {
+        "id": 9,
+        "name": "Китай",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 449, "filmId": 21, "countryId": 9 }
+      }
+    ],
+    "actors": [
+      {
+        "id": 58,
+        "name": "П.Дж. Бирн",
+        "createdAt": "2023-04-29T16:30:28.411Z",
+        "updatedAt": "2023-04-29T16:30:28.411Z",
+        "FilmActors": { "id": 17998, "filmId": 21, "staffId": 58 }
+      },
+      {
+        "id": 393,
+        "name": "Вигго Мортенсен",
+        "createdAt": "2023-04-29T16:30:32.288Z",
+        "updatedAt": "2023-04-29T16:30:32.288Z",
+        "FilmActors": { "id": 18333, "filmId": 21, "staffId": 393 }
+      },
+      {
+        "id": 394,
+        "name": "Махершала Али",
+        "createdAt": "2023-04-29T16:30:32.293Z",
+        "updatedAt": "2023-04-29T16:30:32.293Z",
+        "FilmActors": { "id": 18334, "filmId": 21, "staffId": 394 }
+      },
+      {
+        "id": 395,
+        "name": "Линда Карделлини",
+        "createdAt": "2023-04-29T16:30:32.306Z",
+        "updatedAt": "2023-04-29T16:30:32.306Z",
+        "FilmActors": { "id": 18335, "filmId": 21, "staffId": 395 }
+      },
+      {
+        "id": 396,
+        "name": "Себастьян Манискалко",
+        "createdAt": "2023-04-29T16:30:32.312Z",
+        "updatedAt": "2023-04-29T16:30:32.312Z",
+        "FilmActors": { "id": 18336, "filmId": 21, "staffId": 396 }
+      },
+      {
+        "id": 397,
+        "name": "Димитар Маринов",
+        "createdAt": "2023-04-29T16:30:32.317Z",
+        "updatedAt": "2023-04-29T16:30:32.317Z",
+        "FilmActors": { "id": 18337, "filmId": 21, "staffId": 397 }
+      },
+      {
+        "id": 398,
+        "name": "Майк Хаттон",
+        "createdAt": "2023-04-29T16:30:32.322Z",
+        "updatedAt": "2023-04-29T16:30:32.322Z",
+        "FilmActors": { "id": 18338, "filmId": 21, "staffId": 398 }
+      },
+      {
+        "id": 399,
+        "name": "Джо Кортезе",
+        "createdAt": "2023-04-29T16:30:32.329Z",
+        "updatedAt": "2023-04-29T16:30:32.329Z",
+        "FilmActors": { "id": 18339, "filmId": 21, "staffId": 399 }
+      },
+      {
+        "id": 400,
+        "name": "Мэгги Никсон",
+        "createdAt": "2023-04-29T16:30:32.342Z",
+        "updatedAt": "2023-04-29T16:30:32.342Z",
+        "FilmActors": { "id": 18340, "filmId": 21, "staffId": 400 }
+      },
+      {
+        "id": 401,
+        "name": "Фон Льюис",
+        "createdAt": "2023-04-29T16:30:32.351Z",
+        "updatedAt": "2023-04-29T16:30:32.351Z",
+        "FilmActors": { "id": 18341, "filmId": 21, "staffId": 401 }
+      }
+    ],
+    "directors": [
+      {
+        "id": 382,
+        "name": "Питер Фаррелли",
+        "createdAt": "2023-04-29T16:30:32.203Z",
+        "updatedAt": "2023-04-29T16:30:32.203Z",
+        "FilmDirectors": { "id": 18322, "filmId": 21, "staffId": 382 }
+      }
+    ],
+    "operators": [
+      {
+        "id": 387,
+        "name": "Шон Портер",
+        "createdAt": "2023-04-29T16:30:32.240Z",
+        "updatedAt": "2023-04-29T16:30:32.240Z",
+        "FilmOperators": { "id": 18327, "filmId": 21, "staffId": 387 }
+      }
+    ],
+    "compositors": [
+      {
+        "id": 388,
+        "name": "Крис Бауэрс",
+        "createdAt": "2023-04-29T16:30:32.255Z",
+        "updatedAt": "2023-04-29T16:30:32.255Z",
+        "FilmCompositors": { "id": 18328, "filmId": 21, "staffId": 388 }
+      }
+    ],
+    "artists": [
+      {
+        "id": 389,
+        "name": "Тим Галвин",
+        "createdAt": "2023-04-29T16:30:32.264Z",
+        "updatedAt": "2023-04-29T16:30:32.264Z",
+        "FilmArtists": { "id": 18329, "filmId": 21, "staffId": 389 }
+      },
+      {
+        "id": 390,
+        "name": "Скотт Плоше",
+        "createdAt": "2023-04-29T16:30:32.272Z",
+        "updatedAt": "2023-04-29T16:30:32.272Z",
+        "FilmArtists": { "id": 18330, "filmId": 21, "staffId": 390 }
+      },
+      {
+        "id": 391,
+        "name": "Бетси Хайман",
+        "createdAt": "2023-04-29T16:30:32.277Z",
+        "updatedAt": "2023-04-29T16:30:32.277Z",
+        "FilmArtists": { "id": 18331, "filmId": 21, "staffId": 391 }
+      }
+    ],
+    "montages": [
+      {
+        "id": 392,
+        "name": "Патрик Дж. Дон Вито",
+        "createdAt": "2023-04-29T16:30:32.283Z",
+        "updatedAt": "2023-04-29T16:30:32.283Z",
+        "FilmMontages": { "id": 18332, "filmId": 21, "staffId": 392 }
+      }
+    ],
+    "scenario": [
+      {
+        "id": 382,
+        "name": "Питер Фаррелли",
+        "createdAt": "2023-04-29T16:30:32.203Z",
+        "updatedAt": "2023-04-29T16:30:32.203Z",
+        "FilmScenario": { "id": 18322, "filmId": 21, "staffId": 382 }
+      },
+      {
+        "id": 383,
+        "name": "Ник Валлелонга",
+        "createdAt": "2023-04-29T16:30:32.209Z",
+        "updatedAt": "2023-04-29T16:30:32.209Z",
+        "FilmScenario": { "id": 18323, "filmId": 21, "staffId": 383 }
+      },
+      {
+        "id": 384,
+        "name": "Брайан Хэйес Карри",
+        "createdAt": "2023-04-29T16:30:32.214Z",
+        "updatedAt": "2023-04-29T16:30:32.214Z",
+        "FilmScenario": { "id": 18324, "filmId": 21, "staffId": 384 }
+      }
+    ],
+    "spectators": []
+  },
+  {
+    "id": 37,
+    "name": "Поймай меня, если сможешь (2002)",
+    "name_en": "Catch Me If You Can",
+    "type": "фильм",
+    "mainImg": "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/e38dd6f9-610e-4c90-8540-dc48560cb9cc/300x450",
+    "year": 2002,
+    "tagline": "«Правдивая история о реальном преступнике»",
+    "budget": "$52&nbsp;000&nbsp;000",
+    "fees": "+ $187&nbsp;498&nbsp;961 = $352&nbsp;114&nbsp;312",
+    "feesUS": "$164&nbsp;615&nbsp;351",
+    "feesRU": "$2&nbsp;427&nbsp;426",
+    "premiere": "16 декабря 2002",
+    "premiereRU": "13 февраля 2003",
+    "releaseDVD": "29 июля 2004, «Premier Digital»",
+    "releaseBluRay": "",
+    "age": "16+",
+    "ratingMPAA": "PG-13",
+    "time": "141 мин. / 02:21",
+    "description": "Фрэнк Эбегнейл успел поработать врачом, адвокатом и пилотом на пассажирской авиалинии – и все это до достижения полного совершеннолетия в 21 год. Мастер в обмане и жульничестве, он также обладал искусством подделки документов, что в конечном счете принесло ему миллионы долларов, которые он получил по фальшивым чекам.",
+    "scoreAVG": null,
+    "createdAt": "2023-04-29T16:30:36.996Z",
+    "updatedAt": "2023-04-29T16:30:36.996Z",
+    "genres": [
+      {
+        "id": 3,
+        "name": "биография",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": { "id": 723, "filmId": 37, "genreId": 3 }
+      }
+    ],
+    "countries": [
+      {
+        "id": 5,
+        "name": "США",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 797, "filmId": 37, "countryId": 5 }
+      },
+      {
+        "id": 12,
+        "name": "Канада",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 804, "filmId": 37, "countryId": 12 }
+      }
+    ],
+    "actors": [
+      {
+        "id": 48,
+        "name": "Леонардо ДиКаприо",
+        "createdAt": "2023-04-29T16:30:28.336Z",
+        "updatedAt": "2023-04-29T16:30:28.336Z",
+        "FilmActors": { "id": 32340, "filmId": 37, "staffId": 48 }
+      },
+      {
+        "id": 176,
+        "name": "Том Хэнкс",
+        "createdAt": "2023-04-29T16:30:29.980Z",
+        "updatedAt": "2023-04-29T16:30:29.980Z",
+        "FilmActors": { "id": 32468, "filmId": 37, "staffId": 176 }
+      },
+      {
+        "id": 665,
+        "name": "Кристофер Уокен",
+        "createdAt": "2023-04-29T16:30:34.724Z",
+        "updatedAt": "2023-04-29T16:30:34.724Z",
+        "FilmActors": { "id": 32957, "filmId": 37, "staffId": 665 }
+      },
+      {
+        "id": 666,
+        "name": "Мартин Шин",
+        "createdAt": "2023-04-29T16:30:34.729Z",
+        "updatedAt": "2023-04-29T16:30:34.729Z",
+        "FilmActors": { "id": 32958, "filmId": 37, "staffId": 666 }
+      },
+      {
+        "id": 667,
+        "name": "Натали Бай",
+        "createdAt": "2023-04-29T16:30:34.733Z",
+        "updatedAt": "2023-04-29T16:30:34.733Z",
+        "FilmActors": { "id": 32959, "filmId": 37, "staffId": 667 }
+      },
+      {
+        "id": 668,
+        "name": "Эми Адамс",
+        "createdAt": "2023-04-29T16:30:34.738Z",
+        "updatedAt": "2023-04-29T16:30:34.738Z",
+        "FilmActors": { "id": 32960, "filmId": 37, "staffId": 668 }
+      },
+      {
+        "id": 669,
+        "name": "Джеймс Бролин",
+        "createdAt": "2023-04-29T16:30:34.744Z",
+        "updatedAt": "2023-04-29T16:30:34.744Z",
+        "FilmActors": { "id": 32961, "filmId": 37, "staffId": 669 }
+      },
+      {
+        "id": 670,
+        "name": "Брайан Хау",
+        "createdAt": "2023-04-29T16:30:34.749Z",
+        "updatedAt": "2023-04-29T16:30:34.749Z",
+        "FilmActors": { "id": 32962, "filmId": 37, "staffId": 670 }
+      },
+      {
+        "id": 671,
+        "name": "Фрэнк Джон Хьюз",
+        "createdAt": "2023-04-29T16:30:34.755Z",
+        "updatedAt": "2023-04-29T16:30:34.755Z",
+        "FilmActors": { "id": 32963, "filmId": 37, "staffId": 671 }
+      },
+      {
+        "id": 672,
+        "name": "Стив Истин",
+        "createdAt": "2023-04-29T16:30:34.760Z",
+        "updatedAt": "2023-04-29T16:30:34.760Z",
+        "FilmActors": { "id": 32964, "filmId": 37, "staffId": 672 }
+      }
+    ],
+    "directors": [
+      {
+        "id": 654,
+        "name": "Стивен Спилберг",
+        "createdAt": "2023-04-29T16:30:34.661Z",
+        "updatedAt": "2023-04-29T16:30:34.661Z",
+        "FilmDirectors": { "id": 32946, "filmId": 37, "staffId": 654 }
+      }
+    ],
+    "operators": [
+      {
+        "id": 660,
+        "name": "Януш Камински",
+        "createdAt": "2023-04-29T16:30:34.698Z",
+        "updatedAt": "2023-04-29T16:30:34.698Z",
+        "FilmOperators": { "id": 32952, "filmId": 37, "staffId": 660 }
+      }
+    ],
+    "compositors": [
+      {
+        "id": 99,
+        "name": "Джон Уильямс",
+        "createdAt": "2023-04-29T16:30:28.960Z",
+        "updatedAt": "2023-04-29T16:30:28.960Z",
+        "FilmCompositors": { "id": 32391, "filmId": 37, "staffId": 99 }
+      }
+    ],
+    "artists": [
+      {
+        "id": 661,
+        "name": "Джаннин Оппуолл",
+        "createdAt": "2023-04-29T16:30:34.703Z",
+        "updatedAt": "2023-04-29T16:30:34.703Z",
+        "FilmArtists": { "id": 32953, "filmId": 37, "staffId": 661 }
+      },
+      {
+        "id": 662,
+        "name": "Сара Ноулз",
+        "createdAt": "2023-04-29T16:30:34.708Z",
+        "updatedAt": "2023-04-29T16:30:34.708Z",
+        "FilmArtists": { "id": 32954, "filmId": 37, "staffId": 662 }
+      },
+      {
+        "id": 663,
+        "name": "Мэри Зофрис",
+        "createdAt": "2023-04-29T16:30:34.714Z",
+        "updatedAt": "2023-04-29T16:30:34.714Z",
+        "FilmArtists": { "id": 32955, "filmId": 37, "staffId": 663 }
+      }
+    ],
+    "montages": [
+      {
+        "id": 664,
+        "name": "Майкл Кан",
+        "createdAt": "2023-04-29T16:30:34.719Z",
+        "updatedAt": "2023-04-29T16:30:34.719Z",
+        "FilmMontages": { "id": 32956, "filmId": 37, "staffId": 664 }
+      }
+    ],
+    "scenario": [
+      {
+        "id": 655,
+        "name": "Джефф Натансон",
+        "createdAt": "2023-04-29T16:30:34.674Z",
+        "updatedAt": "2023-04-29T16:30:34.674Z",
+        "FilmScenario": { "id": 32947, "filmId": 37, "staffId": 655 }
+      },
+      {
+        "id": 656,
+        "name": "Фрэнк Эбегнейл мл.",
+        "createdAt": "2023-04-29T16:30:34.679Z",
+        "updatedAt": "2023-04-29T16:30:34.679Z",
+        "FilmScenario": { "id": 32948, "filmId": 37, "staffId": 656 }
+      },
+      {
+        "id": 657,
+        "name": "Стэн Реддинг",
+        "createdAt": "2023-04-29T16:30:34.684Z",
+        "updatedAt": "2023-04-29T16:30:34.684Z",
+        "FilmScenario": { "id": 32949, "filmId": 37, "staffId": 657 }
+      }
+    ],
+    "spectators": []
+  },
+  {
+    "id": 45,
+    "name": "Ford против Ferrari (2019)",
+    "name_en": "Ford v Ferrari",
+    "type": "фильм",
+    "mainImg": "//avatars.mds.yandex.net/get-kinopoisk-image/1898899/211e880d-c183-43aa-83b0-13c08109eaf7/300x450",
+    "year": 2019,
+    "tagline": "«They took the American dream for a ride»",
+    "budget": "$97&nbsp;600&nbsp;000",
+    "fees": "+ $107&nbsp;883&nbsp;853 = $225&nbsp;508&nbsp;210",
+    "feesUS": "$117&nbsp;624&nbsp;357",
+    "feesRU": "$11&nbsp;535&nbsp;765",
+    "premiere": "30 августа 2019",
+    "premiereRU": "14 ноября 2019",
+    "releaseDVD": "",
+    "releaseBluRay": "",
+    "age": "16+",
+    "ratingMPAA": "PG-13",
+    "time": "152 мин. / 02:32",
+    "description": "В начале 1960-х Генри Форд II принимает решение улучшить имидж компании и сменить курс на производство более модных автомобилей. После неудавшейся попытки купить практически банкрота Ferrari американцы решают бросить вызов итальянским конкурентам на трассе и выиграть престижную гонку 24 часа Ле-Мана. Чтобы создать подходящую машину, компания нанимает автоконструктора Кэррола Шэлби, а тот отказывается работать без выдающегося, но, как считается, трудного в общении гонщика Кена Майлза. Вместе они принимаются за разработку впоследствии знаменитого спорткара Ford GT40.",
+    "scoreAVG": null,
+    "createdAt": "2023-04-29T16:30:36.996Z",
+    "updatedAt": "2023-04-29T16:30:36.996Z",
+    "genres": [
+      {
+        "id": 3,
+        "name": "биография",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": { "id": 883, "filmId": 45, "genreId": 3 }
+      }
+    ],
+    "countries": [
+      {
+        "id": 5,
+        "name": "США",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 973, "filmId": 45, "countryId": 5 }
+      }
+    ],
+    "actors": [
+      {
+        "id": 59,
+        "name": "Джон Бернтал",
+        "createdAt": "2023-04-29T16:30:28.418Z",
+        "updatedAt": "2023-04-29T16:30:28.418Z",
+        "FilmActors": { "id": 39527, "filmId": 45, "staffId": 59 }
+      },
+      {
+        "id": 326,
+        "name": "Мэтт Дэймон",
+        "createdAt": "2023-04-29T16:30:31.655Z",
+        "updatedAt": "2023-04-29T16:30:31.655Z",
+        "FilmActors": { "id": 39794, "filmId": 45, "staffId": 326 }
+      },
+      {
+        "id": 598,
+        "name": "Кристиан Бэйл",
+        "createdAt": "2023-04-29T16:30:34.281Z",
+        "updatedAt": "2023-04-29T16:30:34.281Z",
+        "FilmActors": { "id": 40066, "filmId": 45, "staffId": 598 }
+      },
+      {
+        "id": 813,
+        "name": "Катрина Балф",
+        "createdAt": "2023-04-29T16:30:35.885Z",
+        "updatedAt": "2023-04-29T16:30:35.885Z",
+        "FilmActors": { "id": 40281, "filmId": 45, "staffId": 813 }
+      },
+      {
+        "id": 814,
+        "name": "Трэйси Леттс",
+        "createdAt": "2023-04-29T16:30:35.890Z",
+        "updatedAt": "2023-04-29T16:30:35.890Z",
+        "FilmActors": { "id": 40282, "filmId": 45, "staffId": 814 }
+      },
+      {
+        "id": 815,
+        "name": "Ноа Джуп",
+        "createdAt": "2023-04-29T16:30:35.901Z",
+        "updatedAt": "2023-04-29T16:30:35.901Z",
+        "FilmActors": { "id": 40283, "filmId": 45, "staffId": 815 }
+      },
+      {
+        "id": 816,
+        "name": "Джош Лукас",
+        "createdAt": "2023-04-29T16:30:35.907Z",
+        "updatedAt": "2023-04-29T16:30:35.907Z",
+        "FilmActors": { "id": 40284, "filmId": 45, "staffId": 816 }
+      },
+      {
+        "id": 817,
+        "name": "Ремо Джироне",
+        "createdAt": "2023-04-29T16:30:35.912Z",
+        "updatedAt": "2023-04-29T16:30:35.912Z",
+        "FilmActors": { "id": 40285, "filmId": 45, "staffId": 817 }
+      },
+      {
+        "id": 818,
+        "name": "Рэй Маккиннон",
+        "createdAt": "2023-04-29T16:30:35.916Z",
+        "updatedAt": "2023-04-29T16:30:35.916Z",
+        "FilmActors": { "id": 40286, "filmId": 45, "staffId": 818 }
+      },
+      {
+        "id": 819,
+        "name": "Джей Джей Филд",
+        "createdAt": "2023-04-29T16:30:35.922Z",
+        "updatedAt": "2023-04-29T16:30:35.922Z",
+        "FilmActors": { "id": 40287, "filmId": 45, "staffId": 819 }
+      }
+    ],
+    "directors": [
+      {
+        "id": 797,
+        "name": "Джеймс Мэнголд",
+        "createdAt": "2023-04-29T16:30:35.749Z",
+        "updatedAt": "2023-04-29T16:30:35.749Z",
+        "FilmDirectors": { "id": 40265, "filmId": 45, "staffId": 797 }
+      }
+    ],
+    "operators": [
+      {
+        "id": 804,
+        "name": "Фидон Папамайкл",
+        "createdAt": "2023-04-29T16:30:35.819Z",
+        "updatedAt": "2023-04-29T16:30:35.819Z",
+        "FilmOperators": { "id": 40272, "filmId": 45, "staffId": 804 }
+      }
+    ],
+    "compositors": [
+      {
+        "id": 805,
+        "name": "Марко Белтрами",
+        "createdAt": "2023-04-29T16:30:35.825Z",
+        "updatedAt": "2023-04-29T16:30:35.825Z",
+        "FilmCompositors": { "id": 40273, "filmId": 45, "staffId": 805 }
+      },
+      {
+        "id": 806,
+        "name": "Бак Сандерс",
+        "createdAt": "2023-04-29T16:30:35.849Z",
+        "updatedAt": "2023-04-29T16:30:35.849Z",
+        "FilmCompositors": { "id": 40274, "filmId": 45, "staffId": 806 }
+      }
+    ],
+    "artists": [
+      {
+        "id": 807,
+        "name": "Франсуа Одуи",
+        "createdAt": "2023-04-29T16:30:35.856Z",
+        "updatedAt": "2023-04-29T16:30:35.856Z",
+        "FilmArtists": { "id": 40275, "filmId": 45, "staffId": 807 }
+      },
+      {
+        "id": 808,
+        "name": "Густаф Аспегрен",
+        "createdAt": "2023-04-29T16:30:35.860Z",
+        "updatedAt": "2023-04-29T16:30:35.860Z",
+        "FilmArtists": { "id": 40276, "filmId": 45, "staffId": 808 }
+      },
+      {
+        "id": 809,
+        "name": "Джордан Феррер",
+        "createdAt": "2023-04-29T16:30:35.865Z",
+        "updatedAt": "2023-04-29T16:30:35.865Z",
+        "FilmArtists": { "id": 40277, "filmId": 45, "staffId": 809 }
+      }
+    ],
+    "montages": [
+      {
+        "id": 810,
+        "name": "Эндрю Баклэнд",
+        "createdAt": "2023-04-29T16:30:35.870Z",
+        "updatedAt": "2023-04-29T16:30:35.870Z",
+        "FilmMontages": { "id": 40278, "filmId": 45, "staffId": 810 }
+      },
+      {
+        "id": 811,
+        "name": "Майкл МакКаскер",
+        "createdAt": "2023-04-29T16:30:35.875Z",
+        "updatedAt": "2023-04-29T16:30:35.875Z",
+        "FilmMontages": { "id": 40279, "filmId": 45, "staffId": 811 }
+      },
+      {
+        "id": 812,
+        "name": "Дирк Уэстервелт",
+        "createdAt": "2023-04-29T16:30:35.880Z",
+        "updatedAt": "2023-04-29T16:30:35.880Z",
+        "FilmMontages": { "id": 40280, "filmId": 45, "staffId": 812 }
+      }
+    ],
+    "scenario": [
+      {
+        "id": 798,
+        "name": "Джез Баттеруорт",
+        "createdAt": "2023-04-29T16:30:35.758Z",
+        "updatedAt": "2023-04-29T16:30:35.758Z",
+        "FilmScenario": { "id": 40266, "filmId": 45, "staffId": 798 }
+      },
+      {
+        "id": 799,
+        "name": "Джон-Генри Баттеруорт",
+        "createdAt": "2023-04-29T16:30:35.766Z",
+        "updatedAt": "2023-04-29T16:30:35.766Z",
+        "FilmScenario": { "id": 40267, "filmId": 45, "staffId": 799 }
+      },
+      {
+        "id": 800,
+        "name": "Джейсон Келлер",
+        "createdAt": "2023-04-29T16:30:35.773Z",
+        "updatedAt": "2023-04-29T16:30:35.773Z",
+        "FilmScenario": { "id": 40268, "filmId": 45, "staffId": 800 }
+      }
+    ],
+    "spectators": []
+  },
+  {
+    "id": 100,
+    "name": "Ford против Ferrari (2019)",
+    "name_en": "Ford v Ferrari",
+    "type": "фильм",
+    "mainImg": "//avatars.mds.yandex.net/get-kinopoisk-image/1898899/211e880d-c183-43aa-83b0-13c08109eaf7/300x450",
+    "year": 2019,
+    "tagline": "«They took the American dream for a ride»",
+    "budget": "$97&nbsp;600&nbsp;000",
+    "fees": "+ $107&nbsp;883&nbsp;853 = $225&nbsp;508&nbsp;210",
+    "feesUS": "$117&nbsp;624&nbsp;357",
+    "feesRU": "$11&nbsp;535&nbsp;765",
+    "premiere": "30 августа 2019",
+    "premiereRU": "14 ноября 2019",
+    "releaseDVD": "",
+    "releaseBluRay": "",
+    "age": "16+",
+    "ratingMPAA": "PG-13",
+    "time": "152 мин. / 02:32",
+    "description": "В начале 1960-х Генри Форд II принимает решение улучшить имидж компании и сменить курс на производство более модных автомобилей. После неудавшейся попытки купить практически банкрота Ferrari американцы решают бросить вызов итальянским конкурентам на трассе и выиграть престижную гонку 24 часа Ле-Мана. Чтобы создать подходящую машину, компания нанимает автоконструктора Кэррола Шэлби, а тот отказывается работать без выдающегося, но, как считается, трудного в общении гонщика Кена Майлза. Вместе они принимаются за разработку впоследствии знаменитого спорткара Ford GT40.",
+    "scoreAVG": null,
+    "createdAt": "2023-04-29T16:30:36.996Z",
+    "updatedAt": "2023-04-29T16:30:36.996Z",
+    "genres": [
+      {
+        "id": 3,
+        "name": "биография",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": { "id": 883, "filmId": 45, "genreId": 3 }
+      }
+    ],
+    "countries": [
+      {
+        "id": 5,
+        "name": "США",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 973, "filmId": 45, "countryId": 5 }
+      }
+    ],
+    "actors": [
+      {
+        "id": 59,
+        "name": "Джон Бернтал",
+        "createdAt": "2023-04-29T16:30:28.418Z",
+        "updatedAt": "2023-04-29T16:30:28.418Z",
+        "FilmActors": { "id": 39527, "filmId": 45, "staffId": 59 }
+      },
+      {
+        "id": 326,
+        "name": "Мэтт Дэймон",
+        "createdAt": "2023-04-29T16:30:31.655Z",
+        "updatedAt": "2023-04-29T16:30:31.655Z",
+        "FilmActors": { "id": 39794, "filmId": 45, "staffId": 326 }
+      },
+      {
+        "id": 598,
+        "name": "Кристиан Бэйл",
+        "createdAt": "2023-04-29T16:30:34.281Z",
+        "updatedAt": "2023-04-29T16:30:34.281Z",
+        "FilmActors": { "id": 40066, "filmId": 45, "staffId": 598 }
+      },
+      {
+        "id": 813,
+        "name": "Катрина Балф",
+        "createdAt": "2023-04-29T16:30:35.885Z",
+        "updatedAt": "2023-04-29T16:30:35.885Z",
+        "FilmActors": { "id": 40281, "filmId": 45, "staffId": 813 }
+      },
+      {
+        "id": 814,
+        "name": "Трэйси Леттс",
+        "createdAt": "2023-04-29T16:30:35.890Z",
+        "updatedAt": "2023-04-29T16:30:35.890Z",
+        "FilmActors": { "id": 40282, "filmId": 45, "staffId": 814 }
+      },
+      {
+        "id": 815,
+        "name": "Ноа Джуп",
+        "createdAt": "2023-04-29T16:30:35.901Z",
+        "updatedAt": "2023-04-29T16:30:35.901Z",
+        "FilmActors": { "id": 40283, "filmId": 45, "staffId": 815 }
+      },
+      {
+        "id": 816,
+        "name": "Джош Лукас",
+        "createdAt": "2023-04-29T16:30:35.907Z",
+        "updatedAt": "2023-04-29T16:30:35.907Z",
+        "FilmActors": { "id": 40284, "filmId": 45, "staffId": 816 }
+      },
+      {
+        "id": 817,
+        "name": "Ремо Джироне",
+        "createdAt": "2023-04-29T16:30:35.912Z",
+        "updatedAt": "2023-04-29T16:30:35.912Z",
+        "FilmActors": { "id": 40285, "filmId": 45, "staffId": 817 }
+      },
+      {
+        "id": 818,
+        "name": "Рэй Маккиннон",
+        "createdAt": "2023-04-29T16:30:35.916Z",
+        "updatedAt": "2023-04-29T16:30:35.916Z",
+        "FilmActors": { "id": 40286, "filmId": 45, "staffId": 818 }
+      },
+      {
+        "id": 819,
+        "name": "Джей Джей Филд",
+        "createdAt": "2023-04-29T16:30:35.922Z",
+        "updatedAt": "2023-04-29T16:30:35.922Z",
+        "FilmActors": { "id": 40287, "filmId": 45, "staffId": 819 }
+      }
+    ],
+    "directors": [
+      {
+        "id": 797,
+        "name": "Джеймс Мэнголд",
+        "createdAt": "2023-04-29T16:30:35.749Z",
+        "updatedAt": "2023-04-29T16:30:35.749Z",
+        "FilmDirectors": { "id": 40265, "filmId": 45, "staffId": 797 }
+      }
+    ],
+    "operators": [
+      {
+        "id": 804,
+        "name": "Фидон Папамайкл",
+        "createdAt": "2023-04-29T16:30:35.819Z",
+        "updatedAt": "2023-04-29T16:30:35.819Z",
+        "FilmOperators": { "id": 40272, "filmId": 45, "staffId": 804 }
+      }
+    ],
+    "compositors": [
+      {
+        "id": 805,
+        "name": "Марко Белтрами",
+        "createdAt": "2023-04-29T16:30:35.825Z",
+        "updatedAt": "2023-04-29T16:30:35.825Z",
+        "FilmCompositors": { "id": 40273, "filmId": 45, "staffId": 805 }
+      },
+      {
+        "id": 806,
+        "name": "Бак Сандерс",
+        "createdAt": "2023-04-29T16:30:35.849Z",
+        "updatedAt": "2023-04-29T16:30:35.849Z",
+        "FilmCompositors": { "id": 40274, "filmId": 45, "staffId": 806 }
+      }
+    ],
+    "artists": [
+      {
+        "id": 807,
+        "name": "Франсуа Одуи",
+        "createdAt": "2023-04-29T16:30:35.856Z",
+        "updatedAt": "2023-04-29T16:30:35.856Z",
+        "FilmArtists": { "id": 40275, "filmId": 45, "staffId": 807 }
+      },
+      {
+        "id": 808,
+        "name": "Густаф Аспегрен",
+        "createdAt": "2023-04-29T16:30:35.860Z",
+        "updatedAt": "2023-04-29T16:30:35.860Z",
+        "FilmArtists": { "id": 40276, "filmId": 45, "staffId": 808 }
+      },
+      {
+        "id": 809,
+        "name": "Джордан Феррер",
+        "createdAt": "2023-04-29T16:30:35.865Z",
+        "updatedAt": "2023-04-29T16:30:35.865Z",
+        "FilmArtists": { "id": 40277, "filmId": 45, "staffId": 809 }
+      }
+    ],
+    "montages": [
+      {
+        "id": 810,
+        "name": "Эндрю Баклэнд",
+        "createdAt": "2023-04-29T16:30:35.870Z",
+        "updatedAt": "2023-04-29T16:30:35.870Z",
+        "FilmMontages": { "id": 40278, "filmId": 45, "staffId": 810 }
+      },
+      {
+        "id": 811,
+        "name": "Майкл МакКаскер",
+        "createdAt": "2023-04-29T16:30:35.875Z",
+        "updatedAt": "2023-04-29T16:30:35.875Z",
+        "FilmMontages": { "id": 40279, "filmId": 45, "staffId": 811 }
+      },
+      {
+        "id": 812,
+        "name": "Дирк Уэстервелт",
+        "createdAt": "2023-04-29T16:30:35.880Z",
+        "updatedAt": "2023-04-29T16:30:35.880Z",
+        "FilmMontages": { "id": 40280, "filmId": 45, "staffId": 812 }
+      }
+    ],
+    "scenario": [
+      {
+        "id": 798,
+        "name": "Джез Баттеруорт",
+        "createdAt": "2023-04-29T16:30:35.758Z",
+        "updatedAt": "2023-04-29T16:30:35.758Z",
+        "FilmScenario": { "id": 40266, "filmId": 45, "staffId": 798 }
+      },
+      {
+        "id": 799,
+        "name": "Джон-Генри Баттеруорт",
+        "createdAt": "2023-04-29T16:30:35.766Z",
+        "updatedAt": "2023-04-29T16:30:35.766Z",
+        "FilmScenario": { "id": 40267, "filmId": 45, "staffId": 799 }
+      },
+      {
+        "id": 800,
+        "name": "Джейсон Келлер",
+        "createdAt": "2023-04-29T16:30:35.773Z",
+        "updatedAt": "2023-04-29T16:30:35.773Z",
+        "FilmScenario": { "id": 40268, "filmId": 45, "staffId": 800 }
+      }
+    ],
+    "spectators": []
+  },
+  {
+    "id": 101,
+    "name": "Ford против Ferrari (2019)",
+    "name_en": "Ford v Ferrari",
+    "type": "фильм",
+    "mainImg": "//avatars.mds.yandex.net/get-kinopoisk-image/1898899/211e880d-c183-43aa-83b0-13c08109eaf7/300x450",
+    "year": 2019,
+    "tagline": "«They took the American dream for a ride»",
+    "budget": "$97&nbsp;600&nbsp;000",
+    "fees": "+ $107&nbsp;883&nbsp;853 = $225&nbsp;508&nbsp;210",
+    "feesUS": "$117&nbsp;624&nbsp;357",
+    "feesRU": "$11&nbsp;535&nbsp;765",
+    "premiere": "30 августа 2019",
+    "premiereRU": "14 ноября 2019",
+    "releaseDVD": "",
+    "releaseBluRay": "",
+    "age": "16+",
+    "ratingMPAA": "PG-13",
+    "time": "152 мин. / 02:32",
+    "description": "В начале 1960-х Генри Форд II принимает решение улучшить имидж компании и сменить курс на производство более модных автомобилей. После неудавшейся попытки купить практически банкрота Ferrari американцы решают бросить вызов итальянским конкурентам на трассе и выиграть престижную гонку 24 часа Ле-Мана. Чтобы создать подходящую машину, компания нанимает автоконструктора Кэррола Шэлби, а тот отказывается работать без выдающегося, но, как считается, трудного в общении гонщика Кена Майлза. Вместе они принимаются за разработку впоследствии знаменитого спорткара Ford GT40.",
+    "scoreAVG": null,
+    "createdAt": "2023-04-29T16:30:36.996Z",
+    "updatedAt": "2023-04-29T16:30:36.996Z",
+    "genres": [
+      {
+        "id": 3,
+        "name": "биография",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": { "id": 883, "filmId": 45, "genreId": 3 }
+      }
+    ],
+    "countries": [
+      {
+        "id": 5,
+        "name": "США",
+        "fk_countryid": null,
+        "createdAt": "2023-04-29T16:30:36.588Z",
+        "updatedAt": "2023-04-29T16:30:36.588Z",
+        "FilmCountries": { "id": 973, "filmId": 45, "countryId": 5 }
+      }
+    ],
+    "actors": [
+      {
+        "id": 59,
+        "name": "Джон Бернтал",
+        "createdAt": "2023-04-29T16:30:28.418Z",
+        "updatedAt": "2023-04-29T16:30:28.418Z",
+        "FilmActors": { "id": 39527, "filmId": 45, "staffId": 59 }
+      },
+      {
+        "id": 326,
+        "name": "Мэтт Дэймон",
+        "createdAt": "2023-04-29T16:30:31.655Z",
+        "updatedAt": "2023-04-29T16:30:31.655Z",
+        "FilmActors": { "id": 39794, "filmId": 45, "staffId": 326 }
+      },
+      {
+        "id": 598,
+        "name": "Кристиан Бэйл",
+        "createdAt": "2023-04-29T16:30:34.281Z",
+        "updatedAt": "2023-04-29T16:30:34.281Z",
+        "FilmActors": { "id": 40066, "filmId": 45, "staffId": 598 }
+      },
+      {
+        "id": 813,
+        "name": "Катрина Балф",
+        "createdAt": "2023-04-29T16:30:35.885Z",
+        "updatedAt": "2023-04-29T16:30:35.885Z",
+        "FilmActors": { "id": 40281, "filmId": 45, "staffId": 813 }
+      },
+      {
+        "id": 814,
+        "name": "Трэйси Леттс",
+        "createdAt": "2023-04-29T16:30:35.890Z",
+        "updatedAt": "2023-04-29T16:30:35.890Z",
+        "FilmActors": { "id": 40282, "filmId": 45, "staffId": 814 }
+      },
+      {
+        "id": 815,
+        "name": "Ноа Джуп",
+        "createdAt": "2023-04-29T16:30:35.901Z",
+        "updatedAt": "2023-04-29T16:30:35.901Z",
+        "FilmActors": { "id": 40283, "filmId": 45, "staffId": 815 }
+      },
+      {
+        "id": 816,
+        "name": "Джош Лукас",
+        "createdAt": "2023-04-29T16:30:35.907Z",
+        "updatedAt": "2023-04-29T16:30:35.907Z",
+        "FilmActors": { "id": 40284, "filmId": 45, "staffId": 816 }
+      },
+      {
+        "id": 817,
+        "name": "Ремо Джироне",
+        "createdAt": "2023-04-29T16:30:35.912Z",
+        "updatedAt": "2023-04-29T16:30:35.912Z",
+        "FilmActors": { "id": 40285, "filmId": 45, "staffId": 817 }
+      },
+      {
+        "id": 818,
+        "name": "Рэй Маккиннон",
+        "createdAt": "2023-04-29T16:30:35.916Z",
+        "updatedAt": "2023-04-29T16:30:35.916Z",
+        "FilmActors": { "id": 40286, "filmId": 45, "staffId": 818 }
+      },
+      {
+        "id": 819,
+        "name": "Джей Джей Филд",
+        "createdAt": "2023-04-29T16:30:35.922Z",
+        "updatedAt": "2023-04-29T16:30:35.922Z",
+        "FilmActors": { "id": 40287, "filmId": 45, "staffId": 819 }
+      }
+    ],
+    "directors": [
+      {
+        "id": 797,
+        "name": "Джеймс Мэнголд",
+        "createdAt": "2023-04-29T16:30:35.749Z",
+        "updatedAt": "2023-04-29T16:30:35.749Z",
+        "FilmDirectors": { "id": 40265, "filmId": 45, "staffId": 797 }
+      }
+    ],
+    "operators": [
+      {
+        "id": 804,
+        "name": "Фидон Папамайкл",
+        "createdAt": "2023-04-29T16:30:35.819Z",
+        "updatedAt": "2023-04-29T16:30:35.819Z",
+        "FilmOperators": { "id": 40272, "filmId": 45, "staffId": 804 }
+      }
+    ],
+    "compositors": [
+      {
+        "id": 805,
+        "name": "Марко Белтрами",
+        "createdAt": "2023-04-29T16:30:35.825Z",
+        "updatedAt": "2023-04-29T16:30:35.825Z",
+        "FilmCompositors": { "id": 40273, "filmId": 45, "staffId": 805 }
+      },
+      {
+        "id": 806,
+        "name": "Бак Сандерс",
+        "createdAt": "2023-04-29T16:30:35.849Z",
+        "updatedAt": "2023-04-29T16:30:35.849Z",
+        "FilmCompositors": { "id": 40274, "filmId": 45, "staffId": 806 }
+      }
+    ],
+    "artists": [
+      {
+        "id": 807,
+        "name": "Франсуа Одуи",
+        "createdAt": "2023-04-29T16:30:35.856Z",
+        "updatedAt": "2023-04-29T16:30:35.856Z",
+        "FilmArtists": { "id": 40275, "filmId": 45, "staffId": 807 }
+      },
+      {
+        "id": 808,
+        "name": "Густаф Аспегрен",
+        "createdAt": "2023-04-29T16:30:35.860Z",
+        "updatedAt": "2023-04-29T16:30:35.860Z",
+        "FilmArtists": { "id": 40276, "filmId": 45, "staffId": 808 }
+      },
+      {
+        "id": 809,
+        "name": "Джордан Феррер",
+        "createdAt": "2023-04-29T16:30:35.865Z",
+        "updatedAt": "2023-04-29T16:30:35.865Z",
+        "FilmArtists": { "id": 40277, "filmId": 45, "staffId": 809 }
+      }
+    ],
+    "montages": [
+      {
+        "id": 810,
+        "name": "Эндрю Баклэнд",
+        "createdAt": "2023-04-29T16:30:35.870Z",
+        "updatedAt": "2023-04-29T16:30:35.870Z",
+        "FilmMontages": { "id": 40278, "filmId": 45, "staffId": 810 }
+      },
+      {
+        "id": 811,
+        "name": "Майкл МакКаскер",
+        "createdAt": "2023-04-29T16:30:35.875Z",
+        "updatedAt": "2023-04-29T16:30:35.875Z",
+        "FilmMontages": { "id": 40279, "filmId": 45, "staffId": 811 }
+      },
+      {
+        "id": 812,
+        "name": "Дирк Уэстервелт",
+        "createdAt": "2023-04-29T16:30:35.880Z",
+        "updatedAt": "2023-04-29T16:30:35.880Z",
+        "FilmMontages": { "id": 40280, "filmId": 45, "staffId": 812 }
+      }
+    ],
+    "scenario": [
+      {
+        "id": 798,
+        "name": "Джез Баттеруорт",
+        "createdAt": "2023-04-29T16:30:35.758Z",
+        "updatedAt": "2023-04-29T16:30:35.758Z",
+        "FilmScenario": { "id": 40266, "filmId": 45, "staffId": 798 }
+      },
+      {
+        "id": 799,
+        "name": "Джон-Генри Баттеруорт",
+        "createdAt": "2023-04-29T16:30:35.766Z",
+        "updatedAt": "2023-04-29T16:30:35.766Z",
+        "FilmScenario": { "id": 40267, "filmId": 45, "staffId": 799 }
+      },
+      {
+        "id": 800,
+        "name": "Джейсон Келлер",
+        "createdAt": "2023-04-29T16:30:35.773Z",
+        "updatedAt": "2023-04-29T16:30:35.773Z",
+        "FilmScenario": { "id": 40268, "filmId": 45, "staffId": 800 }
+      }
+    ],
+    "spectators": []
+  }
+]

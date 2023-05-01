@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import AuthForm from "../components/AuthForm/AuthForm";
-import { OutputAuthForm } from "../components/AuthForm/AuthForm";
-import { selectAuth, sendAuth } from "../store/authState";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import AuthForm from "../../components/AuthForm/AuthForm";
+import { OutputAuthForm } from "../../components/AuthForm/AuthForm";
+import { selectAuth, sendAuth } from "../../store/authState";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import styles from "./AuthPage.module.css";
-import Loader from "../components/loader/Loader";
-import Modal from "../components/modalWindow/Modal";
+import Loader from "../../components/loader/Loader";
+import Modal from "../../components/modalWindow/Modal";
 import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
