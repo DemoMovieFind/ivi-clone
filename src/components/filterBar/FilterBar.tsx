@@ -19,7 +19,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ className }) => {
       <YearsFilter />
       <PersonsFilter placeholder="actor" />
       <PersonsFilter placeholder="director" />
-      <RatingFilter />
+      {/* <RatingFilter /> */}
       <DefaultFilter />
     </div>
   );

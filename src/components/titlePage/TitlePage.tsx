@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import styles from "./TitlePage.module.css";
 import clsx from "clsx";
+import { FormattedMessage } from "react-intl";
 
 export interface TitlePageProps {
   className?: string;
@@ -17,7 +18,12 @@ export const TitlePage: React.FC<TitlePageProps> = ({ className }) => {
     } else if (genres && genres.length > 1) {
       return <h1>Фильмы</h1>;
     } else {
-      return <h1>Фильмы смотреть онлайн</h1>;
+      return (
+        <h1>
+          {" "}
+          <FormattedMessage id="film_watch_online" />
+        </h1>
+      );
     }
   };
 
