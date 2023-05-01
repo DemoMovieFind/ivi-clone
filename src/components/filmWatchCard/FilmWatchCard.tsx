@@ -35,12 +35,20 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
   film?.type == "фильм"
     ? (currentFilmType = "movies")
     : film?.type == "сериал"
-    ? (currentFilmType = "series")
-    : (currentFilmType = "animations");
+      ? (currentFilmType = "series")
+      : (currentFilmType = "animations");
 
-  if (film?.genre.includes("мультфильм")) {
-    currentFilmType = "animations";
-  }
+
+  film?.genres.forEach((genre) => {
+    if (genre.name == "мультфильм") {
+      currentFilmType = "animations";
+    }
+  })
+
+  const personsArray: string[] = [];
+  film?.actors?.forEach((actor) => {
+    personsArray.push(actor.name)
+  })
 
   const toggle = () => setShowDetails(!showDetails);
 
@@ -83,15 +91,15 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           )}
         </Link>
         <Link
-          to={`/${currentFilmType}/${film?.genre[0]}`}
+          to={`/${currentFilmType}/${film?.genres[0]}`}
           className={styles.breadCrumbsItem}
         >
           {currentFilmType == "animations"
-            ? film?.genre &&
-              film?.genre[1].slice(0, 1).toUpperCase() + film?.genre[1].slice(1)
-            : film?.genre &&
-              film?.genre[0].slice(0, 1).toUpperCase() +
-                film?.genre[0].slice(1)}
+            ? film?.genres &&
+            film?.genres[1].name.slice(0, 1).toUpperCase() + film?.genres[1].name.slice(1)
+            : film?.genres &&
+            film?.genres[0].name.slice(0, 1).toUpperCase() +
+            film?.genres[0].name.slice(1)}
         </Link>
       </nav>
       <div className={styles.filmWathMainContainer}>
@@ -130,18 +138,18 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
               (${intl.formatMessage({ id: "film_watch_movies" }).slice(0, -1)} 
               ${film?.year})`
               : currentFilmType == "series"
-              ? `${film?.name} 
+                ? `${film?.name} 
               (${intl
-                .formatMessage({ id: "film_watch_series" })
-                .slice(0, -2)}al 
+                  .formatMessage({ id: "film_watch_series" })
+                  .slice(0, -2)}al 
               ${film?.year})`
-              : currentFilmType == "animations"
-              ? `${film?.name.split(" ").slice(0, -1).join(" ")} 
+                : currentFilmType == "animations"
+                  ? `${film?.name.split(" ").slice(0, -1).join(" ")} 
               (${intl
-                .formatMessage({ id: "film_watch_cartoons" })
-                .slice(0, -1)} 
+                    .formatMessage({ id: "film_watch_cartoons" })
+                    .slice(0, -1)} 
               ${film?.year})`
-              : ""}
+                  : ""}
           </div>
           <div className={styles.filmWatchParamsContainer}>
             <div className={styles.filmWatchMovieInfo}>
@@ -161,7 +169,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
               ${film?.age}`}
             </div>
             <nav className={styles.filmWatchGenreNav}>
-              {film?.country.map((country, index) => {
+              {film?.countries.map((country, index) => {
                 return (
                   <Link
                     key={index}
@@ -169,22 +177,21 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
                       styles.filmWatchGenreNavCountry,
                       styles.breadCrumbsItem
                     )}
-                    to={`/movies?countries=${country}`}
+                    to={`/movies?countries=${country.name}`}
                   >
-                    {country}
+                    {country.name}
                   </Link>
                 );
               })}
-              {film?.genre.map((genre, index) => {
+              {film?.genres.map((genre, index) => {
                 return (
                   <Link
                     className={styles.breadCrumbsItem}
                     key={index}
-                    to={`/movies?genres=${
-                      genre.slice(0, 1).toUpperCase() + genre.slice(1)
-                    }`}
+                    to={`/movies?genres=${genre.name.slice(0, 1).toUpperCase() + genre.name.slice(1)
+                      }`}
                   >
-                    {genre.slice(0, 1).toUpperCase() + genre.slice(1)}
+                    {genre.name.slice(0, 1).toUpperCase() + genre.name.slice(1)}
                   </Link>
                 );
               })}
@@ -206,9 +213,9 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
             {film?.actors &&
               film?.actors.slice(0, 4).map((actor, index) => {
                 return (
-                  <NavLink to={`/persons/${actor}`} state={actor} key={index}>
+                  <NavLink to={`/persons/${actor.name}`} state={actor.name} key={index}>
                     <PersonCardMini
-                      name={actor}
+                      name={actor.name}
                       img="https://thumbs.dfs.ivi.ru/storage38/contents/b/c/45102370a23e374f4146fe2d106f26.jpeg/88x88/?q=85"
                     />
                   </NavLink>
@@ -256,7 +263,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           <IviRatingCard rating="8,9" />
         </div>
       </div>
-      <PersonContainer persons={film?.actors} />
+      <PersonContainer persons={personsArray} />
       <GalleryCarousel
         typeFilm={currentFilmType}
         filmName={film?.name}
