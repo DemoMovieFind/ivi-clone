@@ -14,17 +14,13 @@ import { useSearchParams } from "react-router-dom";
 interface RatingFilterProps {
   min?: number;
   max?: number;
-  onChange?: ({ ...args }: { min: number; max: number }) => void;
 }
 
 const RatingFilter: FC<RatingFilterProps> = ({
   min = 1,
   max = 10,
-  onChange = () => {
-    ("");
-  },
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const urlParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlParams.entries());
 
@@ -41,10 +37,14 @@ const RatingFilter: FC<RatingFilterProps> = ({
 
   useEffect(() => {
     if (!params["rating"]) {
-      setMinVal(1);
-      setMaxVal(10);
+      range.current?.style.left ? range.current.style.left = '0%' : '';
+      range.current?.style.width ? range.current.style.width = '100%' : '';
+      minValRef.current?.value ? minValRef.current.value = '1' : '';
+      maxValRef.current?.value ? maxValRef.current.value = '10' : '';
       refLeftValue.current?.value ? refLeftValue.current.value = '1' : '';
       refRightValue.current?.value ? refRightValue.current.value = '10' : '';
+      setMinVal(1);
+      setMaxVal(10);
     }
   }, [params])
 
@@ -70,10 +70,6 @@ const RatingFilter: FC<RatingFilterProps> = ({
       }
     }
   }, [maxVal, getPercent]);
-
-  useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
 
   useEffect(() => {
     setSearchParams({ ...params, rating: `${minVal} ${maxVal}` });

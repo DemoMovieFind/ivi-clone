@@ -10,43 +10,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>
 
-const people = [
-  {
-    name: 'Andrew Brown',
-    image: ''
-  },
-  {
-    name: 'Charlie Brown',
-    image: ''
-  },
-  {
-    name: 'Charlotte White',
-    image: 'https://thumbs.dfs.ivi.ru/storage38/contents/b/c/45102370a23e374f4146fe2d106f26.jpeg/88x88/?q=85'
-  },
-  {
-    name: 'Chloe Jones',
-    image: ''
-  },
-  {
-    name: 'Cooper King',
-    image: ''
-  },
-  {
-    name: 'Омар Си',
-    image: 'https://thumbs.dfs.ivi.ru/storage28/contents/5/4/5b9430c9601da3b2b00770fb7e08f0.jpeg/44x44/?q=85'
-  },
-];
+const people = ["Россия", "China", "India", "United States", "Indonesia", "Pakistan", "Brazil", "Nigeria", "Bangladesh", "Russia", "Mexico", "Japan", "Ethiopia", "Philippines", "gypt", "Vietnam", "DR Congo", "Turkey", "Iran", "Germany", "Thailand", "United Kingdom", "France", "Italy", "Tanzania", "SouthAfrica", "Myanmar", "Kenya", "South Korea", "Colombia", "Spain", "Uganda", "Argentina", "Algeria", "Sudan", "Ukraine", "Iraq", "Afghanistan", "Poland", "Canada", "Moocco", "Saudi Arabia", "Uzbekistan", "Peru", "Angola", "Malaysia", "Mozambique", "Ghana", "Yemen", "Nepal", "Venezuela"];
 
 export const actorsFilter: Story = {
   args: {
-    persons: people,
+    suggestions: people,
     placeholder: 'actor'
   }
 }
 
 export const directorFilter: Story = {
   args: {
-    persons: people,
+    suggestions: people,
     placeholder: 'director'
   }
 }
