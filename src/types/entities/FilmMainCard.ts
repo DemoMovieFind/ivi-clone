@@ -22,7 +22,7 @@ type Actors = {
 };
 
 export type FilmMainCard = {
-  id?: number | undefined;
+  id: number;
   name: string;
   name_en?: string;
   type?: string;
