@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { FilterBar } from "../../components/filterBar/FilterBar";
-import { NavLink, useLocation, useSearchParams } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
 import styles from "./FilmsPage.module.css";
 // import films from "../../miniDb.json";
@@ -18,10 +18,6 @@ export default function FilmsPage() {
   const [isVisible, setIsVisible] = useState(false);
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
-  console.log(films[0]?.genres);
-
-  const { state } = useLocation();
-  console.log(state);
 
   useEffect(() => {
     fetch(`https://641b23c71f5d999a445c652b.mockapi.io/Films`)
