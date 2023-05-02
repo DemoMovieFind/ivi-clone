@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { InfinitySlider } from "./InfinitySlider";
-
+import MultipleRows from "./InfinitySlider";
 const meta = {
   title: "InfinitySlider",
-  component: InfinitySlider,
+  component: MultipleRows,
   tags: ["autodocs"],
-} satisfies Meta<typeof InfinitySlider>;
+} satisfies Meta<typeof MultipleRows>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
