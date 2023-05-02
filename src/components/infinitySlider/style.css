@@ -1,0 +1,96 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("../../fonts/iconfont.woff2") format("woff2"),
+    url("../../fonts/iconfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.sliderWrapper {
+  position: relative;
+}
+
+.slick-list {
+  overflow: visible !important;
+  margin: 0px -80px;
+  border-radius: 16px;
+}
+
+.infSlider_imgWrapper {
+  padding: 0 20px;
+  position: relative;
+}
+
+.infSlider_img {
+  border-radius: 16px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.infSlider_imgWrapper::after {
+  background-color: rgba(7, 5, 14, 0.64);
+  bottom: 0;
+  content: "";
+  left: 20px;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  transition: background-color 0.5s;
+  z-index: 1;
+  border-radius: 16px;
+}
+
+.slick-arrow {
+  z-index: 10;
+  content: "\E040";
+}
+
+.slick-arrow::before {
+  color: hsla(0, 0%, 100%, 0.72);
+  text-shadow: 0 2px 3px rgba(31, 27, 46, 0.24);
+  content: "\E040";
+  font-family: iconfont;
+  font-size: 32px;
+}
+
+.slick-arrow:hover::before {
+  color: white;
+}
+
+.slick-prev {
+  left: -75px;
+}
+
+.slick-next {
+  right: -75px;
+  transform: rotate(180deg);
+}
+
+.borderAge {
+  left: 40px;
+  position: absolute;
+  top: 20px;
+  height: 16px;
+  width: 24px;
+  background-image: url(https://solea-parent.dfs.ivi.ru/picture/ffffff!0.48,000000!0.48/age18.svg);
+}
+
+.slick-slide.slick-active div.infSlider_imgWrapper::after {
+  background-color: rgba(7, 5, 14, 0);
+}
+
+.slick-slide.slick-active div.infSlider_imgWrapper::before {
+  bottom: 0;
+  content: "";
+  left: 20px;
+  position: absolute;
+  right: 20px;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.5s;
+  height: 132px;
+  border-radius: 16px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 1 1%27%3E%3ClinearGradient id=%27a%27 x1=%270%25%27 y1=%270%25%27 x2=%270%25%27 y2=%27100%25%27%3E%3Cstop offset=%270%25%27 stop-color=%27%2305070a%27 stop-opacity=%270%27/%3E%3Cstop offset=%2710%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.026%27/%3E%3Cstop offset=%2720%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.045%27/%3E%3Cstop offset=%2730%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.085%27/%3E%3Cstop offset=%2740%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.143%27/%3E%3Cstop offset=%2750%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.195%27/%3E%3Cstop offset=%27100%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.65%27/%3E%3C/linearGradient%3E%3Cpath fill=%27url%28%23a%29%27 d=%27M0 0h1v1H0z%27/%3E%3C/svg%3E");
+}

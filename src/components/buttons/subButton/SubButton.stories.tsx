@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import MultipleRows from "./InfinitySlider";
+import SubButton from "./SubButton";
+
 const meta = {
-  title: "InfinitySlider",
-  component: MultipleRows,
+  title: "UI Components/SubButton",
+  component: SubButton,
   tags: ["autodocs"],
-} satisfies Meta<typeof MultipleRows>;
+} satisfies Meta<typeof SubButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

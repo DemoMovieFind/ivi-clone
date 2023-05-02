@@ -27,14 +27,10 @@ root.render(
           <Route path="/" element={<Template content={<MainPage />} />} />
           <Route path="/auth" element={<Template content={<AuthPage />} />} />
           <Route path="/movies" element={<Template content={<FilmsPage />} />} />
-          <Route element={<PrivateRoute/>}>
+          <Route element={<PrivateRoute />}>
             <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
             <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
           </Route>
-          <Route
-            path="/movies"
-            element={<Template content={<FilmsPage />} />}
-          />
           <Route
             path="/movies/:id"
             element={<Template content={<FilmWatchCard />} />}
@@ -43,7 +39,7 @@ root.render(
             path="/persons/:id"
             element={<Template content={<PersonCard />} />}
           />
-          <Route path="*" element={<PageNotFound/>} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </Provider>

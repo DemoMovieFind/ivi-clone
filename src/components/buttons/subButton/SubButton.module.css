@@ -1,0 +1,100 @@
+.teaserList {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 100%;
+  column-gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+  background: transparent;
+  border: 0;
+}
+
+.teaserPlate {
+  flex-basis: 100%;
+  width: 100%;
+  flex: 1 1 0;
+}
+
+.teaserTile {
+  background-color: #1f1b2e;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  transition-property: background-color;
+}
+
+.teaserTile:hover {
+  background-color: #231f34;
+}
+
+.teaserTile:active {
+  background-color: #191524;
+}
+
+.bgImage {
+  transition-duration: 0.4s;
+  background-image: url(https://solea-parent.dfs.ivi.ru/picture/bypass/teaserTilePattern_a.svg);
+  background-size: auto 48px;
+  border-radius: 8px;
+  height: 48px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+}
+
+.content {
+  transition-duration: 0.4s;
+  top: 8px;
+  align-self: center;
+  direction: rtl;
+  display: flex;
+  flex-wrap: wrap;
+  height: 32px;
+  left: 0;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.caption {
+  color: #fff;
+  direction: ltr;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  height: 20px;
+  line-height: 20px;
+  margin-top: -20px;
+  overflow: hidden;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  position: relative;
+  text-overflow: ellipsis;
+  top: 6px;
+  transition-property: color;
+  white-space: nowrap;
+}
+
+.picture {
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 32px;
+  margin-right: 8px;
+  order: 1;
+  position: relative;
+  top: 0;
+}

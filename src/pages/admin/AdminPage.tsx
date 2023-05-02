@@ -5,14 +5,12 @@ import { FieldValues, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
 import { useEffect, useState } from "react";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
-import useAxios from "../../services/HttpService";
 import ReactPaginate from 'react-paginate';
 import Loader from "../../components/loader/Loader";
 import { useAppSelector } from "../../store/hooks";
 import { selectFilm } from "../../store/filmsInit";
 
 const AdminPage = ()=> {
-  // const {response,loaded} = useAxios({method:'get',url:'/films/?page=1&take=10'});
   const [ films, setFilms ] = useState<FilmMainCard[]>([]);
   const [ initialFilms, setInitialFilms ] = useState<FilmMainCard[]>([]);
   const filmState = useAppSelector(selectFilm);

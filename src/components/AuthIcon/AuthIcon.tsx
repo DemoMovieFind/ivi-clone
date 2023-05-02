@@ -5,7 +5,6 @@ import { logOut, selectAuth } from "../../store/authState";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const AuthIcon = () => {
   const authState = useAppSelector(selectAuth);
@@ -31,12 +30,11 @@ const AuthIcon = () => {
   return (
     <div className={styles.user}>
       { !authenticated ?
-        <Link to="/auth">
           <IconButton 
+            href="/auth"
             title={intl.formatMessage({id:'auth_title_log_in'})} 
             name='user'  
             appearance="default" /> 
-        </Link>
         : <div className={styles.authenticated}>
             <span 
               className={styles.userInfo}>
@@ -49,12 +47,11 @@ const AuthIcon = () => {
               onPointerDown={handleLogOut}
             />
             {isAdmin && !isAdminPage &&
-            <Link to="/admin"> 
               <IconButton 
+                href="/admin"
                 name='admin' 
                 title={intl.formatMessage({id:'auth_title_admin_page'})}
-              />
-            </Link>}
+              />}
             </div>
           </div> 
       }

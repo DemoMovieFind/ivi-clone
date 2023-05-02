@@ -8,23 +8,27 @@ interface DefaultFilterProps {
 }
 
 export const DefaultFilter = ({ className }: DefaultFilterProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const [isActive, setIsActive] = useState(false);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlParams.entries());
 
   const resetFilter = () => {
     if (
-      document.URL === "http://localhost:3006/movies?rating=1+10" ||
       document.URL === "http://localhost:3006/movies"
     ) {
       null;
     } else {
       setSearchParams("");
+      setTimeout(() => {
+        setSearchParams("");
+      }, 100);
     }
   };
 
   useEffect(() => {
     if (
-      document.URL === "http://localhost:3006/movies?rating=1+10" ||
       document.URL === "http://localhost:3006/movies"
     ) {
       setIsActive(false);
@@ -32,6 +36,16 @@ export const DefaultFilter = ({ className }: DefaultFilterProps) => {
       setIsActive(true);
     }
   }, [document.URL]);
+
+  useEffect(() => {
+    if (/^(http|https):\/\/localhost:3006\/movies[^"]+(rating=1\+10)/gm.test(document.URL)) {
+      delete params["rating"];
+      setSearchParams({ ...params });
+    }
+    if (document.URL === "http://localhost:3006/movies") {
+      setIsActive(false)
+    }
+  }, [])
 
   return (
     <div className={clsx(styles.wrapper, className)} onClick={resetFilter}>

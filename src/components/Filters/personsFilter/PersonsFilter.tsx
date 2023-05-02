@@ -1,174 +1,127 @@
-import React, { useEffect, useState } from 'react'
-import Autosuggest from 'react-autosuggest';
+import React, { useEffect } from "react";
+import AutoSuggestInput from "autosuggest-input-box";
 import styles from './PersonsFilter.module.css'
-import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
-import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
-import noImage from '../../../image/personIcon/no-image.svg';
 import { useIntl } from 'react-intl';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 
 
-export interface FilterPropsType {
-  persons?: {
-    name: string;
-    image?: string;
-  }[];
-  placeholder: 'actor' | 'director';
+const inputStyle = {
+  maxWidth: '165px',
+  height: '56px',
+  padding: '10px 20px',
+  fontWeight: '500',
+  fontStyle: 'normal',
+  textOverflow: 'ellipsis',
+  fontFamily: 'iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans - serif',
+  fontSize: '15px',
+  lineHeight: '20px',
+  border: 'none',
+  borderRadius: '4px',
+  backgroundColor: '#312b45',
+  color: '#fff',
 }
 
-const Filter = ({
-  persons = [
-    {
-      name: 'Andrew Brown',
-      image: ''
-    },
-    {
-      name: 'Charlie Brown',
-      image: ''
-    },
-    {
-      name: 'Charlotte White',
-      image: 'https://thumbs.dfs.ivi.ru/storage38/contents/b/c/45102370a23e374f4146fe2d106f26.jpeg/88x88/?q=85'
-    },
-    {
-      name: 'Chloe Jones',
-      image: ''
-    },
-    {
-      name: 'Cooper King',
-      image: ''
-    },
-    {
-      name: 'Омар Си',
-      image: 'https://thumbs.dfs.ivi.ru/storage28/contents/5/4/5b9430c9601da3b2b00770fb7e08f0.jpeg/44x44/?q=85'
-    },
-  ],
-  placeholder = 'actor'
-}: FilterPropsType) => {
+const itemStyle = {
+  cursor: 'pointer',
+  padding: '10px  10px',
+  backgroundColor: '#312b45',
+  color: 'rgba(217, 215, 224, 0.8)',
+  fontWeight: '500',
+  fontStyle: 'normal',
+  textOverflow: 'ellipsis',
+  fontFamily: 'iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans - serif',
+  fontSize: '15px',
+  lineHeight: '20px',
+  border: 'none',
+  borderRadius: '4px',
+}
 
-  const [, setSearchParams] = useSearchParams()
+const listStyle = {
+  marginTop: '6px',
+  maxWidth: '165px',
+  minWidth: '165px',
+  backgroundColor: '#312b45',
+  fontWeight: '500',
+  fontSize: '13px',
+  lineHeight: '16px',
+  borderRadius: '4px',
+  zIndex: '5',
+}
+
+const itemHoverStyle = {
+  backgroundColor: '#423d54',
+  color: '#fff',
+  cursor: 'pointer',
+  fontWeight: '500',
+  fontStyle: 'normal',
+  textOverflow: 'ellipsis',
+  fontFamily: 'iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans - serif',
+  fontSize: '15px',
+  lineHeight: '20px',
+  border: 'none',
+  borderRadius: '4px',
+}
+
+export interface PersonFilterPropsType {
+  placeholder: string;
+  suggestions: string[];
+}
+
+const PersonFilterNew = ({
+  placeholder,
+  suggestions,
+}: PersonFilterPropsType) => {
+
+  const [, setSearchParams] = useSearchParams();
   const urlParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlParams.entries())
-
-  const [value, setValue] = useState('')
-  const [suggestion, setSuggestion] = useState<{ name?: string; image?: string; }[]>([])
-  const intl = useIntl()
-
-
-  const inputElem = document.querySelectorAll(`.${styles.input}`)
+  const params = Object.fromEntries(urlParams.entries());
 
   useEffect(() => {
-    params["actor"] ? '' : (inputElem[0] as HTMLInputElement)?.value ? (inputElem[0] as HTMLInputElement).value = '' : '';
-    params["director"] ? '' : (inputElem[1] as HTMLInputElement)?.value ? (inputElem[1] as HTMLInputElement).value = '' : '';
+    const input = document.querySelectorAll('#autoSuggestInput');
+    input.forEach((item) => {
+      (item?.parentElement as HTMLInputElement).style.margin = '0px 6px';
+      item.classList.add(styles.placeholder);
+    })
+  }, [])
+
+  useEffect(() => {
+    const inputActor = document.querySelectorAll('#autoSuggestInput')[0];
+    if (!params['actor']) {
+      (inputActor as HTMLInputElement).value = '';
+    }
+    const inputDirector = document.querySelectorAll('#autoSuggestInput')[1];
+    if (!params['director']) {
+      (inputDirector as HTMLInputElement).value = '';
+    }
   }, [params])
 
+  const intl = useIntl();
 
-  const escapeRegexCharacters = (str: string) => {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  const getSuggestions = (value?: string) => {
-    const escapedValue = escapeRegexCharacters(value ? value.trim() : '');
-
-
-    if (escapedValue === '') {
-      return [];
-    }
-
-    const regex = new RegExp('[\u0400-\u04FF][A-Z]|' + escapedValue, 'iu');
-
-    return persons.filter(person => regex.test(getSuggestionValue(person)));
-  }
-
-  const getSuggestionValue = (suggestion: {
-    name?: string;
-    image?: string;
-  }) => {
-
-    return `${(suggestion.name as string).split(' ')[0]} ${(suggestion.name as string).split(" ")[1]}`;
-  }
-
-  const renderSuggestion = (suggestion: {
-    name?: string;
-    image?: string;
-  }, { query }: { query: string }) => {
-    const suggestionText = `${(suggestion.name as string).split(' ')[0]} ${(suggestion.name as string).split(' ')[1]}`;
-
-    const matches = AutosuggestHighlightMatch(suggestionText, query);
-    const parts = AutosuggestHighlightParse(suggestionText, matches);
-
-    return (
-      <span className={styles.suggestionContent}>
-        <img
-          className={styles.personImg}
-          src={suggestion.image
-            ?
-            suggestion.image
-            :
-            noImage}
-          alt='personImg'
-        />
-        <span className={styles.name}>
-          {
-            parts.map((part: {
-              text: string;
-              highlight: boolean;
-            }, index: number) => {
-              const className = part.highlight ? styles.highlight : '';
-
-              return (
-                <span className={className} key={index}>{part.text}</span>
-              );
-            })
-          }
-        </span>
-      </span>
-    );
-  }
-
-
-  const onChange = (event: EventModifierInit, { newValue }: { newValue: string }) => {
-    setValue(newValue)
-    if (newValue.split(" ").length >= 2) {
+  const onChange = (e: string) => {
+    if (e) {
       if (placeholder == 'actor') {
-        setSearchParams({ ...params, actor: newValue })
-      } else if (placeholder == 'director') {
-        setSearchParams({ ...params, director: newValue })
+        setSearchParams({ ...params, actor: e });
+      } else {
+        setSearchParams({ ...params, director: e });
       }
-    } else if (!newValue && placeholder == 'actor') {
-      setSearchParams({ ...params, actor: [] })
-    } else if (!newValue && placeholder == 'director') {
-      setSearchParams({ ...params, director: [] })
+    } else {
+      delete params[placeholder]
+      setSearchParams({ ...params })
     }
   };
-
-  const onSuggestionsFetchRequested = ({ value }: { value?: string }) => {
-    setSuggestion(getSuggestions(value))
-  };
-
-  const onSuggestionsClearRequested = () => {
-    setSuggestion([])
-  };
-
-
-  const inputProps = {
-    placeholder: intl.formatMessage({ id: `persons_filter_${placeholder}` }),
-    value,
-    onChange: onChange
-  };
-
-
 
   return (
-    <Autosuggest
-      theme={styles}
-      suggestions={suggestion}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      inputProps={inputProps} />
-  );
-}
+    <AutoSuggestInput
+      id="autoSuggestInput"
+      list={suggestions}
+      onChange={onChange}
+      placeholder={intl.formatMessage({ id: `persons_filter_${placeholder}` })}
+      inputStyle={inputStyle}
+      itemStyle={itemStyle}
+      listStyle={listStyle}
+      itemHoverStyle={itemHoverStyle}
+    />
+  )
+};
 
-export default Filter
+export default PersonFilterNew;
