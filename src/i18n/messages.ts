@@ -115,6 +115,7 @@ export const messages = {
     change_add_genre: "Add genre",
     change_delete_genre: "Delete genre",
     film_watch_online: "Movies watch online",
+    subscribe: "30 days free subscription",
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -230,5 +231,6 @@ export const messages = {
     change_add_genre: "Добавить жанр",
     change_delete_genre: "Удалить жанр",
     film_watch_online: "Фильмы смотреть онлайн",
+    subscribe: "30 дней подписки бесплатно",
   },
 };

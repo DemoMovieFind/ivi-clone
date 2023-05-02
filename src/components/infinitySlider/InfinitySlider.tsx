@@ -1,53 +1,59 @@
-import React from "react";
-import clsx from "clsx";
+import React, { Component } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./style.css";
 
-// import { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import marloy from "../../image/slider/marloy.jpg";
+import blackPoint from "../../image/slider/blackPoint.jpg";
+import juravli from "../../image/slider/juravli.jpg";
+import lastSon from "../../image/slider/lastSon.jpg";
+import parazit from "../../image/slider/parazit.jpg";
+const sliderImage = [marloy, blackPoint, juravli, lastSon, parazit];
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "./styles.css";
-import styles from "./InfinitySlider.module.css";
-
-// import required modules
-import { Pagination, Navigation } from "swiper";
-
-export interface InfinitySliderProps {
-  className?: string;
+export default class MultipleRows extends Component {
+  render() {
+    const settings = {
+      className: "center",
+      centerMode: true,
+      infinite: true,
+      centerPadding: "60px",
+      slidesToShow: 1,
+      speed: 500,
+      rows: 1,
+      slidesPerRow: 1,
+      autoplay: true,
+      autoplaySpeed: 5000,
+    };
+    return (
+      <div>
+        <Slider {...settings}>
+          {sliderImage.map((image) => {
+            return (
+              <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
+                <img src={image} className="infSlider_img" />
+                <div className="borderAge"></div>
+              </div>
+            );
+          })}
+          {/* <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
+            <img src={marloy} className="infSlider_img" />
+            <div className="borderAge"></div>
+          </div>
+          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
+            <img src={marloy} className="infSlider_img" />
+          </div>
+          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
+            <img src={marloy} className="infSlider_img" />
+          </div>
+          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
+            <img src={marloy} className="infSlider_img" />
+          </div>
+          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
+            <img src={marloy} className="infSlider_img" />
+          </div> */}
+        </Slider>
+      </div>
+    );
+  }
 }
-
-export const InfinitySlider: React.FC<InfinitySliderProps> = ({
-  className,
-}) => {
-  return (
-    <div className={clsx(InfinitySlider, className)}>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <div className="wrapperSlid">
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-        </div>
-
-        {/* <SwiperSlide className={styles.slide}>Slide 5</SwiperSlide>
-        <SwiperSlide className={styles.slide}>Slide 6</SwiperSlide>
-        <SwiperSlide className={styles.slide}>Slide 7</SwiperSlide>
-        <SwiperSlide className={styles.slide}>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
-      </Swiper>
-    </div>
-  );
-};
