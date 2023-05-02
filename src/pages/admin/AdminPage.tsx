@@ -8,10 +8,14 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import useAxios from "../../services/HttpService";
 import ReactPaginate from 'react-paginate';
 import Loader from "../../components/loader/Loader";
+import { useAppSelector } from "../../store/hooks";
+import { selectFilm } from "../../store/filmsInit";
 
 const AdminPage = ()=> {
-  const {response,loaded} = useAxios({method:'get',url:'/films/?page=1&take=10'});
-  const [films,setFilms] = useState<FilmMainCard[]>([]);
+  // const {response,loaded} = useAxios({method:'get',url:'/films/?page=1&take=10'});
+  const [ films, setFilms ] = useState<FilmMainCard[]>([]);
+  const [ initialFilms, setInitialFilms ] = useState<FilmMainCard[]>([]);
+  const filmState = useAppSelector(selectFilm);
   const [ itemOffset, setItemOffset ] = useState(0);
   const FILMS_PER_PAGE = 10;
   const endOffset = itemOffset + FILMS_PER_PAGE;
@@ -25,25 +29,30 @@ const AdminPage = ()=> {
     } = useForm();
 
   const onHandleSearch = (data:FieldValues) => {
-    console.log(data);
+    if (data.search.length === 0) {
+      setFilms(initialFilms);
+    } else {
+      const filteredFilms = films.filter(film=>film.name.toLowerCase().includes(data.search.toLowerCase()))
+      setFilms(filteredFilms);
+    }
   }
 
   useEffect(() => {
-    if (response !==null) {
-      setFilms(response);
+    if (filmState.films.length >0) {
+      setFilms(filmState.films);
+      setInitialFilms(filmState.films)
     }
-  },[response])
+  },[filmState.films])
 
   const handlePaginationClick = (event:{selected:number}) => {
     const newOffset = (event.selected * FILMS_PER_PAGE) % films.length;
     setItemOffset(newOffset);
   };
 
-
   return (
     <>
     <h1 className={styles.title}>{intl.formatMessage({id:'admin_title'})}</h1>
-    {!loaded && <Loader/>}
+    {filmState.status === 'loading' && <Loader/>}
     <form className={styles.form} onSubmit={handleSubmit(onHandleSearch)}>
         <label 
           htmlFor="email" 
@@ -56,7 +65,6 @@ const AdminPage = ()=> {
           className={styles.input}
           type= 'search'
           id="search"
-          required={true}
           {...register("search")}
         ></input>
         {errors.search && (

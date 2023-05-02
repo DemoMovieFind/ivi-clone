@@ -19,12 +19,10 @@ export default function FilmsPage() {
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
-  console.log(films);
   useEffect(() => {
     fetch(`https://641b23c71f5d999a445c652b.mockapi.io/Films`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "data");
         setFilms(data);
       })
       .catch((error) => {
