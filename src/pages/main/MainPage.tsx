@@ -30,7 +30,7 @@ const MainPage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <MultipleRows />
       <SubButton />
 
@@ -42,7 +42,7 @@ const MainPage = () => {
         />
       )}
       <OnlineIvi />
-    </>
+    </div>
   );
 };
 

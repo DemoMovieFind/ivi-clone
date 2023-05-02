@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,51 +9,61 @@ import blackPoint from "../../image/slider/blackPoint.jpg";
 import juravli from "../../image/slider/juravli.jpg";
 import lastSon from "../../image/slider/lastSon.jpg";
 import parazit from "../../image/slider/parazit.jpg";
+import { NavLink } from "react-router-dom";
+
+import movieRequest from "../../movieRequest";
+import { FilmMainCard } from "../../types/entities/FilmMainCard";
+
 const sliderImage = [marloy, blackPoint, juravli, lastSon, parazit];
 
-export default class MultipleRows extends Component {
-  render() {
-    const settings = {
-      className: "center",
-      centerMode: true,
-      infinite: true,
-      centerPadding: "60px",
-      slidesToShow: 1,
-      speed: 500,
-      rows: 1,
-      slidesPerRow: 1,
-      autoplay: true,
-      autoplaySpeed: 5000,
-    };
-    return (
-      <div>
+export default function MultipleRows() {
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 1,
+    speed: 500,
+    rows: 1,
+    slidesPerRow: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
+
+  const [films, setFilms] = useState<FilmMainCard[]>([]);
+
+  useEffect(() => {
+    movieRequest("").then((movies: FilmMainCard[]) => {
+      console.log(movies);
+      setFilms(movies); // fetched movies
+    });
+  }, []);
+
+  // console.log(films);
+  // console.log(films ? films[0].name : "");
+  return (
+    <div className="sliderWrapper">
+      {/* {films ? <div>Пришли{films[0].name}</div> : <div>Не пришли</div>} */}
+      {films ? (
         <Slider {...settings}>
-          {sliderImage.map((image) => {
+          {sliderImage.map((image, index) => {
             return (
-              <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
-                <img src={image} className="infSlider_img" />
-                <div className="borderAge"></div>
-              </div>
+              <NavLink
+                to={`/movies/${films[index]?.name}`}
+                state={films[index]}
+                key={index}
+              >
+                <div className="infSlider_imgWrapper">
+                  <img src={image} className="infSlider_img" />
+                  <div className="borderAge"></div>
+                </div>
+              </NavLink>
             );
           })}
-          {/* <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
-            <img src={marloy} className="infSlider_img" />
-            <div className="borderAge"></div>
-          </div>
-          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
-            <img src={marloy} className="infSlider_img" />
-          </div>
-          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
-            <img src={marloy} className="infSlider_img" />
-          </div>
-          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
-            <img src={marloy} className="infSlider_img" />
-          </div>
-          <div style={{ width: "1216px" }} className="infSlider_imgWrapper">
-            <img src={marloy} className="infSlider_img" />
-          </div> */}
         </Slider>
-      </div>
-    );
-  }
+      ) : (
+        ""
+      )}
+    </div>
+  );
 }
