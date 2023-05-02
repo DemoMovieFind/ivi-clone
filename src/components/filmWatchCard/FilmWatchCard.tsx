@@ -39,7 +39,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
       : (currentFilmType = "animations");
 
 
-  film?.genres.forEach((genre) => {
+  film?.genres && film?.genres.forEach((genre) => {
     if (genre.name == "мультфильм") {
       currentFilmType = "animations";
     }
@@ -91,7 +91,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           )}
         </Link>
         <Link
-          to={`/${currentFilmType}/${film?.genres[0]}`}
+          to={`/${currentFilmType}/${film?.genres && film?.genres[0]}`}
           className={styles.breadCrumbsItem}
         >
           {currentFilmType == "animations"
@@ -169,7 +169,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
               ${film?.age}`}
             </div>
             <nav className={styles.filmWatchGenreNav}>
-              {film?.countries.map((country, index) => {
+              {film?.countries && film?.countries.map((country, index) => {
                 return (
                   <Link
                     key={index}
@@ -183,7 +183,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
                   </Link>
                 );
               })}
-              {film?.genres.map((genre, index) => {
+              {film?.genres && film?.genres.map((genre, index) => {
                 return (
                   <Link
                     className={styles.breadCrumbsItem}

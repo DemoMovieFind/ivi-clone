@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./GalleryCarousel.module.css";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { SlickArrowLeft } from "../buttons/SlickArrow/SlickArrowLeft";
 import { SlickArrowRight } from "../buttons/SlickArrow/SlickArrowRight";
 import { CardViewAll } from "./CardViewAll/CardViewAll";
@@ -110,7 +110,7 @@ export const GalleryCarousel = <T,>({
               )}
             </div>
             {typeSlider === "comment" ? (
-              <ButtonLink className={styles.buttonComment}>
+              <ButtonLink className={styles.buttonComment} size="large" href={`./${filmName}/comments`}>
                 <FormattedMessage id='comment_leave_review' />
               </ButtonLink>
             ) : (
@@ -131,7 +131,8 @@ export const GalleryCarousel = <T,>({
                       }}
                     >
                       {ItemComponent &&
-                        items?.map((item) => <ItemComponent item={item} />)}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        items?.map((item: any) => <NavLink to={`/movies/${item.name}`} state={item}><ItemComponent item={item} /></NavLink>)}
                       {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
                   </div>
