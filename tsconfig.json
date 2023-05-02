@@ -25,5 +25,5 @@
       }
     ]
   },
-  "include": ["src", "decs.d.ts"]
+  "include": ["src"]
 }
