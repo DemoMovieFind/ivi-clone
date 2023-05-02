@@ -94,7 +94,6 @@ const YearsFilter = ({
               id="0"
               name="year"
               defaultChecked
-            // defaultChecked={params['year'] ? false : true}
             />
             <div
               className={styles.selectBoxInputText}

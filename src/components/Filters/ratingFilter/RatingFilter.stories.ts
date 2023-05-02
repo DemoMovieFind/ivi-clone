@@ -14,6 +14,5 @@ export const ratingFilter: Story = {
   args: {
     min: 1,
     max: 10,
-    onChange: () => { '' }
   }
 }
