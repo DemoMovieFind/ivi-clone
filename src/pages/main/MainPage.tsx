@@ -5,6 +5,8 @@ import { OnlineIvi } from "../../components/onlineIvi/OnlineIvi";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import styles from "./MainPage.module.css";
 import { FormattedMessage } from "react-intl";
+import SubButton from "../../components/buttons/subButton/SubButton";
+import MultipleRows from "../../components/infinitySlider/InfinitySlider";
 
 // import films from "../../miniDb";
 
@@ -28,10 +30,9 @@ const MainPage = () => {
   }, []);
 
   return (
-    <>
-      <h1 className={styles.title}>
-        <FormattedMessage id="header" />
-      </h1>
+    <div>
+      <MultipleRows />
+      <SubButton />
 
       {films && (
         <GalleryCarousel
@@ -41,7 +42,7 @@ const MainPage = () => {
         />
       )}
       <OnlineIvi />
-    </>
+    </div>
   );
 };
 
