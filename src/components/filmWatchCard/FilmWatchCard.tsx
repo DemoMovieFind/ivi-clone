@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./FilmWatchCard.module.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FontIcon } from "../icons/FontIcon";
@@ -80,6 +80,12 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CardCommentItem: React.FC<{ item: any }> = () => <CommentCard />;
 
+  const html = document.getElementsByTagName('html')[0];
+
+  useEffect(() => {
+    html.style.overflow = 'auto'
+  }, [])
+
   return (
     <div className={styles.filmWatchCardContainer}>
       <nav className={styles.filmWatchCardBreadCrumbsContainer}>
@@ -134,7 +140,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
         <div className={styles.filmWatchInfoSide}>
           <div className={styles.filmWatchTitle}>
             {currentFilmType == "movies"
-              ? `${film?.name.split(" ").slice(0, -1).join(" ")} 
+              ? `${film?.name.split("(")[0]} 
               (${intl.formatMessage({ id: "film_watch_movies" }).slice(0, -1)} 
               ${film?.year})`
               : currentFilmType == "series"
@@ -271,6 +277,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
         itemComponent={CardCommentItem}
         nameCategory="Отзывы"
         typeSlider="comment"
+        film={film}
       />
     </div>
   );

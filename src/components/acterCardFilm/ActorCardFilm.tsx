@@ -36,8 +36,6 @@ export const ActorCardFilm = ({
       .then(() => setLoading(false))
   }
 
-  console.log(film.rating);
-
 
   return (
     loading ?
