@@ -13,9 +13,10 @@
   background-color: rgba(7,5,14,.96);
   overflow-y: auto;
   color: #fff;
-  padding: 50px 20px;
+  padding: 50px 20px 200px 20px;
   display: flex;
-  gap: 100px;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .back {
@@ -66,4 +67,92 @@
 
 .line {
   border-bottom: 2px solid rgba(255,255,255,.2);
+}
+
+.formContainer {
+  display: flex;
+  align-items: flex-start;
+  margin: 30px 0;
+  gap: 20px;
+}
+
+.noImage {
+  width: 30px;
+  height: 30px;
+  background-image: url('../../image/personIcon/no-image.svg');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #1f1b2e;
+  border-radius: 4px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputContainer{
+  display: flex;
+  position: relative;
+  width: 100%;
+  gap: 10px;
+}
+
+.inputText {
+  height: 40px;
+  padding: 18px 12px 0 12px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.submitComment {
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #ea003d;
+  padding: 9px 15px;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  font-style: normal;
+  color: #fff;
+}
+
+.commentError{
+  color: #ff542e;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 4px;
+}
+
+.inputText:focus + .placeholder {
+  top: 0px;
+}
+
+.placeholder {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  color: #a5a1b2;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  font-style: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: all 0.2s linear;
+}
+
+.filmCard {
+  margin-top: 70px;
 }
