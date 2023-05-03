@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,7 +16,7 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 
 const sliderImage = [marloy, blackPoint, juravli, lastSon, parazit];
 
-export default function MultipleRows() {
+const MultipleRows = () => {
   const settings = {
     className: "center",
     centerMode: true,
@@ -67,3 +67,5 @@ export default function MultipleRows() {
     </div>
   );
 }
+
+export default MultipleRows;

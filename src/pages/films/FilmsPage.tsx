@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
@@ -9,10 +8,7 @@ import { TitlePage } from "../../components/titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-export default function FilmsPage() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+const FilmsPage = () => {
   const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -157,3 +153,5 @@ export default function FilmsPage() {
     </div>
   );
 }
+
+export default FilmsPage;
