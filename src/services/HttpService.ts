@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from 'react';
 
-const URL = 'http://188.120.248.77:3000';
+const URL = 'http://188.120.248.77:80';
 
 export const api = axios.create({
   baseURL:URL

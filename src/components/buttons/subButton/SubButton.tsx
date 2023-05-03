@@ -1,8 +1,7 @@
-import React from "react";
 import styles from "./SubButton.module.css";
 import { FormattedMessage } from "react-intl";
 
-export default function SubButton() {
+const SubButton = () => {
   return (
     <div className={styles.containerInner}>
       <ul className={styles.teaserList}>
@@ -25,3 +24,5 @@ export default function SubButton() {
     </div>
   );
 }
+
+export default SubButton;

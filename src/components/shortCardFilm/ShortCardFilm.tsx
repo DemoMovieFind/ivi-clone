@@ -16,8 +16,8 @@ const ShortCardFilm = ({film}:ShortCardFilmPropsType) => {
       <span className={styles.description}>{intl.formatMessage({id:'admin_name'})}{name}</span>
       <span className={styles.description}>{intl.formatMessage({id:'admin_name_en'})}{name_en}</span>
       <span className={styles.description}>{intl.formatMessage({id:'admin_genres'})}</span>
-      {genres!==undefined && genres.map((genre)=>{
-        return <span key={genre.id} className={styles.description}>{genre.name}</span>
+      {genres.map((genre)=>{
+        return <span key={genre.name} className={styles.description}>{genre.name}</span>
       })}
     </div>
     </Link>

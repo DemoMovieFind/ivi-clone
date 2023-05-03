@@ -30,6 +30,18 @@
         "createdAt": "2023-04-29T16:30:36.763Z",
         "updatedAt": "2023-04-29T16:30:36.763Z",
         "FilmGenres": { "id": 3, "filmId": 1, "genreId": 3 }
+      },
+      {
+        "id": 4,
+        "name": "драма",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": {
+          "id": 3,
+          "filmId": 1,
+          "genreId": 3
+        }
       }
     ],
     "countries": [
@@ -236,6 +248,18 @@
         "createdAt": "2023-04-29T16:30:36.763Z",
         "updatedAt": "2023-04-29T16:30:36.763Z",
         "FilmGenres": { "id": 43, "filmId": 3, "genreId": 3 }
+      },
+      {
+        "id": 5,
+        "name": "драма",
+        "name_en": null,
+        "createdAt": "2023-04-29T16:30:36.763Z",
+        "updatedAt": "2023-04-29T16:30:36.763Z",
+        "FilmGenres": {
+          "id": 43,
+          "filmId": 3,
+          "genreId": 3
+        }
       }
     ],
     "countries": [

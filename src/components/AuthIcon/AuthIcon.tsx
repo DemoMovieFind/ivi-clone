@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import { useLocation } from "react-router-dom";
 
-const AuthIcon = ({href='/auth',adminRef='/admin'}) => {
+const AuthIcon = () => {
   const authState = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const intl = useIntl();
@@ -29,12 +29,12 @@ const AuthIcon = ({href='/auth',adminRef='/admin'}) => {
 
   return (
     <div className={styles.user}>
-      { !authenticated 
-        ? <IconButton 
-          title={intl.formatMessage({id:'auth_title_log_in'})} 
-          name='user' 
-          href={href} 
-          appearance="default" /> 
+      { !authenticated ?
+          <IconButton 
+            href="/auth"
+            title={intl.formatMessage({id:'auth_title_log_in'})} 
+            name='user'  
+            appearance="default" /> 
         : <div className={styles.authenticated}>
             <span 
               className={styles.userInfo}>
@@ -46,11 +46,12 @@ const AuthIcon = ({href='/auth',adminRef='/admin'}) => {
               name='logout' 
               onPointerDown={handleLogOut}
             />
-            {isAdmin && !isAdminPage && <IconButton 
-              name='admin' 
-              href={adminRef}
-              title={intl.formatMessage({id:'auth_title_admin_page'})}
-            />}
+            {isAdmin && !isAdminPage &&
+              <IconButton 
+                href="/admin"
+                name='admin' 
+                title={intl.formatMessage({id:'auth_title_admin_page'})}
+              />}
             </div>
           </div> 
       }
