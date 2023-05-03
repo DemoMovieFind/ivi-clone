@@ -7,7 +7,7 @@ export interface ButtonProps {
    * Button appearance
    */
   appearance?: "default" | "primary" | "movie" | "iviRating";
-  onPointerDown?:()=>void
+  onPointerDown?: () => void
   /**
    * Button size
    */
@@ -33,7 +33,6 @@ export const Button: React.FC<
   size = "medium",
   children,
   className,
-
   ...props
 }: ButtonProps) => {
     return (

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./GalleryCarousel.module.css";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { SlickArrowLeft } from "../buttons/SlickArrow/SlickArrowLeft";
 import { SlickArrowRight } from "../buttons/SlickArrow/SlickArrowRight";
 import { CardViewAll } from "./CardViewAll/CardViewAll";
-import ButtonLink from "../buttons/ButtonLink";
 import { FormattedMessage } from "react-intl";
+import { Button } from "../buttons/Button";
+import { FilmWatchCardType } from "../../types/entities/FilmWatchCardType";
 
 export interface GalleryCarouselProps<T> {
   className?: string;
@@ -16,6 +17,7 @@ export interface GalleryCarouselProps<T> {
   items?: T[];
   itemComponent?: React.FC<{ item: T }>;
   typeSlider?: string;
+  film?: FilmWatchCardType;
 }
 
 export const GalleryCarousel = <T,>({
@@ -26,6 +28,7 @@ export const GalleryCarousel = <T,>({
   items,
   itemComponent: ItemComponent,
   typeSlider,
+  film,
 }: GalleryCarouselProps<T>) => {
   const [valueTranslate, setValueTranslate] = useState(0);
   const [isVisible, setIsVisible] = useState(0.5);
@@ -110,9 +113,11 @@ export const GalleryCarousel = <T,>({
               )}
             </div>
             {typeSlider === "comment" ? (
-              <ButtonLink className={styles.buttonComment}>
-                <FormattedMessage id='comment_leave_review' />
-              </ButtonLink>
+              <NavLink to={`./comments`} state={film}>
+                <Button className={styles.buttonComment} size="large">
+                  <FormattedMessage id='comment_leave_review' />
+                </Button>
+              </NavLink>
             ) : (
               ""
             )}
@@ -131,7 +136,8 @@ export const GalleryCarousel = <T,>({
                       }}
                     >
                       {ItemComponent &&
-                        items?.map((item) => <ItemComponent item={item} />)}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        items?.map((item: any) => <NavLink to={`/movies/${item.name}`} state={item}><ItemComponent item={item} /></NavLink>)}
                       {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
                   </div>
