@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
-import { ActorCardFilm } from '../acterCardFilm/ActorCardFilm';
+import { ActorCardFilm } from '../actorCardFilm/ActorCardFilm';
 import { Film } from '../../types/entities/Film';
 import { useLocation } from 'react-router';
 

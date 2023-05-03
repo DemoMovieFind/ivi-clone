@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ActorCardFilm.module.css";
 import clsx from "clsx";
 import { Info } from "./info/Info";
-import { ButtonLink } from "../buttons/ButtonLink";
+import ButtonLink from "../buttons/ButtonLink";
 import { Film } from "../../types/entities/Film";
 import { FormattedMessage } from "react-intl";
 

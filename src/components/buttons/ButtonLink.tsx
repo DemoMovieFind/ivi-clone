@@ -9,7 +9,7 @@ export interface ButtonLinkProps
   href?: string;
 }
 
-export const ButtonLink: React.FC<
+const ButtonLink: React.FC<
   ButtonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
 > = ({
   appearance = "default",
@@ -34,3 +34,5 @@ export const ButtonLink: React.FC<
     </Link>
   );
 };
+
+export default ButtonLink;

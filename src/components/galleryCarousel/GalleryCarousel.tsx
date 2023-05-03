@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { SlickArrowLeft } from "../buttons/SlickArrow/SlickArrowLeft";
 import { SlickArrowRight } from "../buttons/SlickArrow/SlickArrowRight";
 import { CardViewAll } from "./CardViewAll/CardViewAll";
-import { ButtonLink } from "../buttons/ButtonLink";
+import ButtonLink from "../buttons/ButtonLink";
 import { FormattedMessage } from "react-intl";
 
 export interface GalleryCarouselProps<T> {

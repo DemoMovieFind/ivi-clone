@@ -4,7 +4,6 @@ import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
 import styles from "./FilmsPage.module.css";
-// import films from "../../miniDb.json";
 import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
 import { TitlePage } from "../../components/titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
