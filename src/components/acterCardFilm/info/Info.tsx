@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 export interface InfoProps {
   className?: string;
-  year?: number;
+  year?: string;
   title?: string;
   rating?: number | null;
 }

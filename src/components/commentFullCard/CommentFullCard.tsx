@@ -61,7 +61,11 @@ const CommentFullCard = ({
 
 
   const createAnswer = () => {
-    setAnswersList([...answersList, <CommentAnswerFrom />])
+    if (localStorage.getItem('token')) {
+      setAnswersList([...answersList, <CommentAnswerFrom />])
+    } else {
+      location.href = '/auth'
+    }
   }
 
 

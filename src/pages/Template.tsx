@@ -8,24 +8,24 @@ import { selectLang } from "../store/langState";
 import Footer from "../components/footer/Footer";
 
 export type TemplateTypeProps = {
-  content:JSX.Element,
-  isAdminPage?:boolean,
+  content: JSX.Element,
+  isAdminPage?: boolean,
 }
 
-const Template = ({content,isAdminPage = false}:TemplateTypeProps) => {
+const Template = ({ content, isAdminPage = false }: TemplateTypeProps) => {
   const lang = useAppSelector(selectLang);
 
   return (
     <div className={styles.template}>
-      <IntlProvider 
+      <IntlProvider
         messages={messages[lang.lang]}
         locale={lang.lang}
         defaultLocale={LOCALES.RUSSIAN}>
-      <Header />
-      <div className={styles.content}>
-        {content}
-      </div>
-      {!isAdminPage && <Footer/>}
+        <Header />
+        <div className={styles.content}>
+          {content}
+        </div>
+        {!isAdminPage && <Footer />}
       </IntlProvider>
     </div>
   );

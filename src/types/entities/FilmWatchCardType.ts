@@ -22,12 +22,13 @@ export type Actors = {
 };
 
 export type FilmWatchCardType = {
+  id: number;
   name: string;
   name_en?: string;
   type?: string;
   year: string;
-  countries: Countries[];
-  genres: Genre[];
+  countries?: Countries[];
+  genres?: Genre[];
   description?: string;
   time?: string;
   age?: string;

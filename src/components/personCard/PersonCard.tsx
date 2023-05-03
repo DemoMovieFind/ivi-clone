@@ -1,15 +1,16 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
 import { ActorCardFilm } from '../acterCardFilm/ActorCardFilm';
-import { Film } from '../../types/entities/Film';
 import { useLocation } from 'react-router';
+import { FilmWatchCardType } from '../../types/entities/FilmWatchCardType';
+import Loader from '../loader/Loader';
 
 export interface PersonCardPropsType {
   image?: string;
   name?: string;
   desc?: string;
-  films?: Film[];
+  films?: FilmWatchCardType[];
 }
 
 
@@ -17,52 +18,24 @@ const PersonCard = ({
   image,
   name,
   desc = `Мартин Скорсезе (Martin Scorsese) — американский кинорежиссер, продюсер и сценарист. Обладатель множества наград киноиндустрии, в том числе премии «Оскар».`,
-  films = [
-    {
-      id: 0,
-      title: "Убийцы цветочной луны",
-      year: 2022,
-      posters: {
-        small: {
-          url: 'https://thumbs.dfs.ivi.ru/storage4/contents/1/b/8c8ebc907995aee3e57439f8a38702.jpg/172x264/?q=85'
-        }
-      },
-      rating: {
-        ivi: 7.1
-      }
-    },
-    {
-      id: 1,
-      title: "Холодный расчет",
-      year: 2021,
-      posters: {
-        small: {
-          url: 'https://thumbs.dfs.ivi.ru/storage8/contents/4/1/80d1f637cee8773fd331947249a840.jpg/172x264/?q=85'
-        }
-      },
-      rating: {
-        ivi: 5.5
-      }
-    },
-    {
-      id: 2,
-      title: "Синатра",
-      year: 2020,
-      posters: {
-        small: {
-          url: 'https://thumbs.dfs.ivi.ru/storage33/contents/6/a/a700332f290b273bc1437ae389696c.jpg/172x264/?q=85'
-        }
-      },
-      rating: {
-        ivi: 7.1
-      }
-    },
-  ],
 }: PersonCardPropsType) => {
+
+  const [currentFilms, setCurrentFilms] = useState<FilmWatchCardType[]>([])
+  const [loading, setLoading] = useState(true)
 
   const { state } = useLocation()
   name = state
 
+  useEffect(() => {
+    getFilms()
+  }, [])
+
+  const getFilms = async () => {
+    await fetch(`http://188.120.248.77/films?order=ASC&page=1&take=10&orderBy=scoreAVG&actors=${name}`)
+      .then(res => res.json())
+      .then(data => setCurrentFilms(data))
+      .then(() => setLoading(false))
+  }
   const [showMore, setShowMore] = useState(false)
 
 
@@ -118,16 +91,16 @@ const PersonCard = ({
         {more}
       </div>
       <div className={styles.totalFilmsContainer}>
-        <a href='#' ><div className={styles.totalFilms}>{films?.length} {filmsWords[ending(films?.length)]}</div></a>
+        <a href='#' ><div className={styles.totalFilms}>{currentFilms.length} {filmsWords[ending(currentFilms.length)]}</div></a>
         <span>•</span>
         <a href="#"><FormattedMessage id='person_card_biography' /></a>
       </div>
       <div className={styles.fullFilmTitleContainer}>
         <div className={styles.fullFilmTitle}><FormattedMessage id='person_card_filmography' /></div>
-        <div className={styles.fullFilmTitleTotal}>{films?.length} {filmsWords[ending(films?.length)]}</div>
+        <div className={styles.fullFilmTitleTotal}>{currentFilms.length} {filmsWords[ending(currentFilms.length)]}</div>
       </div>
       <div className={styles.filmsContainer}>
-        {films.map(film => <ActorCardFilm key={film.id} film={film} />)}
+        {currentFilms.length == 0 ? <Loader /> : currentFilms.map((film) => loading ? <Loader /> : <ActorCardFilm key={film.id} film={film} />)}
       </div>
       <div className={styles.personCardBreadCrumbs}>
         <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>
