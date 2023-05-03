@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./FilmWatchCard.module.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FontIcon } from "../icons/FontIcon";
@@ -39,7 +39,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
       : (currentFilmType = "animations");
 
 
-  film?.genres.forEach((genre) => {
+  film?.genres && film?.genres.forEach((genre) => {
     if (genre.name == "мультфильм") {
       currentFilmType = "animations";
     }
@@ -80,6 +80,12 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CardCommentItem: React.FC<{ item: any }> = () => <CommentCard />;
 
+  const html = document.getElementsByTagName('html')[0];
+
+  useEffect(() => {
+    html.style.overflow = 'auto'
+  }, [])
+
   return (
     <div className={styles.filmWatchCardContainer}>
       <nav className={styles.filmWatchCardBreadCrumbsContainer}>
@@ -91,7 +97,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           )}
         </Link>
         <Link
-          to={`/${currentFilmType}/${film?.genres[0]}`}
+          to={`/${currentFilmType}/${film?.genres && film?.genres[0]}`}
           className={styles.breadCrumbsItem}
         >
           {currentFilmType == "animations"
@@ -134,7 +140,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
         <div className={styles.filmWatchInfoSide}>
           <div className={styles.filmWatchTitle}>
             {currentFilmType == "movies"
-              ? `${film?.name.split(" ").slice(0, -1).join(" ")} 
+              ? `${film?.name.split("(")[0]} 
               (${intl.formatMessage({ id: "film_watch_movies" }).slice(0, -1)} 
               ${film?.year})`
               : currentFilmType == "series"
@@ -169,7 +175,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
               ${film?.age}`}
             </div>
             <nav className={styles.filmWatchGenreNav}>
-              {film?.countries.map((country, index) => {
+              {film?.countries && film?.countries.map((country, index) => {
                 return (
                   <Link
                     key={index}
@@ -183,7 +189,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
                   </Link>
                 );
               })}
-              {film?.genres.map((genre, index) => {
+              {film?.genres && film?.genres.map((genre, index) => {
                 return (
                   <Link
                     className={styles.breadCrumbsItem}
@@ -271,6 +277,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
         itemComponent={CardCommentItem}
         nameCategory="Отзывы"
         typeSlider="comment"
+        film={film}
       />
     </div>
   );

@@ -14,6 +14,7 @@ import PageNotFound from "./pages/notFound/PageNotFound";
 import ChangePage from "./pages/change/ChangePage";
 import FilmWatchCard from "./components/filmWatchCard/FilmWatchCard";
 import PersonCard from "./components/personCard/PersonCard";
+import CommentsPage from "./pages/comments/CommentsPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -34,6 +35,10 @@ root.render(
           <Route
             path="/movies/:id"
             element={<Template content={<FilmWatchCard />} />}
+          />
+          <Route
+            path="/movies/:id/comments"
+            element={<Template content={<CommentsPage />} />}
           />
           <Route
             path="/persons/:id"

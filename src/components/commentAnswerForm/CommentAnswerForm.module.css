@@ -1,6 +1,7 @@
 .commentFormContainer{
   margin: 0;
   position: absolute;
+  bottom: 100px;
   z-index: 2;
 }
 
@@ -12,33 +13,23 @@
   position: relative;
 }
 
-.commentNameContainer{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .commentTextContainer{
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
 
-.commentTextError, .commentNameError{
+.commentTextError{
   background-color: #cf4847;
   color: #fff;
   font-size: 15px;
   padding: 5px 13px;
   font-weight: 700;
   line-height: 1.5em;
-  border-radius: 4px;
+  border-radius: 4px;margin-top: 20px;
 }
 
-.commentTextError{
-  margin-top: 20px;
-}
-
-.commentFormName, .commentFormText {
+.commentFormText {
   background-color: #1f1b2e;
   padding: 15px 20px;
   color: #fff;
@@ -49,26 +40,17 @@
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
 }
 
-.commentFormName:focus, .commentFormText:focus {
+.commentFormText:focus {
   outline: none;
 }
-.commentFormName::placeholder, .commentFormText::placeholder {
+.commentFormText::placeholder {
   color: #fff;
-}
-
-.commentFormName {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  width: 380px;
-  font-weight: 700;
-  font-size: 18px;
 }
 
 .commentFormText {
   overflow: auto;
   word-break: break-word;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 20px;
   min-height: 100px;
   max-height: 300px;
   min-width: 380px;
