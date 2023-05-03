@@ -89,7 +89,11 @@ export const GalleryCarousel = <T,>({
                           : styles.titleText
                       }
                     >
-                      {typeSlider === "comment" ? <FormattedMessage id="comment_container_reviews" /> : nameCategory}
+                      {typeSlider === "comment" ? (
+                        <FormattedMessage id="comment_container_reviews" />
+                      ) : (
+                        nameCategory
+                      )}
                     </div>
                   </div>
                 </Link>
@@ -103,7 +107,8 @@ export const GalleryCarousel = <T,>({
               </div>
               {typeSlider === "comment" ? (
                 <div className={styles.about}>
-                  <FormattedMessage id={`comment_about_${typeFilm}`} /> «{filmName}»
+                  <FormattedMessage id={`comment_about_${typeFilm}`} /> «
+                  {filmName}»
                 </div>
               ) : (
                 ""
@@ -111,7 +116,7 @@ export const GalleryCarousel = <T,>({
             </div>
             {typeSlider === "comment" ? (
               <ButtonLink className={styles.buttonComment}>
-                <FormattedMessage id='comment_leave_review' />
+                <FormattedMessage id="comment_leave_review" />
               </ButtonLink>
             ) : (
               ""
@@ -131,7 +136,9 @@ export const GalleryCarousel = <T,>({
                       }}
                     >
                       {ItemComponent &&
-                        items?.map((item) => <ItemComponent item={item} />)}
+                        items?.map((item, index) => (
+                          <ItemComponent item={item} key={index} />
+                        ))}
                       {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
                   </div>

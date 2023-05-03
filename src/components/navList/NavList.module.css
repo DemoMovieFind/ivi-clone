@@ -1,5 +1,7 @@
 .nav-list {
   font-family: iviSans, Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
+  display: flex;
+  align-items: stretch;
 }
 
 .links {
@@ -8,7 +10,7 @@
   display: flex;
   color: white;
   font-weight: 700;
-  gap: 20px;
+  gap: 8px;
 }
 
 .links-horizontal {
@@ -26,6 +28,7 @@
   line-height: 20px;
   font-weight: 400;
   max-width: 200px;
+  display: flex;
 }
 
 .link:hover {
