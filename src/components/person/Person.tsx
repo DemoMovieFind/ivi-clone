@@ -12,21 +12,23 @@ export interface PersonProps {
 const Person = ({
   image = '',
   name = '',
-  profession = 'актёр',
+  profession = '',
+  films,
 }: PersonProps) => {
   return (
     <>
-      <div className={styles.personСontainer}>
+      <div className={films ? styles.bigPersonСontainer : styles.personСontainer}>
         {
           image ?
-            <img src={image} className={styles.image} />
+            <img src={image} className={films ? styles.bigImg : styles.image} />
             :
-            <div className={styles.noImage}>
+            <div className={films ? styles.bigNoImg : styles.noImage}>
             </div>
         }
         <div className={styles.textSection}>
           <div className={styles.name}>{name}</div>
-          <div className={styles.profession}>{profession}</div>
+          <div className={styles.profession}>{films ? '' : profession ? profession : 'актёр'}</div>
+          <div className={styles.profession}>{films ? `${films} фильма` : ''}</div>
         </div>
       </div>
     </>

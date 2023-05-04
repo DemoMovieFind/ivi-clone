@@ -161,7 +161,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
             <div className={styles.filmWatchMovieInfo}>
               <Link
                 className={styles.filmWatchYear}
-                to={`/${currentFilmType}/${film?.year}`}
+                to={`/${currentFilmType}?year=${film?.year}`}
               >
                 {film?.year}
               </Link>
@@ -219,7 +219,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
             {film?.actors &&
               film?.actors.slice(0, 4).map((actor, index) => {
                 return (
-                  <NavLink to={`/persons/${actor.name}`} state={actor.name} key={index}>
+                  <NavLink to={`/persons/${actor.name}`} state={{ person: actor.name, profession: 'actors', film }} key={index}>
                     <PersonCardMini
                       name={actor.name}
                       img="https://thumbs.dfs.ivi.ru/storage38/contents/b/c/45102370a23e374f4146fe2d106f26.jpeg/88x88/?q=85"
@@ -269,7 +269,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           <IviRatingCard rating="8,9" />
         </div>
       </div>
-      <PersonContainer persons={personsArray} />
+      <PersonContainer persons={personsArray} film={film} />
       <GalleryCarousel
         typeFilm={currentFilmType}
         filmName={film?.name}
