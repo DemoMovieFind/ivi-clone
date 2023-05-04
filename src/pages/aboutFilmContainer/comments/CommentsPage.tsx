@@ -92,7 +92,7 @@ const CommentsPage = () => {
         </form>
       </div>
       {
-        loading ? <Loader />
+        loading ? <Loader filmLoader />
           :
           currentReviews.map((item, index) => {
             return <CommentFullCard key={index} text={item.text} />

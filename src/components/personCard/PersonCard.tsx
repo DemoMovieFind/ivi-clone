@@ -73,8 +73,6 @@ const PersonCard = ({
     return (number % 100 > 4 && number % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(number % 10 < 5) ? Math.abs(number) % 10 : 5];
   }
 
-  console.log(currentFilms);
-
 
 
   const filmsWords: ReactNode[] = [
@@ -109,7 +107,7 @@ const PersonCard = ({
         <div className={styles.fullFilmTitleTotal}>{currentFilms.length} {filmsWords[ending(currentFilms.length)]}</div>
       </div>
       <div className={styles.filmsContainer}>
-        {currentFilms.length == 0 ? <Loader /> : currentFilms.map((film) => loading ? <Loader /> : <ActorCardFilm key={film.id} film={film} />)}
+        {currentFilms.length == 0 ? <Loader filmLoader /> : currentFilms.map((film) => loading ? <Loader filmLoader /> : <ActorCardFilm key={film.id} film={film} />)}
       </div>
       <div className={styles.personCardBreadCrumbs}>
         <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>
