@@ -28,37 +28,94 @@ export default function HeaderDropDown({ className }: HeaderDropDownProps) {
                   </div>
                   <NavList
                     links={[
-                      { href: "/", translationId: "films_nav_list_arthouse" },
-                      { href: "/", translationId: "films_nav_list_action" },
-                      { href: "/", translationId: "films_nav_list_western" },
-                      { href: "/", translationId: "films_nav_list_military" },
-                      { href: "/", translationId: "films_nav_list_detectives" },
                       {
-                        href: "/",
+                        href: "/movies?genres=Артхаус",
+                        translationId: "films_nav_list_arthouse",
+                      },
+                      {
+                        href: "/movies?genres=Боевики",
+                        translationId: "films_nav_list_action",
+                      },
+                      {
+                        href: "/movies?genres=Вестерн",
+                        translationId: "films_nav_list_western",
+                      },
+                      {
+                        href: "/movies?genres=Военные",
+                        translationId: "films_nav_list_military",
+                      },
+                      {
+                        href: "/movies?genres=Детективные",
+                        translationId: "films_nav_list_detectives",
+                      },
+                      {
+                        href: "/movies?genres=Для\u00A0всей\u00A0семьи",
                         translationId: "films_nav_list_for_the_whole_family",
                       },
                       {
-                        href: "/",
+                        href: "/movies?genres=Для\u00A0детей",
                         translationId: "films_nav_list_for_children",
                       },
                       {
-                        href: "/",
+                        href: "/movies?genres=Документальные",
                         translationId: "films_nav_list_documentary",
                       },
-                      { href: "/", translationId: "films_nav_list_dramas" },
-                      { href: "/", translationId: "films_nav_list_historical" },
-                      { href: "/", translationId: "films_nav_list_disasters" },
-                      { href: "/", translationId: "films_nav_list_comedies" },
-                      { href: "/", translationId: "films_nav_list_crime" },
-                      { href: "/", translationId: "films_nav_list_melodramas" },
-                      { href: "/", translationId: "films_nav_list_mystical" },
-                      { href: "/", translationId: "films_nav_list_by_comics" },
-                      { href: "/", translationId: "films_nav_list_adventures" },
-                      { href: "/", translationId: "films_nav_list_sports" },
-                      { href: "/", translationId: "films_nav_list_thrillers" },
-                      { href: "/", translationId: "films_nav_list_horrors" },
-                      { href: "/", translationId: "films_nav_list_fantatik" },
-                      { href: "/", translationId: "films_nav_list_fantasy" },
+                      {
+                        href: "/movies?genres=Драмы",
+                        translationId: "films_nav_list_dramas",
+                      },
+                      {
+                        href: "/movies?genres=Исторические",
+                        translationId: "films_nav_list_historical",
+                      },
+                      {
+                        href: "/movies?genres=Катастрофы",
+                        translationId: "films_nav_list_disasters",
+                      },
+                      {
+                        href: "/movies?genres=Комедии",
+                        translationId: "films_nav_list_comedies",
+                      },
+                      {
+                        href: "/movies?genres=Криминал",
+                        translationId: "films_nav_list_crime",
+                      },
+                      {
+                        href: "/movies?genres=Мелодрамы",
+                        translationId: "films_nav_list_melodramas",
+                      },
+                      {
+                        href: "/movies?genres=Мистические",
+                        translationId: "films_nav_list_mystical",
+                      },
+                      {
+                        href: "/movies?genres=По комиксам",
+                        translationId: "films_nav_list_by_comics",
+                      },
+                      {
+                        href: "/movies?genres=Приключения",
+                        translationId: "films_nav_list_adventures",
+                      },
+                      {
+                        href: "/movies?genres=Спорт",
+                        translationId: "films_nav_list_sports",
+                      },
+                      {
+                        href: "/movies?genres=Триллеры",
+                        translationId: "films_nav_list_thrillers",
+                      },
+                      {
+                        href: "/movies?genres=Ужасы",
+                        translationId: "films_nav_list_horrors",
+                      },
+                      {
+                        href: "/movies?genres=Фантастика",
+                        translationId: "films_nav_list_fantatik",
+                      },
+                      {
+                        href: "/movies?genres=Фэнтезни",
+                        translationId: "films_nav_list_fantasy",
+                      },
                     ]}
                     vertical={true}
                     headerTranslationId=""
@@ -70,14 +127,22 @@ export default function HeaderDropDown({ className }: HeaderDropDownProps) {
               <div className={styles.singleColumn}>
                 <div className={styles.dropdownLinksList}>
                   <div className={styles.filmsNavList_title}>
-                    <FormattedMessage id="films_nav_list_title" />{" "}
+                    <FormattedMessage id="countries_nav_list_title" />
                   </div>
                   <NavList
                     links={[
-                      { href: "/", translationId: "films_nav_list_arthouse" },
-                      { href: "/", translationId: "films_nav_list_action" },
-                      { href: "/", translationId: "films_nav_list_western" },
-                      { href: "/", translationId: "films_nav_list_military" },
+                      {
+                        href: "/",
+                        translationId: "countries_nav_list_russian",
+                      },
+                      {
+                        href: "/",
+                        translationId: "countries_nav_list_foreign",
+                      },
+                      {
+                        href: "/",
+                        translationId: "countries_nav_list_soviet_cinema",
+                      },
                     ]}
                     vertical={true}
                     headerTranslationId=""

@@ -11,7 +11,6 @@
   width: 77px;
   height: 56px;
   background-image: url("../../image/iviIcon/iviIcon.svg");
-  z-index: 10;
 }
 
 .wrapper {
@@ -55,5 +54,5 @@
   position: absolute;
   z-index: 5;
 
-  transition: display 0s, opacity 0.3s linear;
+  transition: visibility 0s, opacity 0.3s linear;
 }

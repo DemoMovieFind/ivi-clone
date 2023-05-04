@@ -35,7 +35,7 @@ const NavList = ({
           className
         )}
         key={index}
-        id={href}
+        id={translationId}
       >
         <Link className={marked ? styles["link-marked"] : ""} to={href}>
           {<FormattedMessage id={translationId} />}
