@@ -34,30 +34,28 @@ export default function MultipleRows() {
 
   useEffect(() => {
     movieRequest("").then((movies: FilmMainCard[]) => {
-      console.log(movies);
-      setFilms(movies); // fetched movies
+      setFilms(movies);
     });
   }, []);
 
-  // console.log(films);
-  // console.log(films ? films[0].name : "");
   return (
     <div className="sliderWrapper">
-      {/* {films ? <div>Пришли{films[0].name}</div> : <div>Не пришли</div>} */}
       {films ? (
         <Slider {...settings}>
           {sliderImage.map((image, index) => {
             return (
-              <NavLink
-                to={`/movies/${films[index]?.name}`}
-                state={films[index]}
-                key={index}
-              >
-                <div className="infSlider_imgWrapper">
-                  <img src={image} className="infSlider_img" />
-                  <div className="borderAge"></div>
-                </div>
-              </NavLink>
+              <div className="infSlider_imgWrapper" key={index}>
+                <img src={image} className="infSlider_img" />
+                <NavLink
+                  to={`/movies/${films[index]?.name}`}
+                  state={films[index]}
+                  className="sliderLink"
+                >
+                  {" "}
+                </NavLink>
+
+                <div className="borderAge"></div>
+              </div>
             );
           })}
         </Slider>
