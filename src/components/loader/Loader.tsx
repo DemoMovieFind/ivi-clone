@@ -1,5 +1,6 @@
 import { CSSProperties } from "react";
 import { BeatLoader } from "react-spinners";
+import styles from './Loader.module.css';
 
 const Loader = (override: CSSProperties) => {
   override ?
@@ -15,14 +16,16 @@ const Loader = (override: CSSProperties) => {
     }
 
   return (
-    <BeatLoader
-      color="#36d7b7"
-      size={25}
-      loading={true}
-      aria-label="Loading Spinner"
-      data-testid="loader"
-      cssOverride={override}
-    />
+    <div className={styles.loader}>
+      <BeatLoader
+        color="#36d7b7"
+        size={25}
+        loading={true}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        cssOverride={override}
+      />
+    </div>
   )
 }
 

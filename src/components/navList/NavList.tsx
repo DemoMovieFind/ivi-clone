@@ -12,6 +12,7 @@ export type NavListPropsType = {
   vertical?: boolean;
   headerTranslationId?: string;
   className?: string;
+  ulClassName?: string;
 };
 
 const NavList = ({
@@ -19,6 +20,7 @@ const NavList = ({
   vertical = false,
   headerTranslationId = "",
   className,
+  ulClassName,
 }: NavListPropsType) => {
   const headerId =
     headerTranslationId === "" ? "empty_string" : headerTranslationId;
@@ -33,6 +35,7 @@ const NavList = ({
           className
         )}
         key={index}
+        id={translationId}
       >
         <Link className={marked ? styles["link-marked"] : ""} to={href}>
           {<FormattedMessage id={translationId} />}
@@ -45,6 +48,7 @@ const NavList = ({
       <ul
         className={clsx(
           styles.links,
+          ulClassName,
           vertical ? styles["links-vertical"] : styles["links-horizontal"]
         )}
       >

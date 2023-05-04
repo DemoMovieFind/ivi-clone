@@ -1,6 +1,7 @@
 import { ImgIcon } from "../../icons/ImgIcon";
 import styles from "./IconButton.module.css";
-import { ButtonLink, ButtonLinkProps } from "../ButtonLink";
+import { ButtonLinkProps } from "../ButtonLink";
+import ButtonLink from "../ButtonLink";
 
 export interface IconButtonProps
   extends Omit<ButtonLinkProps, "size" | "children"> {

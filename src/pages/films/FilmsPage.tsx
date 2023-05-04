@@ -4,7 +4,6 @@ import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
 import styles from "./FilmsPage.module.css";
-// import films from "../../miniDb.json";
 import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
 import { TitlePage } from "../../components/titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
@@ -23,7 +22,6 @@ export default function FilmsPage() {
     fetch(`https://641b23c71f5d999a445c652b.mockapi.io/Films`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "data");
         setFilms(data);
       })
       .catch((error) => {

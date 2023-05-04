@@ -2,8 +2,6 @@ import { FormattedMessage,useIntl } from "react-intl";
 import styles from "./AuthForm.module.css";
 import { FieldValues, useForm } from 'react-hook-form';
 import { Button } from "../buttons/Button";
-import { useAppSelector } from "../../store/hooks";
-import { selectAuth } from "../../store/authState";
 
 export type SignInFormProps = {
   onHandleSubmit:(data:FieldValues)=>void
@@ -18,7 +16,6 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
     register,
     } = useForm();
   const intl = useIntl();
-  const authState = useAppSelector(selectAuth);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onHandleSubmit)}>
@@ -79,7 +76,7 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
         <small className={styles.error}>{`${errors.password.message}`}</small>
         )}
       </div>
-      <Button disabled={authState.status === 'loading'} type="submit" children={intl.formatMessage({
+      <Button type="submit" children={intl.formatMessage({
             id:'sign_in_enter'
           })}/>
     </form>

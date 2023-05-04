@@ -92,7 +92,11 @@ export const GalleryCarousel = <T,>({
                           : styles.titleText
                       }
                     >
-                      {typeSlider === "comment" ? <FormattedMessage id="comment_container_reviews" /> : nameCategory}
+                      {typeSlider === "comment" ? (
+                        <FormattedMessage id="comment_container_reviews" />
+                      ) : (
+                        nameCategory
+                      )}
                     </div>
                   </div>
                 </Link>
@@ -106,7 +110,8 @@ export const GalleryCarousel = <T,>({
               </div>
               {typeSlider === "comment" ? (
                 <div className={styles.about}>
-                  <FormattedMessage id={`comment_about_${typeFilm}`} /> «{filmName}»
+                  <FormattedMessage id={`comment_about_${typeFilm}`} /> «
+                  {filmName}»
                 </div>
               ) : (
                 ""
@@ -115,7 +120,7 @@ export const GalleryCarousel = <T,>({
             {typeSlider === "comment" ? (
               <NavLink to={`./comments`} state={film}>
                 <Button className={styles.buttonComment} size="large">
-                  <FormattedMessage id='comment_leave_review' />
+                  <FormattedMessage id="comment_leave_review" />
                 </Button>
               </NavLink>
             ) : (
@@ -136,8 +141,7 @@ export const GalleryCarousel = <T,>({
                       }}
                     >
                       {ItemComponent &&
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        items?.map((item: any) => <NavLink to={`/movies/${item.name}`} state={item}><ItemComponent item={item} /></NavLink>)}
+                        items?.map((item) => <ItemComponent item={item} />)}
                       {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
                   </div>

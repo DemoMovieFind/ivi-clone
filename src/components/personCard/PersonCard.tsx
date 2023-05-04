@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
-import { ActorCardFilm } from '../acterCardFilm/ActorCardFilm';
+import { ActorCardFilm } from '../actorCardFilm/ActorCardFilm';
 import { useLocation } from 'react-router';
 import { FilmWatchCardType } from '../../types/entities/FilmWatchCardType';
 import Loader from '../loader/Loader';
@@ -14,7 +14,6 @@ export interface PersonCardPropsType {
   films?: FilmWatchCardType[];
   film?: FilmWatchCardType[];
 }
-
 
 const PersonCard = ({
   image,

@@ -1,13 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from './ChangePage.module.css';
 import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectAuth } from "../../store/authState";
 import Loader from "../../components/loader/Loader";
-import useAxios, { api } from "../../services/HttpService";
+import { api } from "../../services/HttpService";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import { useEffect, useState } from "react";
+import Modal from "../../components/modalWindow/Modal";
+import axios from "axios";
+import { selectFilm, updateFilm } from "../../store/filmsInit";
 
 type Inputs = {
   name_ru:string,
@@ -17,23 +21,17 @@ type Inputs = {
 
 const ChangePage = () => {
   const params = useParams();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const authState = useAppSelector(selectAuth);
+  const filmState = useAppSelector(selectFilm);
   const intl = useIntl();
-  const id = params.id ?? '';
-  const {response,loaded} = useAxios({method:'get',url:`/films/${id}`});
-  let film:FilmMainCard|null = null;
-  if (response) {
-    film = response as FilmMainCard;
-  }
-  const { register, control, handleSubmit, formState: { errors } } = useForm<Inputs>({
-    defaultValues:{
-      genres:film?.genres?.map(genre=>{
-        return {value:genre.name}
-      })
-    }
-  });
-  const { fields, append, remove} = useFieldArray<Inputs>({
+  const id = Number(params.id) ?? 0;
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [film,setFilm] = useState<FilmMainCard|null>(null);
+  const [showModal,setShowModal] = useState(false);
+  const [errorText,setErrorText] = useState('');
+  const { register, control, handleSubmit, formState: { errors }, reset } = useForm<Inputs>();
+  const { fields, append, remove, update} = useFieldArray<Inputs>({
     control, 
     name: "genres",
     rules:{
@@ -41,36 +39,77 @@ const ChangePage = () => {
     }
   });
 
+  useEffect(() => {
+    if (filmState.films.length > 0) {
+    const film = filmState.films.find(film=>film.id === id);
+    if (film) {
+      reset({
+      name_ru:film.name,
+      name_en:film.name_en,
+    })
+    setFilm(film);
+    film.genres.forEach((field: { [key: string]: any }, index: number) => {
+      Object.keys(field).forEach((key) => {
+        if (key === 'name'){
+          update(index, {value:field[key]})
+        }
+      })
+    })
+    }
+  }
+  },[filmState.films])
+
   const onSubmit = async (data:FieldValues) => {
-    const dataTosave = {...film};
-    dataTosave.name = data.nane;
-    dataTosave.name_en = data.name_en;
-    dataTosave.genres = data.genres;
-    const response = await api.request({
-          data: dataTosave,
-          method:'put',
-          url:'/film-update',
-          headers:{
-            Authorization: `Bearer ${authState.token}`,
-            Accept: 'application/json'
-          }
-        });
+    setErrorText('');
+    const dataTosave = {
+      id:film?.id,
+      name:data.name_ru,
+      name_en:data.name_en,
+      genre:data.genres.map((genre:{value:string})=>{return genre.value})
+    };
+    try {
+      const response = await api.request({
+      data: dataTosave,
+      method:'put',
+      url:'/film-update',
+      headers:{
+        Authorization: `Bearer ${authState.token}`,
+        Accept: 'application/json'
+      }
+    });
+    console.log(response);
+    if (response.status === 200) {
+      navigate('/admin');
+      dispatch(updateFilm(dataTosave));
+    }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setErrorText(error.response?.data?.message);
+        setShowModal(true);
+      }
+    }
   }
 
   const handleDelete = () => {
     console.log('inside handle delete');
   }
 
+  const handleModalClose = () => {
+    navigate('/admin');
+  }
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{intl.formatMessage({id:'change_title'})}</h1>
-      {!loaded && <Loader/>}
-      {loaded && <form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <label className={styles.label} htmlFor="name">
+      {filmState.status === 'loading' && <Loader/>}
+      {showModal && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} 
+                                            body={errorText} />}
+      {<form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <label className={styles.label} htmlFor="name_ru">
           {intl.formatMessage({id:'admin_name'})}
         </label>
         <input 
-          id="name"
+          id="name_ru"
           className={styles.input} 
           defaultValue={film?.name} 
           title={intl.formatMessage({id:'admin_name'})}
@@ -86,9 +125,6 @@ const ChangePage = () => {
           defaultValue={film?.name_en}
           title={intl.formatMessage({id:'admin_name_en'})}
           {...register("name_en")} />
-        <label className={styles.label} htmlFor="name_en">
-          {intl.formatMessage({id:'admin_genres'})}
-        </label>
         {fields.map((field, index) => {return (
           <div className={styles.wrapperGenre} key={field.id}>
           <input className={styles.inputGenre}
