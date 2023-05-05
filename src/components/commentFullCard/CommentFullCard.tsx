@@ -5,16 +5,16 @@ import { Button } from '../buttons/Button';
 import CommentAnswerFrom from '../commentAnswerForm/CommentAnswerFrom';
 
 export interface CommentFullCardPropsType {
-  id?: number;
+  userId?: number;
   name?: string;
   date?: string;
   text?: string;
 }
 
 const CommentFullCard = ({
-  id = 0,
-  name = 'zshvetsik',
-  date = '27 февраля 2016',
+  userId = 1,
+  name,
+  date = ``,
   text = `После просмотра фильма понял, в чем суть рынка акций.
   Все просто: человеку продают идею, что у компании все будет хорошо.
   Кто считает, что в фильме слишком много секса и наркотиков, почитайте книгу.
@@ -23,6 +23,23 @@ const CommentFullCard = ({
 
   const [showMore, setShowMore] = useState(false)
   const [showExpandElem, setShowExpandElem] = useState(false)
+  const [userName, setUserName] = useState('')
+  const [commentDate, setCommentDate] = useState('')
+
+
+
+  const getUserName = async (userId: number) => {
+    const token = localStorage.getItem('token') ?? '';
+    const lang = localStorage.getItem('lang') ?? 'ru-RU';
+
+    await fetch(`http://188.120.248.77/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => res.json())
+      .then(data => {
+        date = new Date(data.createdAt).toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" })
+        setCommentDate(date)
+        setUserName(data.email)
+      })
+  }
 
   useEffect(() => {
     if (text.length < 145) {
@@ -30,10 +47,11 @@ const CommentFullCard = ({
     } else {
       setShowExpandElem(true)
     }
+    getUserName(userId)
   }, [])
 
 
-  const textElem = document.getElementById(id.toString())
+  const textElem = document.getElementById(userId.toString())
   const toggle = () => {
     setShowMore(showMore ? false : true)
     showMore ? textElem?.classList.remove(styles.preLine) : textElem?.classList.add(styles.preLine)
@@ -70,20 +88,20 @@ const CommentFullCard = ({
 
 
   return (
-    <ul className={styles.ul} id={id.toString()}>
-      <div className={styles.commentFullContainer} id={id.toString()}>
+    <ul className={styles.ul} id={userId.toString()}>
+      <div className={styles.commentFullContainer} id={userId.toString()}>
         <div className={styles.commentLeftSide}>
-          <div className={styles.commentAvatar}>{name[0]}</div>
+          <div className={styles.commentAvatar}>{name ? name[0] : userName ? userName[0] : 'A'}</div>
           <div className={styles.commentFullMainContainer}>
             <div className={styles.commentNameAndDate}>
-              <div className={styles.commentName}>{name}</div>
-              <div className={styles.commentDate}>{date}</div>
+              <div className={styles.commentName}>{name ? name : userName ? userName : 'Anonim'}</div>
+              <div className={styles.commentDate}>{commentDate != 'Invalid Date' ? commentDate : '00.00.0000'}</div>
             </div>
             <div className={styles.commentText}>{currentText}</div>
             <div className={styles.commentReactionContainer}>
               {showExpandElem ? more : <></>}
               <div className={styles.commentToAnswerContainer}>
-                <Button onClick={createAnswer} id={id.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
+                <Button onClick={createAnswer} id={userId.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
               </div>
             </div>
           </div>

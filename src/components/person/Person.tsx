@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Person.module.css'
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export interface PersonProps {
   id?: number;
@@ -15,6 +16,9 @@ const Person = ({
   profession = '',
   films,
 }: PersonProps) => {
+
+  const intl = useIntl();
+
   return (
     <>
       <div className={films ? styles.bigPersonСontainer : styles.personСontainer}>
@@ -27,8 +31,8 @@ const Person = ({
         }
         <div className={styles.textSection}>
           <div className={styles.name}>{name}</div>
-          <div className={styles.profession}>{films ? '' : profession ? profession : 'актёр'}</div>
-          <div className={styles.profession}>{films ? `${films} фильма` : ''}</div>
+          <div className={styles.profession}>{films ? '' : profession ? profession : <FormattedMessage id='persons_filter_actor_low' />}</div>
+          <div className={styles.profession}>{films ? `${films} ${intl.formatMessage({ id: 'person_card_film_2' })}` : ''}</div>
         </div>
       </div>
     </>
