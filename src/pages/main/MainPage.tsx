@@ -10,9 +10,9 @@ import MultipleRows from "../../components/infinitySlider/InfinitySlider";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(initFilms());
-  },[])
+  }, []);
 
   const CardFilmItem: React.FC<{ item: FilmMainCard }> = ({ item }) => {
     return <CardFilm film={item} />;
@@ -31,7 +31,7 @@ const MainPage = () => {
         console.log(error, "error");
       });
   }, []);
-  
+
   return (
     <div>
       <MultipleRows />
@@ -44,6 +44,13 @@ const MainPage = () => {
         />
       )}
       <OnlineIvi />
+      {films && (
+        <GalleryCarousel
+          items={films}
+          itemComponent={CardFilmItem}
+          nameCategory="Комедии"
+        />
+      )}
     </div>
   );
 };

@@ -7,35 +7,24 @@ import LanguageSwitch from "../languageSwitch/LanguageSwitch";
 
 import HeaderDropDown from "../headerDropDown/HeaderDropDown";
 import { Link } from "react-router-dom";
+import {
+  filmSingleColumnСountries,
+  filmDoubleColumn,
+  filmSingleColumnYears,
+  sideContentSelections,
+  seriesDoubleColumn,
+  seriesSingleColumnYears,
+  seriesSideContentSelections,
+  seriesSingleColumnСountries,
+} from "./list";
+import { FormattedMessage } from "react-intl";
+import clsx from "clsx";
 
 export type HeaderPropsType = {
   languageSwitchHandler: (event: ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const Header = () => {
-  const [isActive, setIsActive] = useState(false);
-
-  const leave = () => {
-    setIsActive(false);
-  };
-
-  useEffect(() => {
-    const filmsNavMenu = document.querySelector("#nav_list_films");
-
-    filmsNavMenu?.addEventListener("mouseenter", () => {
-      setIsActive(true);
-    });
-
-    filmsNavMenu?.addEventListener("mouseleave", (event: any) => {
-      const related = event.relatedTarget ? event.relatedTarget.id : "unknown";
-      if (related === "dropDownBody") {
-        return;
-      } else {
-        setIsActive(false);
-      }
-    });
-  });
-
   return (
     <header className={styles.header}>
       <Link to="/" style={{ zIndex: "10" }}>
@@ -43,33 +32,66 @@ const Header = () => {
       </Link>
 
       <div className={styles.menuWrapper}>
-        <NavList
-          links={[
-            { href: "/", translationId: "nav_list_myIvi" },
-            { href: "https://www.ivi.ru/new", translationId: "nav_list_new" },
-            { href: "/movies", translationId: "nav_list_films" },
-            { href: "/", translationId: "nav_list_series" },
-            { href: "/", translationId: "nav_list_cartoons" },
-            {
-              href: "https://www.ivi.ru/tvchannels",
-              translationId: "nav_list_TV",
-            },
-          ]}
-          vertical={false}
-          headerTranslationId=""
-          className={styles.navList}
-        />
-      </div>
-      <div
-        className={styles.headerDropWrapper}
-        style={
-          isActive
-            ? { display: "block", visibility: "visible", opacity: "1" }
-            : { display: "none", visibility: "hidden", opacity: "0" }
-        }
-        onMouseLeave={leave}
-      >
-        <HeaderDropDown />
+        <div className={clsx(styles.mainLink, styles.link)}>
+          <Link to="/">
+            {" "}
+            <FormattedMessage id="nav_list_myIvi" />
+          </Link>
+        </div>
+
+        <div className={clsx(styles.newLink, styles.link)}>
+          <Link to="https://www.ivi.ru/new">
+            <FormattedMessage id="nav_list_new" />
+          </Link>
+        </div>
+        <div className={clsx(styles.filmsLink, styles.link)}>
+          <Link to="/movies">
+            <FormattedMessage id="nav_list_films" />
+          </Link>
+
+          <div className={styles.headerDropWrapper}>
+            <HeaderDropDown
+              doubleColumn={filmDoubleColumn}
+              singleColumnСountries={filmSingleColumnСountries}
+              singleColumnYears={filmSingleColumnYears}
+              sideContent={sideContentSelections}
+            />
+          </div>
+        </div>
+        <div className={clsx(styles.seriesLink, styles.link)}>
+          <Link to="/series">
+            <FormattedMessage id="nav_list_series" />
+          </Link>
+
+          <div className={styles.headerDropWrapper}>
+            <HeaderDropDown
+              doubleColumn={seriesDoubleColumn}
+              singleColumnСountries={seriesSingleColumnСountries}
+              singleColumnYears={seriesSingleColumnYears}
+              sideContent={seriesSideContentSelections}
+            />
+          </div>
+        </div>
+        <div className={clsx(styles.cartoonsLink, styles.link)}>
+          <Link to="https://www.ivi.ru/animation">
+            {" "}
+            <FormattedMessage id="nav_list_cartoons" />
+          </Link>
+
+          <div className={styles.headerDropWrapper}>
+            <HeaderDropDown
+              doubleColumn={filmDoubleColumn}
+              singleColumnСountries={filmSingleColumnСountries}
+              singleColumnYears={filmSingleColumnYears}
+              sideContent={sideContentSelections}
+            />
+          </div>
+        </div>
+        <div className={clsx(styles.TVLink, styles.link)}>
+          <Link to="https://www.ivi.ru/tvchannels">
+            <FormattedMessage id="nav_list_TV" />
+          </Link>
+        </div>
       </div>
 
       <div className={styles.wrapper}>
