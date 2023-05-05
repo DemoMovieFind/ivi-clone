@@ -6,6 +6,19 @@
   width: 95px;
 }
 
+.bigPersonСontainer {
+  display: flex;
+  flex-direction: column;
+  /* gap: 20px; */
+  /* padding: 0 12px 12px 12px; */
+  cursor: pointer;
+  width: 128px;
+}
+
+.bigPersonСontainer:hover .name {
+  color: #fff;
+}
+
 .personСontainer:hover .name {
   color: #fff;
 }
@@ -16,6 +29,12 @@
   border-radius: 100%;
 }
 
+.bigImg{
+  width: 128px;
+  height: 128px;
+  border-radius: 100%;
+}
+
 .noImage {
   background: url('../../image/personIcon/no-image.svg') #1f1b2e;
   background-position: center;
@@ -23,6 +42,16 @@
   background-size: 70%;
   width: 88px;
   height: 88px;
+  border-radius: 100%;
+}
+
+.bigNoImg{
+  background: url('../../image/personIcon/no-image.svg') #1f1b2e;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  width: 128px;
+  height: 128px;
   border-radius: 100%;
 }
 

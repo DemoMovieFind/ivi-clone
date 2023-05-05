@@ -14,7 +14,7 @@ import PageNotFound from "./pages/notFound/PageNotFound";
 import ChangePage from "./pages/change/ChangePage";
 import FilmWatchCard from "./components/filmWatchCard/FilmWatchCard";
 import PersonCard from "./components/personCard/PersonCard";
-import CommentsPage from "./pages/comments/CommentsPage";
+import AboutFilmContainer from "./pages/aboutFilmContainer/AboutFilmContainer";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -32,18 +32,10 @@ root.render(
             <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
             <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
           </Route>
-          <Route
-            path="/movies/:id"
-            element={<Template content={<FilmWatchCard />} />}
-          />
-          <Route
-            path="/movies/:id/comments"
-            element={<Template content={<CommentsPage />} />}
-          />
-          <Route
-            path="/persons/:id"
-            element={<Template content={<PersonCard />} />}
-          />
+          <Route path="/movies/:id" element={<Template content={<FilmWatchCard />} />} />
+          <Route path="/movies/:id/comments" element={<Template content={<AboutFilmContainer props={'comments'} />} />} />
+          <Route path="/movies/:id/persons" element={<Template content={<AboutFilmContainer props={'persons'} />} />} />
+          <Route path="/persons/:id" element={<Template content={<PersonCard />} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

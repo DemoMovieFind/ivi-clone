@@ -141,7 +141,7 @@ export const GalleryCarousel = <T,>({
                       }}
                     >
                       {ItemComponent &&
-                        items?.map((item) => <ItemComponent item={item} />)}
+                        items?.map((item: any) => <NavLink to={`/movies/${item.name}`} state={item}><ItemComponent item={item} /></NavLink>)}
                       {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
                   </div>

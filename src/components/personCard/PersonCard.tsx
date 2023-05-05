@@ -9,13 +9,17 @@ import Loader from '../loader/Loader';
 export interface PersonCardPropsType {
   image?: string;
   name?: string;
+  profession?: string;
   desc?: string;
   films?: FilmWatchCardType[];
+  film?: FilmWatchCardType[];
 }
 
 const PersonCard = ({
   image,
   name,
+  profession,
+  film,
   desc = `Мартин Скорсезе (Martin Scorsese) — американский кинорежиссер, продюсер и сценарист. Обладатель множества наград киноиндустрии, в том числе премии «Оскар».`,
 }: PersonCardPropsType) => {
 
@@ -23,16 +27,19 @@ const PersonCard = ({
   const [loading, setLoading] = useState(true)
 
   const { state } = useLocation()
-  name = state
+  name = state.person
+  profession = state.profession
+  film = [state.film]
+
 
   useEffect(() => {
     getFilms()
   }, [])
 
   const getFilms = async () => {
-    await fetch(`http://188.120.248.77/films?order=ASC&page=1&take=10&orderBy=scoreAVG&actors=${name}`)
+    await fetch(`http://188.120.248.77/films?order=ASC&page=1&take=10&orderBy=scoreAVG&${profession}=${name}`)
       .then(res => res.json())
-      .then(data => setCurrentFilms(data))
+      .then(data => setCurrentFilms(profession == 'actors' || profession == 'directors' ? data : film))
       .then(() => setLoading(false))
   }
   const [showMore, setShowMore] = useState(false)
@@ -67,6 +74,7 @@ const PersonCard = ({
   }
 
 
+
   const filmsWords: ReactNode[] = [
     <FormattedMessage id='person_card_film_1' />,
     <FormattedMessage id='person_card_film_2' />,
@@ -99,7 +107,7 @@ const PersonCard = ({
         <div className={styles.fullFilmTitleTotal}>{currentFilms.length} {filmsWords[ending(currentFilms.length)]}</div>
       </div>
       <div className={styles.filmsContainer}>
-        {currentFilms.length == 0 ? <Loader /> : currentFilms.map((film) => loading ? <Loader /> : <ActorCardFilm key={film.id} film={film} />)}
+        {currentFilms.length == 0 ? <Loader filmLoader /> : currentFilms.map((film) => loading ? <Loader filmLoader /> : <ActorCardFilm key={film.id} film={film} />)}
       </div>
       <div className={styles.personCardBreadCrumbs}>
         <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>
