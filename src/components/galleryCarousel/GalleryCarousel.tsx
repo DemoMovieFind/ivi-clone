@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./GalleryCarousel.module.css";
 import clsx from "clsx";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { SlickArrowLeft } from "../buttons/SlickArrow/SlickArrowLeft";
 import { SlickArrowRight } from "../buttons/SlickArrow/SlickArrowRight";
 import { CardViewAll } from "./CardViewAll/CardViewAll";
@@ -83,7 +83,7 @@ export const GalleryCarousel = <T,>({
           <div className={styles.blockHeader}>
             <div>
               <div style={{ display: "flex" }}>
-                <Link to={"#"} className={styles.nblBlockHeader}>
+                <NavLink to={typeSlider == 'comment' ? './comments' : "#"} state={typeSlider == 'comment' ? film : ''} className={styles.nblBlockHeader}>
                   <div className={styles.title}>
                     <div
                       className={
@@ -99,7 +99,7 @@ export const GalleryCarousel = <T,>({
                       )}
                     </div>
                   </div>
-                </Link>
+                </NavLink>
                 {typeSlider === "comment" ? (
                   <div className={styles.allComment}>
                     <div className={styles.textCount}>63</div>
@@ -140,8 +140,12 @@ export const GalleryCarousel = <T,>({
                         transform: `translateX(${valueTranslate}px)`,
                       }}
                     >
-                      {ItemComponent &&
-                        items?.map((item: any) => <NavLink to={`/movies/${item.name}`} state={item}><ItemComponent item={item} /></NavLink>)}
+                      {
+                        typeSlider !== "comment" ?
+                          ItemComponent && items?.map((item: T, index) => <NavLink key={index} to={`/movies/${filmName}`} state={item}><ItemComponent item={item} /></NavLink>)
+                          :
+                          ItemComponent && items?.map((item: T, index) => <NavLink key={index} to={`./comments`} state={film}><ItemComponent item={item} /></NavLink>)
+                      }
                       {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
                   </div>

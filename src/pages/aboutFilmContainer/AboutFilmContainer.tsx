@@ -30,6 +30,8 @@ const AboutFilmContainer = ({
 
   const intl = useIntl();
 
+  const lang = localStorage.getItem('lang')
+
   return (
     <>
       <FilmWatchCard film={state} />
@@ -46,17 +48,17 @@ const AboutFilmContainer = ({
           <div className={styles.main}>
             <div className={styles.filmName}>
               {currentFilmType == "movies"
-                ? `${state?.name.split("(")[0]} 
+                ? `${lang == 'ru-RU' ? state?.name.split("(")[0] : state?.name_en} 
               (${intl.formatMessage({ id: "film_watch_movies" }).slice(0, -1)} 
               ${state?.year})`
                 : currentFilmType == "series"
-                  ? `${state?.name} 
+                  ? `${lang == 'ru-RU' ? state?.name : state?.name_en} 
               (${intl
                     .formatMessage({ id: "film_watch_series" })
                     .slice(0, -2)}al 
               ${state?.year})`
                   : currentFilmType == "animations"
-                    ? `${state?.name.split(" ").slice(0, -1).join(" ")} 
+                    ? `${lang == 'ru-RU' ? state?.name.split(" ").slice(0, -1).join(" ") : state?.name_en} 
               (${intl
                       .formatMessage({ id: "film_watch_cartoons" })
                       .slice(0, -1)} 
@@ -68,13 +70,13 @@ const AboutFilmContainer = ({
                 to={`/movies/${state.name}/persons`}
                 state={state}
                 className={clsx(styles.link, props == 'persons' ? styles.active : '')}
-              >Создатели
+              ><FormattedMessage id='about_film_creators' />
               </NavLink>
               <NavLink
                 to={`/movies/${state.name}/comments`}
                 state={state}
                 className={clsx(styles.link, props == 'comments' ? styles.active : '')}
-              >Отзывы
+              ><FormattedMessage id='about_film_reviews' />
               </NavLink>
             </div>
             {props == 'comments' ? <CommentsPage /> : <PersonsPage />}

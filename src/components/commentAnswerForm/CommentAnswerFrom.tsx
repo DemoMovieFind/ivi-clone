@@ -28,7 +28,7 @@ const CommentAnswerFrom = () => {
     const email = decoded.email;
 
 
-    setAnswer([...answer, <CommentFullCard id={Math.random()} name={email} text={data.text} date={date} />])
+    setAnswer([...answer, <CommentFullCard userId={Math.random()} name={email} text={data.text} date={date} />])
   }
 
   const intl = useIntl()

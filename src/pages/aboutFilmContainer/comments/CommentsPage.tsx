@@ -9,13 +9,12 @@ import axios from 'axios';
 import Loader from '../../../components/loader/Loader';
 
 type Inputs = {
-  userName?: string,
-  text?: string,
+  comment?: string;
 };
 
 export interface CurrentReviewsType {
   text?: string;
-  userId?: number;
+  user_id?: number;
   filmId?: number;
 }
 
@@ -34,10 +33,25 @@ const CommentsPage = () => {
 
   const getReviews = async (id: number) => {
     setLoading(true)
-    await fetch(`http://188.120.248.77/reviews/film/${id}`)
-      .then(res => res.json())
-      .then(data => setCurrentReviews(data))
+    await axios.get(`http://188.120.248.77/reviews/film/${id}`)
+      .then(res => {
+        res.data.reverse()
+        setCurrentReviews(res.data)
+      })
       .then(() => setLoading(false))
+  }
+
+  const postReview = async (commentText: Inputs, userId: number, filmId: number, token: string) => {
+    await axios.post(`http://188.120.248.77/reviews`,
+      { "text": commentText.comment, "user_id": userId, "film_id": filmId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then(() => getReviews(state.id))
   }
 
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all", });
@@ -51,7 +65,7 @@ const CommentsPage = () => {
       const userId = decoded.id;
       const filmId = state.id;
 
-      axios.post(`http://188.120.248.77/reviews`, { "text": commentText, "user_id": userId, "film_id": filmId })
+      postReview(commentText, userId, filmId, token)
 
     } else {
       location.href = `/auth`
@@ -95,10 +109,9 @@ const CommentsPage = () => {
         loading ? <Loader filmLoader />
           :
           currentReviews.map((item, index) => {
-            return <CommentFullCard key={index} text={item.text} />
+            return <CommentFullCard key={index} text={item.text} userId={item.user_id} />
           })
       }
-      <CommentFullCard />
     </>
   )
 }
