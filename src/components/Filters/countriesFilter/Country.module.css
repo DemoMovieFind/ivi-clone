@@ -8,8 +8,10 @@
 }
 
 .countryWrapper {
+  position: relative;
   width: 14%;
   padding: 0 6px;
+  position: relative;
 }
 
 .nonActiveColor {

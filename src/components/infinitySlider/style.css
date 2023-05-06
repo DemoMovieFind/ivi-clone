@@ -9,6 +9,10 @@
 
 .sliderWrapper {
   position: relative;
+  z-index: 2;
+}
+.slick-slider {
+  z-index: 2;
 }
 
 .slick-list {
@@ -27,6 +31,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: -1;
 }
 
 .infSlider_imgWrapper::after {
@@ -93,4 +98,14 @@
   height: 132px;
   border-radius: 16px;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 1 1%27%3E%3ClinearGradient id=%27a%27 x1=%270%25%27 y1=%270%25%27 x2=%270%25%27 y2=%27100%25%27%3E%3Cstop offset=%270%25%27 stop-color=%27%2305070a%27 stop-opacity=%270%27/%3E%3Cstop offset=%2710%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.026%27/%3E%3Cstop offset=%2720%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.045%27/%3E%3Cstop offset=%2730%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.085%27/%3E%3Cstop offset=%2740%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.143%27/%3E%3Cstop offset=%2750%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.195%27/%3E%3Cstop offset=%27100%25%27 stop-color=%27%2305070a%27 stop-opacity=%27.65%27/%3E%3C/linearGradient%3E%3Cpath fill=%27url%28%23a%29%27 d=%27M0 0h1v1H0z%27/%3E%3C/svg%3E");
+}
+
+.sliderLink {
+  bottom: 0;
+
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
 }

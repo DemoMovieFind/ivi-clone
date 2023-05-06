@@ -1,0 +1,140 @@
+.headerDropdownBody {
+  display: block;
+  height: 460px;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateY(4px);
+  transition-duration: var(--menuTransition);
+  visibility: visible;
+  --menuTransition: 250ms;
+  background: #1f1b2e;
+  border-radius: 12px;
+  box-shadow: 0 20px 96px #12101b;
+  left: 0;
+  position: absolute;
+  top: 0px;
+  transform: translateY(0);
+  transition-delay: 1s;
+  transition-duration: var(--menuTransition);
+  transition-property: display;
+  transition-timing-function: ease-out;
+  width: 100%;
+  will-change: transform, height;
+  z-index: 5;
+}
+
+.notify {
+  left: -8px;
+  opacity: 1;
+  position: absolute;
+  right: -8px;
+  top: 4px;
+  transition-delay: 0s;
+  transition-duration: var(--menuTransition);
+  transition-property: visibility, opacity;
+  transition-timing-function: ease-out;
+  visibility: hidden;
+  z-index: 5;
+  --menuTransition: 0.3s;
+}
+
+.body {
+  box-sizing: border-box;
+  margin-top: 68px;
+  padding: 32px;
+  position: relative;
+}
+
+.grid {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.movies_menu_item {
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  top: 4px;
+}
+
+.dropdownContent {
+  display: flex;
+  height: 328px;
+}
+
+.doubleColumn {
+  width: 33.33333333%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.dropdownLinksList {
+  position: relative;
+}
+
+.filmsNavList_title {
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.filmsNavList_element {
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.doubleList .filmsNavList_element {
+  margin-right: 60px;
+}
+
+.doubleList {
+  height: 308px;
+  flex-wrap: wrap;
+  gap: 0px !important;
+  column-count: 2;
+  column-gap: 50px;
+  column-fill: auto;
+}
+
+.singleList {
+  gap: 0px !important;
+}
+
+.dropdownLinksList {
+  gap: 0px !important;
+}
+
+.singleColumn {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 16.66666667%;
+}
+
+.sideContent {
+  position: relative;
+}
+
+.sideContent .singleList {
+  padding: 0 0 0 16px;
+}
+
+.gutter {
+  background-color: hsla(0, 0%, 100%, 0.16);
+  bottom: 0;
+  left: 0;
+  top: 0;
+  width: 1px;
+  position: absolute;
+}
+
+.gutterStripe {
+  height: 20px;
+  background-color: #fff;
+  left: 0;
+  width: 1px;
+  transition: transform 0.2s, width 0.4s, height 0.4s;
+  will-change: transform, width, height;
+}

@@ -11,6 +11,14 @@ import IviRatingCard from "../iviRatingCard/IviRatingCard";
 import PersonContainer from "../personContainer/PersonContainer";
 import { GalleryCarousel } from "../galleryCarousel/GalleryCarousel";
 import CommentCard from "../commentCard/CommentCard";
+import Loader from "../loader/Loader";
+import axios from "axios";
+
+export interface CurrentReviewsType {
+  text?: string;
+  user_id?: number;
+  filmId?: number;
+}
 
 export interface FilmWatchCardPropsType {
   film?: FilmWatchCardType;
@@ -62,29 +70,33 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
     </div>
   );
 
-  const commentsCards = [
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-    <CommentCard text="" />,
-  ];
+  const [currentReviews, setCurrentReviews] = useState<CurrentReviewsType[]>([])
+  const [loading, setLoading] = useState(false)
+
+  const getReviews = async (id: number) => {
+    setLoading(true)
+    await axios.get(`http://188.120.248.77/reviews/film/${id}`)
+      .then(res => {
+        res.data.reverse()
+        setCurrentReviews(res.data)
+      })
+      .then(() => setLoading(false))
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const CardCommentItem: React.FC<{ item: any }> = () => <CommentCard />;
+  const CardCommentItem: React.FC<{ item: any }> = (item: any) => {
+    return <CommentCard text={item.item.text} userId={item.item.user_id} date={item.item.createdAt} />;
+  }
 
   const html = document.getElementsByTagName('html')[0];
 
   useEffect(() => {
     html.style.overflow = 'auto'
+
+    film && getReviews(film.id)
   }, [])
+
+  const lang = localStorage.getItem('lang') ?? '';
 
   return (
     <div className={styles.filmWatchCardContainer}>
@@ -140,17 +152,17 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
         <div className={styles.filmWatchInfoSide}>
           <div className={styles.filmWatchTitle}>
             {currentFilmType == "movies"
-              ? `${film?.name.split("(")[0]} 
+              ? `${lang == 'ru-RU' ? film?.name.split("(")[0] : film?.name_en} 
               (${intl.formatMessage({ id: "film_watch_movies" }).slice(0, -1)} 
               ${film?.year})`
               : currentFilmType == "series"
-                ? `${film?.name} 
+                ? `${lang == 'ru-RU' ? film?.name : film?.name_en} 
               (${intl
                   .formatMessage({ id: "film_watch_series" })
                   .slice(0, -2)}al 
               ${film?.year})`
                 : currentFilmType == "animations"
-                  ? `${film?.name.split(" ").slice(0, -1).join(" ")} 
+                  ? `${lang == 'ru-RU' ? film?.name.split(" ").slice(0, -1).join(" ") : film?.name_en} 
               (${intl
                     .formatMessage({ id: "film_watch_cartoons" })
                     .slice(0, -1)} 
@@ -161,7 +173,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
             <div className={styles.filmWatchMovieInfo}>
               <Link
                 className={styles.filmWatchYear}
-                to={`/${currentFilmType}/${film?.year}`}
+                to={`/${currentFilmType}?year=${film?.year}`}
               >
                 {film?.year}
               </Link>
@@ -219,7 +231,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
             {film?.actors &&
               film?.actors.slice(0, 4).map((actor, index) => {
                 return (
-                  <NavLink to={`/persons/${actor.name}`} state={actor.name} key={index}>
+                  <NavLink to={`/persons/${actor.name}`} state={{ person: actor.name, profession: 'actors', film }} key={index}>
                     <PersonCardMini
                       name={actor.name}
                       img="https://thumbs.dfs.ivi.ru/storage38/contents/b/c/45102370a23e374f4146fe2d106f26.jpeg/88x88/?q=85"
@@ -269,16 +281,18 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           <IviRatingCard rating="8,9" />
         </div>
       </div>
-      <PersonContainer persons={personsArray} />
-      <GalleryCarousel
-        typeFilm={currentFilmType}
-        filmName={film?.name}
-        items={commentsCards}
-        itemComponent={CardCommentItem}
-        nameCategory="Отзывы"
-        typeSlider="comment"
-        film={film}
-      />
+      <PersonContainer persons={personsArray} film={film} />
+      {loading ? <Loader filmLoader /> :
+        <GalleryCarousel
+          typeFilm={currentFilmType}
+          filmName={lang == 'ru-RU' ? film?.name : `${film?.name_en} (${film?.year})`}
+          items={currentReviews}
+          itemComponent={CardCommentItem}
+          nameCategory="Отзывы"
+          typeSlider="comment"
+          film={film}
+        />
+      }
     </div>
   );
 };

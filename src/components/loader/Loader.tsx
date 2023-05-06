@@ -2,21 +2,26 @@ import { CSSProperties } from "react";
 import { BeatLoader } from "react-spinners";
 import styles from './Loader.module.css';
 
-const Loader = (override: CSSProperties) => {
+export interface FilmLoaderType {
+  override?: CSSProperties;
+  filmLoader?: true | false;
+}
+
+const Loader = ({ override, filmLoader }: FilmLoaderType) => {
   override ?
     ''
     :
     override = {
-      display: "block",
+      display: "flex",
       margin: "0 auto",
       borderColor: "red",
-      position: "fixed",
+      justifyContent: 'center',
       top: "50%",
       left: "50%",
     }
 
   return (
-    <div className={styles.loader}>
+    <div className={filmLoader ? '' : styles.loader}>
       <BeatLoader
         color="#36d7b7"
         size={25}

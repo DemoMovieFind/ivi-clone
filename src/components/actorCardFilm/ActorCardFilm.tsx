@@ -39,7 +39,7 @@ export const ActorCardFilm = ({
 
   return (
     loading ?
-      <Loader />
+      <Loader filmLoader />
       :
       <div
         className={clsx(styles.card, styles[appearance], className)}
