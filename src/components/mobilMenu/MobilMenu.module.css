@@ -23,6 +23,10 @@
   }
 }
 
+.active {
+  display: block;
+}
+
 .tabBar {
   backdrop-filter: blur(8px);
   background-color: rgba(31, 27, 46, 0.88);

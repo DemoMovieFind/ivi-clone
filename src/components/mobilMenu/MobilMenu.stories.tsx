@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import MobilMenu from "./MobilMenu";
 import { BrowserRouter } from "react-router-dom";
+import styles from "./MobilMenu.module.css";
 
 const meta: Meta<typeof MobilMenu> = {
   title: "Page Components/MobilMenu",
@@ -10,10 +11,10 @@ const meta: Meta<typeof MobilMenu> = {
 
 type Story = StoryObj<typeof meta>;
 
-export const footer: Story = {
+export const mobil_menu: Story = {
   render: () => (
     <BrowserRouter>
-      <MobilMenu />
+      <MobilMenu className={styles.active} />
     </BrowserRouter>
   ),
 };

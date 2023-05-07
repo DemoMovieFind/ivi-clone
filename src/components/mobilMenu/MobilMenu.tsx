@@ -3,14 +3,22 @@ import React from "react";
 import styles from "./MobilMenu.module.css";
 import { Link } from "react-router-dom";
 
-export default function MobilMenu() {
+interface MobilMenuProps {
+  className?: string;
+}
+
+export default function MobilMenu({ className }: MobilMenuProps) {
   return (
-    <div className={styles.tabBarPlate}>
+    <div className={clsx(styles.tabBarPlate, className)}>
       <div className={styles.tabBar}>
         <Link to="/" className={clsx(styles.item, styles.item_selected)}>
           <div
             className={styles.itemGlowImage}
-            style={document.location.pathname === "/" ? {} : { opacity: 0 }}
+            style={
+              document.location.pathname === "/"
+                ? { opacity: 1 }
+                : { opacity: 0 }
+            }
           ></div>
           <div className={styles.itemIcon}>
             <div
@@ -23,7 +31,9 @@ export default function MobilMenu() {
           <div
             className={styles.itemGlowImage}
             style={
-              document.location.pathname === "/movies" ? {} : { opacity: 0 }
+              document.location.pathname === "/movies"
+                ? { opacity: 1 }
+                : { opacity: 0 }
             }
           ></div>
           <div className={styles.itemIcon}>
@@ -52,7 +62,9 @@ export default function MobilMenu() {
           <div
             className={styles.itemGlowImage}
             style={
-              document.location.pathname === "/profile" ? {} : { opacity: 0 }
+              document.location.pathname === "/profile"
+                ? { opacity: 1 }
+                : { opacity: 0 }
             }
           ></div>
           <div className={styles.itemIcon}>
