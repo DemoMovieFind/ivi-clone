@@ -76,3 +76,9 @@
 .cartoonsLink:hover .headerDropWrapper {
   display: block;
 }
+
+@media (max-width: 1160px) {
+  .menuWrapper {
+    display: none;
+  }
+}
