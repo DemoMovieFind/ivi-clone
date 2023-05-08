@@ -6,11 +6,12 @@ import { LOCALES } from "../i18n/locales";
 import { useAppSelector } from "../store/hooks";
 import { selectLang } from "../store/langState";
 import Footer from "../components/footer/Footer";
+import MobilMenu from "../components/mobilMenu/MobilMenu";
 
 export type TemplateTypeProps = {
-  content: JSX.Element,
-  isAdminPage?: boolean,
-}
+  content: JSX.Element;
+  isAdminPage?: boolean;
+};
 
 const Template = ({ content, isAdminPage = false }: TemplateTypeProps) => {
   const lang = useAppSelector(selectLang);
@@ -20,11 +21,11 @@ const Template = ({ content, isAdminPage = false }: TemplateTypeProps) => {
       <IntlProvider
         messages={messages[lang.lang]}
         locale={lang.lang}
-        defaultLocale={LOCALES.RUSSIAN}>
+        defaultLocale={LOCALES.RUSSIAN}
+      >
         <Header />
-        <div className={styles.content}>
-          {content}
-        </div>
+        <MobilMenu />
+        <div className={styles.content}>{content}</div>
         {!isAdminPage && <Footer />}
       </IntlProvider>
     </div>
