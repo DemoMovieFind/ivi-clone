@@ -9,6 +9,8 @@ export interface CommentFullCardPropsType {
   name?: string;
   date?: string;
   text?: string;
+  parentId?: number;
+  filmId?: number;
 }
 
 const CommentFullCard = ({
@@ -19,27 +21,19 @@ const CommentFullCard = ({
   Все просто: человеку продают идею, что у компании все будет хорошо.
   Кто считает, что в фильме слишком много секса и наркотиков, почитайте книгу.
   Вот там их действительно дофига.`,
+  parentId,
+  filmId,
 }: CommentFullCardPropsType) => {
 
   const [showMore, setShowMore] = useState(false)
   const [showExpandElem, setShowExpandElem] = useState(false)
-  const [userName, setUserName] = useState('')
-  const [commentDate, setCommentDate] = useState('')
 
+  const lang = localStorage.getItem('lang') ?? 'ru-RU';
+  date = new Date(date).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })
 
+  // console.log(parentId);
+  // console.log(userId);
 
-  const getUserName = async (userId: number) => {
-    const token = localStorage.getItem('token') ?? '';
-    const lang = localStorage.getItem('lang') ?? 'ru-RU';
-
-    await fetch(`http://188.120.248.77/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
-      .then(res => res.json())
-      .then(data => {
-        date = new Date(data.createdAt).toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" })
-        setCommentDate(date)
-        setUserName(data.email)
-      })
-  }
 
   useEffect(() => {
     if (text.length < 145) {
@@ -47,7 +41,6 @@ const CommentFullCard = ({
     } else {
       setShowExpandElem(true)
     }
-    getUserName(userId)
   }, [])
 
 
@@ -78,9 +71,9 @@ const CommentFullCard = ({
   const [answersList, setAnswersList] = useState<JSX.Element[]>([])
 
 
-  const createAnswer = () => {
+  const createAnswer = (parentId: number) => {
     if (localStorage.getItem('token')) {
-      setAnswersList([...answersList, <CommentAnswerFrom />])
+      setAnswersList([...answersList, <CommentAnswerFrom parentId={parentId} filmId={filmId} />])
     } else {
       location.href = '/auth'
     }
@@ -91,17 +84,17 @@ const CommentFullCard = ({
     <ul className={styles.ul} id={userId.toString()}>
       <div className={styles.commentFullContainer} id={userId.toString()}>
         <div className={styles.commentLeftSide}>
-          <div className={styles.commentAvatar}>{name ? name[0] : userName ? userName[0] : 'A'}</div>
+          <div className={styles.commentAvatar}>{name ? name[0] : 'A'}</div>
           <div className={styles.commentFullMainContainer}>
             <div className={styles.commentNameAndDate}>
-              <div className={styles.commentName}>{name ? name : userName ? userName : 'Anonim'}</div>
-              <div className={styles.commentDate}>{commentDate != 'Invalid Date' ? commentDate : '00.00.0000'}</div>
+              <div className={styles.commentName}>{name ? name : 'Anonim'}</div>
+              <div className={styles.commentDate}>{date ? date : '00.00.0000'}</div>
             </div>
             <div className={styles.commentText}>{currentText}</div>
             <div className={styles.commentReactionContainer}>
               {showExpandElem ? more : <></>}
               <div className={styles.commentToAnswerContainer}>
-                <Button onClick={createAnswer} id={userId.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
+                <Button onClick={() => createAnswer(userId)} id={userId.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
               </div>
             </div>
           </div>

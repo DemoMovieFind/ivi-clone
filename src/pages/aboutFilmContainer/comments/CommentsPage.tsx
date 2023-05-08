@@ -15,7 +15,9 @@ type Inputs = {
 export interface CurrentReviewsType {
   text?: string;
   user_id?: number;
+  user_email?: string;
   filmId?: number;
+  createdAt?: string;
 }
 
 const CommentsPage = () => {
@@ -37,13 +39,15 @@ const CommentsPage = () => {
       .then(res => {
         res.data.reverse()
         setCurrentReviews(res.data)
+        // console.log(res.data);
+
       })
       .then(() => setLoading(false))
   }
 
-  const postReview = async (commentText: Inputs, userId: number, filmId: number, token: string) => {
+  const postReview = async (commentText: Inputs, userId: number, filmId: number, token: string, parent?: number,) => {
     await axios.post(`http://188.120.248.77/reviews`,
-      { "text": commentText.comment, "user_id": userId, "film_id": filmId },
+      { "text": commentText.comment, "user_id": userId, "film_id": filmId, "parent": parent },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -109,7 +113,7 @@ const CommentsPage = () => {
         loading ? <Loader filmLoader />
           :
           currentReviews.map((item, index) => {
-            return <CommentFullCard key={index} text={item.text} userId={item.user_id} />
+            return <CommentFullCard key={index} text={item.text} userId={item.user_id} name={item.user_email} filmId={state.id} date={item.createdAt} />
           })
       }
     </>
