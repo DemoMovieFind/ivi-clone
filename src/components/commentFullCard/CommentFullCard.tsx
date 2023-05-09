@@ -3,6 +3,8 @@ import styles from './CommentFullCard.module.css'
 import { FormattedMessage } from 'react-intl';
 import { Button } from '../buttons/Button';
 import CommentAnswerFrom from '../commentAnswerForm/CommentAnswerFrom';
+import { AuthService } from '../../services/AuthService';
+import axios from 'axios';
 
 export interface CommentFullCardPropsType {
   userId?: number;
@@ -11,6 +13,8 @@ export interface CommentFullCardPropsType {
   text?: string;
   parentId?: number;
   filmId?: number;
+  children?: boolean;
+  commentId?: number;
 }
 
 const CommentFullCard = ({
@@ -23,16 +27,40 @@ const CommentFullCard = ({
   Вот там их действительно дофига.`,
   parentId,
   filmId,
+  children,
+  commentId,
 }: CommentFullCardPropsType) => {
 
   const [showMore, setShowMore] = useState(false)
   const [showExpandElem, setShowExpandElem] = useState(false)
 
   const lang = localStorage.getItem('lang') ?? 'ru-RU';
-  date = new Date(date).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })
+  date.length > 15 ?
+    date = new Date(date).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })
+    :
+    ''
 
-  // console.log(parentId);
-  // console.log(userId);
+  const token = localStorage.getItem('token') ?? '';
+  const decoded = AuthService.getDecodedToken(token);
+
+
+  const [isAdmin, setIsAdmin] = useState(false)
+  useEffect(() => {
+    for (let i = 0; i < decoded.roles.length; i++) {
+      if (decoded.roles[i].value == 'admin') setIsAdmin(true)
+    }
+  })
+
+  const deleteComment = async (commentId: number) => {
+    await axios.delete(`http://188.120.248.77/reviews/${commentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(() => window.location.reload())
+  }
 
 
   useEffect(() => {
@@ -81,7 +109,7 @@ const CommentFullCard = ({
 
 
   return (
-    <ul className={styles.ul} id={userId.toString()}>
+    <ul className={styles.ul} style={children ? { marginLeft: '50px', width: '92%' } : {}} id={userId.toString()}>
       <div className={styles.commentFullContainer} id={userId.toString()}>
         <div className={styles.commentLeftSide}>
           <div className={styles.commentAvatar}>{name ? name[0] : 'A'}</div>
@@ -94,11 +122,12 @@ const CommentFullCard = ({
             <div className={styles.commentReactionContainer}>
               {showExpandElem ? more : <></>}
               <div className={styles.commentToAnswerContainer}>
-                <Button onClick={() => createAnswer(userId)} id={userId.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
+                <Button onClick={() => createAnswer(parentId ?? 0)} id={userId.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
               </div>
             </div>
           </div>
         </div>
+        {isAdmin ? <div className={styles.deleteBtn} onClick={() => deleteComment(commentId ?? 0)}></div> : ''}
         <div className={styles.commentLikesContainer}>
           <div className={styles.like}></div>
           <span className={styles.totalLikes}>36</span>

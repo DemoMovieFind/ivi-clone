@@ -13,6 +13,7 @@ type Inputs = {
 export interface CommentAnswerFromPropsType {
   parentId?: number;
   filmId?: number;
+  userId?: number;
 }
 
 export interface CurrentReviewsType {
@@ -30,34 +31,19 @@ const CommentAnswerFrom = ({ parentId, filmId }: CommentAnswerFromPropsType) => 
   const [answer, setAnswer] = useState<JSX.Element[]>([])
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur", });
 
-  const [currentReviews, setCurrentReviews] = useState<CurrentReviewsType[]>([])
-  const [loading, setLoading] = useState(false)
 
-  const getReviews = async (id: number) => {
-    setLoading(true)
-    await axios.get(`http://188.120.248.77/reviews/film/${id}`)
-      .then(res => {
-        res.data.reverse()
-        setCurrentReviews(res.data)
-        console.log(res.data);
-
-      })
-      .then(() => setLoading(false))
-  }
 
   const postReview = async (commentText: Inputs, userId: number, filmId: number, token: string, parent?: number,) => {
-    // await axios.post(`http://188.120.248.77/reviews`,
-    //   { "text": commentText.text, "user_id": userId, "film_id": filmId, "parent": parent },
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     }
-    //   }
-    // ).then(() => getReviews(filmId))
-    console.log('+');
-
+    await axios.post(`http://188.120.248.77/reviews`,
+      { "text": commentText.text, "user_id": userId, "film_id": filmId, "parent": parent },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(() => window.location.reload())
   }
 
 
@@ -71,11 +57,10 @@ const CommentAnswerFrom = ({ parentId, filmId }: CommentAnswerFromPropsType) => 
 
     const email = decoded.email;
     const text = data.text
-    // console.log(data.text);
 
-    postReview(data, 999, filmId ? filmId : 0, token, parentId)
+    postReview(data, decoded.id ?? 0, filmId ?? 0, token, parentId)
 
-    // setAnswer([...answer, <CommentFullCard userId={Math.random()} name={email} text={data.comment} date={date} parentId={parentId ? parentId : undefined} />])
+    setAnswer([...answer, <CommentFullCard userId={decoded.id} name={email} text={text} date={date} parentId={parentId ?? 0} />])
   }
 
   const intl = useIntl()
@@ -84,18 +69,18 @@ const CommentAnswerFrom = ({ parentId, filmId }: CommentAnswerFromPropsType) => 
 
 
   return (
-    // answer.length > 0 ? answer[0] : forms.length > 1 ? <></> :
-    <div className={styles.commentFormContainer}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.commentForm}>
-        <div className={styles.commentTextContainer}>
-          <textarea className={styles.commentFormText} {...register('text', { required: true, minLength: 10 })} placeholder={intl.formatMessage({ id: 'comment_text_placeholder' })} ></textarea>
-          {errors.text && <span className={styles.commentTextError}>
-            <FormattedMessage id='comment_error_text_1' />
-          </span>}
-        </div>
-        <input className={styles.commentFormSubmit} type="submit" value={intl.formatMessage({ id: 'comment_submit_value' })} />
-      </form>
-    </div>
+    answer.length > 0 ? answer[0] : forms.length > 1 ? <></> :
+      <div className={styles.commentFormContainer}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.commentForm}>
+          <div className={styles.commentTextContainer}>
+            <textarea className={styles.commentFormText} {...register('text', { required: true, minLength: 10 })} placeholder={intl.formatMessage({ id: 'comment_text_placeholder' })} ></textarea>
+            {errors.text && <span className={styles.commentTextError}>
+              <FormattedMessage id='comment_error_text_1' />
+            </span>}
+          </div>
+          <input className={styles.commentFormSubmit} type="submit" value={intl.formatMessage({ id: 'comment_submit_value' })} />
+        </form>
+      </div>
   )
 }
 

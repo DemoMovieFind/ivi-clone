@@ -18,6 +18,8 @@ export interface CurrentReviewsType {
   user_email?: string;
   filmId?: number;
   createdAt?: string;
+  parent?: number;
+  id?: number;
 }
 
 const CommentsPage = () => {
@@ -37,10 +39,7 @@ const CommentsPage = () => {
     setLoading(true)
     await axios.get(`http://188.120.248.77/reviews/film/${id}`)
       .then(res => {
-        res.data.reverse()
         setCurrentReviews(res.data)
-        // console.log(res.data);
-
       })
       .then(() => setLoading(false))
   }
@@ -69,12 +68,17 @@ const CommentsPage = () => {
       const userId = decoded.id;
       const filmId = state.id;
 
-      postReview(commentText, userId, filmId, token)
+      postReview(commentText, userId, filmId, token, userId)
 
     } else {
       location.href = `/auth`
     }
   }
+
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dict: any = {}
+
 
   return (
     <>
@@ -113,9 +117,44 @@ const CommentsPage = () => {
         loading ? <Loader filmLoader />
           :
           currentReviews.map((item, index) => {
-            return <CommentFullCard key={index} text={item.text} userId={item.user_id} name={item.user_email} filmId={state.id} date={item.createdAt} />
+            if (item.user_id != item.parent) {
+              const elem =
+                <CommentFullCard
+                  key={index}
+                  text={item.text}
+                  userId={item.user_id}
+                  name={item.user_email}
+                  filmId={state.id}
+                  date={item.createdAt}
+                  parentId={item.parent}
+                  children={true}
+                  commentId={item.id}
+                />
+              if (dict[item.parent ?? 0]) {
+                dict[item.parent ?? 0] = [...dict[item.parent ?? 0], elem]
+              }
+            } else {
+              const elem =
+                <CommentFullCard
+                  key={index}
+                  text={item.text}
+                  userId={item.user_id}
+                  name={item.user_email}
+                  filmId={state.id}
+                  date={item.createdAt}
+                  parentId={item.parent}
+                  children={false}
+                  commentId={item.id}
+                />
+              if (dict[item.parent ?? 0] == undefined) {
+                dict[item.parent ?? 0] = [elem]
+              } else {
+                dict[`${(item.parent ?? 0) + Math.random()}`] = [elem]
+              }
+            }
           })
       }
+      {Object.entries(dict).map((item) => item[1])}
     </>
   )
 }
