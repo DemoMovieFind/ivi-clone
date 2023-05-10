@@ -9,10 +9,10 @@ export interface SliderElementProps {
   country: string;
 }
 
-export default function SliderElement({
+const SliderElement = ({
   className,
   country,
-}: SliderElementProps) {
+}: SliderElementProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const urlParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlParams.entries())
@@ -64,3 +64,5 @@ export default function SliderElement({
     </div>
   );
 }
+
+export default SliderElement;

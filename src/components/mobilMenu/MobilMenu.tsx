@@ -7,7 +7,7 @@ interface MobilMenuProps {
   className?: string;
 }
 
-export default function MobilMenu({ className }: MobilMenuProps) {
+const MobilMenu = ({ className }: MobilMenuProps) => {
   return (
     <div className={clsx(styles.tabBarPlate, className)}>
       <div className={styles.tabBar}>
@@ -90,3 +90,5 @@ export default function MobilMenu({ className }: MobilMenuProps) {
     </div>
   );
 }
+
+export default MobilMenu;

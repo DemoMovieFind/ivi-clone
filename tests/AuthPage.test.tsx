@@ -1,8 +1,8 @@
 import {screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import AuthPage from './AuthPage';
-import TestWrapper from '../../../tests/TestWrapper';
+import AuthPage from '../src/pages/auth/AuthPage';
+import TestWrapper from './TestWrapper';
 
 describe('Test Auth Form',() => {
   test('check correct title after switch state',() => {
