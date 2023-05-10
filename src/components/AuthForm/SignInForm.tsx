@@ -27,6 +27,7 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
             {intl.formatMessage({id:'sign_in_your_email'})}
         </label>
         <input
+          data-testid="sign-in-input-email"
           className={styles.input}
           type= 'email'
           id="email"
@@ -44,7 +45,7 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
           onKeyUp={() => {trigger("email")}}
         ></input>
         {errors.email && (
-        <small className={styles.error}>{`${errors.email.message}`}</small>
+        <small data-testid="sign-in-email-error" className={styles.error}>{`${errors.email.message}`}</small>
         )}
       </div>
       <div>
@@ -54,6 +55,7 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
             {intl.formatMessage({id:'sign_in_your_password'})}
         </label>
         <input
+          data-testid="sign-in-input-password"
           id="password"
           type= 'password'
           autoComplete='off'
@@ -73,10 +75,10 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
           onKeyUp={() => {trigger("password")}}
         ></input>
         {errors.password && (
-        <small className={styles.error}>{`${errors.password.message}`}</small>
+        <small data-testid="sign-in-password-error" className={styles.error}>{`${errors.password.message}`}</small>
         )}
       </div>
-      <Button type="submit" children={intl.formatMessage({
+      <Button type="submit" data-testid="sign-in-submit" children={intl.formatMessage({
             id:'sign_in_enter'
           })}/>
     </form>

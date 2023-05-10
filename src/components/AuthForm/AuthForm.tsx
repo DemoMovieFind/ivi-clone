@@ -24,7 +24,7 @@ const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
       typeOfData:confirmPassword === undefined ? 'signin' : 'signup',
       userType,
     }
-    handleSubmit(dataToSend)
+    handleSubmit(dataToSend);
   }
   const signInForm = <SignInForm onHandleSubmit={handleForm}/>;
   const signUpForm = <SignUpForm onHandleSubmit={handleForm}/>;
