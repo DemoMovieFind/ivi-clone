@@ -49,6 +49,7 @@ const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
     <div className={styles.auth}>
       {form}
       <Button 
+        data-testid="auth-switch-form-btn"
         onPointerDown={handleFormSwitch} 
         appearance='default' 
         size="small" 

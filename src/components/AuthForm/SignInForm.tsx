@@ -19,7 +19,7 @@ const SignInForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignInFormPro
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onHandleSubmit)}>
-      <h5 className={styles.title}><FormattedMessage id="sign_in_title" /></h5>
+      <h5 data-testid="sign-in-form-title" className={styles.title}><FormattedMessage id="sign_in_title" /></h5>
       <div>
         <label 
           htmlFor="email" 

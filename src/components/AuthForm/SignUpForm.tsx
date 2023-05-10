@@ -20,7 +20,7 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
   
   return(
     <form className={styles.form} onSubmit={handleSubmit(onHandleSubmit)}>
-      <h5 className={styles.title}><FormattedMessage id="sign_up_title" /></h5>
+      <h5 data-testid="sign-up-form-title" className={styles.title}><FormattedMessage id="sign_up_title" /></h5>
       <div>
         <label 
           htmlFor="email" 
