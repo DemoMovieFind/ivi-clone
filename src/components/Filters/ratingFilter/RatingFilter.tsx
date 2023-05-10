@@ -72,8 +72,15 @@ const RatingFilter: FC<RatingFilterProps> = ({
   }, [maxVal, getPercent]);
 
   useEffect(() => {
-    setSearchParams({ ...params, rating: `${minVal} ${maxVal}` });
+    const timeOutId = setTimeout(() => setSearchParams({ ...params, rating: `${minVal} ${maxVal}` }), 500);
+    return () => clearTimeout(timeOutId);
   }, [minVal, maxVal]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSearchParams({})
+    }, 600);
+  }, [])
 
   const refLeftValue = useRef<HTMLInputElement>(null);
   const refRightValue = useRef<HTMLInputElement>(null);

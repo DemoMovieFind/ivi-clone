@@ -3,12 +3,18 @@ import styles from './CommentFullCard.module.css'
 import { FormattedMessage } from 'react-intl';
 import { Button } from '../buttons/Button';
 import CommentAnswerFrom from '../commentAnswerForm/CommentAnswerFrom';
+import { AuthService } from '../../services/AuthService';
+import axios from 'axios';
 
 export interface CommentFullCardPropsType {
   userId?: number;
   name?: string;
   date?: string;
   text?: string;
+  parentId?: number;
+  filmId?: number;
+  children?: boolean;
+  commentId?: number;
 }
 
 const CommentFullCard = ({
@@ -19,27 +25,43 @@ const CommentFullCard = ({
   Все просто: человеку продают идею, что у компании все будет хорошо.
   Кто считает, что в фильме слишком много секса и наркотиков, почитайте книгу.
   Вот там их действительно дофига.`,
+  parentId,
+  filmId,
+  children,
+  commentId,
 }: CommentFullCardPropsType) => {
 
   const [showMore, setShowMore] = useState(false)
   const [showExpandElem, setShowExpandElem] = useState(false)
-  const [userName, setUserName] = useState('')
-  const [commentDate, setCommentDate] = useState('')
+
+  const lang = localStorage.getItem('lang') ?? 'ru-RU';
+  date.length > 15 ?
+    date = new Date(date).toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })
+    :
+    ''
+
+  const token = localStorage.getItem('token') ?? '';
+  const decoded = AuthService.getDecodedToken(token);
 
 
+  const [isAdmin, setIsAdmin] = useState(false)
+  useEffect(() => {
+    for (let i = 0; i < decoded.roles.length; i++) {
+      if (decoded.roles[i].value == 'admin') setIsAdmin(true)
+    }
+  })
 
-  const getUserName = async (userId: number) => {
-    const token = localStorage.getItem('token') ?? '';
-    const lang = localStorage.getItem('lang') ?? 'ru-RU';
-
-    await fetch(`http://188.120.248.77/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
-      .then(res => res.json())
-      .then(data => {
-        date = new Date(data.createdAt).toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" })
-        setCommentDate(date)
-        setUserName(data.email)
-      })
+  const deleteComment = async (commentId: number) => {
+    await axios.delete(`http://188.120.248.77/reviews/${commentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(() => window.location.reload())
   }
+
 
   useEffect(() => {
     if (text.length < 145) {
@@ -47,7 +69,6 @@ const CommentFullCard = ({
     } else {
       setShowExpandElem(true)
     }
-    getUserName(userId)
   }, [])
 
 
@@ -78,9 +99,9 @@ const CommentFullCard = ({
   const [answersList, setAnswersList] = useState<JSX.Element[]>([])
 
 
-  const createAnswer = () => {
+  const createAnswer = (parentId: number) => {
     if (localStorage.getItem('token')) {
-      setAnswersList([...answersList, <CommentAnswerFrom />])
+      setAnswersList([...answersList, <CommentAnswerFrom parentId={parentId} filmId={filmId} />])
     } else {
       location.href = '/auth'
     }
@@ -88,24 +109,25 @@ const CommentFullCard = ({
 
 
   return (
-    <ul className={styles.ul} id={userId.toString()}>
+    <ul className={styles.ul} style={children ? { marginLeft: '50px', width: '92%' } : {}} id={userId.toString()}>
       <div className={styles.commentFullContainer} id={userId.toString()}>
         <div className={styles.commentLeftSide}>
-          <div className={styles.commentAvatar}>{name ? name[0] : userName ? userName[0] : 'A'}</div>
+          <div className={styles.commentAvatar}>{name ? name[0] : 'A'}</div>
           <div className={styles.commentFullMainContainer}>
             <div className={styles.commentNameAndDate}>
-              <div className={styles.commentName}>{name ? name : userName ? userName : 'Anonim'}</div>
-              <div className={styles.commentDate}>{commentDate != 'Invalid Date' ? commentDate : '00.00.0000'}</div>
+              <div className={styles.commentName}>{name ? name : 'Anonim'}</div>
+              <div className={styles.commentDate}>{date ? date : '00.00.0000'}</div>
             </div>
             <div className={styles.commentText}>{currentText}</div>
             <div className={styles.commentReactionContainer}>
               {showExpandElem ? more : <></>}
               <div className={styles.commentToAnswerContainer}>
-                <Button onClick={createAnswer} id={userId.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
+                <Button onClick={() => createAnswer(parentId ?? 0)} id={userId.toString()} size='small' children={<FormattedMessage id='comment_answer_btn' />} />
               </div>
             </div>
           </div>
         </div>
+        {isAdmin ? <div className={styles.deleteBtn} onClick={() => deleteComment(commentId ?? 0)}></div> : ''}
         <div className={styles.commentLikesContainer}>
           <div className={styles.like}></div>
           <span className={styles.totalLikes}>36</span>

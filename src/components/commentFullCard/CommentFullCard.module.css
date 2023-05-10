@@ -1,4 +1,5 @@
 .commentFullContainer{
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -22,6 +23,7 @@
   margin-right: 18px;
   font-size: 15px;
   font-weight: 700;
+  width: 30px;
   color: #fff;
   background-color: darkcyan;
   padding: 5px 10px;
@@ -124,4 +126,19 @@
 .answerElem {
   padding-left: 44px;
   list-style: none;
+}
+
+.deleteBtn {
+  position: absolute;
+  background: url('../../image/adminIcon/remove.svg') center center no-repeat;
+  width: 15px;
+  height: 15px;
+  right: 100px;
+  top: 10px;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.deleteBtn:hover {
+  transform: scale(1.3);
 }
