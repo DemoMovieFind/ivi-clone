@@ -85,7 +85,12 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CardCommentItem: React.FC<{ item: any }> = (item: any) => {
-    return <CommentCard text={item.item.text} userId={item.item.user_id} date={item.item.createdAt} />;
+    return <CommentCard
+      text={item.item.text}
+      userId={item.item.user_id}
+      date={item.item.createdAt}
+      name={item.item.user_email}
+    />;
   }
 
   const html = document.getElementsByTagName('html')[0];

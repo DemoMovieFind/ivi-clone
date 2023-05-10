@@ -23,7 +23,7 @@ export const DefaultFilter = ({ className }: DefaultFilterProps) => {
       setSearchParams("");
       setTimeout(() => {
         setSearchParams("");
-      }, 100);
+      }, 600);
     }
   };
 
