@@ -28,8 +28,9 @@ export class AuthService {
     const response = (await api.post(endpoint,{email,password}));
     if (response.status === 201) {
       const token:string = response.data.token;
+      const refreshToken:string = response.data.refreshToken;
       const decoded:JWTTokenDecodedType = jwt_decode(token);
-      return {decoded,token,status:201};
+      return {decoded,token,status:201,refreshToken};
     }
     return null;
   }

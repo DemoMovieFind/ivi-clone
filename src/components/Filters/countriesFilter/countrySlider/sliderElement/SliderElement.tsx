@@ -20,8 +20,6 @@ const SliderElement = ({
 
 
   const pick = (e: any) => {
-    console.log(e.target);
-
     let currentTargetValue = '';
     e.target.textContent.length != 0 ?
       currentTargetValue = e.target.textContent

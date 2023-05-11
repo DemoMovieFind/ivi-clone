@@ -24,6 +24,7 @@ const localStorageMock = (function () {
   };
 })();
 
+// eslint-disable-next-line no-undef
 Object.defineProperty(window, "localStorage", { value: localStorageMock });
 
 export default localStorageMock;
