@@ -77,7 +77,6 @@ const ChangePage = () => {
         Accept: 'application/json'
       }
     });
-    console.log(response);
     if (response.status === 200) {
       navigate('/admin');
       dispatch(updateFilm(dataTosave));

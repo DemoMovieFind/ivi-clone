@@ -11,7 +11,7 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-export default function FilmsPage() {
+const FilmsPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
@@ -157,3 +157,5 @@ export default function FilmsPage() {
     </div>
   );
 }
+
+export default FilmsPage;

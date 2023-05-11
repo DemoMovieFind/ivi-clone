@@ -15,13 +15,13 @@ interface HeaderDropDownProps {
   sideContent: Column[];
 }
 
-export default function HeaderDropDown({
+const HeaderDropDown = ({
   className,
   doubleColumn,
   singleColumnСountries,
   singleColumnYears,
   sideContent,
-}: HeaderDropDownProps) {
+}: HeaderDropDownProps) => {
   return (
     <div className={clsx(styles.headerDropdownBody, className)}>
       <div className={styles.notify}>
@@ -100,3 +100,5 @@ export default function HeaderDropDown({
     </div>
   );
 }
+
+export default HeaderDropDown;
