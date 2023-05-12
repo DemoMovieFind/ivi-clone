@@ -27,7 +27,7 @@ const MainPage = () => {
         setFilms(data);
       })
       .catch((error) => {
-        console.log(error, "error");
+        console.error(error, "error");
       });
   }, []);
 
