@@ -23,8 +23,8 @@ const CommentCard = ({
 
 
   let currentText = '';
-  if (text.length > 95) {
-    currentText = text.slice(0, 96) + '...'
+  if (text.length > 75) {
+    currentText = text.slice(0, 76) + '...'
   } else {
     currentText = text
   }

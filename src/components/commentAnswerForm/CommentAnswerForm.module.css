@@ -38,16 +38,6 @@
   border: 2px solid #322c4a;
   overflow-wrap: break-word;
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-}
-
-.commentFormText:focus {
-  outline: none;
-}
-.commentFormText::placeholder {
-  color: #fff;
-}
-
-.commentFormText {
   overflow: auto;
   word-break: break-word;
   border-radius: 20px;
@@ -55,6 +45,13 @@
   max-height: 300px;
   min-width: 380px;
   max-width: 380px;
+}
+
+.commentFormText:focus {
+  outline: none;
+}
+.commentFormText::placeholder {
+  color: #fff;
 }
 
 .commentFormSubmit{
@@ -81,4 +78,28 @@
 
 .commentFormSubmit:active {
   transform: scale(0.9);
+}
+
+@media (max-width: 1160px) {
+  .commentFormText {
+    min-height: 100px;
+    max-height: 200px;
+    min-width: 230px;
+    max-width: 230px;
+  }
+
+  .commentFormSubmit{
+    left: 135px;
+  }
+
+  .commentTextContainer{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .commentTextError{
+    margin-top: 0px;
+  }
 }
