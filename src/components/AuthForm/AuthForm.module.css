@@ -1,9 +1,10 @@
-.auth{
+.auth {
   max-width: 320px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
 .form {

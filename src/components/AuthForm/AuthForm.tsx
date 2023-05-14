@@ -5,12 +5,16 @@ import { useIntl } from "react-intl";
 import SignUpForm from "./SignUpForm";
 import styles from './AuthForm.module.css';
 import { FieldValues } from "react-hook-form";
+import { IconButton } from "../buttons/IconButton/IconButton";
 
 export type OutputAuthForm = {
-  email:string,
-  password:string,
-  typeOfData:'signin'|'signup',
-  userType:'user'|'admin',
+  email?:string,
+  password?:string,
+  accessToken?:string,
+  expiresIn?:number,
+  typeOfData:'signin'|'signup'|'vk'|'google',
+  userType?:'user'|'admin',
+  userId?:number,
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -53,6 +57,12 @@ const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
         appearance='default' 
         size="small" 
         children={intl.formatMessage({id:textId})}/>
+      <div>
+        <IconButton 
+          name="vk" 
+          href="https://oauth.vk.com/authorize?client_id=51637196&display=page&redirect_uri=http://localhost:3006/auth&response_type=token&v=5.131"
+        />
+      </div>
     </div>
   )
 }

@@ -22,6 +22,18 @@ const AuthPage = () => {
   }
 
   useEffect(() => {
+    const uriParams = new URLSearchParams(document.location.hash);
+    if (uriParams.get('#access_token')) {
+      dispatch(sendAuth({
+        expiresIn: Number(uriParams.get('expires_in')) ?? 0,
+        accessToken:uriParams.get('#access_token') ?? '',
+        typeOfData:'vk',
+        userId:51637196,
+      }))
+    }
+  }, [document.location.hash]);
+
+  useEffect(() => {
     if (authState.isAuthenticated) {
       navigate('/');
     }

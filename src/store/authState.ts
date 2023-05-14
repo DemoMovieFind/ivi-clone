@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export type AuthState = {
   token: string,
+  refreshToken:string,
   status: null | 'loading' | 'resolved' | 'rejected',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: null | any,
@@ -15,6 +16,7 @@ export type AuthState = {
 
 const initialState: AuthState = {
   token: '',
+  refreshToken:'',
   status:null,
   error:null,
   isAuthenticated: false,
@@ -34,15 +36,13 @@ if (localStorage.getItem('token')!== undefined) {
 export const sendAuth = createAsyncThunk(
   'auth/sendAuth',
   async (payload:OutputAuthForm,{ rejectWithValue }) => {
-    const {email,password,typeOfData,userType} = payload;
     try {
-      const response = await AuthService.getTokenOrNull(email,password,typeOfData,userType);
+      const response = await AuthService.getTokenOrNull(payload);
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return  rejectWithValue(error.message);
       }
-      return  rejectWithValue(error);
     }
   }
 )
@@ -68,8 +68,9 @@ export const authReducer = createSlice({
     builder.addCase(sendAuth.fulfilled, (state,action) => {
       state.status = 'resolved';
       if (action.payload !== null) {
-        if (action.payload.status === 201) {
-          state.token = action.payload.token??'';
+        if (action.payload?.status === 201) {
+          state.token = action.payload.token;
+          state.refreshToken = action.payload.refreshToken;
           state.decoded = action.payload.decoded;
           state.isAuthenticated = true;
           state.error = null;
