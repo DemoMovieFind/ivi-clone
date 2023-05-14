@@ -15,7 +15,6 @@ import ChangePage from "./pages/change/ChangePage";
 import FilmWatchCard from "./components/filmWatchCard/FilmWatchCard";
 import PersonCard from "./components/personCard/PersonCard";
 import AboutFilmContainer from "./pages/aboutFilmContainer/AboutFilmContainer";
-import AuthGooglePage from "./authGoogle";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(
@@ -26,23 +25,22 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <GoogleOAuthProvider clientId="64086974939-oijgmdetcv1c9a6envjks8qoov02adgp.apps.googleusercontent.com">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Template content={<MainPage />} />} />
-          <Route path="/auth" element={<Template content={<AuthPage />} />} />
-          <Route path="/authGoogle" element={<AuthGooglePage />} />
-          <Route path="/movies" element={<Template content={<FilmsPage />} />} />
-          <Route element={<PrivateRoute />}>
-            <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
-            <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
-          </Route>
-          <Route path="/movies/:id" element={<Template content={<FilmWatchCard />} />} />
-          <Route path="/movies/:id/comments" element={<Template content={<AboutFilmContainer props={'comments'} />} />} />
-          <Route path="/movies/:id/persons" element={<Template content={<AboutFilmContainer props={'persons'} />} />} />
-          <Route path="/persons/:id" element={<Template content={<PersonCard />} />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Template content={<MainPage />} />} />
+            <Route path="/auth" element={<Template content={<AuthPage />} />} />
+            <Route path="/movies" element={<Template content={<FilmsPage />} />} />
+            <Route element={<PrivateRoute />}>
+              <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
+              <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
+            </Route>
+            <Route path="/movies/:id" element={<Template content={<FilmWatchCard />} />} />
+            <Route path="/movies/:id/comments" element={<Template content={<AboutFilmContainer props={'comments'} />} />} />
+            <Route path="/movies/:id/persons" element={<Template content={<AboutFilmContainer props={'persons'} />} />} />
+            <Route path="/persons/:id" element={<Template content={<PersonCard />} />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
       </GoogleOAuthProvider>
     </Provider>
   </React.StrictMode>
