@@ -18,7 +18,7 @@ const sliderImage = [marloy, blackPoint, juravli, lastSon, parazit];
 
 const MultipleRows = () => {
   const settings = {
-    className: "center",
+    className: "banner-slider",
     centerMode: true,
     infinite: true,
     centerPadding: "60px",
@@ -64,6 +64,6 @@ const MultipleRows = () => {
       )}
     </div>
   );
-}
+};
 
 export default MultipleRows;
