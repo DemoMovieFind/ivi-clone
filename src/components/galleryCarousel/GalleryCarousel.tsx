@@ -142,9 +142,13 @@ export const GalleryCarousel = <T,>({
                     >
                       {
                         typeSlider !== "comment" ?
-                          ItemComponent && items?.map((item: T, index) => <NavLink key={index} to={`/movies/${filmName}`} state={item}><ItemComponent item={item} /></NavLink>)
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          ItemComponent && items?.map((item: any, index) => <NavLink key={index} to={`/movies/${item.name}`} state={item}><ItemComponent item={item} /></NavLink>)
                           :
-                          ItemComponent && items?.map((item: T, index) => <NavLink key={index} to={`./comments`} state={film}><ItemComponent item={item} /></NavLink>)
+                          items?.length == 0 ?
+                            <div className={styles.noReviews}>Нет отзывов</div>
+                            :
+                            ItemComponent && items?.map((item: T, index) => <NavLink key={index} to={`./comments`} state={film}><ItemComponent item={item} /></NavLink>)
                       }
                       {typeSlider === "comment" ? "" : <CardViewAll />}
                     </div>
@@ -156,12 +160,18 @@ export const GalleryCarousel = <T,>({
               className={styles.slickPrev}
               onClick={goLeft}
               style={
-                isVisible === 0
-                  ? { opacity: "0", pointerEvents: "none" }
-                  : { opacity: "1", pointerEvents: "auto" }
+                items?.length == 0
+                  ? { display: 'none' }
+                  : isVisible === 0
+                    ? { opacity: "0", pointerEvents: "none" }
+                    : { opacity: "1", pointerEvents: "auto" }
               }
             >
-              <div className={styles.iconWrapper}>
+              <div className={styles.iconWrapper} style={
+                items?.length == 0
+                  ? { display: 'none' }
+                  : {}
+              }>
                 <SlickArrowLeft />
               </div>
             </span>
@@ -169,12 +179,18 @@ export const GalleryCarousel = <T,>({
               className={styles.slickNext}
               onClick={goRight}
               style={
-                isVisible === 1
-                  ? { opacity: "0", pointerEvents: "none" }
-                  : { opacity: "1", pointerEvents: "auto" }
+                items?.length == 0
+                  ? { display: 'none' }
+                  : isVisible === 1
+                    ? { opacity: "0", pointerEvents: "none" }
+                    : { opacity: "1", pointerEvents: "auto" }
               }
             >
-              <div className={styles.iconWrapper}>
+              <div className={styles.iconWrapper} style={
+                items?.length == 0
+                  ? { display: 'none' }
+                  : {}
+              }>
                 <SlickArrowRight />
               </div>
             </span>

@@ -20,7 +20,7 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
   
   return(
     <form className={styles.form} onSubmit={handleSubmit(onHandleSubmit)}>
-      <h5 className={styles.title}><FormattedMessage id="sign_up_title" /></h5>
+      <h5 data-testid="sign-up-form-title" className={styles.title}><FormattedMessage id="sign_up_title" /></h5>
       <div>
         <label 
           htmlFor="email" 
@@ -28,6 +28,7 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
             {intl.formatMessage({id:'sign_in_your_email'})}
         </label>
         <input
+          data-testid="sign-up-input-email"
           className={styles.input}
           type= 'email'
           id="email"
@@ -55,6 +56,7 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
             {intl.formatMessage({id:'sign_in_your_password'})}
         </label>
         <input
+          data-testid="sign-up-input-password"
           id="password"
           type= 'password'
           autoComplete='off'
@@ -84,6 +86,7 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
             {intl.formatMessage({id:'sign_up_confirm_password'})}
         </label>
         <input
+          data-testid="sign-up-input-confirm-password"
           id="confirmPassword"
           type='password'
           className={styles.input}
@@ -100,13 +103,14 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
           onKeyUp={() => {trigger("confirmPassowrd")}}
         />
           {errors.confirmPassword && (
-          <small className={styles.error}>{`${errors.confirmPassword.message}`}</small>
+          <small data-testid="sign-up-confirm-password-error" className={styles.error}>{`${errors.confirmPassword.message}`}</small>
           )}
       </div>
       <fieldset>
         <legend className={styles.title}>Выберите тип пользователя:</legend>
           <div>
             <input 
+              data-testid="sign-up-user-radio"
               type="radio" 
               id="user" 
               value="user" 
@@ -116,15 +120,17 @@ const SignUpForm = ({onHandleSubmit=(data:FieldValues)=>undefined}:SignUpFormPro
             <label className={styles.title} htmlFor="user">User</label>
           </div>
           <div>
-            <input 
-            type="radio" 
-            id="admin" 
-            value="admin" 
-            {...register("userType")}/>
+            <input
+              data-testid="sign-up-admin-radio" 
+              type="radio" 
+              id="admin" 
+              value="admin" 
+              {...register("userType")}
+            />
             <label className={styles.title} htmlFor="admin">Admin</label>
           </div>
       </fieldset>
-      <Button type="submit" children={intl.formatMessage({
+      <Button data-testid="sign-up-submit" type="submit" children={intl.formatMessage({
             id:'sign_in_register'
           })}/>
     </form>

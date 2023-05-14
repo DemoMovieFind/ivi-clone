@@ -1,5 +1,5 @@
 .pageSection__container {
-  width: 1216px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 24px;
@@ -8,7 +8,6 @@
 }
 
 .pageSection__containerInner {
-  max-width: 1216px;
   width: 100%;
 }
 
@@ -118,7 +117,6 @@
 }
 
 .slickSlider {
-  margin-right: -20px;
   position: relative;
 }
 
@@ -166,8 +164,6 @@
   cursor: pointer;
   position: absolute;
   display: block;
-  /* opacity: 0; */
-  /* pointer-events: none; */
   right: -48px;
   top: 12px;
   z-index: 1;
@@ -177,4 +173,12 @@
 
 .slickNext .iconWrapper {
   left: auto;
+}
+
+.noReviews {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  font-style: normal;
+  color: #fff;
 }

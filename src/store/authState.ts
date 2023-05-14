@@ -64,6 +64,7 @@ export const authReducer = createSlice({
       state.status = null;
       state.error = null;
       localStorage.setItem('token','');
+      localStorage.setItem('refreshToken','');
     },
     clearError:(state)=>{
       state.error = null;
@@ -85,6 +86,7 @@ export const authReducer = createSlice({
           state.isAuthenticated = true;
           state.error = null;
           localStorage.setItem('token',action.payload.token??'');
+          localStorage.setItem('refreshToken',action.payload.refreshToken??'');
         } 
       }
     }),

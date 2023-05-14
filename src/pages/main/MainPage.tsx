@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { initFilms } from "../../store/filmsInit";
 import SubButton from "../../components/buttons/subButton/SubButton";
 import MultipleRows from "../../components/infinitySlider/InfinitySlider";
+import TestCarousel from "../../components/testCarousel";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
@@ -24,11 +25,10 @@ const MainPage = () => {
     fetch(`https://641b23c71f5d999a445c652b.mockapi.io/Films/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "data");
         setFilms(data);
       })
       .catch((error) => {
-        console.log(error, "error");
+        console.error(error, "error");
       });
   }, []);
 
@@ -51,6 +51,7 @@ const MainPage = () => {
           nameCategory="Комедии"
         />
       )}
+      <TestCarousel nameCategory="Комедии" />
     </div>
   );
 };

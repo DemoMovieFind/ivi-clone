@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './CommentCard.module.css'
 
 export interface CommentCardPropsType {
@@ -18,30 +18,13 @@ const CommentCard = ({
   date
 }: CommentCardPropsType) => {
 
-  const [userName, setUserName] = useState('')
-  const [commentDate, setCommentDate] = useState('')
-
-  const getUserName = async (userId: number) => {
-    const token = localStorage.getItem('token') ?? '';
-    const lang = localStorage.getItem('lang') ?? 'ru-RU';
-
-    await fetch(`http://188.120.248.77/user/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
-      .then(res => res.json())
-      .then(data => {
-        date = new Date(data.createdAt).toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" })
-        setCommentDate(date)
-        setUserName(data.email)
-      })
-  }
-
-  useEffect(() => {
-    getUserName(userId)
-  }, [])
+  const lang = localStorage.getItem('lang') ?? 'ru-RU';
+  date = new Date(date ?? '').toLocaleDateString(lang, { year: "numeric", month: "long", day: "numeric" })
 
 
   let currentText = '';
-  if (text.length > 95) {
-    currentText = text.slice(0, 96) + '...'
+  if (text.length > 75) {
+    currentText = text.slice(0, 76) + '...'
   } else {
     currentText = text
   }
@@ -50,11 +33,11 @@ const CommentCard = ({
   return (
     <div className={styles.commentContainer} id={userId.toString()}>
       <div>
-        <div className={styles.commentName}>{name ? name : userName ? userName : 'Anonim'}</div>
+        <div className={styles.commentName}>{name ? name : 'Anonim'}</div>
         <div className={styles.commentText}>{currentText}</div>
       </div>
       <div className={styles.commentBottom}>
-        <div className={styles.commentDate}>{commentDate != 'Invalid Date' ? commentDate : '00.00.0000'}</div>
+        <div className={styles.commentDate}>{date ? date : '00.00.0000'}</div>
         <div className={styles.commentLikesContainer}>
           <div className={styles.like}></div>
           <span className={styles.totalLikes}>36</span>

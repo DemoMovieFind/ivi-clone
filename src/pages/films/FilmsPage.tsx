@@ -8,7 +8,10 @@ import { TitlePage } from "../../components/titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const FilmsPage = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
 

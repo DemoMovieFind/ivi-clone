@@ -34,7 +34,7 @@ const AuthForm = ({ handleSubmit, handleGoogle }:AuthFormProps) => {
       typeOfData:confirmPassword === undefined ? 'signin' : 'signup',
       userType,
     }
-    handleSubmit(dataToSend)
+    handleSubmit(dataToSend);
   }
   const signInForm = <SignInForm onHandleSubmit={handleForm}/>;
   const signUpForm = <SignUpForm onHandleSubmit={handleForm}/>;
@@ -59,6 +59,7 @@ const AuthForm = ({ handleSubmit, handleGoogle }:AuthFormProps) => {
     <div className={styles.auth}>
       {form}
       <Button 
+        data-testid="auth-switch-form-btn"
         onPointerDown={handleFormSwitch} 
         appearance='default' 
         size="small" 

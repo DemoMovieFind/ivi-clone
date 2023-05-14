@@ -53,3 +53,11 @@
   font-size: 13px;
   line-height: 16px;
 }
+
+@media (max-width: 1160px) {
+  .iviRatingCardContainer {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

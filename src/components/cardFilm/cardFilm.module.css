@@ -8,8 +8,9 @@
 }
 
 .default {
-  width: 153px;
-  height: 278px;
+  width: 100%;
+  /* max-width: 153px; */
+  max-height: 278px;
 }
 
 .truncated img {
@@ -20,13 +21,15 @@
 
 .default .imageWrapper {
   position: relative;
-  width: 153px;
-  height: 234px;
+  width: 100%;
+  /* max-width: 153px; */
+  max-height: 234px;
 }
 
 .default img {
-  width: 153px;
-  height: 234px;
+  width: 100%;
+  /* max-width: 153px; */
+  max-height: 234px;
   border-radius: 8px;
   transition: 1s;
 }
