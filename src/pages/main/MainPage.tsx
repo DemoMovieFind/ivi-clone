@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { initFilms } from "../../store/filmsInit";
 import SubButton from "../../components/buttons/subButton/SubButton";
 import MultipleRows from "../../components/infinitySlider/InfinitySlider";
+import TestCarousel from "../../components/testCarousel";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
@@ -50,6 +51,7 @@ const MainPage = () => {
           nameCategory="Комедии"
         />
       )}
+      <TestCarousel nameCategory="Комедии" />
     </div>
   );
 };

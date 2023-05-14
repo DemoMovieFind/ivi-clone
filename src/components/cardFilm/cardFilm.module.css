@@ -8,7 +8,8 @@
 }
 
 .default {
-  max-width: 153px;
+  width: 100%;
+  /* max-width: 153px; */
   max-height: 278px;
 }
 
@@ -20,12 +21,14 @@
 
 .default .imageWrapper {
   position: relative;
-  max-width: 153px;
+  width: 100%;
+  /* max-width: 153px; */
   max-height: 234px;
 }
 
 .default img {
-  max-width: 153px;
+  width: 100%;
+  /* max-width: 153px; */
   max-height: 234px;
   border-radius: 8px;
   transition: 1s;

@@ -1,6 +1,6 @@
 .seoBlock {
-  width: 1216px;
-  margin-left: auto;
+  max-width: 930px;
+  margin-left: 0;
   margin-right: auto;
   padding-top: 24px;
   padding-bottom: 24px;
@@ -15,7 +15,7 @@
 .clause {
   padding-left: 12px;
   padding-right: 12px;
-  width: 75%;
+
   font-size: 15px;
   line-height: 22px;
   font-weight: 400;
