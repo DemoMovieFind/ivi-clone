@@ -87,3 +87,18 @@
   opacity: 1;
   border-bottom: 4px solid #ea003d;
 }
+
+@media (max-width: 1160px) {
+  .commentsPageContainer {
+    justify-content: flex-start;
+  }
+
+  .main {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .filmCard {
+    display: none;
+  }
+}

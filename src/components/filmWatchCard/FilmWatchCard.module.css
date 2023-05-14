@@ -240,3 +240,20 @@
 .filmWatchDetailsBtn:active {
   color: rgba(255,255,255,.72);
 }
+
+
+@media (max-width: 1160px) {
+  .filmWatchMovieSide {
+    position: static;
+    width: 100%;
+  }
+
+  .filmWatchInfoSide {
+    width: 100%;
+  }
+
+  .filmWatchActorsContainer {
+    justify-content: center;
+    row-gap: 20px;
+  }
+}

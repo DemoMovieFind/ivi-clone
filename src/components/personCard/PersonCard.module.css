@@ -88,6 +88,7 @@
   margin-top: 24px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -116,4 +117,23 @@
   font-size: 100%;
   font-weight: 500;
   color: rgba(255,255,255,.56);
+}
+
+@media (max-width: 1160px) {
+  .personCardContainer {
+    width: 100%;
+    margin: 30px auto;
+  }
+
+  .titleName {
+    font-size: 46px;
+  }
+
+  .filmsContainer {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
 }

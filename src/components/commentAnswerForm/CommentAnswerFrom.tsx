@@ -73,10 +73,10 @@ const CommentAnswerFrom = ({ parentId, filmId }: CommentAnswerFromPropsType) => 
       <div className={styles.commentFormContainer}>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.commentForm}>
           <div className={styles.commentTextContainer}>
-            <textarea className={styles.commentFormText} {...register('text', { required: true, minLength: 10 })} placeholder={intl.formatMessage({ id: 'comment_text_placeholder' })} ></textarea>
             {errors.text && <span className={styles.commentTextError}>
               <FormattedMessage id='comment_error_text_1' />
             </span>}
+            <textarea className={styles.commentFormText} {...register('text', { required: true, minLength: 10 })} placeholder={intl.formatMessage({ id: 'comment_text_placeholder' })} ></textarea>
           </div>
           <input className={styles.commentFormSubmit} type="submit" value={intl.formatMessage({ id: 'comment_submit_value' })} />
         </form>

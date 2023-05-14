@@ -34,3 +34,10 @@
   box-shadow: 0 1px 0 #fff, inset 0 0 0 #fff;
   cursor: pointer;
 }
+
+@media (max-width: 1160px) {
+  .container {
+    justify-content: flex-start;
+    gap: 5px;
+  }
+}

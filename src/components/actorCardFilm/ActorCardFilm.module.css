@@ -22,3 +22,25 @@
   border-radius: 8px;
   background-color: grey;
 }
+
+@media (max-width: 426px) {
+  .card {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 16px;
+  }
+
+  .card img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

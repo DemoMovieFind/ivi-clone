@@ -3,8 +3,8 @@ import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
 export default function LoginPage() {
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState(null);
+  const [user, setUser] = useState<any>([]);
+  const [profile, setProfile] = useState<any>(null);
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),

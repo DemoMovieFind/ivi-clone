@@ -5,6 +5,7 @@ import { Button } from '../buttons/Button';
 import CommentAnswerFrom from '../commentAnswerForm/CommentAnswerFrom';
 import { AuthService } from '../../services/AuthService';
 import axios from 'axios';
+import clsx from 'clsx';
 
 export interface CommentFullCardPropsType {
   userId?: number;
@@ -109,7 +110,7 @@ const CommentFullCard = ({
 
 
   return (
-    <ul className={styles.ul} style={children ? { marginLeft: '50px', width: '92%' } : {}} id={userId.toString()}>
+    <ul className={clsx(styles.ul, children ? styles.childrenMargin : '')} id={userId.toString()}>
       <div className={styles.commentFullContainer} id={userId.toString()}>
         <div className={styles.commentLeftSide}>
           <div className={styles.commentAvatar}>{name ? name[0] : 'A'}</div>
