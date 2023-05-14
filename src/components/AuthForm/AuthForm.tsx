@@ -4,8 +4,10 @@ import SignInForm from "./SignInForm";
 import { useIntl } from "react-intl";
 import SignUpForm from "./SignUpForm";
 import styles from './AuthForm.module.css';
+import iconButtonStyles from '../buttons/IconButton/IconButton.module.css';
 import { FieldValues } from "react-hook-form";
 import { IconButton } from "../buttons/IconButton/IconButton";
+import { ImgIcon } from "../icons/ImgIcon";
 
 export type OutputAuthForm = {
   email?:string,
@@ -17,8 +19,12 @@ export type OutputAuthForm = {
   userId?:number,
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
+export type AuthFormProps = {
+  handleSubmit:(data:OutputAuthForm) => void,
+  handleGoogle:() => void,
+}
+
+const AuthForm = ({ handleSubmit, handleGoogle }:AuthFormProps) => {
   const intl = useIntl();
   const handleForm = (data:FieldValues) => {
     const { email, password,confirmPassword,userType } = data;
@@ -57,11 +63,15 @@ const AuthForm = ({handleSubmit =(data:OutputAuthForm)=>undefined}) => {
         appearance='default' 
         size="small" 
         children={intl.formatMessage({id:textId})}/>
-      <div>
+      <div className={styles.buttonWrapper}>
         <IconButton 
           name="vk" 
           href="https://oauth.vk.com/authorize?client_id=51637196&display=page&redirect_uri=http://localhost:3006/auth&response_type=token&v=5.131"
         />
+        <Button 
+          className={iconButtonStyles.button} 
+          onPointerDown={handleGoogle} 
+          children={<ImgIcon appearance="google" className={styles.icon} />}/>
       </div>
     </div>
   )

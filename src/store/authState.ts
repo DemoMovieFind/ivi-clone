@@ -36,12 +36,18 @@ if (localStorage.getItem('token')!== undefined) {
 export const sendAuth = createAsyncThunk(
   'auth/sendAuth',
   async (payload:OutputAuthForm,{ rejectWithValue }) => {
+    const {typeOfData,accessToken} = payload;
     try {
-      const response = await AuthService.getTokenOrNull(payload);
-      return response;
+      if (typeOfData === 'signin' || typeOfData === 'signup' || typeOfData === 'vk') {
+        const response = await AuthService.getTokenOrNull(payload);
+        return response;
+      } else {
+        const response = await AuthService.getGoogleTokenOrNull(accessToken);
+        return response;
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return  rejectWithValue(error.message);
+        return  rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
       }
     }
   }
@@ -59,6 +65,10 @@ export const authReducer = createSlice({
       state.error = null;
       localStorage.setItem('token','');
     },
+    clearError:(state)=>{
+      state.error = null;
+      state.status = null;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(sendAuth.pending, (state) => {
@@ -85,7 +95,7 @@ export const authReducer = createSlice({
   },
 });
 
-export const { logOut } = authReducer.actions;
+export const { logOut,clearError } = authReducer.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 

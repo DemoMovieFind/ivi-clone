@@ -1,23 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AuthForm from "../../components/AuthForm/AuthForm";
 import { OutputAuthForm } from "../../components/AuthForm/AuthForm";
-import { selectAuth, sendAuth } from "../../store/authState";
+import { clearError, selectAuth, sendAuth } from "../../store/authState";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import styles from "./AuthPage.module.css";
 import Loader from "../../components/loader/Loader";
 import Modal from "../../components/modalWindow/Modal";
 import { useNavigate } from "react-router-dom";
+import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [googleUser, setGoogleUser] = useState<
+    Omit<TokenResponse, "error" | "error_description" | "error_uri"> | null
+    >(null);
   const authState = useAppSelector(selectAuth);
   const handleAuth = (data:OutputAuthForm) => {
     dispatch(sendAuth(data));
     return undefined;
   }
 
+  const handleGoogle = () => {
+    googleLogin();
+  }
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) => setGoogleUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
   const handleModalClose = () => {
+    dispatch(clearError());
     navigate('/');
   }
 
@@ -34,6 +49,17 @@ const AuthPage = () => {
   }, [document.location.hash]);
 
   useEffect(() => {
+    if (googleUser?.access_token) {
+      const token = googleUser.access_token;
+      if (token !== null) {
+        dispatch(sendAuth({
+          typeOfData:'google',accessToken:token,
+        }))
+      }
+    }
+  }, [googleUser]);
+
+  useEffect(() => {
     if (authState.isAuthenticated) {
       navigate('/');
     }
@@ -41,7 +67,7 @@ const AuthPage = () => {
 
   return (
     <div className={styles.auth}>
-      <AuthForm handleSubmit={handleAuth}/>
+      <AuthForm handleSubmit={handleAuth} handleGoogle={handleGoogle}/>
 
       {authState.status === 'loading' && <Loader/>}
 

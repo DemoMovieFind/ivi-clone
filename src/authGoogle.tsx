@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { useState, useEffect } from "react";
+import { googleLogout, useGoogleLogin  } from "@react-oauth/google";
 import axios from "axios";
 
-const LoginPage = () => {
-  const [user, setUser] = useState<any>([]);
-  const [profile, setProfile] = useState<any>(null);
+const AuthGooglePage = () => {
+  const [user, setUser] = useState<any>(null);
+
+  const [profile, setProfile] = useState<{
+    id: string, 
+    email: string,
+    verified_email: boolean, 
+    name: string, given_name: string, 
+    picture: string, 
+    locale: string, 
+  }|null>(null);
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
@@ -13,11 +21,14 @@ const LoginPage = () => {
 
   if (user.access_token) {
     console.log("Записываем Токен");
-    localStorage.setItem("token", user.access_token);
+    localStorage.setItem("tokenGoogle", user.access_token);
+    console.log('user');
+    console.log(user);
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("tokenGoogle");
+    console.log('token')
     console.log(token);
 
     if (token !== null) {
@@ -42,12 +53,13 @@ const LoginPage = () => {
   const logOut = () => {
     googleLogout();
     setProfile(null);
-    localStorage.removeItem("token");
+    localStorage.removeItem("tokenGoogle");
   };
+  console.log('profile');
   console.log(profile);
   return (
     <div>
-      <h2>React Google Login</h2>
+      <h2>Google Login</h2>
       <br />
       <br />
       {profile ? (
@@ -67,4 +79,4 @@ const LoginPage = () => {
   );
 }
 
-export default LoginPage;
+export default AuthGooglePage;
