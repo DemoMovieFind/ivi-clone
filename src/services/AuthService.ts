@@ -92,11 +92,11 @@ export class AuthService {
         try {
           const isUserRegistered = await api.get(`/check-email/${email}`);
           if (isUserRegistered.status === 200) {
-          response = await api.post('/registration',{
-          email:profile.email,
-          password:AuthService.preparePassword(profile.email)
-        });
-        }
+            response = await api.post('/registration',{
+              email:profile.email,
+              password:AuthService.preparePassword(profile.email)
+            });
+          }
         } catch (error) {
           if (axios.isAxiosError(error) && error.response?.status === 400) {
             response = await api.post('/login',{
@@ -115,5 +115,4 @@ export class AuthService {
       return null;
     }
   }
-
 }
