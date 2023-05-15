@@ -10,7 +10,7 @@ interface TestCarouselProps<T> {
   nameCategory?: string;
 }
 
-const TestCarousel = <T,>({ items, nameCategory }: TestCarouselProps<T>) => {
+const TestCarousel = <T,>({ nameCategory }: TestCarouselProps<T>) => {
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
   useEffect(() => {
