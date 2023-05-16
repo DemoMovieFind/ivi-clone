@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";

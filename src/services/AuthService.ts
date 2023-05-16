@@ -1,6 +1,8 @@
 
 import jwt_decode from "jwt-decode";
 import { api } from "./HttpService";
+import { OutputAuthForm } from "../components/AuthForm/AuthForm";
+import axios from "axios";
 
 export type JWTTokenDecodedType = {
   email: string,
@@ -14,19 +16,39 @@ export type JWTTokenDecodedType = {
   }>
 }
 
+export type GoogleProfile = {
+  id: string, 
+  email: string,
+  verified_email: boolean, 
+  name: string, given_name: string, 
+  picture: string, 
+  locale: string, 
+}
+
 export class AuthService {
 
-  static async getTokenOrNull(email:string,password:string,typeOfRequest:"signin" | "signup",userType:'user'|'admin'){
+  static async getTokenOrNull(props:OutputAuthForm){
+    const {typeOfData,userType,email,password,accessToken,expiresIn,userId} = props;
+    let response;
     let endpoint = '';
-    if (typeOfRequest === 'signin') {
+    if (typeOfData === 'signin') {
       endpoint = '/login';
-    } else {
+      response = await api.post(endpoint,{email,password});
+    } else if (typeOfData=== 'signup'){
       if (userType === 'admin') {
         endpoint = '/create-test-admin'
       } else endpoint = '/registration';
+      response = await api.post(endpoint,{email,password});
+    } else if (typeOfData === 'vk') {
+      endpoint = '/vk/login';
+      response = await api.post(endpoint,{
+        access_token:accessToken,
+        expires_in:expiresIn,
+        user_id:userId,
+      })
     }
-    const response = (await api.post(endpoint,{email,password}));
-    if (response.status === 201) {
+
+    if (response?.status === 201) {
       const token:string = response.data.token;
       const refreshToken:string = response.data.refreshToken;
       const decoded:JWTTokenDecodedType = jwt_decode(token);
@@ -39,4 +61,30 @@ export class AuthService {
     return jwt_decode(token);
   }
 
+  static async getTokenOfGoogleUserOrNull(accessToken: string|undefined){
+    if (accessToken){
+      const googleUserData = await axios
+      .get(
+        `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${accessToken}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            Accept: "application/json",
+          },
+        }
+      );
+      if (googleUserData.status === 200) {
+        const profile:GoogleProfile = googleUserData.data;
+        const {email} = profile;
+        const response = await api.post(`/google/login?email=${email}`,{});
+        if (response?.status === 201) {
+            const token:string = response.data.token;
+            const refreshToken:string = response.data.refreshToken;
+            const decoded:JWTTokenDecodedType = jwt_decode(token);
+          return {decoded,token,status:201,refreshToken};
+        }
+      }
+      return null;
+    }
+  }
 }

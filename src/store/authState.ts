@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export type AuthState = {
   token: string,
-  refreshToken: string,
+  refreshToken:string,
   status: null | 'loading' | 'resolved' | 'rejected',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: null | any,
@@ -36,15 +36,17 @@ if (localStorage.getItem('token')!== undefined) {
 export const sendAuth = createAsyncThunk(
   'auth/sendAuth',
   async (payload:OutputAuthForm,{ rejectWithValue }) => {
-    const {email,password,typeOfData,userType} = payload;
+    const {typeOfData,accessToken} = payload;
     try {
-      const response = await AuthService.getTokenOrNull(email,password,typeOfData,userType);
-      return response;
+      if (typeOfData === 'signin' || typeOfData === 'signup' || typeOfData === 'vk') {
+        return await AuthService.getTokenOrNull(payload);
+      } else {
+        return await AuthService.getTokenOfGoogleUserOrNull(accessToken);
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return  rejectWithValue(error.message);
+        return  rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
       }
-      return  rejectWithValue(error);
     }
   }
 )
@@ -62,6 +64,10 @@ export const authReducer = createSlice({
       localStorage.setItem('token','');
       localStorage.setItem('refreshToken','');
     },
+    clearError:(state)=>{
+      state.error = null;
+      state.status = null;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(sendAuth.pending, (state) => {
@@ -71,7 +77,7 @@ export const authReducer = createSlice({
     builder.addCase(sendAuth.fulfilled, (state,action) => {
       state.status = 'resolved';
       if (action.payload !== null) {
-        if (action.payload.status === 201) {
+        if (action.payload?.status === 201) {
           state.token = action.payload.token;
           state.refreshToken = action.payload.refreshToken;
           state.decoded = action.payload.decoded;
@@ -89,7 +95,7 @@ export const authReducer = createSlice({
   },
 });
 
-export const { logOut } = authReducer.actions;
+export const { logOut,clearError } = authReducer.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 
