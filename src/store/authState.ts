@@ -39,11 +39,9 @@ export const sendAuth = createAsyncThunk(
     const {typeOfData,accessToken} = payload;
     try {
       if (typeOfData === 'signin' || typeOfData === 'signup' || typeOfData === 'vk') {
-        const response = await AuthService.getTokenOrNull(payload);
-        return response;
+        return await AuthService.getTokenOrNull(payload);
       } else {
-        const response = await AuthService.getGoogleTokenOrNull(accessToken);
-        return response;
+        return await AuthService.getTokenOfGoogleUserOrNull(accessToken);
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {

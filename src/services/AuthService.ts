@@ -3,7 +3,6 @@ import jwt_decode from "jwt-decode";
 import { api } from "./HttpService";
 import { OutputAuthForm } from "../components/AuthForm/AuthForm";
 import axios from "axios";
-import { encode } from 'js-base64';
 
 export type JWTTokenDecodedType = {
   email: string,
@@ -62,19 +61,7 @@ export class AuthService {
     return jwt_decode(token);
   }
 
-  static preparePassword(unpreparedPassword:string):string {
-    const pass = encode(unpreparedPassword);
-    const secret = 'gnlkm.lm';
-    if (pass.length > 8) {
-      return pass.slice(0,8)
-    } else {
-      const length = pass.length;
-      return pass + secret.slice(0,8-length);
-    }
-  }
-
-  static async getGoogleTokenOrNull(accessToken: string|undefined){
-    let response = null;
+  static async getTokenOfGoogleUserOrNull(accessToken: string|undefined){
     if (accessToken){
       const googleUserData = await axios
       .get(
@@ -89,28 +76,13 @@ export class AuthService {
       if (googleUserData.status === 200) {
         const profile:GoogleProfile = googleUserData.data;
         const {email} = profile;
-        try {
-          const isUserRegistered = await api.get(`/check-email/${email}`);
-          if (isUserRegistered.status === 200) {
-            response = await api.post('/registration',{
-              email:profile.email,
-              password:AuthService.preparePassword(profile.email)
-            });
-          }
-        } catch (error) {
-          if (axios.isAxiosError(error) && error.response?.status === 400) {
-            response = await api.post('/login',{
-              email:profile.email,
-              password:AuthService.preparePassword(profile.email)
-            });
-          }
+        const response = await api.post(`/google/login?email=${email}`,{});
+        if (response?.status === 201) {
+            const token:string = response.data.token;
+            const refreshToken:string = response.data.refreshToken;
+            const decoded:JWTTokenDecodedType = jwt_decode(token);
+          return {decoded,token,status:201,refreshToken};
         }
-      }
-      if (response?.status === 201) {
-        const token:string = response.data.token;
-        const refreshToken:string = response.data.refreshToken;
-        const decoded:JWTTokenDecodedType = jwt_decode(token);
-        return {decoded,token,status:201,refreshToken};
       }
       return null;
     }
