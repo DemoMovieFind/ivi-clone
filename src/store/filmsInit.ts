@@ -21,20 +21,47 @@ const initialState: FilmInitState = {
 
 export const initFilms = createAsyncThunk(
   'films/initFilms',
-  async (payload,{ rejectWithValue }) => {
+  async (_,{ rejectWithValue }) => {
     try {
       const response = await api.get('/films/?page=1&take=20');
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return rejectWithValue(error.message);
+        return rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
+      }
+    }
+  }
+)
+
+export const deleteFilmFromServer = createAsyncThunk(
+  'films/deleteFilm',
+  async (payload:{id:number},{ rejectWithValue,dispatch }) => {
+    const {id}= payload;
+    const token = localStorage.getItem('token');
+    try {
+      const response = await api.delete(`/films/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(response)
+      if (response.status === 200) {
+        dispatch(deleteFilm({id}));
+      }
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
       }
     }
   }
 )
 
 export const filmsInitReducer = createSlice({
-  name: 'initFilms',
+  name: 'films',
   initialState,
   reducers: {
     updateFilm:(state,action) => {
@@ -48,6 +75,13 @@ export const filmsInitReducer = createSlice({
             name:genre,
           }
         })
+      }
+    },
+    deleteFilm:(state,action) => {
+      const { id } = action.payload;
+      const filmIndex = state.films.findIndex(film=>film.id === id);
+      if (filmIndex>=1) {
+        state.films.slice(filmIndex,1);
       }
     },
   },
@@ -68,12 +102,25 @@ export const filmsInitReducer = createSlice({
       state.status = 'rejected';
       state.error = action.payload;
       state.isInitialized = false;
+    }),
+    builder.addCase(deleteFilmFromServer.rejected, (state,action) => {
+      state.status = 'rejected';
+      state.error = action.payload;
+    }),
+    builder.addCase(deleteFilmFromServer.pending, (state,action) => {
+      state.status = 'loading';
+      state.error = action.payload;
+    }),
+    builder.addCase(deleteFilmFromServer.fulfilled, (state) => {
+      console.log('resolved deleteFilmFromServer.fulfilled');
+      state.status = 'resolved';
+      state.error = null;
     })
   },
 });
 
 export const selectFilm = (state: RootState) => state.filmsInit;
 
-export const { updateFilm } = filmsInitReducer.actions;
+export const { updateFilm,deleteFilm } = filmsInitReducer.actions;
 
 export default filmsInitReducer.reducer;

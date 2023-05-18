@@ -11,7 +11,7 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { useEffect, useState } from "react";
 import Modal from "../../components/modalWindow/Modal";
 import axios from "axios";
-import { selectFilm, updateFilm } from "../../store/filmsInit";
+import { deleteFilmFromServer, selectFilm, updateFilm } from "../../store/filmsInit";
 
 type Inputs = {
   name_ru:string,
@@ -77,7 +77,6 @@ const ChangePage = () => {
         Accept: 'application/json'
       }
     });
-    console.log(response);
     if (response.status === 200) {
       navigate('/admin');
       dispatch(updateFilm(dataTosave));
@@ -91,7 +90,7 @@ const ChangePage = () => {
   }
 
   const handleDelete = () => {
-    console.log('inside handle delete');
+    dispatch(deleteFilmFromServer({id}));
   }
 
   const handleModalClose = () => {
