@@ -5,6 +5,7 @@ import styles from "./Country.module.css";
 import { CountrySlider } from "./countrySlider/CountrySlider";
 import { CounterList } from "./counterList/CounterList";
 import { useClickAway } from "react-use";
+import { useIntl } from "react-intl";
 
 export interface CountryProps {
   className?: string;
@@ -13,6 +14,7 @@ export interface CountryProps {
 export const Country = ({ className }: CountryProps) => {
   const [isActive, setIsActive] = useState(false);
   const ref = useRef(null);
+  const intl = useIntl();
 
   useClickAway(ref, () => {
     setIsActive(false);
@@ -25,7 +27,7 @@ export const Country = ({ className }: CountryProps) => {
   return (
     <div className={clsx(styles.countryWrapper, className)} ref={ref}>
       <div onClick={open}>
-        <FilterPlank text="Страны" isActive={isActive} />
+        <FilterPlank text={intl.formatMessage({id:'filters_countries'})} isActive={isActive} />
       </div>
 
       <div

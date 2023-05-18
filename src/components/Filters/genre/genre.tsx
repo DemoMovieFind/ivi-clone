@@ -5,6 +5,7 @@ import { clsx } from "clsx";
 import { useState, useRef } from "react";
 import { FilterPlank } from "../../filterPlank/FilterPlank";
 import { useClickAway } from "react-use";
+import { useIntl } from "react-intl";
 
 export interface GenreProps {
   className?: string;
@@ -13,6 +14,7 @@ export interface GenreProps {
 export const Genre = ({ className }: GenreProps) => {
   const [isActive, setIsActive] = useState(false);
   const ref = useRef(null);
+  const intl = useIntl();
 
   useClickAway(ref, () => {
     setIsActive(false);
@@ -25,7 +27,7 @@ export const Genre = ({ className }: GenreProps) => {
   return (
     <div className={clsx(styles.genreWrapper, className)} ref={ref}>
       <div onClick={open}>
-        <FilterPlank text="Жанры" isActive={isActive} />
+        <FilterPlank text={intl.formatMessage({id:'filters_genres'})} isActive={isActive} />
       </div>
 
       <div
