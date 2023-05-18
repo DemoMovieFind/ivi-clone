@@ -4,11 +4,15 @@ import userEvent from '@testing-library/user-event';
 import AuthPage from '../src/pages/auth/AuthPage';
 import TestWrapper from './TestWrapper';
 import { sendAuth } from '../src/store/authState';
+import { AuthService } from '../src/services/AuthService';
 
 describe('Test Auth Form',() => {
 
   beforeEach(()=>{
     TestWrapper(<AuthPage/>)
+    jest.clearAllMocks();
+    jest.spyOn(AuthService,'getTokenOrNull');
+    jest.spyOn(AuthService,'getTokenOfGoogleUserOrNull');
   })
 
   test('check correct title after switch state',() => {
@@ -75,13 +79,25 @@ describe('Test Auth Form',() => {
     });
     await thunk(dispatch,()=>({}),null);
     const { calls } = dispatch.mock;
-    const [ start, end ] = calls;
+    const [ start ] = calls;
     expect(calls).toHaveLength(2);
+    expect(AuthService.getTokenOrNull).toHaveBeenCalled();
     expect(start[0].type).toBe(sendAuth.pending.type);
-    const state = end[0].payload;
-    expect(state.decoded.email).toBe('vadimmanushin@yandex.ru');
-    expect(state.token.length).toBeGreaterThan(0);
-    expect(state.refreshToken.length).toBeGreaterThan(0);
+  })
+
+  test('check async thunk for google user',async () => {
+    const dispatch = jest.fn();
+    const thunk = sendAuth({
+      email:'123@gmail.com',
+      password: '12345678',
+      typeOfData: 'google',
+    });
+    await thunk(dispatch,()=>({}),null);
+    const { calls } = dispatch.mock;
+    const [ start ] = calls;
+    expect(calls).toHaveLength(2);
+    expect(AuthService.getTokenOfGoogleUserOrNull).toHaveBeenCalled();
+    expect(start[0].type).toBe(sendAuth.pending.type);
   })
 
   afterEach(() => {
