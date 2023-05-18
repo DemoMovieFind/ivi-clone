@@ -23,7 +23,7 @@ export const initFilms = createAsyncThunk(
   'films/initFilms',
   async (payload,{ rejectWithValue }) => {
     try {
-      const response = await api.get('/films/?page=1&take=10');
+      const response = await api.get('/films/?page=1&take=20');
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -4,7 +4,7 @@ import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectAuth } from "../../store/authState";
+import { clearError, selectAuth } from "../../store/authState";
 import Loader from "../../components/loader/Loader";
 import { api } from "../../services/HttpService";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
@@ -65,7 +65,7 @@ const ChangePage = () => {
       id:film?.id,
       name:data.name_ru,
       name_en:data.name_en,
-      genre:data.genres.map((genre:{value:string})=>{return genre.value})
+      genre:data.genres.map((genre:{value:string})=>{return genre.value}).filter((genre:string)=>genre.length > 0),
     };
     try {
       const response = await api.request({
@@ -77,13 +77,14 @@ const ChangePage = () => {
         Accept: 'application/json'
       }
     });
+    console.log(response);
     if (response.status === 200) {
       navigate('/admin');
       dispatch(updateFilm(dataTosave));
     }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        setErrorText(error.response?.data?.message);
+        setErrorText(error.response?.data?.message ? error.response?.data?.message : error.message);
         setShowModal(true);
       }
     }
@@ -95,6 +96,7 @@ const ChangePage = () => {
 
   const handleModalClose = () => {
     navigate('/admin');
+    dispatch(clearError());
   }
 
   return (
