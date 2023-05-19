@@ -7,14 +7,15 @@ import { useEffect, useState } from "react";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import ReactPaginate from 'react-paginate';
 import Loader from "../../components/loader/Loader";
-import { useAppSelector } from "../../store/hooks";
-import { selectFilm } from "../../store/filmsInit";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { initFilms, selectFilm } from "../../store/filmsInit";
 
 const AdminPage = ()=> {
   const [ films, setFilms ] = useState<FilmMainCard[]>([]);
   const [ initialFilms, setInitialFilms ] = useState<FilmMainCard[]>([]);
   const filmState = useAppSelector(selectFilm);
   const [ itemOffset, setItemOffset ] = useState(0);
+  const dispatch = useAppDispatch();
   const FILMS_PER_PAGE = 10;
   const endOffset = itemOffset + FILMS_PER_PAGE;
   const currentItems = films.slice(itemOffset, endOffset);
@@ -39,7 +40,7 @@ const AdminPage = ()=> {
     if (filmState.films.length >0) {
       setFilms(filmState.films);
       setInitialFilms(filmState.films)
-    }
+    } else dispatch(initFilms());
   },[filmState.films])
 
   const handlePaginationClick = (event:{selected:number}) => {

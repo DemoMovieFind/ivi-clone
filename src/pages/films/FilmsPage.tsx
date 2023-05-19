@@ -7,13 +7,12 @@ import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
 import { TitlePage } from "../../components/titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useIntl } from "react-intl";
 
 const FilmsPage = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
+  const intl = useIntl();
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
@@ -131,7 +130,7 @@ const FilmsPage = () => {
                   </p>
                 </div>
                 <span className={styles.toggle} onClick={expand}>
-                  {isVisible ? "Свернуть" : "Развернуть"}
+                  {isVisible ? `${intl.formatMessage({id:'films_minimize'})}` : `${intl.formatMessage({id:'films_maximize'})}`}
                 </span>
               </div>
             </div>

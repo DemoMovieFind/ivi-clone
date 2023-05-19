@@ -8,9 +8,11 @@ import { initFilms } from "../../store/filmsInit";
 import SubButton from "../../components/buttons/subButton/SubButton";
 import MultipleRows from "../../components/infinitySlider/InfinitySlider";
 import TestCarousel from "../../components/testCarousel";
+import { useIntl } from "react-intl";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
+  const intl = useIntl();
   useEffect(() => {
     dispatch(initFilms());
   }, []);
@@ -40,7 +42,7 @@ const MainPage = () => {
         <GalleryCarousel
           items={films}
           itemComponent={CardFilmItem}
-          nameCategory="Биография"
+          nameCategory={intl.formatMessage({id:'nav_list_biography'})}
         />
       )}
       <OnlineIvi />
@@ -48,10 +50,10 @@ const MainPage = () => {
         <GalleryCarousel
           items={films}
           itemComponent={CardFilmItem}
-          nameCategory="Комедии"
+          nameCategory={intl.formatMessage({id:'nav_list_comedies'})}
         />
       )}
-      <TestCarousel nameCategory="Комедии" />
+      <TestCarousel nameCategory={intl.formatMessage({id:'nav_list_comedies'})} />
     </div>
   );
 };

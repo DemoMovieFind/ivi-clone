@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import styles from "./ParametersInfo.module.css";
 import clsx from "clsx";
+import { useIntl } from "react-intl";
 
 export interface ParametersInfoProps {
   className?: string;
@@ -10,6 +11,7 @@ export const ParametersInfo: React.FC<ParametersInfoProps> = ({
   className,
 }) => {
   const [searchParams] = useSearchParams();
+  const intl = useIntl();
 
   return (
     <div className={clsx(styles.infoText, className)}>
@@ -19,7 +21,7 @@ export const ParametersInfo: React.FC<ParametersInfoProps> = ({
           ?.split(" ")
           .map((genre) => <span>{genre}, </span>)
       ) : (
-        <span>Все жанры, </span>
+        <span>{`${intl.formatMessage({id:'parameters_genres'})}`}, </span>
       )}
       {searchParams.has("countries") ? (
         searchParams
@@ -27,13 +29,13 @@ export const ParametersInfo: React.FC<ParametersInfoProps> = ({
           ?.split(" ")
           .map((contry) => <span>{contry}, </span>)
       ) : (
-        <span>Все страны, </span>
+        <span>{`${intl.formatMessage({id:'parameters_countries'})}`}, </span>
       )}
 
       {searchParams.has("year") && searchParams.get("year") !== "all" ? (
         <span>{searchParams.get("year")}</span>
       ) : (
-        <span>Все годы</span>
+        <span>{`${intl.formatMessage({id:'parameters_years'})}`}</span>
       )}
 
       {searchParams.has("rating") && searchParams.get("rating") !== "1 10" ? (
