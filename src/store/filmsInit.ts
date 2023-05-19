@@ -47,11 +47,10 @@ export const deleteFilmFromServer = createAsyncThunk(
           'Content-Type': 'application/json'
         }
       });
-      console.log(response)
       if (response.status === 200) {
         dispatch(deleteFilm({id}));
+        return response;
       }
-      return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
@@ -84,6 +83,10 @@ export const filmsInitReducer = createSlice({
         state.films.slice(filmIndex,1);
       }
     },
+    clearError:(state)=>{
+      state.error = null;
+      state.status = null;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(initFilms.pending, (state) => {
@@ -112,7 +115,6 @@ export const filmsInitReducer = createSlice({
       state.error = action.payload;
     }),
     builder.addCase(deleteFilmFromServer.fulfilled, (state) => {
-      console.log('resolved deleteFilmFromServer.fulfilled');
       state.status = 'resolved';
       state.error = null;
     })
@@ -121,6 +123,6 @@ export const filmsInitReducer = createSlice({
 
 export const selectFilm = (state: RootState) => state.filmsInit;
 
-export const { updateFilm,deleteFilm } = filmsInitReducer.actions;
+export const { updateFilm,deleteFilm,clearError } = filmsInitReducer.actions;
 
 export default filmsInitReducer.reducer;

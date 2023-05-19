@@ -4,14 +4,14 @@ import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { clearError, selectAuth } from "../../store/authState";
+import { selectAuth } from "../../store/authState";
 import Loader from "../../components/loader/Loader";
 import { api } from "../../services/HttpService";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { useEffect, useState } from "react";
 import Modal from "../../components/modalWindow/Modal";
 import axios from "axios";
-import { deleteFilmFromServer, selectFilm, updateFilm } from "../../store/filmsInit";
+import { clearError, deleteFilmFromServer, selectFilm, updateFilm } from "../../store/filmsInit";
 
 type Inputs = {
   name_ru:string,
@@ -65,7 +65,7 @@ const ChangePage = () => {
       id:film?.id,
       name:data.name_ru,
       name_en:data.name_en,
-      genre:data.genres.map((genre:{value:string})=>{return genre.value}).filter((genre:string)=>genre.length > 0),
+      genre:data.genres?.map((genre:{value:string})=>{return genre.value}).filter((genre:string)=>genre.length > 0),
     };
     try {
       const response = await api.request({
@@ -91,6 +91,9 @@ const ChangePage = () => {
 
   const handleDelete = () => {
     dispatch(deleteFilmFromServer({id}));
+    if (filmState.status === 'resolved') {
+      navigate('/admin');
+    }
   }
 
   const handleModalClose = () => {
@@ -102,8 +105,7 @@ const ChangePage = () => {
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{intl.formatMessage({id:'change_title'})}</h1>
       {filmState.status === 'loading' && <Loader/>}
-      {showModal && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} 
-                                            body={errorText} />}
+      {(filmState.status === 'rejected'||showModal) && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error?filmState.error:errorText} />}
       {<form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="name_ru">
           {intl.formatMessage({id:'admin_name'})}
