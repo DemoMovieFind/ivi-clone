@@ -8,7 +8,8 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import ReactPaginate from 'react-paginate';
 import Loader from "../../components/loader/Loader";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { initFilms, selectFilm } from "../../store/filmsInit";
+import { initFilms, selectFilm } from "../../store/filmsState";
+import { useNavigate } from "react-router-dom";
 
 const AdminPage = ()=> {
   const [ films, setFilms ] = useState<FilmMainCard[]>([]);
@@ -16,6 +17,7 @@ const AdminPage = ()=> {
   const filmState = useAppSelector(selectFilm);
   const [ itemOffset, setItemOffset ] = useState(0);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const FILMS_PER_PAGE = 10;
   const endOffset = itemOffset + FILMS_PER_PAGE;
   const currentItems = films.slice(itemOffset, endOffset);
@@ -48,10 +50,17 @@ const AdminPage = ()=> {
     setItemOffset(newOffset);
   };
 
+  const handleAddFilm = () => {
+    navigate('/create')
+  }
+
   return (
     <>
     <h1 className={styles.title}>{intl.formatMessage({id:'admin_title'})}</h1>
     {filmState.status === 'loading' && <Loader/>}
+    <Button type="button" appearance="default" onPointerDown={handleAddFilm}
+            children={intl.formatMessage({id:'add_film_title'})}
+    />
     <form className={styles.form} onSubmit={handleSubmit(onHandleSearch)}>
         <label 
           htmlFor="email" 

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { api } from '../services/HttpService';
 import { FilmMainCard } from '../types/entities/FilmMainCard';
 
-export type FilmInitState = {
+export type FilmsState = {
   status: null | 'loading' | 'resolved' | 'rejected',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: null | any,
@@ -12,7 +12,7 @@ export type FilmInitState = {
   films:FilmMainCard[]
 }
 
-const initialState: FilmInitState = {
+const initialState: FilmsState = {
   status:null,
   error:null,
   isInitialized: false,
@@ -59,7 +59,7 @@ export const deleteFilmFromServer = createAsyncThunk(
   }
 )
 
-export const filmsInitReducer = createSlice({
+export const filmsReducer = createSlice({
   name: 'films',
   initialState,
   reducers: {
@@ -121,8 +121,8 @@ export const filmsInitReducer = createSlice({
   },
 });
 
-export const selectFilm = (state: RootState) => state.filmsInit;
+export const selectFilm = (state: RootState) => state.films;
 
-export const { updateFilm,deleteFilm,clearError } = filmsInitReducer.actions;
+export const { updateFilm,deleteFilm,clearError } = filmsReducer.actions;
 
-export default filmsInitReducer.reducer;
+export default filmsReducer.reducer;

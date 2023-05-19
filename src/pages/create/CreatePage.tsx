@@ -1,5 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
-import styles from './ChangePage.module.css';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useNavigate } from "react-router-dom";
+import styles from './CreatePage.module.css';
 import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
@@ -8,10 +9,10 @@ import { selectAuth } from "../../store/authState";
 import Loader from "../../components/loader/Loader";
 import { api } from "../../services/HttpService";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../../components/modalWindow/Modal";
 import axios from "axios";
-import { clearError, deleteFilmFromServer, selectFilm, updateFilm } from "../../store/filmsState";
+import { clearError, selectFilm, updateFilm } from "../../store/filmsState";
 
 type Inputs = {
   name_ru:string,
@@ -19,12 +20,10 @@ type Inputs = {
   genres:{value:string}[],
 };
 
-const ChangePage = () => {
-  const params = useParams();
+const CreatePage = () => {
   const authState = useAppSelector(selectAuth);
   const filmState = useAppSelector(selectFilm);
   const intl = useIntl();
-  const id = Number(params.id) ?? 0;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [film,setFilm] = useState<FilmMainCard|null>(null);
@@ -39,61 +38,13 @@ const ChangePage = () => {
     }
   });
 
-  useEffect(() => {
-    if (filmState.films.length > 0) {
-    const film = filmState.films.find(film=>film.id === id);
-    if (film) {
-      reset({
-      name_ru:film.name,
-      name_en:film.name_en,
-    })
-    setFilm(film);
-    film.genres.forEach((field: { [key: string]: number | string  }, index: number) => {
-      Object.keys(field).forEach((key) => {
-        if (key === 'name'){
-          update(index, {value:`${field[key]}`})
-        }
-      })
-    })
-    }
-  }
-  },[filmState.films])
-
   const onSubmit = async (data:FieldValues) => {
-    setErrorText('');
     const dataTosave = {
-      id:film?.id,
       name:data.name_ru,
       name_en:data.name_en,
       genre:data.genres?.map((genre:{value:string})=>{return genre.value}).filter((genre:string)=>genre.length > 0),
     };
-    try {
-      const response = await api.request({
-      data: dataTosave,
-      method:'put',
-      url:'/film-update',
-      headers:{
-        Authorization: `Bearer ${authState.token}`,
-        Accept: 'application/json'
-      }
-    });
-    if (response.status === 200) {
-      navigate('/admin');
-      dispatch(updateFilm(dataTosave));
-    }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        setErrorText(error.response?.data?.message ? error.response?.data?.message : error.message);
-        setShowModal(true);
-      }
-    }
-  }
-
-  const handleDelete = () => {
-    dispatch(deleteFilmFromServer({id}));
-    if (filmState.status === 'resolved') {
-      navigate('/admin');
-    }
+    console.log(dataTosave);
   }
 
   const handleModalClose = () => {
@@ -103,7 +54,7 @@ const ChangePage = () => {
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.title}>{intl.formatMessage({id:'change_title'})}</h1>
+      <h1 className={styles.title}>{intl.formatMessage({id:'add_film_title'})}</h1>
       {filmState.status === 'loading' && <Loader/>}
       {(filmState.status === 'rejected'||showModal) && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error?filmState.error:errorText} />}
       {<form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -145,14 +96,9 @@ const ChangePage = () => {
           type="submit" 
           title={intl.formatMessage({id:'change_change'})} 
           children={intl.formatMessage({id:'change_change'})}/>
-        <Button 
-          onPointerDown={handleDelete} 
-          appearance="primary" 
-          title={intl.formatMessage({id:'change_delete'})} 
-          children={intl.formatMessage({id:'change_delete'})}/>
       </form>}
     </div>
   )
 }
 
-export default ChangePage;
+export default CreatePage;

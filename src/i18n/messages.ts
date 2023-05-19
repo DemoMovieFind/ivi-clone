@@ -121,6 +121,7 @@ export const messages = {
     admin_genres: "Genres:",
     admin_search: "Search by film name:",
     admin_find: "Search",
+    add_film_title: "Add film",
     change_title: "Change the movie name or genres:",
     change_error: "Required",
     change_change: "Change film",
@@ -189,6 +190,7 @@ export const messages = {
     filters_reset:'Reset filters',
     filters_countries:'Countries',
     filters_genres:'Genres',
+    page_not_found:'Page not found',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -310,6 +312,7 @@ export const messages = {
     admin_genres: "Жанры:",
     admin_search: "Поиск по названию фильма:",
     admin_find: "Найти",
+    add_film_title: "Добавьте фильм",
     change_title: "Измените название фильма или жанры:",
     change_error: "Обязательное поле",
     change_change: "Изменить данные фильма",
@@ -380,5 +383,6 @@ export const messages = {
     filters_reset:'Сбросить фильтры',
     filters_countries:'Страны',
     filters_genres:'Жанры',
+    page_not_found:'Страница не найдена',
   },
 };
