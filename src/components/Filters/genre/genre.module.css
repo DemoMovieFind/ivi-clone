@@ -20,3 +20,29 @@
 .nonActiveRotate {
   transform: rotate(0deg) !important;
 }
+
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .genreWrapper {
+    width: 25%;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .genreWrapper {
+    width: 50%;
+  }
+
+  .dropListWrapper {
+    width: 93%;
+  }
+}
+
+@media (max-width: 320px) {
+  .genreWrapper {
+    width: 100%;
+  }
+  .dropListWrapper {
+    width: 96%;
+  }
+}

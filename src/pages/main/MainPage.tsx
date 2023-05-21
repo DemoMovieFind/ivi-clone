@@ -22,7 +22,7 @@ const MainPage = () => {
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
   useEffect(() => {
-    fetch(`https://641b23c71f5d999a445c652b.mockapi.io/Films/`)
+    fetch(`http://188.120.248.77/films?order=ASC&page=1&take=18&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
       .then((response) => response.json())
       .then((data) => {
         setFilms(data);

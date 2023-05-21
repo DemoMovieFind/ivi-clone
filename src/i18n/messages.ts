@@ -173,6 +173,7 @@ export const messages = {
     films_nav_list_tabs_HD: "Movies in HD",
     films_nav_list_tabs_select: "Evie's Choice",
     films_nav_list_tabs_subscription: "Subscription news",
+    count_score_filter: 'Number of ratings',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -348,5 +349,6 @@ export const messages = {
     films_nav_list_tabs_HD: "Фильмы в HD",
     films_nav_list_tabs_select: "Выбор Иви",
     films_nav_list_tabs_subscription: "Новинки подписки",
+    count_score_filter: 'Количество оценок',
   },
 };

@@ -18,7 +18,7 @@
 .selectBoxIcon {
   position: absolute;
   top: 47%;
-  right: 15px;
+  right: 12px;
   width: 20px;
 }
 
@@ -94,7 +94,7 @@
   gap: 12px;
   background-color: #312b45;
   margin-top: 6px;
-  z-index: 5;
+  z-index: 6;
 }
 
 .selectBoxOption {
@@ -130,4 +130,30 @@
 
 .nonActiveRotate {
   transform: rotate(0deg) !important;
+}
+
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .selectBox {
+    width: 25%;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .selectBox {
+    width: 50%;
+  }
+  .dropListWrapper {
+    width: 94%;
+  }
+}
+
+@media (max-width: 320px) {
+  .selectBox {
+    width: 100%;
+  }
+
+  .dropListWrapper {
+    width: 95.5%;
+  }
 }

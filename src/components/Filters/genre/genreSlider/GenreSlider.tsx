@@ -34,16 +34,16 @@ export const GenreSlider = ({ className }: GenreSliderProps) => {
                     transform: `translateX(${valueTranslate}px)`,
                   }}
                 >
-                  <GenreIcon genre="Драмы" />
-                  <GenreIcon genre="Комедии" />
-                  <GenreIcon genre="Боевики" />
-                  <GenreIcon genre="Триллеры" />
+                  <GenreIcon genre="Драма" />
+                  <GenreIcon genre="Комедия" />
+                  <GenreIcon genre="Боевик" />
+                  <GenreIcon genre="Триллер" />
                   <GenreIcon genre="Приключения" />
-                  <GenreIcon genre="Зарубежные" />
-                  <GenreIcon genre="Мелодрамы" />
+                  <GenreIcon genre="Зарубежный" />
+                  <GenreIcon genre="Мелодрама" />
                   <GenreIcon genre="Фантастика" />
                   <GenreIcon genre="Фэнтези" />
-                  <GenreIcon genre="Семейные" />
+                  <GenreIcon genre="Семейный" />
                 </div>
               </div>
             </div>
