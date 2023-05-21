@@ -30,7 +30,7 @@ const PersonContainer = ({
     } else {
       setCurrentPersons(persons)
     }
-  }, [])
+  }, [persons])
 
   return (
     <>

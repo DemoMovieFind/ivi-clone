@@ -8,16 +8,16 @@ import { useSearchParams } from "react-router-dom";
 export interface GenreIconProps {
   className?: string;
   genre:
-    | "Драмы"
-    | "Комедии"
-    | "Боевики"
-    | "Триллеры"
-    | "Приключения"
-    | "Зарубежные"
-    | "Мелодрамы"
-    | "Фантастика"
-    | "Фэнтези"
-    | "Семейные";
+  | "Драма"
+  | "Комедия"
+  | "Боевик"
+  | "Триллер"
+  | "Приключения"
+  | "Зарубежный"
+  | "Мелодрама"
+  | "Фантастика"
+  | "Фэнтези"
+  | "Семейный";
 }
 
 export const GenreIcon = ({ className, genre }: GenreIconProps) => {
@@ -32,7 +32,7 @@ export const GenreIcon = ({ className, genre }: GenreIconProps) => {
     e.target.textContent.length != 0
       ? (currentTargetValue = e.target.textContent)
       : (currentTargetValue =
-          e.target.parentElement.parentElement.children[1].textContent);
+        e.target.parentElement.parentElement.children[1].textContent);
 
     if (
       params["genres"] &&
@@ -71,16 +71,16 @@ export const GenreIcon = ({ className, genre }: GenreIconProps) => {
       onClick={handleOnChange}
     >
       <div className={styles.iconWrapper}>
-        {genre === "Драмы" && <FontIcon appearance="genre_drama" />}
-        {genre === "Комедии" && <FontIcon appearance="genre_comedy" />}
-        {genre === "Боевики" && <FontIcon appearance="genre_action" />}
-        {genre === "Триллеры" && <FontIcon appearance="genre_triller" />}
+        {genre === "Драма" && <FontIcon appearance="genre_drama" />}
+        {genre === "Комедия" && <FontIcon appearance="genre_comedy" />}
+        {genre === "Боевик" && <FontIcon appearance="genre_action" />}
+        {genre === "Триллер" && <FontIcon appearance="genre_triller" />}
         {genre === "Приключения" && <FontIcon appearance="genre_adventure" />}
-        {genre === "Зарубежные" && <FontIcon appearance="genre_foreign" />}
-        {genre === "Мелодрамы" && <FontIcon appearance="genre_melodrama" />}
+        {genre === "Зарубежный" && <FontIcon appearance="genre_foreign" />}
+        {genre === "Мелодрама" && <FontIcon appearance="genre_melodrama" />}
         {genre === "Фантастика" && <FontIcon appearance="genre_fantastic" />}
         {genre === "Фэнтези" && <FontIcon appearance="genre_fantasy" />}
-        {genre === "Семейные" && <FontIcon appearance="genre_family" />}
+        {genre === "Семейный" && <FontIcon appearance="genre_family" />}
       </div>
       <div className={styles.title}>{genre}</div>
     </div>

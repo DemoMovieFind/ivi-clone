@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
+
 import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
@@ -7,21 +9,31 @@ import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
 import { TitlePage } from "../../components/titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import axios from "axios";
+import Loader from "../../components/loader/Loader";
 import { useIntl } from "react-intl";
+
 
 const FilmsPage = () => {
   const [searchParams] = useSearchParams();
+  const urlParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlParams.entries());
   const [isVisible, setIsVisible] = useState(false);
   const intl = useIntl();
 
+  const [loading, setLoading] = useState(false)
+
   const [films, setFilms] = useState<FilmMainCard[]>([]);
+  const [currentActors, setCurrentActors] = useState<string[]>([])
+  const [currentDirectors, setCurrentDirectors] = useState<string[]>([])
 
   useEffect(() => {
-    fetch(`https://641b23c71f5d999a445c652b.mockapi.io/Films`)
+    fetch(`http://188.120.248.77/films?order=ASC&page=1&take=18&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
       .then((response) => response.json())
       .then((data) => {
         setFilms(data);
       })
+      .then(() => getPersons(films))
       .catch((error) => {
         console.log(error, "error");
       });
@@ -30,6 +42,107 @@ const FilmsPage = () => {
   const expand = () => {
     setIsVisible(!isVisible);
   };
+
+
+  useEffect(() => {
+    let countries: string[] = [];
+    let genres: string[] = [];
+    let year = '';
+    let actor = '';
+    let director = '';
+    let rating: string[] = [];
+    let score = '';
+
+    Object.keys(params).map((key) => {
+      key == 'countries' ?
+        countries = params[key].split(' ')
+        : key == 'genres' ?
+          genres = params[key].split(' ')
+          : key == 'year' ?
+            year = params[key]
+            : key == 'actor' ?
+              actor = params[key]
+              : key == 'director' ?
+                director = params[key]
+                : key == 'rating' ?
+                  rating = params[key].split(' ')
+                  : key == 'score' ?
+                    score = params[key]
+                    : ''
+    })
+    getFilteredFilms(countries, genres, year, actor, director, +rating[0], +rating[1], score)
+  }, [params['genres'], params['countries'], params['year'], params['score'], params['rating'], params['actor'], params['director']])
+
+  const getFilteredFilms = async (
+    countries?: string[],
+    genres?: string[],
+    year?: string,
+    actor?: string,
+    director?: string,
+    ratingStart?: number,
+    ratingEnd?: number,
+    score?: string) => {
+
+    let countriesString = '';
+    countries ?
+      countries.map((country) => countriesString +=
+        country == 'Новая Зеландия' ?
+          `&countries=Новая Зеландия` :
+          country == 'Южная Корея' ?
+            `&countries=Южная Корея` :
+            `&countries=${country}`) :
+      '';
+
+    let genresString = '';
+    genres ? genres.map((genre) => genresString += `&genres=${genre.toLocaleLowerCase()}`) : '';
+
+    const currentScore = score ? +score * 1000 : 0;
+
+    ratingStart = ratingStart ? Math.floor(+ratingStart) : 0;
+    ratingEnd = ratingEnd ? Math.ceil(+ratingEnd) : 10;
+
+    let minYear = '';
+    let maxYear = '';
+    if (year && year.length > 5) {
+      minYear = year.split('-')[0];
+      maxYear = year.split('-')[1];
+    } else if (year?.length == 4) {
+      minYear = '0';
+      maxYear = year;
+    } else {
+      minYear = '0';
+      maxYear = '2222';
+    }
+
+    setLoading(true)
+    await axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=18&orderBy=scoreAVG${genresString}${countriesString}&actors=${actor}&directors=${director}&ratingStart=${ratingStart}&ratingEnd=${ratingEnd}&minCountScore=${currentScore}&yearStart=${minYear}&yearEnd=${maxYear}`)
+      .then(res => setFilms(res.data))
+      .then(() => getPersons(films))
+      .then(() => setLoading(false))
+  }
+
+
+  const getPersons = (list: FilmMainCard[]) => {
+    const actors: string[] = [];
+    const directors: string[] = [];
+    list.slice(0, 3).map((film) => {
+      if (actors.length >= 15) {
+        setCurrentActors(actors);
+        setCurrentDirectors(directors);
+        return
+      }
+      axios.get(`http://188.120.248.77/films/${film.id}`)
+        .then(res => {
+          res.data.actors.map((actor: any) => actors.push(actor.name))
+          res.data.directors.map((director: any) => directors.push(director.name))
+        })
+        .then(() => {
+          setCurrentActors(actors);
+          setCurrentDirectors(directors)
+        })
+    })
+
+  }
 
   return (
     <div className={styles.filmsPage}>
@@ -130,7 +243,7 @@ const FilmsPage = () => {
                   </p>
                 </div>
                 <span className={styles.toggle} onClick={expand}>
-                  {isVisible ? `${intl.formatMessage({id:'films_minimize'})}` : `${intl.formatMessage({id:'films_maximize'})}`}
+                  {isVisible ? `${intl.formatMessage({ id: 'films_minimize' })}` : `${intl.formatMessage({ id: 'films_maximize' })}`}
                 </span>
               </div>
             </div>
@@ -139,19 +252,23 @@ const FilmsPage = () => {
       )}
 
       <ParametersInfo />
-      <FilterBar className={styles.filterBar} />
+      <FilterBar className={styles.filterBar} actors={currentActors} directors={currentDirectors} />
 
-      {films && (
-        <section className={styles.filmsList}>
-          {films.map((film, index) => {
-            return (
-              <NavLink to={`/movies/${film?.name}`} state={film} key={index}>
-                <CardFilm film={film} />
-              </NavLink>
-            );
-          })}
-        </section>
-      )}
+      {loading ? <Loader filmLoader /> :
+        films.length > 0 ? (
+          <section className={styles.filmsList}>
+            {films.map((film, index) => {
+              return (
+                <NavLink to={`/movies/${film?.name}`} state={film} key={index}>
+                  <CardFilm film={film} />
+                </NavLink>
+              );
+            })}
+          </section>
+        )
+          :
+          <div className={styles.noFound}>По вашему запросу ничего не нашлось</div>
+      }
     </div>
   );
 }

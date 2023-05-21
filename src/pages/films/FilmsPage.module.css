@@ -83,3 +83,30 @@
 .filterBar {
   margin-top: 15px;
 }
+
+.noFound{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 20px;
+  height: 200px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 700;
+  background-image: url('../../image/filmIcon/no-film.svg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 13%;
+}
+
+@media (max-width: 1160px) {
+  .filmsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-top: 24px;
+    padding-bottom: 80px;
+    justify-content: center;
+  }
+}

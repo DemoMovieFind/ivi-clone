@@ -28,6 +28,37 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
   const { state } = useLocation();
   film = state;
 
+  const [currentFilm, setCurrentFilm] = useState(film)
+  const [currentPersons, setCurrentPersons] = useState<string[]>()
+
+  const personsArray: string[] = [];
+
+  useEffect(() => {
+    setLoading(true)
+    getInfoAboutFilm(film?.id)
+  }, [])
+
+  useEffect(() => {
+    getCurrentPersons()
+    setLoading(false)
+  }, [currentFilm])
+
+  const getInfoAboutFilm = async (id?: number) => {
+
+    await axios.get(`http://188.120.248.77/films/${id}`)
+      .then(res => {
+        setCurrentFilm(res.data);
+      })
+  }
+
+  const getCurrentPersons = () => {
+    currentFilm?.actors?.forEach((actor) => {
+      personsArray.push(actor.name)
+    })
+    setCurrentPersons(personsArray)
+  }
+
+
   const intl = useIntl();
 
   const [showDetails, setShowDetails] = useState(false);
@@ -40,22 +71,17 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
   );
 
   let currentFilmType = "";
-  film?.type == "фильм"
+  currentFilm?.type == "фильм"
     ? (currentFilmType = "movies")
-    : film?.type == "сериал"
+    : currentFilm?.type == "сериал"
       ? (currentFilmType = "series")
       : (currentFilmType = "animations");
 
 
-  film?.genres && film?.genres.forEach((genre) => {
+  currentFilm?.genres && currentFilm?.genres.forEach((genre) => {
     if (genre.name == "мультфильм") {
       currentFilmType = "animations";
     }
-  })
-
-  const personsArray: string[] = [];
-  film?.actors?.forEach((actor) => {
-    personsArray.push(actor.name)
   })
 
   const toggle = () => setShowDetails(!showDetails);
@@ -98,7 +124,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
   useEffect(() => {
     html.style.overflow = 'auto'
 
-    film && getReviews(film.id)
+    currentFilm && getReviews(currentFilm.id)
   }, [])
 
   const lang = localStorage.getItem('lang') ?? '';
@@ -114,21 +140,21 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           )}
         </Link>
         <Link
-          to={`/${currentFilmType}/${film?.genres && film?.genres[0]}`}
+          to={`/${currentFilmType}/${currentFilm?.genres && currentFilm?.genres[0]}`}
           className={styles.breadCrumbsItem}
         >
           {currentFilmType == "animations"
-            ? film?.genres &&
-            film?.genres[1].name.slice(0, 1).toUpperCase() + film?.genres[1].name.slice(1)
-            : film?.genres &&
-            film?.genres[0].name.slice(0, 1).toUpperCase() +
-            film?.genres[0].name.slice(1)}
+            ? currentFilm?.genres &&
+            currentFilm?.genres[1]?.name.slice(0, 1).toUpperCase() + currentFilm?.genres[1]?.name.slice(1)
+            : currentFilm?.genres &&
+            currentFilm?.genres[0]?.name.slice(0, 1).toUpperCase() +
+            currentFilm?.genres[0]?.name.slice(1)}
         </Link>
       </nav>
       <div className={styles.filmWathMainContainer}>
         <div className={styles.filmWatchMovieSide}>
           <div className={clsx(styles.filmWatchMovieContainer, styles.noFilm)}>
-            <img src={film?.mainImg} alt="" />
+            <img src={currentFilm?.mainImg} alt="" />
             {/* Movie */}
           </div>
           <div className={styles.filmWatchButtonsContainer}>
@@ -155,44 +181,44 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           </div>
         </div>
         <div className={styles.filmWatchInfoSide}>
-          <div className={styles.filmWatchTitle}>
+          <div className={styles.filmWatchTitle} data-testid='film-watch-card-title'>
             {currentFilmType == "movies"
-              ? `${lang == 'ru-RU' ? film?.name.split("(")[0] : film?.name_en} 
+              ? `${lang == 'ru-RU' ? currentFilm?.name.split("(")[0] : currentFilm?.name_en} 
               (${intl.formatMessage({ id: "film_watch_movies" }).slice(0, -1)} 
-              ${film?.year})`
+              ${currentFilm?.year})`
               : currentFilmType == "series"
-                ? `${lang == 'ru-RU' ? film?.name : film?.name_en} 
+                ? `${lang == 'ru-RU' ? currentFilm?.name : currentFilm?.name_en} 
               (${intl
                   .formatMessage({ id: "film_watch_series" })
                   .slice(0, -2)}al 
-              ${film?.year})`
+              ${currentFilm?.year})`
                 : currentFilmType == "animations"
-                  ? `${lang == 'ru-RU' ? film?.name.split(" ").slice(0, -1).join(" ") : film?.name_en} 
+                  ? `${lang == 'ru-RU' ? currentFilm?.name.split(" ").slice(0, -1).join(" ") : currentFilm?.name_en} 
               (${intl
                     .formatMessage({ id: "film_watch_cartoons" })
                     .slice(0, -1)} 
-              ${film?.year})`
+              ${currentFilm?.year})`
                   : ""}
           </div>
           <div className={styles.filmWatchParamsContainer}>
             <div className={styles.filmWatchMovieInfo}>
               <Link
                 className={styles.filmWatchYear}
-                to={`/${currentFilmType}?year=${film?.year}`}
+                to={`/${currentFilmType}?year=${currentFilm?.year}`}
               >
-                {film?.year}
+                {currentFilm?.year}
               </Link>
-              {film?.time && film?.time?.length <= 7
-                ? ` ${film?.time}.`
+              {currentFilm?.time && currentFilm?.time?.length <= 7
+                ? ` ${currentFilm?.time}.`
                 : `
-              ${Number(film?.time?.split(":")[0].split(" ")[3])}
+              ${Number(currentFilm?.time?.split(":")[0].split(" ")[3])}
               ч.
-              ${Number(film?.time?.split(":")[1])}
+              ${Number(currentFilm?.time?.split(":")[1])}
               мин.
-              ${film?.age}`}
+              ${currentFilm?.age}`}
             </div>
             <nav className={styles.filmWatchGenreNav}>
-              {film?.countries && film?.countries.map((country, index) => {
+              {currentFilm?.countries && currentFilm?.countries.map((country, index) => {
                 return (
                   <Link
                     key={index}
@@ -206,7 +232,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
                   </Link>
                 );
               })}
-              {film?.genres && film?.genres.map((genre, index) => {
+              {currentFilm?.genres && currentFilm?.genres.map((genre, index) => {
                 return (
                   <Link
                     className={styles.breadCrumbsItem}
@@ -232,11 +258,14 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
             </div>
           </div>
           <div className={styles.filmWatchActorsContainer}>
-            <PersonCardMini rating="8,9" />
-            {film?.actors &&
-              film?.actors.slice(0, 4).map((actor, index) => {
+            {loading ? '' :
+              <PersonCardMini rating="8,9" />
+            }
+            {loading ? <Loader filmLoader /> :
+              currentFilm?.actors &&
+              currentFilm?.actors.slice(0, 4).map((actor, index) => {
                 return (
-                  <NavLink to={`/persons/${actor.name}`} state={{ person: actor.name, profession: 'actors', film }} key={index}>
+                  <NavLink to={`/persons/${actor.name}`} state={{ person: actor.name, profession: 'actors', currentFilm }} key={index}>
                     <PersonCardMini
                       name={actor.name}
                       img="https://thumbs.dfs.ivi.ru/storage38/contents/b/c/45102370a23e374f4146fe2d106f26.jpeg/88x88/?q=85"
@@ -245,7 +274,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
                 );
               })}
           </div>
-          <div className={styles.filmWatchDescription}>{film?.description}</div>
+          <div className={styles.filmWatchDescription}>{currentFilm?.description}</div>
           {showDetails && (
             <div className={styles.filmWatchParamsBottomContainer}>
               <div className={styles.filmWatchLangContainer}>
@@ -286,16 +315,19 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           <IviRatingCard rating="8,9" />
         </div>
       </div>
-      <PersonContainer persons={personsArray} film={film} />
+      {loading ? <Loader filmLoader /> :
+        <PersonContainer persons={currentPersons} film={currentFilm} />
+      }
+
       {loading ? <Loader filmLoader /> :
         <GalleryCarousel
           typeFilm={currentFilmType}
-          filmName={lang == 'ru-RU' ? film?.name : `${film?.name_en} (${film?.year})`}
+          filmName={lang == 'ru-RU' ? currentFilm?.name : `${currentFilm?.name_en} (${currentFilm?.year})`}
           items={currentReviews}
           itemComponent={CardCommentItem}
           nameCategory="Отзывы"
           typeSlider="comment"
-          film={film}
+          film={currentFilm}
         />
       }
     </div>

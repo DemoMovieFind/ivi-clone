@@ -13,6 +13,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Drama: Story = {
   args: {
-    genre: "Драмы",
+    genre: "Драма",
   },
 };

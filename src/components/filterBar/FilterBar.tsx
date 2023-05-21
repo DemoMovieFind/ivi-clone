@@ -6,23 +6,25 @@ import YearsFilter from "../Filters/yearsFilter/YearsFilter";
 import RatingFilter from "../Filters/ratingFilter/RatingFilter";
 import PersonsFilter from "../Filters/personsFilter/PersonsFilter";
 import { DefaultFilter } from "../Filters/defaultFilter/DefaultFilter";
+import ScoresFilter from "../Filters/scroesFilter/ScoresFilter";
 
-const people = ["Россия", "China", "India", "United States", "Indonesia", "Pakistan", "Brazil", "Nigeria", "Bangladesh", "Russia", "Mexico", "Japan", "Ethiopia", "Philippines", "gypt", "Vietnam", "DR Congo", "Turkey", "Iran", "Germany", "Thailand", "United Kingdom", "France", "Italy", "Tanzania", "SouthAfrica", "Myanmar", "Kenya", "South Korea", "Colombia", "Spain", "Uganda", "Argentina", "Algeria", "Sudan", "Ukraine", "Iraq", "Afghanistan", "Poland", "Canada", "Moocco", "Saudi Arabia", "Uzbekistan", "Peru", "Angola", "Malaysia", "Mozambique", "Ghana", "Yemen", "Nepal", "Venezuela"];
-const people2 = ["Россия", "China", "India", "United States", "Indonesia", "Pakistan", "Brazil", "Nigeria", "Bangladesh", "Russia", "Mexico", "Japan", "Ethiopia", "Philippines", "gypt", "Vietnam", "DR Congo", "Turkey", "Iran", "Germany", "Thailand", "United Kingdom", "France", "Italy", "Tanzania", "SouthAfrica", "Myanmar", "Kenya", "South Korea", "Colombia", "Spain", "Uganda", "Argentina", "Algeria", "Sudan", "Ukraine", "Iraq", "Afghanistan", "Poland", "Canada", "Moocco", "Saudi Arabia", "Uzbekistan", "Peru", "Angola", "Malaysia", "Mozambique", "Ghana", "Yemen", "Nepal", "Venezuela"];
 
 export interface FilterBarProps {
   className?: string;
+  actors?: string[];
+  directors?: string[];
 }
 
-export const FilterBar: React.FC<FilterBarProps> = ({ className }) => {
+export const FilterBar: React.FC<FilterBarProps> = ({ className, actors, directors }) => {
   return (
     <div className={clsx(styles.filterBar, className)} id="filterBar">
       <Genre />
       <Country />
       <YearsFilter />
-      <PersonsFilter placeholder="actor" suggestions={people} />
-      <PersonsFilter placeholder="director" suggestions={people2} />
+      <PersonsFilter placeholder="actor" suggestions={actors} />
+      <PersonsFilter placeholder="director" suggestions={directors} />
       <RatingFilter />
+      <ScoresFilter />
       <DefaultFilter />
     </div>
   );

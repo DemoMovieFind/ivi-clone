@@ -20,3 +20,21 @@
   height: 257px;
   padding-left: 0;
 }
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+}

@@ -3,7 +3,7 @@
   background-color: #1f1b2e;
   padding: 16px;
   border-radius: 6px;
-  width: 1216px;
+  max-width: 1216px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
