@@ -190,6 +190,7 @@ export const messages = {
     filters_countries: 'Countries',
     filters_genres: 'Genres',
     count_score_filter: 'Number of ratings',
+    film_no_found: 'Nothing was found for your request',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -382,5 +383,6 @@ export const messages = {
     filters_countries: 'Страны',
     filters_genres: 'Жанры',
     count_score_filter: 'Количество оценок',
+    film_no_found: 'По вашему запросу ничего не нашлось',
   },
 };

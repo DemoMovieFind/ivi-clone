@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
+
 import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
@@ -10,8 +11,8 @@ import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
-
 import { useIntl } from "react-intl";
+
 
 const FilmsPage = () => {
   const [searchParams] = useSearchParams();
