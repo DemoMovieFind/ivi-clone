@@ -48,7 +48,7 @@ const ChangePage = () => {
       name_en:film.name_en,
     })
     setFilm(film);
-    film.genres.forEach((field: { [key: string]: number | string  }, index: number) => {
+    film.genres?.forEach((field: { [key: string]: number | string  }, index: number) => {
       Object.keys(field).forEach((key) => {
         if (key === 'name'){
           update(index, {value:`${field[key]}`})

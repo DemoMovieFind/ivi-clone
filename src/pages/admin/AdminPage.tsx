@@ -1,5 +1,6 @@
 import { useIntl } from "react-intl";
 import styles from './AdminPage.module.css';
+import '../../components/pagination/pagination.css';
 import ShortCardFilm from "../../components/shortCardFilm/ShortCardFilm";
 import { FieldValues, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
@@ -8,46 +9,42 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import ReactPaginate from 'react-paginate';
 import Loader from "../../components/loader/Loader";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { initFilms, selectFilm } from "../../store/filmsState";
+import { getFilmsPage, initFilms, searchFilmOnServer, selectFilm } from "../../store/filmsState";
 import { useNavigate } from "react-router-dom";
+import { selectSearch, setSearch } from "../../store/searchState";
 
-const AdminPage = ()=> {
+const AdminPage = () => {
   const [ films, setFilms ] = useState<FilmMainCard[]>([]);
-  const [ initialFilms, setInitialFilms ] = useState<FilmMainCard[]>([]);
   const filmState = useAppSelector(selectFilm);
-  const [ itemOffset, setItemOffset ] = useState(0);
+  const searchState = useAppSelector(selectSearch);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const FILMS_PER_PAGE = 10;
-  const endOffset = itemOffset + FILMS_PER_PAGE;
-  const currentItems = films.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(films.length / FILMS_PER_PAGE);
+  const pageCount = Math.ceil(filmState.totalFilms / FILMS_PER_PAGE);
   const intl  = useIntl();
     const {
-    handleSubmit,
-    formState: { errors },
-    register,
+      handleSubmit,
+      formState: { errors },
+      register,
     } = useForm();
 
   const onHandleSearch = (data:FieldValues) => {
+    dispatch(setSearch(data.search));
     if (data.search.length === 0) {
-      setFilms(initialFilms);
+      dispatch(initFilms())
     } else {
-      const filteredFilms = films.filter(film=>film.name.toLowerCase().includes(data.search.toLowerCase()))
-      setFilms(filteredFilms);
+      dispatch(searchFilmOnServer(data as {search:string}))
     }
   }
 
   useEffect(() => {
     if (filmState.films.length >0) {
       setFilms(filmState.films);
-      setInitialFilms(filmState.films)
     } else dispatch(initFilms());
   },[filmState.films])
 
   const handlePaginationClick = (event:{selected:number}) => {
-    const newOffset = (event.selected * FILMS_PER_PAGE) % films.length;
-    setItemOffset(newOffset);
+    dispatch(getFilmsPage({page:event.selected}));
   };
 
   const handleAddFilm = () => {
@@ -73,6 +70,7 @@ const AdminPage = ()=> {
           className={styles.input}
           type= 'search'
           id="search"
+          defaultValue={searchState.search}
           {...register("search")}
         ></input>
         {errors.search && (
@@ -83,7 +81,7 @@ const AdminPage = ()=> {
           })}/>
     </form>
     {
-      currentItems.map((film) => {
+      films.map((film) => {
         return <ShortCardFilm key={film.id} film={film}/>
       })
     }

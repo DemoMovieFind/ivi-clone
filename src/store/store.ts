@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authReducer from './authState';
 import langReducer from './langState';
 import filmsReducer from './filmsState';
+import searchReducer from './searchState';
 
 export const store = configureStore({
   reducer: {
     auth:authReducer,
     lang:langReducer,
-    films:filmsReducer
+    films:filmsReducer,
+    search:searchReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

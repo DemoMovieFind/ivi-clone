@@ -25,7 +25,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <GoogleOAuthProvider clientId="64086974939-oijgmdetcv1c9a6envjks8qoov02adgp.apps.googleusercontent.com">
+      <GoogleOAuthProvider 
+        clientId="64086974939-oijgmdetcv1c9a6envjks8qoov02adgp.apps.googleusercontent.com">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Template content={<MainPage />} />} />
