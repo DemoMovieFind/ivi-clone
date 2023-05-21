@@ -2,12 +2,14 @@ import clsx from "clsx";
 import React from "react";
 import styles from "./MobilMenu.module.css";
 import { Link } from "react-router-dom";
+import { useIntl } from "react-intl";
 
 interface MobilMenuProps {
   className?: string;
 }
 
 const MobilMenu = ({ className }: MobilMenuProps) => {
+  const intl = useIntl();
   return (
     <div className={clsx(styles.tabBarPlate, className)}>
       <div className={styles.tabBar}>
@@ -25,7 +27,7 @@ const MobilMenu = ({ className }: MobilMenuProps) => {
               className={clsx(styles.itemIconGlyph_home, styles.itemIconGlyph)}
             ></div>
           </div>
-          <div className={styles.itemCaption}>Мой Иви</div>
+          <div className={styles.itemCaption}>{intl.formatMessage({id:'nav_list_myIvi'})}</div>
         </Link>
         <Link to="/movies" className={styles.item}>
           <div
@@ -44,7 +46,7 @@ const MobilMenu = ({ className }: MobilMenuProps) => {
               )}
             ></div>
           </div>
-          <div className={styles.itemCaption}>Каталог</div>
+          <div className={styles.itemCaption}>{intl.formatMessage({id:'nav_list_catalog'})}</div>
         </Link>
         <div className={styles.item}>
           <div className={styles.itemGlowImage} style={{ opacity: 0 }}></div>
@@ -56,7 +58,7 @@ const MobilMenu = ({ className }: MobilMenuProps) => {
               )}
             ></div>
           </div>
-          <div className={styles.itemCaption}>Поиск</div>
+          <div className={styles.itemCaption}>{intl.formatMessage({id:'nav_list_search'})}</div>
         </div>
         <Link to="/profile" className={styles.item}>
           <div
@@ -75,7 +77,7 @@ const MobilMenu = ({ className }: MobilMenuProps) => {
               )}
             ></div>
           </div>
-          <div className={styles.itemCaption}>Профиль</div>
+          <div className={styles.itemCaption}>{intl.formatMessage({id:'nav_list_profile'})}</div>
         </Link>
         <div className={styles.item}>
           <div className={styles.itemGlowImage} style={{ opacity: 0 }}></div>
@@ -84,7 +86,7 @@ const MobilMenu = ({ className }: MobilMenuProps) => {
               className={clsx(styles.itemIconGlyph, styles.itemIconGlyph_more)}
             ></div>
           </div>
-          <div className={styles.itemCaption}>Ещё</div>
+          <div className={styles.itemCaption}>{intl.formatMessage({id:'nav_list_more'})}</div>
         </div>
       </div>
     </div>

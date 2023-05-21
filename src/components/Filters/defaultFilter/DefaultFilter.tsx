@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import styles from "./DefaultFilter.module.css";
 import { useSearchParams } from "react-router-dom";
+import { useIntl } from "react-intl";
 
 interface DefaultFilterProps {
   className?: string;
@@ -10,6 +11,7 @@ interface DefaultFilterProps {
 export const DefaultFilter = ({ className }: DefaultFilterProps) => {
   const [, setSearchParams] = useSearchParams();
   const [isActive, setIsActive] = useState(false);
+  const intl = useIntl();
 
   const urlParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlParams.entries());
@@ -56,7 +58,7 @@ export const DefaultFilter = ({ className }: DefaultFilterProps) => {
         )}
       >
         <div className={styles.icon}></div>
-        Сбросить фильтры
+        {intl.formatMessage({id:'filters_reset'})}
       </div>
     </div>
   );

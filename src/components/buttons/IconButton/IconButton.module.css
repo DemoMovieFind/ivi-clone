@@ -3,6 +3,8 @@
   height: 16px;
   align-self: center;
   background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .button {

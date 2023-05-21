@@ -11,7 +11,7 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { useEffect, useState } from "react";
 import Modal from "../../components/modalWindow/Modal";
 import axios from "axios";
-import { selectFilm, updateFilm } from "../../store/filmsInit";
+import { clearError, deleteFilmFromServer, selectFilm, updateFilm } from "../../store/filmsInit";
 
 type Inputs = {
   name_ru:string,
@@ -48,10 +48,10 @@ const ChangePage = () => {
       name_en:film.name_en,
     })
     setFilm(film);
-    film.genres.forEach((field: { [key: string]: any }, index: number) => {
+    film.genres.forEach((field: { [key: string]: number | string  }, index: number) => {
       Object.keys(field).forEach((key) => {
         if (key === 'name'){
-          update(index, {value:field[key]})
+          update(index, {value:`${field[key]}`})
         }
       })
     })
@@ -65,7 +65,7 @@ const ChangePage = () => {
       id:film?.id,
       name:data.name_ru,
       name_en:data.name_en,
-      genre:data.genres.map((genre:{value:string})=>{return genre.value})
+      genre:data.genres?.map((genre:{value:string})=>{return genre.value}).filter((genre:string)=>genre.length > 0),
     };
     try {
       const response = await api.request({
@@ -83,26 +83,29 @@ const ChangePage = () => {
     }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        setErrorText(error.response?.data?.message);
+        setErrorText(error.response?.data?.message ? error.response?.data?.message : error.message);
         setShowModal(true);
       }
     }
   }
 
   const handleDelete = () => {
-    console.log('inside handle delete');
+    dispatch(deleteFilmFromServer({id}));
+    if (filmState.status === 'resolved') {
+      navigate('/admin');
+    }
   }
 
   const handleModalClose = () => {
     navigate('/admin');
+    dispatch(clearError());
   }
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{intl.formatMessage({id:'change_title'})}</h1>
       {filmState.status === 'loading' && <Loader/>}
-      {showModal && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} 
-                                            body={errorText} />}
+      {(filmState.status === 'rejected'||showModal) && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error?filmState.error:errorText} />}
       {<form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="name_ru">
           {intl.formatMessage({id:'admin_name'})}

@@ -63,13 +63,13 @@ const TestCarousel = <T,>({ nameCategory }: TestCarouselProps<T>) => {
       <div className="title">{nameCategory}</div>
       <Slider {...settings}>
         {films.map((film) => (
-          <CardFilm film={film} className="card-film" />
+          <CardFilm key={film.id} film={film} className="card-film" />
         ))}
         {films.map((film) => (
-          <CardFilm film={film} />
+          <CardFilm film={film} key={film.id} />
         ))}
         {films.map((film) => (
-          <CardFilm film={film} />
+          <CardFilm film={film} key={film.id} />
         ))}
       </Slider>
     </div>

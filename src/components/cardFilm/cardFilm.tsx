@@ -7,6 +7,8 @@ import { Properties } from "./properties/Properties";
 import { NameFilm } from "./nameFilm/NameFilm";
 import { Price } from "./price/Price";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import { useAppSelector } from "../../store/hooks";
+import { langReducer, selectLang } from "../../store/langState";
 
 export interface CardFilmProps {
   appearance?: "default";
@@ -21,6 +23,7 @@ export const CardFilm = ({
   film,
   ...props
 }: CardFilmProps) => {
+  const langState = useAppSelector(selectLang);
   return (
     <div
       className={clsx(styles.card, styles[appearance], className)}
@@ -46,7 +49,11 @@ export const CardFilm = ({
       </div>
 
       <div className={styles.nameWrapper}>
-        <NameFilm name={film.name} />
+        <NameFilm 
+          name={
+            langState.lang === 'ru-RU'
+            ? film.name : (film.name_en !==undefined ? film.name_en : film.name)
+          } />
         <Price price={false} />
       </div>
     </div>

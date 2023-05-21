@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-
 import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
@@ -12,12 +11,14 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 
+import { useIntl } from "react-intl";
 
 const FilmsPage = () => {
   const [searchParams] = useSearchParams();
   const urlParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlParams.entries());
   const [isVisible, setIsVisible] = useState(false);
+  const intl = useIntl();
 
   const [loading, setLoading] = useState(false)
 
@@ -241,7 +242,7 @@ const FilmsPage = () => {
                   </p>
                 </div>
                 <span className={styles.toggle} onClick={expand}>
-                  {isVisible ? "Свернуть" : "Развернуть"}
+                  {isVisible ? `${intl.formatMessage({ id: 'films_minimize' })}` : `${intl.formatMessage({ id: 'films_maximize' })}`}
                 </span>
               </div>
             </div>
