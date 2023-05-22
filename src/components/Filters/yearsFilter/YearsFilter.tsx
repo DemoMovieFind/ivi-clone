@@ -30,7 +30,6 @@ const YearsFilter = ({
     "2000-2010",
     "1990-2000",
     "1980-1990",
-    "до 1980",
   ],
 }: YearsFilterPropsType) => {
   const [, setSearchParams] = useSearchParams();

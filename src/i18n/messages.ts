@@ -192,6 +192,8 @@ export const messages = {
     filters_countries:'Countries',
     filters_genres:'Genres',
     page_not_found:'Page not found',
+    count_score_filter: 'Number of ratings',
+    film_no_found: 'Nothing was found for your request',
   },
   [LOCALES.RUSSIAN]: {
     header: `Ivi клон`,
@@ -207,7 +209,7 @@ export const messages = {
     nav_list_films: "Фильмы",
     nav_list_series: "Сериалы",
     nav_list_cartoons: "Мультфильмы",
-    nav_list_comedies: "Комедии", 
+    nav_list_comedies: "Комедии",
     nav_list_biography: "Биография",
     nav_list_TV: "ТВ-каналы",
     nav_list_advertisement: "Реклама",
@@ -386,5 +388,7 @@ export const messages = {
     filters_countries:'Страны',
     filters_genres:'Жанры',
     page_not_found:'Страница не найдена',
+    count_score_filter: 'Количество оценок',
+    film_no_found: 'По вашему запросу ничего не нашлось',
   },
 };

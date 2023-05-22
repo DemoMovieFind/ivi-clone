@@ -19,7 +19,7 @@ export const ParametersInfo: React.FC<ParametersInfoProps> = ({
         searchParams
           .get("genres")
           ?.split(" ")
-          .map((genre) => <span>{genre}, </span>)
+          .map((genre, index) => <span key={index}>{genre}, </span>)
       ) : (
         <span>{`${intl.formatMessage({id:'parameters_genres'})}`}, </span>
       )}
@@ -27,7 +27,7 @@ export const ParametersInfo: React.FC<ParametersInfoProps> = ({
         searchParams
           .get("countries")
           ?.split(" ")
-          .map((contry) => <span>{contry}, </span>)
+          .map((contry, index) => <span key={index}>{contry}, </span>)
       ) : (
         <span>{`${intl.formatMessage({id:'parameters_countries'})}`}, </span>
       )}
