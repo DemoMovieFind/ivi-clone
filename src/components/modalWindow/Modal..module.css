@@ -18,7 +18,7 @@
 
 .modal {
   width: 250px;
-  height: 170px;
+  min-height: 170px;
   background: white;
   color: white;
   z-index: 10;

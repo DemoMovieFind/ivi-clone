@@ -10,9 +10,9 @@ import juravli from "../../image/slider/juravli.jpg";
 import lastSon from "../../image/slider/lastSon.jpg";
 import parazit from "../../image/slider/parazit.jpg";
 import { NavLink } from "react-router-dom";
-
-import movieRequest from "../../movieRequest";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import { useAppSelector } from "../../store/hooks";
+import { selectFilm } from "../../store/filmsState";
 
 const sliderImage = [marloy, blackPoint, juravli, lastSon, parazit];
 
@@ -31,12 +31,11 @@ const MultipleRows = () => {
   };
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
+  const filmsState = useAppSelector(selectFilm);
 
   useEffect(() => {
-    movieRequest("").then((movies: FilmMainCard[]) => {
-      setFilms(movies);
-    });
-  }, []);
+    setFilms(filmsState.films);
+  }, [filmsState.films]);
 
   return (
     <div className="sliderWrapper">

@@ -16,6 +16,7 @@ import FilmWatchCard from "./components/filmWatchCard/FilmWatchCard";
 import PersonCard from "./components/personCard/PersonCard";
 import AboutFilmContainer from "./pages/aboutFilmContainer/AboutFilmContainer";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import CreatePage from "./pages/create/CreatePage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -24,7 +25,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <GoogleOAuthProvider clientId="64086974939-oijgmdetcv1c9a6envjks8qoov02adgp.apps.googleusercontent.com">
+      <GoogleOAuthProvider 
+        clientId="64086974939-oijgmdetcv1c9a6envjks8qoov02adgp.apps.googleusercontent.com">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Template content={<MainPage />} />} />
@@ -33,12 +35,13 @@ root.render(
             <Route element={<PrivateRoute />}>
               <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
               <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
+              <Route path='/create' element={<Template isAdminPage={true} content={<CreatePage />} />} />
             </Route>
             <Route path="/movies/:id" element={<Template content={<FilmWatchCard />} />} />
             <Route path="/movies/:id/comments" element={<Template content={<AboutFilmContainer props={'comments'} />} />} />
             <Route path="/movies/:id/persons" element={<Template content={<AboutFilmContainer props={'persons'} />} />} />
             <Route path="/persons/:id" element={<Template content={<PersonCard />} />} />
-            <Route path="*" element={<PageNotFound />} />
+            <Route path="*" element={<Template content={<PageNotFound />} />}/>
           </Routes>
         </BrowserRouter>
       </GoogleOAuthProvider>
