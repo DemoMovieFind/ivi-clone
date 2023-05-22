@@ -10,12 +10,14 @@ export type FilmsState = {
   error: null | any,
   isInitialized:boolean,
   films:FilmMainCard[],
+  film:FilmMainCard|null,
   totalFilms:number,
 }
 
 const initialState: FilmsState = {
   status:null,
   error:null,
+  film:null,
   isInitialized: false,
   films:[],
   totalFilms:0,
@@ -78,12 +80,12 @@ export const deleteFilmFromServer = createAsyncThunk(
 export type CreateFilmType = {
   name:string,
   name_en:string,
-  genre:Array<Array<string>>,
+  genre:Array<string>,
 }
 
 export const createFilmOnServer = createAsyncThunk(
   'films/createFilm',
-  async (payload:CreateFilmType,{ rejectWithValue,dispatch })=>{
+  async (payload:CreateFilmType,{ rejectWithValue })=>{
     const token = localStorage.getItem('token');
     try {
       const response = await api.post(`/films`,
@@ -96,9 +98,6 @@ export const createFilmOnServer = createAsyncThunk(
           }
         },
       );
-      if (response.status === 201) {
-        dispatch(initFilms());
-      }
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -107,11 +106,49 @@ export const createFilmOnServer = createAsyncThunk(
     }
 })
 
+export const updateFilmOnServer = createAsyncThunk(
+  'films/updateFilmOnServer',
+  async (payload:CreateFilmType&{id:number},{ rejectWithValue })=>{
+    const token = localStorage.getItem('token');
+    try {
+      const response = await api.put(`/film-update`,
+      payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        },
+      );
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
+      }
+    }
+})
+
+
 export const searchFilmOnServer = createAsyncThunk(
   'films/searchFilmOnServer',
   async (payload:{search:string},{ rejectWithValue }) => {
     try {
       const response = await api.get(`/films/search/${payload.search}`);
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
+      }
+    }
+})
+
+export const getFilmFromServer = createAsyncThunk(
+  'films/getFilmFromServer',
+  async (payload:{id:number},{ rejectWithValue }) => {
+    const {id} = payload;
+    try {
+      const response = await api.get(`/films/${id}`);
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -137,9 +174,12 @@ export const filmsReducer = createSlice({
         })
       }
     },
-    clearError:(state)=>{
+    clearError:(state) => {
       state.error = null;
       state.status = null;
+    },
+    clearFilm:(state) => {
+      state.film = null;
     }
   },
   extraReducers: (builder) => {
@@ -156,7 +196,7 @@ export const filmsReducer = createSlice({
         state.totalFilms = action.payload.headers['x-total-count'];
       }
     }),
-    builder.addCase(initFilms.rejected, (state,action) => {
+    builder.addCase(initFilms.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
       state.isInitialized = false;
@@ -165,13 +205,13 @@ export const filmsReducer = createSlice({
       state.status = 'loading';
       state.error = null;
     }),
-    builder.addCase(createFilmOnServer.fulfilled, (state,action) => {
+    builder.addCase(createFilmOnServer.fulfilled, (state, action) => {
       if (action.payload?.status === 201) {
         state.status = 'resolved';
         state.films.unshift(action.payload.data);
       }
     }),
-    builder.addCase(deleteFilmFromServer.rejected, (state,action) => {
+    builder.addCase(deleteFilmFromServer.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload;
     }),
@@ -179,7 +219,7 @@ export const filmsReducer = createSlice({
       state.status = 'loading';
       state.error = action.payload;
     }),
-    builder.addCase(deleteFilmFromServer.fulfilled, (state,action) => {
+    builder.addCase(deleteFilmFromServer.fulfilled, (state) => {
       state.status = 'resolved';
       state.error = null;
     }),
@@ -214,6 +254,32 @@ export const filmsReducer = createSlice({
         state.films = action.payload.data;
         state.totalFilms = action.payload.headers['x-total-count'];
       }
+    }),
+    builder.addCase(getFilmFromServer.rejected, (state,action) => {
+      state.status = 'rejected';
+      state.error = action.payload;
+    }),
+    builder.addCase(getFilmFromServer.pending, (state,action) => {
+      state.status = 'loading';
+      state.error = action.payload;
+    }),
+    builder.addCase(getFilmFromServer.fulfilled, (state,action) => {
+      state.status = 'resolved';
+      state.error = null;
+      if (action.payload?.status === 200) {
+        state.film = action.payload.data;
+      }
+    }),builder.addCase(updateFilmOnServer.rejected, (state,action) => {
+      state.status = 'rejected';
+      state.error = action.payload;
+    }),
+    builder.addCase(updateFilmOnServer.pending, (state,action) => {
+      state.status = 'loading';
+      state.error = action.payload;
+    }),
+    builder.addCase(updateFilmOnServer.fulfilled, (state) => {
+      state.status = 'resolved';
+      state.error = null;
     })
   },
 });

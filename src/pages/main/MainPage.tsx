@@ -9,12 +9,14 @@ import SubButton from "../../components/buttons/subButton/SubButton";
 import MultipleRows from "../../components/infinitySlider/InfinitySlider";
 import TestCarousel from "../../components/testCarousel";
 import { useIntl } from "react-intl";
+import { getGenres } from "../../store/genresState";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   useEffect(() => {
     dispatch(initFilms());
+    dispatch(getGenres());
   }, []);
 
   const CardFilmItem: React.FC<{ item: FilmMainCard }> = ({ item }) => {

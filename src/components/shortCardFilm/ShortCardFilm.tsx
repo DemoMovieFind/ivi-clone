@@ -8,17 +8,13 @@ export type ShortCardFilmPropsType = {
 }
 
 const ShortCardFilm = ({film}:ShortCardFilmPropsType) => {
-  const {id,name,name_en,genres} = film;
+  const {id,name,name_en} = film;
   const intl = useIntl();
   return (
     <Link key={name} to={`/admin/${id}`}>
     <div className={styles.short}>
       <span className={styles.description}>{intl.formatMessage({id:'admin_name'})}{name}</span>
       <span className={styles.description}>{intl.formatMessage({id:'admin_name_en'})}{name_en}</span>
-      <span className={styles.description}>{intl.formatMessage({id:'admin_genres'})}</span>
-      {genres?.map((genre)=>{
-        return <span key={genre.name} className={styles.description}>{genre.name}</span>
-      })}
     </div>
     </Link>
   )

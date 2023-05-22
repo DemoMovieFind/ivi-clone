@@ -1,7 +1,5 @@
-import { ChangeEvent, useState } from "react";
-import { useEffect } from "react";
+import { ChangeEvent } from "react";
 import AuthIcon from "../AuthIcon/AuthIcon";
-import NavList from "../navList/NavList";
 import styles from "./Header.module.css";
 import LanguageSwitch from "../languageSwitch/LanguageSwitch";
 

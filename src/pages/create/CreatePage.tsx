@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Loader from "../../components/loader/Loader";
 import Modal from "../../components/modalWindow/Modal";
 import { clearError, createFilmOnServer, selectFilm } from "../../store/filmsState";
+import { useEffect, useState } from "react";
+import { getGenres, selectGenres } from "../../store/genresState";
 
 type Inputs = {
   name_ru:string,
@@ -16,23 +18,23 @@ type Inputs = {
 
 const CreatePage = () => {
   const filmState = useAppSelector(selectFilm);
+  const genresState = useAppSelector(selectGenres);
+  const [genresNotLoaded,setGenresNotLoaded] = useState(true);
   const intl = useIntl();
+  const [requestWasSent,setRequestWasSent] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { register, control, handleSubmit, formState: { errors } } = useForm<Inputs>();
   const { fields, append, remove} = useFieldArray<Inputs>({
     control, 
     name: "genres",
-    rules:{
-      minLength:1
-    }
   });
 
   const onSubmit = async (data:FieldValues) => {
     const dataTosave = {
       name:data.name_ru,
       name_en:data.name_en,
-      genre:data.genres?.map((genre:{value:string})=>{return genre.value}).filter((genre:string)=>genre.length > 0),
+      genre:data.genres,
       type: "сериал",
       year: 2023,
       country: "Россия",
@@ -84,21 +86,31 @@ const CreatePage = () => {
       countScore: 0,
     };
     dispatch(createFilmOnServer(dataTosave));
-    if (filmState.status === 'resolved') {
-      navigate('/admin');
-    }
+    setRequestWasSent(true);
   }
 
   const handleModalClose = () => {
     navigate('/admin');
     dispatch(clearError());
+    setRequestWasSent(false);
   }
+
+  useEffect((()=>{
+    if (genresState.genres.length === 0) {
+      dispatch(getGenres());
+    }
+    if (genresState.genres.length > 0) {
+      setGenresNotLoaded(false);
+    }
+  }),[genresState.genres])
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{intl.formatMessage({id:'add_film_title'})}</h1>
+      {genresNotLoaded && <Loader/>}
       {filmState.status === 'loading' && <Loader/>}
       {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error} />}
+      {(filmState.status === 'resolved' && requestWasSent) && <Modal handleClose={handleModalClose} headerId={"modal_success_header"} body={''} />}
       {<form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="name_ru">
           {intl.formatMessage({id:'admin_name'})}
@@ -120,12 +132,15 @@ const CreatePage = () => {
           {...register("name_en")} />
         {fields.map((field, index) => {return (
           <div className={styles.wrapperGenre} key={field.id}>
-          <input className={styles.inputGenre}
-            {...register(`genres.${index}.value` as const)} 
-          />
+            <select {...register(`genres.${index}`,{ required: true })} className={styles.inputGenre}>
+            {genresState.genres.map(genre => {
+              return <option defaultValue={genre} value={genre} key={genre}>{genre}</option>
+            })}
+            </select>
           <Button size="small" appearance="primary" children={intl.formatMessage({id:'change_delete_genre'})} onPointerDown={() => remove(index)}/>
           </div>
         )})}
+        { errors.genres && <span className={styles.error}>{intl.formatMessage({id:'change_error'})}</span> }
         <Button 
           size="small" 
           appearance="default" 

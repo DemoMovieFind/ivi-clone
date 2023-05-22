@@ -4,14 +4,12 @@ import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectAuth } from "../../store/authState";
 import Loader from "../../components/loader/Loader";
-import { api } from "../../services/HttpService";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { useEffect, useState } from "react";
 import Modal from "../../components/modalWindow/Modal";
-import axios from "axios";
-import { clearError, deleteFilmFromServer, selectFilm, updateFilm } from "../../store/filmsState";
+import { clearError, deleteFilmFromServer, getFilmFromServer, selectFilm, updateFilmOnServer } from "../../store/filmsState";
+import { getGenres, selectGenres } from "../../store/genresState";
 
 type Inputs = {
   name_ru:string,
@@ -21,28 +19,37 @@ type Inputs = {
 
 const ChangePage = () => {
   const params = useParams();
-  const authState = useAppSelector(selectAuth);
+  const genresState = useAppSelector(selectGenres);
   const filmState = useAppSelector(selectFilm);
+  const [genresNotLoaded,setGenresNotLoaded] = useState(true);
+  const [requestWasSent,setRequestWasSent] = useState(false);
   const intl = useIntl();
   const id = Number(params.id) ?? 0;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [film,setFilm] = useState<FilmMainCard|null>(null);
-  const [showModal,setShowModal] = useState(false);
-  const [errorText,setErrorText] = useState('');
   const { register, control, handleSubmit, formState: { errors }, reset } = useForm<Inputs>();
   const { fields, append, remove, update} = useFieldArray<Inputs>({
     control, 
     name: "genres",
-    rules:{
-      minLength:1
-    }
   });
 
   useEffect(() => {
-    if (filmState.films.length > 0) {
-    const film = filmState.films.find(film=>film.id === id);
-    if (film) {
+    dispatch(getFilmFromServer({id}));
+  },[])
+
+  useEffect((()=>{
+    if (genresState.genres.length === 0) {
+      dispatch(getGenres());
+    }
+    if (genresState.genres.length > 0) {
+      setGenresNotLoaded(false);
+    }
+  }),[genresState.genres])
+
+  useEffect(() => {
+    if (filmState.film?.id === id && genresState.genres.length>0) {
+    const film = filmState.film;
       reset({
       name_ru:film.name,
       name_en:film.name_en,
@@ -55,57 +62,38 @@ const ChangePage = () => {
         }
       })
     })
-    }
   }
-  },[filmState.films])
+  },[filmState.film,genresState.genres])
 
   const onSubmit = async (data:FieldValues) => {
-    setErrorText('');
+    setRequestWasSent(true);
     const dataTosave = {
-      id:film?.id,
-      name:data.name_ru,
-      name_en:data.name_en,
-      genre:data.genres?.map((genre:{value:string})=>{return genre.value}).filter((genre:string)=>genre.length > 0),
+      id:film?.id??0,
+      name:data.name_ru??'',
+      name_en:data.name_en??'',
+      genre:data.genres??[],
     };
-    try {
-      const response = await api.request({
-      data: dataTosave,
-      method:'put',
-      url:'/film-update',
-      headers:{
-        Authorization: `Bearer ${authState.token}`,
-        Accept: 'application/json'
-      }
-    });
-    if (response.status === 200) {
-      navigate('/admin');
-      dispatch(updateFilm(dataTosave));
-    }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        setErrorText(error.response?.data?.message ? error.response?.data?.message : error.message);
-        setShowModal(true);
-      }
-    }
+    dispatch(updateFilmOnServer(dataTosave));
   }
 
   const handleDelete = () => {
     dispatch(deleteFilmFromServer({id}));
-    if (filmState.status === 'resolved') {
-      navigate('/admin');
-    }
+    navigate('/admin');
   }
 
   const handleModalClose = () => {
     navigate('/admin');
     dispatch(clearError());
+    setRequestWasSent(false);
   }
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{intl.formatMessage({id:'change_title'})}</h1>
+      {genresNotLoaded && <Loader/>}
       {filmState.status === 'loading' && <Loader/>}
-      {(filmState.status === 'rejected'||showModal) && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error?filmState.error:errorText} />}
+      {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error} />}
+      {(filmState.status === 'resolved' && requestWasSent) && <Modal handleClose={handleModalClose} headerId={"modal_success_header"} body={''} />}
       {<form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="name_ru">
           {intl.formatMessage({id:'admin_name'})}
@@ -127,14 +115,17 @@ const ChangePage = () => {
           defaultValue={film?.name_en}
           title={intl.formatMessage({id:'admin_name_en'})}
           {...register("name_en")} />
-        {fields.map((field, index) => {return (
+          {fields.map((field, index) => {return (
           <div className={styles.wrapperGenre} key={field.id}>
-          <input className={styles.inputGenre}
-            {...register(`genres.${index}.value` as const)} 
-          />
+            <select {...register(`genres.${index}`,{ required: true })} className={styles.inputGenre}>
+            {genresState.genres.map(genre => {
+              return <option value={genre} key={genre}>{genre}</option>
+            })}
+            </select>
           <Button size="small" appearance="primary" children={intl.formatMessage({id:'change_delete_genre'})} onPointerDown={() => remove(index)}/>
           </div>
         )})}
+        { errors.genres && <span className={styles.error}>{intl.formatMessage({id:'change_error'})}</span> }
         <Button 
           size="small" 
           appearance="default" 

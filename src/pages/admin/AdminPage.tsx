@@ -11,12 +11,10 @@ import Loader from "../../components/loader/Loader";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getFilmsPage, initFilms, searchFilmOnServer, selectFilm } from "../../store/filmsState";
 import { useNavigate } from "react-router-dom";
-import { selectSearch, setSearch } from "../../store/searchState";
 
 const AdminPage = () => {
   const [ films, setFilms ] = useState<FilmMainCard[]>([]);
   const filmState = useAppSelector(selectFilm);
-  const searchState = useAppSelector(selectSearch);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const FILMS_PER_PAGE = 10;
@@ -29,7 +27,6 @@ const AdminPage = () => {
     } = useForm();
 
   const onHandleSearch = (data:FieldValues) => {
-    dispatch(setSearch(data.search));
     if (data.search.length === 0) {
       dispatch(initFilms())
     } else {
@@ -70,7 +67,6 @@ const AdminPage = () => {
           className={styles.input}
           type= 'search'
           id="search"
-          defaultValue={searchState.search}
           {...register("search")}
         ></input>
         {errors.search && (
