@@ -2,4 +2,23 @@
   max-width: 180px;
   background: none;
   cursor: pointer;
+  margin-right: 10px;
+}
+
+.select {
+  background-color: #1f1b2e;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 70px;
+  font-size: 16px;
+  background-image: url('../../image/selectIcon/arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center right 10px;
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
@@ -11,7 +11,9 @@ import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
+import { useClickAway } from 'react-use';
+import SortPlank from "../../components/sort/sortPlank/SortPlank";
 
 
 const FilmsPage = () => {
@@ -27,8 +29,11 @@ const FilmsPage = () => {
   const [currentActors, setCurrentActors] = useState<string[]>([])
   const [currentDirectors, setCurrentDirectors] = useState<string[]>([])
 
+  const lang = localStorage.getItem('lang');
+  const [numberPage, setNumberPage] = useState(1);
+
   useEffect(() => {
-    fetch(`http://188.120.248.77/films?order=ASC&page=1&take=18&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
+    fetch(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
       .then((response) => response.json())
       .then((data) => {
         setFilms(data);
@@ -37,14 +42,14 @@ const FilmsPage = () => {
       .catch((error) => {
         console.log(error, "error");
       });
+    setNumberPage(1)
   }, []);
 
   const expand = () => {
     setIsVisible(!isVisible);
   };
 
-
-  useEffect(() => {
+  const changeFilters = () => {
     let countries: string[] = [];
     let genres: string[] = [];
     let year = '';
@@ -71,6 +76,11 @@ const FilmsPage = () => {
                     : ''
     })
     getFilteredFilms(countries, genres, year, actor, director, +rating[0], +rating[1], score)
+  }
+
+  useEffect(() => {
+    setNumberPage(1)
+    changeFilters()
   }, [params['genres'], params['countries'], params['year'], params['score'], params['rating'], params['actor'], params['director']])
 
   const getFilteredFilms = async (
@@ -107,7 +117,7 @@ const FilmsPage = () => {
       minYear = year.split('-')[0];
       maxYear = year.split('-')[1];
     } else if (year?.length == 4) {
-      minYear = '0';
+      minYear = year;
       maxYear = year;
     } else {
       minYear = '0';
@@ -115,8 +125,8 @@ const FilmsPage = () => {
     }
 
     setLoading(true)
-    await axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=18&orderBy=scoreAVG${genresString}${countriesString}&actors=${actor}&directors=${director}&ratingStart=${ratingStart}&ratingEnd=${ratingEnd}&minCountScore=${currentScore}&yearStart=${minYear}&yearEnd=${maxYear}`)
-      .then(res => setFilms(res.data))
+    await axios.get(`http://188.120.248.77/films?order=ASC&page=${numberPage}&take=21&orderBy=scoreAVG${genresString}${countriesString}&actors=${actor}&directors=${director}&ratingStart=${ratingStart}&ratingEnd=${ratingEnd}&minCountScore=${currentScore}&yearStart=${minYear}&yearEnd=${maxYear}`)
+      .then(res => numberPage >= 2 ? setFilms([...films, ...res.data]) : setFilms(res.data))
       .then(() => getPersons(films))
       .then(() => setLoading(false))
   }
@@ -143,6 +153,51 @@ const FilmsPage = () => {
     })
 
   }
+
+  const [sortText, setSortText] = useState(lang == 'ru-RU' ? 'По количеству оценок' : 'By the number of ratings')
+  const sortList = ['По количеству оценок', 'По рейтингу', 'По дате выхода', 'По алфавиту']
+  const sortListEn = ['By the number of ratings', 'By rating', 'By release date', 'Alphabetically']
+
+  const [isActive, setIsActive] = useState(false);
+  const ref = useRef(null);
+
+  useClickAway(ref, () => {
+    setIsActive(false);
+  });
+
+  const open = () => {
+    setIsActive(!isActive);
+  };
+
+  const sortTypes: any = {
+    "По количеству оценок": (a: any, b: any) => +a.countScore - +b.countScore,
+    "By the number of ratings": (a: any, b: any) => +a.countScore - +b.countScore,
+    "По алфавиту": (a: any, b: any) => (lang == 'ru-RU' ? a.name : a.name_en).localeCompare(lang == 'ru-RU' ? b.name : b.name_en),
+    "By rating": (a: any, b: any) => (lang == 'ru-RU' ? a.name : a.name_en).localeCompare(lang == 'ru-RU' ? b.name : b.name_en),
+    "По дате выхода": (a: any, b: any) => b.year - a.year,
+    "By release date": (a: any, b: any) => b.year - a.year,
+    "По рейтингу": (a: any, b: any) => a.id - b.id,
+    "Alphabetically": (a: any, b: any) => a.id - b.id,
+  }
+
+  const addClass = (e: any) => {
+    document
+      .querySelectorAll(`.${styles.changed}`)
+      .forEach((elem) => elem.classList.remove(`${styles.changed}`));
+    e.target.classList.add(styles.changed)
+    setSortText(e.target.textContent)
+    films.sort(sortTypes[e.target.textContent])
+  }
+
+  const showMoreFilms = () => {
+    let number = numberPage;
+    number++;
+    setNumberPage(number);
+  }
+
+  useEffect(() => {
+    changeFilters();
+  }, [numberPage])
 
   return (
     <div className={styles.filmsPage}>
@@ -252,6 +307,25 @@ const FilmsPage = () => {
       )}
 
       <ParametersInfo />
+
+      <div className={styles.sortWrapper} ref={ref}>
+        <div onClick={open}>
+          <SortPlank text={sortText} isActive={isActive} />
+        </div>
+        <div
+          className={styles.dropListWrapper}
+          style={isActive ? { display: "block" } : { display: "none" }}
+        >
+          <ul className={styles.sortUl}>
+            {(lang == 'ru-RU' ? sortList : sortListEn).map((elem, index) => {
+              return <div key={index} className={styles.sortLiContainer}>
+                <li className={styles.sortLi} onClick={(e) => addClass(e)}>{elem}</li>
+              </div>
+            })}
+          </ul>
+        </div>
+      </div>
+
       <FilterBar className={styles.filterBar} actors={currentActors} directors={currentDirectors} />
 
       {loading ? <Loader filmLoader /> :
@@ -267,7 +341,10 @@ const FilmsPage = () => {
           </section>
         )
           :
-          <div className={styles.noFound}>По вашему запросу ничего не нашлось</div>
+          <div className={styles.noFound}><FormattedMessage id="film_no_found" /></div>
+      }
+      {loading || films.length <= 0 ? '' :
+        <button className={styles.showMoreFilms} onClick={showMoreFilms}>Показать ещё</button>
       }
     </div>
   );
