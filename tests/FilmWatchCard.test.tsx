@@ -12,6 +12,5 @@ describe('Test FilmWatchCard', () => {
   test('check render correct title', () => {
     const filmWatchCardTitle = screen.getByTestId('film-watch-card-title');
     expect(filmWatchCardTitle).toBeInTheDocument();
-    // expect(filmWatchCardTitle.textContent).toEqual('undefined')
   })
 })
