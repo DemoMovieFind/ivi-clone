@@ -4,17 +4,19 @@ import { GalleryCarousel } from "../../components/galleryCarousel/GalleryCarouse
 import { OnlineIvi } from "../../components/onlineIvi/OnlineIvi";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { useAppDispatch } from "../../store/hooks";
-import { initFilms } from "../../store/filmsInit";
+import { initFilms } from "../../store/filmsState";
 import SubButton from "../../components/buttons/subButton/SubButton";
 import MultipleRows from "../../components/infinitySlider/InfinitySlider";
 import TestCarousel from "../../components/testCarousel";
 import { useIntl } from "react-intl";
+import { getGenres } from "../../store/genresState";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   useEffect(() => {
     dispatch(initFilms());
+    dispatch(getGenres());
   }, []);
 
   const CardFilmItem: React.FC<{ item: FilmMainCard }> = ({ item }) => {

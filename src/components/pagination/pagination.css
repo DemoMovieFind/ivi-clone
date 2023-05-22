@@ -1,0 +1,14 @@
+li.previous,
+li.next {
+  color: #FFC85E;
+}
+
+li.selected a {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+  border-radius: 50%;
+}

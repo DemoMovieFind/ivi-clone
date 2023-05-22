@@ -1,14 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";
-import styles from './ChangePage.module.css';
+import { useNavigate } from "react-router-dom";
+import styles from './CreatePage.module.css';
 import { useIntl } from "react-intl";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Loader from "../../components/loader/Loader";
-import { FilmMainCard } from "../../types/entities/FilmMainCard";
-import { useEffect, useState } from "react";
 import Modal from "../../components/modalWindow/Modal";
-import { clearError, deleteFilmFromServer, getFilmFromServer, selectFilm, updateFilmOnServer } from "../../store/filmsState";
+import { clearError, createFilmOnServer, selectFilm } from "../../store/filmsState";
+import { useEffect, useState } from "react";
 import { getGenres, selectGenres } from "../../store/genresState";
 
 type Inputs = {
@@ -17,26 +16,84 @@ type Inputs = {
   genres:{value:string}[],
 };
 
-const ChangePage = () => {
-  const params = useParams();
-  const genresState = useAppSelector(selectGenres);
+const CreatePage = () => {
   const filmState = useAppSelector(selectFilm);
+  const genresState = useAppSelector(selectGenres);
   const [genresNotLoaded,setGenresNotLoaded] = useState(true);
-  const [requestWasSent,setRequestWasSent] = useState(false);
   const intl = useIntl();
-  const id = Number(params.id) ?? 0;
+  const [requestWasSent,setRequestWasSent] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [film,setFilm] = useState<FilmMainCard|null>(null);
-  const { register, control, handleSubmit, formState: { errors }, reset } = useForm<Inputs>();
-  const { fields, append, remove, update} = useFieldArray<Inputs>({
+  const { register, control, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const { fields, append, remove} = useFieldArray<Inputs>({
     control, 
     name: "genres",
   });
 
-  useEffect(() => {
-    dispatch(getFilmFromServer({id}));
-  },[])
+  const onSubmit = async (data:FieldValues) => {
+    const dataTosave = {
+      name:data.name_ru,
+      name_en:data.name_en,
+      genre:data.genres,
+      type: "сериал",
+      year: 2023,
+      country: "Россия",
+      tagline: "Lorem ipsum sit amet",
+      director: [
+          "Рустам Мосафир"
+      ],
+      scenario: [
+          "Дмитрий Лемешев",
+          "Рустам Мосафир",
+          "Александр Бузин"
+      ],
+      producer: [
+          "Дмитрий Нелидов",
+          "Александра Ремизова",
+          "Ольга Филипук"
+      ],
+      operator: [
+          "Степан Бешкуров"
+      ],
+      compositor: [
+          "Алексей Горшенев"
+      ],
+      artist: [
+          "Григорий Пушкин",
+          "Оксана Кручина",
+          "Макр Ли"
+      ],
+      montage: [
+          "Андрей Назаров"
+      ],
+      actors: [
+          "Константин Плотников",
+          "Влад Коноплёв"
+      ],
+      budget: "€9 500 000",
+      feesUS: "$10 198 820",
+      fees: "+ $416 389 690 = $426 588 510",
+      feesRU: "$1 725 813",
+      premiereRU: "26 апреля 2012",
+      premiere: "23 сентября 2011",
+      releaseDVD: "28 мая 2012, «Новый Диск»",
+      releaseBluRay: "25 июня 2012, «Новый Диск»",
+      age: "16+",
+      ratingMPAA: "R",
+      time: "112 мин. / 01:52",
+      description: "Lorem ipsum sit amet",
+      mainImg: "https://www.images.ru/film-img",
+      countScore: 0,
+    };
+    dispatch(createFilmOnServer(dataTosave));
+    setRequestWasSent(true);
+  }
+
+  const handleModalClose = () => {
+    navigate('/admin');
+    dispatch(clearError());
+    setRequestWasSent(false);
+  }
 
   useEffect((()=>{
     if (genresState.genres.length === 0) {
@@ -47,49 +104,9 @@ const ChangePage = () => {
     }
   }),[genresState.genres])
 
-  useEffect(() => {
-    if (filmState.film?.id === id && genresState.genres.length>0) {
-    const film = filmState.film;
-      reset({
-      name_ru:film.name,
-      name_en:film.name_en,
-    })
-    setFilm(film);
-    film.genres?.forEach((field: { [key: string]: number | string  }, index: number) => {
-      Object.keys(field).forEach((key) => {
-        if (key === 'name'){
-          update(index, {value:`${field[key]}`})
-        }
-      })
-    })
-  }
-  },[filmState.film,genresState.genres])
-
-  const onSubmit = async (data:FieldValues) => {
-    setRequestWasSent(true);
-    const dataTosave = {
-      id:film?.id??0,
-      name:data.name_ru??'',
-      name_en:data.name_en??'',
-      genre:data.genres??[],
-    };
-    dispatch(updateFilmOnServer(dataTosave));
-  }
-
-  const handleDelete = () => {
-    dispatch(deleteFilmFromServer({id}));
-    navigate('/admin');
-  }
-
-  const handleModalClose = () => {
-    navigate('/admin');
-    dispatch(clearError());
-    setRequestWasSent(false);
-  }
-
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.title}>{intl.formatMessage({id:'change_title'})}</h1>
+      <h1 className={styles.title}>{intl.formatMessage({id:'add_film_title'})}</h1>
       {genresNotLoaded && <Loader/>}
       {filmState.status === 'loading' && <Loader/>}
       {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error} />}
@@ -101,7 +118,6 @@ const ChangePage = () => {
         <input 
           id="name_ru"
           className={styles.input} 
-          defaultValue={film?.name} 
           title={intl.formatMessage({id:'admin_name'})}
           {...register("name_ru",{ required: true })} 
         />
@@ -112,14 +128,13 @@ const ChangePage = () => {
         <input 
           id="name_en"
           className={styles.input} 
-          defaultValue={film?.name_en}
           title={intl.formatMessage({id:'admin_name_en'})}
           {...register("name_en")} />
-          {fields.map((field, index) => {return (
+        {fields.map((field, index) => {return (
           <div className={styles.wrapperGenre} key={field.id}>
             <select {...register(`genres.${index}`,{ required: true })} className={styles.inputGenre}>
             {genresState.genres.map(genre => {
-              return <option value={genre} key={genre}>{genre}</option>
+              return <option defaultValue={genre} value={genre} key={genre}>{genre}</option>
             })}
             </select>
           <Button size="small" appearance="primary" children={intl.formatMessage({id:'change_delete_genre'})} onPointerDown={() => remove(index)}/>
@@ -134,16 +149,11 @@ const ChangePage = () => {
         <Button 
           appearance="default" 
           type="submit" 
-          title={intl.formatMessage({id:'change_change'})} 
-          children={intl.formatMessage({id:'change_change'})}/>
-        <Button 
-          onPointerDown={handleDelete} 
-          appearance="primary" 
-          title={intl.formatMessage({id:'change_delete'})} 
-          children={intl.formatMessage({id:'change_delete'})}/>
+          title={intl.formatMessage({id:'change_add'})} 
+          children={intl.formatMessage({id:'change_add'})}/>
       </form>}
     </div>
   )
 }
 
-export default ChangePage;
+export default CreatePage;
