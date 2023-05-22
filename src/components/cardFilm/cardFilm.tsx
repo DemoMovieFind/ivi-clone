@@ -8,7 +8,7 @@ import { NameFilm } from "./nameFilm/NameFilm";
 import { Price } from "./price/Price";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { useAppSelector } from "../../store/hooks";
-import { langReducer, selectLang } from "../../store/langState";
+import { selectLang } from "../../store/langState";
 
 export interface CardFilmProps {
   appearance?: "default";
@@ -49,10 +49,10 @@ export const CardFilm = ({
       </div>
 
       <div className={styles.nameWrapper}>
-        <NameFilm 
+        <NameFilm
           name={
             langState.lang === 'ru-RU'
-            ? film.name : (film.name_en !==undefined ? film.name_en : film.name)
+              ? film.name : (film.name_en !== undefined ? film.name_en : film.name)
           } />
         <Price price={false} />
       </div>

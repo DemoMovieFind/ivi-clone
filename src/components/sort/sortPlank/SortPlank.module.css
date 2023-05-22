@@ -1,0 +1,52 @@
+.plankWrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.plank {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  width: 260px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.plank::before {
+  content: '';
+  width: 26px;
+  height: 16px;
+  background: url('../../../image/sort/sort.png') top left no-repeat;
+  color: #fff;
+}
+
+.textWrapper {
+  min-width: 30px;
+  width: 100%;
+  align-self: center;
+}
+
+.text {
+  color: #fff;
+  font-weight: 500;
+  font-style: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  line-height: 20px;
+  height: 20px;
+}
+
+.dropdownIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownIcon.active {
+  transform: rotate(180deg);
+}

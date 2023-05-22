@@ -6,8 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  padding-top: 24px;
-  padding-bottom: 80px;
+  padding: 24px 0;
 }
 
 .titlePage {
@@ -99,6 +98,72 @@
   background-position: center bottom;
   background-size: 13%;
 }
+
+.dropListWrapper {
+  background-color: #1f1b2e;
+  margin-top: 6px;
+  position: absolute;
+  z-index: 6;
+  width: 250px;
+  box-shadow: 0 20px 40px rgba(7,5,14,.4);
+}
+
+.sortWrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 6px;
+  margin-top: 10px;
+}
+
+.sortUl {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.sortLiContainer {
+  position: relative;
+  height: 45px;
+}
+
+.sortLi {
+  padding: 12px 16px 12px 20px;
+  color: #fff;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.sortLi:hover {
+  background-color: #312b45;
+}
+
+.changed::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 45px;
+  background-color: red;
+}
+
+.showMoreFilms{
+  width: 100%;
+  margin-bottom: 80px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.2s linear;
+  font-weight: 600;
+}
+
+.showMoreFilms:hover {
+  border-color: rgba(255,255,255,.72);
+}
+
 
 @media (max-width: 1160px) {
   .filmsList {
