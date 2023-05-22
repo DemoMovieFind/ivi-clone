@@ -9,8 +9,9 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import ReactPaginate from 'react-paginate';
 import Loader from "../../components/loader/Loader";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getFilmsPage, initFilms, searchFilmOnServer, selectFilm } from "../../store/filmsState";
+import { clearError, getFilmsPage, initFilms, searchFilmOnServer, selectFilm } from "../../store/filmsState";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../components/modalWindow/Modal";
 
 const AdminPage = () => {
   const [ films, setFilms ] = useState<FilmMainCard[]>([]);
@@ -45,13 +46,18 @@ const AdminPage = () => {
   };
 
   const handleAddFilm = () => {
-    navigate('/create')
+    navigate('/create');
   }
+
+  const handleModalClose = () => {
+    dispatch(clearError());
+  };
 
   return (
     <>
     <h1 className={styles.title}>{intl.formatMessage({id:'admin_title'})}</h1>
     {filmState.status === 'loading' && <Loader/>}
+    {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error} />}
     <Button type="button" appearance="default" onPointerDown={handleAddFilm}
             children={intl.formatMessage({id:'add_film_title'})}
     />
