@@ -19,6 +19,7 @@
   flex-direction: column;
   gap: 20px;
   max-width: 400px;
+  margin-bottom: 50px;
 }
 
 .error {
@@ -42,6 +43,8 @@
   background: white;
   border: none;
   padding: 0 10px;
+  font-family: inherit;
+  font-size: 16px;
 }
 
 .inputGenre {
@@ -57,4 +60,9 @@
 .wrapperGenre {
   display: flex;
   gap: 10px;
+  justify-content: space-between;
+}
+
+.wrapperSelect {
+  width: 200px;
 }
