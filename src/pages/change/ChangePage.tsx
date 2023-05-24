@@ -72,7 +72,7 @@ const ChangePage = () => {
       id:film?.id??0,
       name:data.name_ru??'',
       name_en:data.name_en??'',
-      genre:data.genres.map((genre:{value:string,label?:string})=>{return genre.value})??[],
+      genre:data.genres.map((genre:{value:string,label?:string})=>{return genre.value}).filter((genre:string)=>genre.length>0)??[],
     };
     dispatch(updateFilmOnServer(dataTosave));
   }
