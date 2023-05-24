@@ -10,6 +10,7 @@ import MultipleRows from "../../components/infinitySlider/InfinitySlider";
 import TestCarousel from "../../components/testCarousel";
 import { useIntl } from "react-intl";
 import { getGenres } from "../../store/genresState";
+import CardTopFilm from "../../components/cardTopFilm/CardTopFilm";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +23,10 @@ const MainPage = () => {
   const CardFilmItem: React.FC<{ item: FilmMainCard }> = ({ item }) => {
     return <CardFilm film={item} />;
   };
+
+  const CardTopFilmItem: React.FC<{ item: FilmMainCard, count?: number }> = ({ item, count }) => {
+    return <CardTopFilm film={item} count={count} />
+  }
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
@@ -44,18 +49,27 @@ const MainPage = () => {
         <GalleryCarousel
           items={films}
           itemComponent={CardFilmItem}
-          nameCategory={intl.formatMessage({id:'nav_list_biography'})}
+          nameCategory={intl.formatMessage({ id: 'nav_list_biography' })}
         />
       )}
       <OnlineIvi />
+      {
+        films &&
+        <GalleryCarousel
+          items={films.slice(0, 10)}
+          itemComponent={CardTopFilmItem}
+          typeSlider="topFilms"
+          nameCategory={intl.formatMessage({ id: 'film_top_slider' })}
+        />
+      }
       {films && (
         <GalleryCarousel
           items={films}
           itemComponent={CardFilmItem}
-          nameCategory={intl.formatMessage({id:'nav_list_comedies'})}
+          nameCategory={intl.formatMessage({ id: 'nav_list_comedies' })}
         />
       )}
-      <TestCarousel nameCategory={intl.formatMessage({id:'nav_list_comedies'})} />
+      <TestCarousel nameCategory={intl.formatMessage({ id: 'nav_list_comedies' })} />
     </div>
   );
 };
