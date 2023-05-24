@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styles from './ChangePage.module.css';
 import { useIntl } from "react-intl";
-import { FieldValues, useFieldArray, useForm } from "react-hook-form";
+import { FieldValues, useFieldArray, useForm, Controller } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
+import Select from "react-select";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Loader from "../../components/loader/Loader";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
@@ -58,7 +59,7 @@ const ChangePage = () => {
     film.genres?.forEach((field: { [key: string]: number | string  }, index: number) => {
       Object.keys(field).forEach((key) => {
         if (key === 'name'){
-          update(index, {value:`${field[key]}`})
+          update(index,{value:`${field[key]}`})
         }
       })
     })
@@ -71,14 +72,14 @@ const ChangePage = () => {
       id:film?.id??0,
       name:data.name_ru??'',
       name_en:data.name_en??'',
-      genre:data.genres??[],
+      genre:data.genres.map((genre:{value:string,label?:string})=>{return genre.value}).filter((genre:string)=>genre.length>0)??[],
     };
     dispatch(updateFilmOnServer(dataTosave));
   }
 
   const handleDelete = () => {
+    setRequestWasSent(true);
     dispatch(deleteFilmFromServer({id}));
-    navigate('/admin');
   }
 
   const handleModalClose = () => {
@@ -115,15 +116,21 @@ const ChangePage = () => {
           defaultValue={film?.name_en}
           title={intl.formatMessage({id:'admin_name_en'})}
           {...register("name_en")} />
-          {fields.map((field, index) => {return (
-          <div className={styles.wrapperGenre} key={field.id}>
-            <select {...register(`genres.${index}`,{ required: true })} className={styles.inputGenre}>
-            {genresState.genres.map(genre => {
-              return <option value={genre} key={genre}>{genre}</option>
-            })}
-            </select>
-          <Button size="small" appearance="primary" children={intl.formatMessage({id:'change_delete_genre'})} onPointerDown={() => remove(index)}/>
-          </div>
+          {fields.map((field, index) => {
+            return (
+              <div className={styles.wrapperGenre} key={field.id}>
+                <div className={styles.wrapperSelect}>
+                  <Controller
+                    name={`genres.${index}`}
+                    control={control}
+                    key={field.id}
+                    render={
+                      ({ field }) => <Select name={`genres.${index}`} defaultValue={{value: field.value.value, label: field.value.value}} options={genresState.genres.map(genre=>{return {value:genre,label:genre}})} onChange={field.onChange}/>
+                    }
+                  />
+                </div>
+              <Button size="small" appearance="primary" children={intl.formatMessage({id:'change_delete_genre'})} onPointerDown={() => remove(index)}/>
+              </div>
         )})}
         { errors.genres && <span className={styles.error}>{intl.formatMessage({id:'change_error'})}</span> }
         <Button 

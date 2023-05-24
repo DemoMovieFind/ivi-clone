@@ -129,7 +129,6 @@ export const updateFilmOnServer = createAsyncThunk(
     }
 })
 
-
 export const searchFilmOnServer = createAsyncThunk(
   'films/searchFilmOnServer',
   async (payload:{search:string},{ rejectWithValue }) => {
@@ -161,19 +160,6 @@ export const filmsReducer = createSlice({
   name: 'films',
   initialState,
   reducers: {
-    updateFilm:(state,action) => {
-      const { id, name, name_en, genre } = action.payload;
-      const film = state.films.find(film=>film.id === id);
-      if (film) {
-        film.name = name;
-        film.name_en = name_en;
-        film.genres = genre.map((genre:string)=>{
-          return {
-            name:genre,
-          }
-        })
-      }
-    },
     clearError:(state) => {
       state.error = null;
       state.status = null;
@@ -200,6 +186,10 @@ export const filmsReducer = createSlice({
       state.status = 'rejected';
       state.error = action.payload;
       state.isInitialized = false;
+    }),
+    builder.addCase(createFilmOnServer.rejected, (state, action) => {
+      state.status = 'rejected';
+      state.error = action.payload;
     }),
     builder.addCase(createFilmOnServer.pending, (state) => {
       state.status = 'loading';
@@ -286,6 +276,6 @@ export const filmsReducer = createSlice({
 
 export const selectFilm = (state: RootState) => state.films;
 
-export const { updateFilm, clearError } = filmsReducer.actions;
+export const { clearError } = filmsReducer.actions;
 
 export default filmsReducer.reducer;
