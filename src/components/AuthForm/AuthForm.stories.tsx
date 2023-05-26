@@ -38,5 +38,3 @@ export const Default: Story = {
 };
 
 type Story = StoryObj<typeof meta>;
-
-export const authForm: Story = {};
