@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { CardFilm } from "../cardFilm/cardFilm";
-
 import "./CarouselStyle.css";
 import axios from "axios";
 import { Link } from "react-router-dom";

@@ -27,9 +27,12 @@ const MainPage = () => {
     return <CardFilm film={item} />;
   };
 
-  const CardTopFilmItem: React.FC<{ item: FilmMainCard, count?: number }> = ({ item, count }) => {
-    return <CardTopFilm film={item} count={count} />
-  }
+  const CardTopFilmItem: React.FC<{ item: FilmMainCard; count?: number }> = ({
+    item,
+    count,
+  }) => {
+    return <CardTopFilm film={item} count={count} />;
+  };
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
   const { response, error, loaded, clearError } = useAxios({
@@ -57,24 +60,23 @@ const MainPage = () => {
         <GalleryCarousel
           items={films}
           itemComponent={CardFilmItem}
-          nameCategory={intl.formatMessage({ id: 'nav_list_biography' })}
+          nameCategory={intl.formatMessage({ id: "nav_list_biography" })}
         />
       )}
       <OnlineIvi />
-      {
-        films &&
+      {films && (
         <GalleryCarousel
           items={films.slice(0, 10)}
           itemComponent={CardTopFilmItem}
           typeSlider="topFilms"
-          nameCategory={intl.formatMessage({ id: 'film_top_slider' })}
+          nameCategory={intl.formatMessage({ id: "film_top_slider" })}
         />
-      }
+      )}
       {films && (
         <GalleryCarousel
           items={films}
           itemComponent={CardFilmItem}
-          nameCategory={intl.formatMessage({ id: 'nav_list_comedies' })}
+          nameCategory={intl.formatMessage({ id: "nav_list_comedies" })}
         />
       )}
       <Carousel nameCategory={intl.formatMessage({ id: 'nav_list_comedies' })} />
