@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Meta, StoryObj } from '@storybook/react';
 import AuthForm, { OutputAuthForm } from './AuthForm';
-import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../../store/store';
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -17,7 +15,7 @@ export default meta;
 
 export const authForm: Story = {
   args: {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
     handleSubmit: (data: OutputAuthForm)=>{},
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     handleGoogle:()=>{}
