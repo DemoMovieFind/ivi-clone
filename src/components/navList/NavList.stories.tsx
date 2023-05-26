@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import NavList from "./NavList";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
 const meta: Meta<typeof NavList> = {
   title: "UI Components/NavList",
@@ -11,9 +11,9 @@ const meta: Meta<typeof NavList> = {
 type Story = StoryObj<typeof meta>;
 
 export const navList: Story = {
-  render: (data) => <BrowserRouter>
+  render: (data) => <MemoryRouter>
     <NavList {...data}
-    /></BrowserRouter>,
+    /></MemoryRouter>,
     args: {
       vertical: false,
       links:[

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ParametersInfo } from "./ParametersInfo";
-import { MemoryRouter } from "react-router-dom";
+import RouterWrapper from "../../../.storybook/routerWrapper";
 
 const meta = {
   title: "UI components/ParametersInfo",
@@ -13,5 +13,5 @@ type Story = StoryObj<typeof meta>;
 
 export const Stock: Story = {
   args: {},
-  render:()=><MemoryRouter><ParametersInfo/></MemoryRouter>
+  render:() => RouterWrapper(<ParametersInfo/>) 
 };

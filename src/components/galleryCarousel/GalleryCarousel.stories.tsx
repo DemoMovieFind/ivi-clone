@@ -10,6 +10,7 @@ import films from "../../miniDb";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
+import RouterWrapper from "../../../.storybook/routerWrapper";
 
 const meta = {
   title: "GalleryCarousel",
@@ -88,13 +89,13 @@ const CardCommentItem: React.FC<{ item: any }> = () => <CommentCard />;
 
 export const CommentCarousel: Story = {
   args: {},
-  render: (args) => (<MemoryRouter>
+  render: (args) => RouterWrapper(
     <GalleryCarousel
       {...args}
       items={commentsCards}
       itemComponent={CardCommentItem}
       nameCategory="Отзывы"
       typeSlider="comment"
-    /></MemoryRouter>
+    />
   ),
 };

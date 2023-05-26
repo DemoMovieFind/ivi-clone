@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { DefaultFilter } from "./DefaultFilter";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from "../../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Filters/ElementList",
@@ -13,10 +13,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <BrowserRouter>
-      <DefaultFilter />
-    </BrowserRouter>
-  ),
+  render: () => RouterWrapper(<DefaultFilter />),
   args: {},
 };

@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 
 import { FilterBar } from "./FilterBar";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from "../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Filters/FilterBar",
@@ -12,9 +12,5 @@ const meta = {
 export default meta;
 
 export const AppStore = {
-  render: () => (
-    <BrowserRouter>
-      <FilterBar />
-    </BrowserRouter>
-  ),
+  render: () => RouterWrapper(<FilterBar />)
 };

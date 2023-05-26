@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { TitlePage } from "./TitlePage";
+import RouterWrapper from "../../../.storybook/routerWrapper";
 
 const meta = {
   title: "UI components/TitlePage",
@@ -12,4 +13,5 @@ type Story = StoryObj<typeof meta>;
 
 export const Stock: Story = {
   args: {},
+  render:()=>RouterWrapper(<TitlePage/>)
 };

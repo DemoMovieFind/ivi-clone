@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { CountrySlider } from "./CountrySlider";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from "../../../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Filters/Сountries/CountrySlider",
@@ -13,10 +13,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const countrySlider: Story = {
-  render: () => (
-    <BrowserRouter>
-      <CountrySlider />
-    </BrowserRouter>
-  ),
+  render: () => RouterWrapper(<CountrySlider />),
   args: {},
 };

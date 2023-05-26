@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import PersonCard from "./PersonCard";
-import { MemoryRouter } from "react-router-dom";
+import RouterWrapper from "../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Persons Components/PersonCard",
@@ -12,5 +12,5 @@ export default meta;
 type Story = StoryObj<typeof meta>
 
 export const personCard: Story = {
-  render:()=><MemoryRouter><PersonCard/></MemoryRouter>
+  render:()=>RouterWrapper(<PersonCard/>) 
 }

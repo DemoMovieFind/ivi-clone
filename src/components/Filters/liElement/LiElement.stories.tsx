@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { LiElement } from "./LiElement";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from "../../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Filters/ElementList",
@@ -13,11 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Counties: Story = {
-  render: () => (
-    <BrowserRouter>
-      <LiElement value={"Россия"} argument={"countries"} />
-    </BrowserRouter>
-  ),
+  render: () => RouterWrapper(<LiElement value={"Россия"} argument={"countries"} />),
   args: {
     value: "Россия",
     argument: " countries",
@@ -25,11 +21,7 @@ export const Counties: Story = {
 };
 
 export const Genres: Story = {
-  render: () => (
-    <BrowserRouter>
-      <LiElement value={"Драма"} argument={"genres"} />
-    </BrowserRouter>
-  ),
+  render: () => RouterWrapper(<LiElement value={"Драма"} argument={"genres"} />),
   args: {
     value: "Драма",
     argument: " genres",

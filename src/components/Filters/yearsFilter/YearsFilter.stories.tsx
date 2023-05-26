@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react"
 import YearsFilter from "./YearsFilter"
-import { MemoryRouter } from "react-router-dom";
+import RouterWrapper from "../../../../.storybook/routerWrapper";
 
 const meta = {
   title: 'Filters/YearsFilter',
@@ -26,5 +26,5 @@ const yearsList = [
 export const yearsFilter: Story = {
   args: {
     items: yearsList,
-  },render:()=>(<MemoryRouter><YearsFilter/></MemoryRouter>)
+  },render:()=>RouterWrapper(<YearsFilter/>)
 }

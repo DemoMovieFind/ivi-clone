@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { CounterList } from "./CounterList";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from "../../../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Filters/Сountries/CounterList",
@@ -13,10 +13,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const navList: Story = {
-  render: () => (
-    <BrowserRouter>
-      <CounterList />
-    </BrowserRouter>
-  ),
+  render: () => RouterWrapper(<CounterList />),
   args: {},
 };

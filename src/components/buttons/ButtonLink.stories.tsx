@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import ButtonLink from "./ButtonLink";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from '../../../.storybook/routerWrapper';
 
 const meta:Meta<typeof ButtonLink> = {
   title: "UI Components/ButtonLink",
@@ -16,10 +16,7 @@ export const Default:Story = {
     appearance: "default",
     children: "Button",
   },
-  render:(args)=>
-    <BrowserRouter>
-      <ButtonLink {...args}/>
-    </BrowserRouter>,
+  render:(args) => RouterWrapper(<ButtonLink {...args}/>)
 };
 
 export const Primary:Story = {
@@ -27,10 +24,7 @@ export const Primary:Story = {
     appearance: "primary",
     children: "Button",
   },
-  render:(args)=>
-    <BrowserRouter>
-      <ButtonLink {...args}/>
-    </BrowserRouter>,
+  render:(args) => RouterWrapper(<ButtonLink {...args}/>)
 };
 
 export const Large: Story = {
@@ -38,10 +32,7 @@ export const Large: Story = {
     size: "large",
     children: "Button",
   },
-  render:(args)=>
-    <BrowserRouter>
-      <ButtonLink {...args}/>
-    </BrowserRouter>,
+  render:(args) => RouterWrapper(<ButtonLink {...args}/>)
 };
 
 export const Small: Story = {
@@ -49,10 +40,7 @@ export const Small: Story = {
     size: "small",
     children: "Button",
   },
-  render:(args)=>
-    <BrowserRouter>
-      <ButtonLink {...args}/>
-    </BrowserRouter>,
+  render:(args) => RouterWrapper(<ButtonLink {...args}/>)
 };
 
 export default meta;

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { GenreList } from "./GenreList";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from "../../../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Filters/Genres/GenryList",
@@ -13,10 +13,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const navList: Story = {
-  render: () => (
-    <BrowserRouter>
-      <GenreList />
-    </BrowserRouter>
-  ),
+  render: () => RouterWrapper(<GenreList />),
   args: {},
 };

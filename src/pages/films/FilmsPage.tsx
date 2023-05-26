@@ -6,7 +6,7 @@ import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
 import styles from "./FilmsPage.module.css";
 import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
-import { TitlePage } from "../../components/titlePage/TitlePage";
+import { TitlePage } from "../titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import axios from "axios";
@@ -14,7 +14,6 @@ import Loader from "../../components/loader/Loader";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useClickAway } from 'react-use';
 import SortPlank from "../../components/sort/sortPlank/SortPlank";
-
 
 const FilmsPage = () => {
   const [searchParams] = useSearchParams();

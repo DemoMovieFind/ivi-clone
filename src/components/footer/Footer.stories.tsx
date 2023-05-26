@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Footer from "./Footer";
-import { BrowserRouter } from "react-router-dom";
+import RouterWrapper from "../../../.storybook/routerWrapper";
 
 const meta: Meta<typeof Footer> = {
   title: "Page Components/Footer",
@@ -11,10 +11,6 @@ const meta: Meta<typeof Footer> = {
 type Story = StoryObj<typeof meta>;
 
 export const footer: Story = {
-  render:()=>
-    <BrowserRouter>
-      <Footer/>
-    </BrowserRouter>
-  
+  render:() => RouterWrapper(<Footer/>)
 };
 export default meta;

@@ -11,6 +11,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const OnePlusOne: Story = {
-
-};
+export const OnePlusOne: Story = {};

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { GenreIcon } from "./GenreIcon";
-import { MemoryRouter } from "react-router-dom";
+import RouterWrapper from "../../../../../.storybook/routerWrapper";
 
 const meta = {
   title: "Filters/Genres/GenreIcon",
@@ -16,6 +16,5 @@ export const Drama: Story = {
   args: {
     genre: "Драма",
   },
-  render:(args)=>(<MemoryRouter><GenreIcon genre={args.genre}/>
-    </MemoryRouter>)
+  render:(args)=>RouterWrapper(<GenreIcon genre={args.genre}/>)
 };

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react"
 import ScoresFilter from "./ScoresFilter";
-import { MemoryRouter } from "react-router-dom";
+import RouterWrapper from "../../../../.storybook/routerWrapper";
 
 const meta = {
   title: 'Filters/ScoresFilter',
@@ -15,5 +15,5 @@ export const scoresFilter: Story = {
   args: {
     max: 10,
   },
-  render:() => (<MemoryRouter><ScoresFilter/></MemoryRouter>)
+  render:() => RouterWrapper(<ScoresFilter/>)
 }

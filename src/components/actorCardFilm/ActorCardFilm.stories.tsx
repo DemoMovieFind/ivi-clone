@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ActorCardFilm } from "./ActorCardFilm";
-import { MemoryRouter } from "react-router-dom";
+import RouterWrapper from '../../../.storybook/routerWrapper';
 
 const meta = {
   title: "ActorCardFilm/ActorCardFilm",
@@ -25,5 +25,5 @@ export const Default: Story = {
       year: '2022',
     },
   },
-  render:(args)=><MemoryRouter><ActorCardFilm {...args}/></MemoryRouter>
+  render:(args)=>RouterWrapper(<ActorCardFilm {...args}/>)
 };
