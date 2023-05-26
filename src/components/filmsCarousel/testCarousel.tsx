@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { FilmMainCard } from "../types/entities/FilmMainCard";
-import { CardFilm } from "./cardFilm/cardFilm";
+import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import { CardFilm } from "../cardFilm/cardFilm";
 
 import "./testCarouselStyle.css";
+import { Link } from "react-router-dom";
 
 interface TestCarouselProps<T> {
   items?: T[];
@@ -14,7 +15,9 @@ const TestCarousel = <T,>({ nameCategory }: TestCarouselProps<T>) => {
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
   useEffect(() => {
-    fetch(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
+    fetch(
+      `http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`
+    )
       .then((response) => response.json())
       .then((data) => {
         setFilms(data);
@@ -63,13 +66,9 @@ const TestCarousel = <T,>({ nameCategory }: TestCarouselProps<T>) => {
       <div className="title">{nameCategory}</div>
       <Slider {...settings}>
         {films.map((film) => (
-          <CardFilm key={film.id} film={film} className="card-film" />
-        ))}
-        {films.map((film) => (
-          <CardFilm film={film} key={film.id} />
-        ))}
-        {films.map((film) => (
-          <CardFilm film={film} key={film.id} />
+          <Link to={film.name}>
+            <CardFilm key={film.id} film={film} className="card-film" />
+          </Link>
         ))}
       </Slider>
     </div>
