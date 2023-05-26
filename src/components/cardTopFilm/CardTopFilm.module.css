@@ -1,0 +1,25 @@
+.filmTopContainer {
+  position: relative;
+  min-width: 220px;
+}
+
+.filmPoster {
+  width: 220px;
+  height: 450px;
+  border-radius: 8px;
+}
+
+.filmTopCount {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(0deg,#100e19,rgba(16,14,25,0));;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 200px;
+}
+
+.number {
+  height: 70px;
+}

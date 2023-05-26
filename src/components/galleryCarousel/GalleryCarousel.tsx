@@ -15,7 +15,7 @@ export interface GalleryCarouselProps<T> {
   filmName?: string;
   nameCategory?: string;
   items?: T[];
-  itemComponent?: React.FC<{ item: T }>;
+  itemComponent?: React.FC<{ item: T, count?: number }>;
   typeSlider?: string;
   film?: FilmWatchCardType;
 }
@@ -32,7 +32,7 @@ export const GalleryCarousel = <T,>({
 }: GalleryCarouselProps<T>) => {
   const [valueTranslate, setValueTranslate] = useState(0);
   const [isVisible, setIsVisible] = useState(0.5);
-  const widthCarousel = typeSlider === "comment" ? "3696px" : "3363px";
+  const widthCarousel = typeSlider === "comment" ? "3696px" : typeSlider === "topFilms" ? '2444px' : "3363px";
 
   const goLeft = () => {
     if (typeSlider === "comment") {
@@ -69,7 +69,7 @@ export const GalleryCarousel = <T,>({
   useEffect(() => {
     if (valueTranslate === 0) {
       setIsVisible(0);
-    } else if (valueTranslate === -2478 || valueTranslate === -2480) {
+    } else if (valueTranslate === -2478 || valueTranslate === -2480 || valueTranslate === -2124) {
       setIsVisible(1);
     } else {
       setIsVisible(0.5);
@@ -143,14 +143,14 @@ export const GalleryCarousel = <T,>({
                       {
                         typeSlider !== "comment" ?
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          ItemComponent && items?.map((item: any, index) => <NavLink key={index} to={`/movies/${item.name}`} state={item}><ItemComponent item={item} /></NavLink>)
+                          ItemComponent && items?.map((item: any, index) => <NavLink key={index} to={`/movies/${item.name}`} state={item}><ItemComponent item={item} count={index} /></NavLink>)
                           :
                           items?.length == 0 ?
                             <div className={styles.noReviews}>Нет отзывов</div>
                             :
                             ItemComponent && items?.map((item: T, index) => <NavLink key={index} to={`./comments`} state={film}><ItemComponent item={item} /></NavLink>)
                       }
-                      {typeSlider === "comment" ? "" : <CardViewAll />}
+                      {typeSlider === "comment" || typeSlider == 'topFilms' ? "" : <CardViewAll />}
                     </div>
                   </div>
                 </div>
