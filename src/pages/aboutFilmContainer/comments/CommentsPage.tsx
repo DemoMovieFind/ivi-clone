@@ -65,7 +65,7 @@ const CommentsPage = () => {
       const decoded = AuthService.getDecodedToken(token);
 
       const commentText = data;
-      const userId = decoded.id;
+      const userId = decoded?.id??0;
       const filmId = state.id;
 
       postReview(commentText, userId, filmId, token, userId)

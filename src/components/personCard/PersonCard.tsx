@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import styles from './PersonCard.module.css'
 import { FormattedMessage } from "react-intl";
 import { ActorCardFilm } from '../actorCardFilm/ActorCardFilm';
@@ -27,9 +27,9 @@ const PersonCard = ({
   const [loading, setLoading] = useState(true)
 
   const { state } = useLocation()
-  name = state.person
-  profession = state.profession
-  film = [state.film]
+  name = state?.person
+  profession = state?.profession
+  film = [state?.film]
 
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const PersonCard = ({
         <div className={styles.fullFilmTitleTotal}>{currentFilms.length} {filmsWords[ending(currentFilms.length)]}</div>
       </div>
       <div className={styles.filmsContainer}>
-        {currentFilms.length == 0 ? <Loader filmLoader /> : currentFilms.map((film) => loading ? <Loader filmLoader /> : <ActorCardFilm key={film.id} film={film} />)}
+        {currentFilms.length == 0 ? <Loader filmLoader /> : currentFilms.map((film) => loading ? <Loader filmLoader /> : <ActorCardFilm key={film?.id} film={film} />)}
       </div>
       <div className={styles.personCardBreadCrumbs}>
         <a href="/" className={styles.personCardBreadCrumbsLink}><FormattedMessage id='nav_list_myIvi' /></a>

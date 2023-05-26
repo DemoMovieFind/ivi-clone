@@ -7,7 +7,7 @@ import { LOCALES } from '../src/i18n/locales';
 import { IntlProvider } from 'react-intl';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const TestWrapper = (testedPage:JSX.Element) => {
+const ComponentWrapper = (component:JSX.Element) => {
   return render (
       <Provider store={store}>
         <GoogleOAuthProvider clientId="64086974939-oijgmdetcv1c9a6envjks8qoov02adgp.apps.googleusercontent.com">
@@ -17,7 +17,7 @@ const TestWrapper = (testedPage:JSX.Element) => {
               locale={"ru-RU"}
               defaultLocale={LOCALES.RUSSIAN}
             >
-              {testedPage}
+              {component}
             </IntlProvider>
           </MemoryRouter>
         </GoogleOAuthProvider>
@@ -25,4 +25,4 @@ const TestWrapper = (testedPage:JSX.Element) => {
     );
 }
 
-export default TestWrapper;
+export default ComponentWrapper;

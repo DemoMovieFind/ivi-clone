@@ -47,8 +47,10 @@ const CommentFullCard = ({
 
   const [isAdmin, setIsAdmin] = useState(false)
   useEffect(() => {
-    for (let i = 0; i < decoded.roles.length; i++) {
-      if (decoded.roles[i].value == 'admin') setIsAdmin(true)
+    if (decoded) {
+      for (let i = 0; i < decoded.roles.length; i++) {
+        if (decoded.roles[i].value == 'admin') setIsAdmin(true)
+      }
     }
   })
 

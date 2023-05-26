@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import PersonCard from "./PersonCard";
+import { MemoryRouter } from "react-router-dom";
 
 const meta = {
   title: "Persons Components/PersonCard",
@@ -10,4 +11,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>
 
-export const personCard: Story = {}
+export const personCard: Story = {
+  render:()=><MemoryRouter><PersonCard/></MemoryRouter>
+}

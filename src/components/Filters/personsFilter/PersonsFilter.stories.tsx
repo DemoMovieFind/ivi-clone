@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom';
 import PersonsFilter from './PersonsFilter';
 
 const meta = {
@@ -16,12 +17,14 @@ export const actorsFilter: Story = {
   args: {
     suggestions: people,
     placeholder: 'actor'
-  }
+  },
+  render:(args) => (<MemoryRouter><PersonsFilter {...args}/></MemoryRouter>)
 }
 
 export const directorFilter: Story = {
   args: {
     suggestions: people,
     placeholder: 'director'
-  }
+  },
+  render:(args) => (<MemoryRouter><PersonsFilter {...args}/></MemoryRouter>)
 }

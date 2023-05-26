@@ -55,12 +55,12 @@ const CommentAnswerFrom = ({ parentId, filmId }: CommentAnswerFromPropsType) => 
     const token = localStorage.getItem('token') ?? '';
     const decoded = AuthService.getDecodedToken(token);
 
-    const email = decoded.email;
+    const email = decoded?.email??'';
     const text = data.text
 
-    postReview(data, decoded.id ?? 0, filmId ?? 0, token, parentId)
+    postReview(data, decoded?.id ?? 0, filmId ?? 0, token, parentId)
 
-    setAnswer([...answer, <CommentFullCard userId={decoded.id} name={email} text={text} date={date} parentId={parentId ?? 0} />])
+    setAnswer([...answer, <CommentFullCard userId={decoded?.id} name={email} text={text} date={date} parentId={parentId ?? 0} />])
   }
 
   const intl = useIntl()

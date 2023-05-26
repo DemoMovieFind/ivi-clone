@@ -25,7 +25,7 @@ export const ActorCardFilm = ({
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    film.id && getCurrentFilm(film.id)
+    film?.id && getCurrentFilm(film.id)
   }, [])
 
   const getCurrentFilm = async (id: number) => {
@@ -51,9 +51,9 @@ export const ActorCardFilm = ({
           className={styles.filmImage}
         />
         <div className={styles.main}>
-          <Info year={film.year} title={film.name} rating={film.rating ? film.rating.ivi : 7.1} />
+          <Info year={film?.year} title={film?.name} rating={film?.rating ? film?.rating.ivi : 7.1} />
           <Button size="large">
-            <NavLink to={`/movies/${film.name}`} state={currentFilm}>
+            <NavLink to={`/movies/${film?.name}`} state={currentFilm}>
               <FormattedMessage id="actor_card_film_detailed" />
             </NavLink>
           </Button>

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react"
 import RatingFilter from "./RatingFilter";
+import { MemoryRouter } from "react-router-dom";
 
 const meta = {
   title: 'Filters/RatingFilter',
@@ -14,5 +15,6 @@ export const ratingFilter: Story = {
   args: {
     min: 1,
     max: 10,
-  }
+  },
+  render:() => (<MemoryRouter><RatingFilter/></MemoryRouter>)
 }

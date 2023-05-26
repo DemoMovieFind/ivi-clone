@@ -2,14 +2,14 @@ import {fireEvent, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import AuthPage from '../src/pages/auth/AuthPage';
-import TestWrapper from './TestWrapper';
+import ComponentWrapper from './ComponentWrapper';
 import { sendAuth } from '../src/store/authState';
 import { AuthService } from '../src/services/AuthService';
 
 describe('Test Auth Form',() => {
 
   beforeEach(()=>{
-    TestWrapper(<AuthPage/>)
+    ComponentWrapper(<AuthPage/>)
     jest.clearAllMocks();
     jest.spyOn(AuthService,'getTokenOrNull');
     jest.spyOn(AuthService,'getTokenOfGoogleUserOrNull');

@@ -57,7 +57,8 @@ export class AuthService {
     return null;
   }
 
-  static getDecodedToken(token:string):JWTTokenDecodedType{
+  static getDecodedToken(token:string):JWTTokenDecodedType|null{
+    if (token.length ===0) return null;
     return jwt_decode(token);
   }
 

@@ -4,7 +4,6 @@ import styles from './PersonsFilter.module.css'
 import { useIntl } from 'react-intl';
 import { useSearchParams } from "react-router-dom";
 
-
 const inputStyle = {
   width: '100%',
   height: '56px',
@@ -89,8 +88,8 @@ const PersonFilterNew = ({
     if (!params['actor']) {
       (inputActor as HTMLInputElement).value = '';
     }
-    const inputDirector = document.querySelectorAll('#autoSuggestInput')[1];
-    if (!params['director']) {
+    const inputDirector = document.querySelectorAll('#autoSuggestInput')[1]??null;
+    if (!params['director'] && inputDirector) {
       (inputDirector as HTMLInputElement).value = '';
     }
   }, [params])

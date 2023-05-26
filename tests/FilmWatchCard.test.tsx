@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
-import TestWrapper from './TestWrapper';
 import FilmWatchCard from '../src/components/filmWatchCard/FilmWatchCard';
+import ComponentWrapper from './ComponentWrapper';
 
 
 describe('Test FilmWatchCard', () => {
   beforeEach(() => {
-    TestWrapper(<FilmWatchCard />)
+    ComponentWrapper(<FilmWatchCard />)
   })
 
   test('check render correct title', () => {
