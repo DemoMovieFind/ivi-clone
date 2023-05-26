@@ -21,12 +21,9 @@ type Story = StoryObj<typeof meta>;
 export const OnePlusOne: Story = {
   args: {
     appearance: "default",
-
-
     film: storeDB[0] as FilmMainCard,
-
   },
-  render: (args) => <Provider store={store}> RouterWrapper(<CardFilm {...args}/>)</Provider>
+  render: (args) => <Provider store={store}> {RouterWrapper(<CardFilm {...args}/>)}</Provider>
 };
 
 export const Default: Story = {
@@ -34,5 +31,5 @@ export const Default: Story = {
     appearance: "default",
     film: storeDB[1] as FilmMainCard,
   },
-  render: (args) =><Provider store={store}> RouterWrapper(<CardFilm {...args}/>)</Provider>
+  render: (args) =><Provider store={store}> {RouterWrapper(<CardFilm {...args}/>)}</Provider>
 };

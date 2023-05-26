@@ -97,7 +97,6 @@ const CardCommentItem = () => <CommentCard />;
 
 export const CommentCarousel: Story = {
   args: {},
-<<<<<<< HEAD
   render: (args) => RouterWrapper(
     <GalleryCarousel
       {...args}
@@ -106,17 +105,5 @@ export const CommentCarousel: Story = {
       nameCategory="Отзывы"
       typeSlider="comment"
     />
-=======
-  render: (args) => (
-    <MemoryRouter>
-      <GalleryCarousel
-        {...args}
-        items={commentsCards}
-        itemComponent={CardCommentItem}
-        nameCategory="Отзывы"
-        typeSlider="comment"
-      />
-    </MemoryRouter>
->>>>>>> 0a3151c853dc94bab975c5d84f0183acbec71d34
   ),
 };
