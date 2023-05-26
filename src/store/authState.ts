@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { OutputAuthForm } from '../components/AuthForm/AuthForm';
+import { OutputAuthForm } from '../components/authForm/AuthForm';
 import { AuthService, JWTTokenDecodedType } from '../services/AuthService';
 import axios from 'axios';
 

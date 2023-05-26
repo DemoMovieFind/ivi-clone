@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { FilmMainCard } from "../types/entities/FilmMainCard";
-import { CardFilm } from "./cardFilm/cardFilm";
+import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import { CardFilm } from "../cardFilm/cardFilm";
 
-import "./testCarouselStyle.css";
+import "./CarouselStyle.css";
+import axios from "axios";
 
-interface TestCarouselProps<T> {
+interface CarouselProps<T> {
   items?: T[];
   nameCategory?: string;
 }
 
-const TestCarousel = <T,>({ nameCategory }: TestCarouselProps<T>) => {
+const Carousel = <T,>({ nameCategory }: CarouselProps<T>) => {
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
   useEffect(() => {
-    fetch(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
-      .then((response) => response.json())
+    axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
       .then((data) => {
-        setFilms(data);
+        setFilms(data.data);
       })
       .catch((error) => {
         console.error(error, "error");
@@ -76,4 +76,4 @@ const TestCarousel = <T,>({ nameCategory }: TestCarouselProps<T>) => {
   );
 };
 
-export default TestCarousel;
+export default Carousel;

@@ -5,6 +5,7 @@ import { ActorCardFilm } from '../actorCardFilm/ActorCardFilm';
 import { useLocation } from 'react-router';
 import { FilmWatchCardType } from '../../types/entities/FilmWatchCardType';
 import Loader from '../loader/Loader';
+import axios from 'axios';
 
 export interface PersonCardPropsType {
   image?: string;
@@ -37,13 +38,11 @@ const PersonCard = ({
   }, [])
 
   const getFilms = async () => {
-    await fetch(`http://188.120.248.77/films?order=ASC&page=1&take=10&orderBy=scoreAVG&${profession}=${name}`)
-      .then(res => res.json())
-      .then(data => setCurrentFilms(profession == 'actors' || profession == 'directors' ? data : film))
+    await axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=10&orderBy=scoreAVG&${profession}=${name}`)
+      .then(data => setCurrentFilms(profession == 'actors' || profession == 'directors' ? data.data : film))
       .then(() => setLoading(false))
   }
   const [showMore, setShowMore] = useState(false)
-
 
   let smallDesc = ''
   if (desc.split(" ").length < 12) {
