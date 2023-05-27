@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import AuthForm from "../../components/authForm/AuthForm";
-import { OutputAuthForm } from "../../components/authForm/AuthForm";
+import AuthForm from "../../components/AuthForm/AuthForm";
+import { OutputAuthForm } from "../../components/AuthForm/AuthForm";
 import { clearError, selectAuth, sendAuth } from "../../store/authState";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import styles from "./AuthPage.module.css";
@@ -15,9 +15,9 @@ const AuthPage = () => {
 
   const [googleUser, setGoogleUser] = useState<
     Omit<TokenResponse, "error" | "error_description" | "error_uri"> | null
-    >(null);
+  >(null);
   const authState = useAppSelector(selectAuth);
-  const handleAuth = (data:OutputAuthForm) => {
+  const handleAuth = (data: OutputAuthForm) => {
     dispatch(sendAuth(data));
     return undefined;
   }
@@ -41,9 +41,9 @@ const AuthPage = () => {
     if (uriParams.get('#access_token')) {
       dispatch(sendAuth({
         expiresIn: Number(uriParams.get('expires_in')) ?? 0,
-        accessToken:uriParams.get('#access_token') ?? '',
-        typeOfData:'vk',
-        userId:51637196,
+        accessToken: uriParams.get('#access_token') ?? '',
+        typeOfData: 'vk',
+        userId: 51637196,
       }))
     }
   }, [document.location.hash]);
@@ -53,7 +53,7 @@ const AuthPage = () => {
       const token = googleUser.access_token;
       if (token !== null) {
         dispatch(sendAuth({
-          typeOfData:'google',accessToken:token,
+          typeOfData: 'google', accessToken: token,
         }))
       }
     }
@@ -63,18 +63,18 @@ const AuthPage = () => {
     if (authState.isAuthenticated) {
       navigate('/');
     }
-  },[authState]);
+  }, [authState]);
 
   return (
     <div className={styles.auth}>
-      <AuthForm handleSubmit={handleAuth} handleGoogle={handleGoogle}/>
+      <AuthForm handleSubmit={handleAuth} handleGoogle={handleGoogle} />
 
-      {authState.status === 'loading' && <Loader/>}
+      {authState.status === 'loading' && <Loader />}
 
-      {authState.status === 'rejected' && <Modal 
-                                            handleClose={handleModalClose} 
-                                            headerId={"modal_error_header"} 
-                                            body={authState.error}/>
+      {authState.status === 'rejected' && <Modal
+        handleClose={handleModalClose}
+        headerId={"modal_error_header"}
+        body={authState.error} />
       }
 
     </div>
