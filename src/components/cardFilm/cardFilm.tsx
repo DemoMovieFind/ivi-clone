@@ -24,6 +24,12 @@ export const CardFilm = ({
   ...props
 }: CardFilmProps) => {
   const langState = useAppSelector(selectLang);
+
+  const ratingNum = film.scoreAVG?.toFixed(1) ?? 1.1;
+  const ratingFirstNum = ratingNum.toString()[0] ?? '0';
+  const ratingSecondNum = ratingNum.toString()[2] == '0' ? '1' : ratingNum.toString()[2] ?? '0';
+
+
   return (
     <div
       className={clsx(styles.card, styles[appearance], className)}
@@ -32,13 +38,12 @@ export const CardFilm = ({
       <div className={styles.imageWrapper}>
         <div className={styles.posterWrapper}>
           <div className={styles.propertiesInner}>
-            <Rating rating="8,5" />
-            <BarChart count="сюжет" value="70" />
+            <Rating rating={`${+ratingFirstNum},${+ratingSecondNum}`} />
+            <BarChart count="сюжет" value={`${+ratingFirstNum}${+ratingSecondNum}`} />
             <Properties
               years={film.year}
               country={film.countries[0]?.name}
               genre={film.genres[0]?.name}
-              duration="4 сезона"
               className={styles.propertiesWrapper}
             />
           </div>

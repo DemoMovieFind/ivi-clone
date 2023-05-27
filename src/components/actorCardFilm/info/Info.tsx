@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Info.module.css";
 import clsx from "clsx";
+import { FormattedMessage } from "react-intl";
 
 export interface InfoProps {
   className?: string;
@@ -20,7 +21,7 @@ export const Info: React.FC<InfoProps> = ({
       <div className={styles.year}>{year}</div>
       <div className={styles.title}>{title}</div>
       <div className={styles.rating}>
-        Рейтинг Иви:<div>{rating}</div>
+        <FormattedMessage id="person_card_rate" />:<div>{rating}</div>
       </div>
     </div>
   );

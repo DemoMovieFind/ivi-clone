@@ -7,7 +7,7 @@ export interface PropertiesProps {
   years: number;
   country: string;
   genre: string;
-  duration: string;
+  duration?: string;
 }
 
 export const Properties: React.FC<PropertiesProps> = ({

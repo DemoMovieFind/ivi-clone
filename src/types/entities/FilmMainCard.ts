@@ -36,4 +36,5 @@ export type FilmMainCard = {
     ivi?: number | null;
     kp?: number | null;
   };
+  scoreAVG?: number;
 };
