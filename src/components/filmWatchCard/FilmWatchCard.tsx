@@ -109,6 +109,10 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
       .then(() => setLoading(false))
   }
 
+  const ratingNum = currentFilm?.scoreAVG?.toFixed(1);
+  const ratingFirstNum = ratingNum?.toString()[0];
+  const ratingSecondNum = ratingNum?.toString()[2];
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CardCommentItem: React.FC<{ item: any }> = (item: any) => {
     return <CommentCard
@@ -259,7 +263,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
           </div>
           <div className={styles.filmWatchActorsContainer}>
             {loading ? '' :
-              <PersonCardMini rating="8,9" />
+              <PersonCardMini rating={`${ratingFirstNum},${ratingSecondNum}`} />
             }
             {loading ? <Loader filmLoader /> :
               currentFilm?.actors &&
@@ -312,7 +316,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
             </div>
           )}
           {more}
-          <IviRatingCard rating="8,9" />
+          <IviRatingCard rating={`${ratingFirstNum},${ratingSecondNum}`} />
         </div>
       </div>
       {loading ? <Loader filmLoader /> :

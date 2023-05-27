@@ -102,8 +102,9 @@ const FilmsPage = () => {
 
     const currentScore = score ? +score * 1000 : 0;
 
-    ratingStart = ratingStart ? Math.floor(+ratingStart) : 0;
-    ratingEnd = ratingEnd ? Math.ceil(+ratingEnd) : 10;
+    ratingStart = ratingStart ? +ratingStart : 0;
+    ratingEnd = ratingEnd ? +ratingEnd : 10;
+
 
     let minYear = '';
     let maxYear = '';
@@ -165,11 +166,11 @@ const FilmsPage = () => {
     "По количеству оценок": (a: any, b: any) => +a.countScore - +b.countScore,
     "By the number of ratings": (a: any, b: any) => +a.countScore - +b.countScore,
     "По алфавиту": (a: any, b: any) => (lang == 'ru-RU' ? a.name : a.name_en).localeCompare(lang == 'ru-RU' ? b.name : b.name_en),
-    "By rating": (a: any, b: any) => (lang == 'ru-RU' ? a.name : a.name_en).localeCompare(lang == 'ru-RU' ? b.name : b.name_en),
+    "Alphabetically": (a: any, b: any) => (lang == 'ru-RU' ? a.name : a.name_en).localeCompare(lang == 'ru-RU' ? b.name : b.name_en),
     "По дате выхода": (a: any, b: any) => b.year - a.year,
     "By release date": (a: any, b: any) => b.year - a.year,
-    "По рейтингу": (a: any, b: any) => a.id - b.id,
-    "Alphabetically": (a: any, b: any) => a.id - b.id,
+    "По рейтингу": (a: any, b: any) => a.scoreAVG - b.scoreAVG,
+    "By rating": (a: any, b: any) => a.scoreAVG - b.scoreAVG,
   }
 
   const addClass = (e: any) => {

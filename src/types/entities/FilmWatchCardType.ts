@@ -38,4 +38,5 @@ export type FilmWatchCardType = {
     ivi?: number | null;
     kp?: number | null;
   };
+  scoreAVG?: number;
 };

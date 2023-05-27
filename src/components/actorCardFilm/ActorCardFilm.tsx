@@ -7,6 +7,7 @@ import { FilmWatchCardType } from "../../types/entities/FilmWatchCardType";
 import { NavLink } from "react-router-dom";
 import Loader from "../loader/Loader";
 import { Button } from "../buttons/Button";
+import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import axios from "axios";
 
 export interface ActorCardFilmProps {
@@ -22,7 +23,7 @@ export const ActorCardFilm = ({
   ...props
 }: ActorCardFilmProps) => {
 
-  const [currentFilm, setCurrentFilm] = useState()
+  const [currentFilm, setCurrentFilm] = useState<FilmMainCard>()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -35,6 +36,9 @@ export const ActorCardFilm = ({
       .then(data => setCurrentFilm(data.data))
       .then(() => setLoading(false))
   }
+
+  const ratingNum = currentFilm?.scoreAVG?.toFixed(1) ?? 1.1
+  const lang = localStorage.getItem('lang')
 
   return (
     loading ?
@@ -50,7 +54,7 @@ export const ActorCardFilm = ({
           className={styles.filmImage}
         />
         <div className={styles.main}>
-          <Info year={film?.year} title={film?.name} rating={film?.rating ? film?.rating.ivi : 7.1} />
+          <Info year={film?.year} title={lang == 'ru-RU' ? film?.name : film.name_en} rating={+ratingNum} />
           <Button size="large">
             <NavLink to={`/movies/${film?.name}`} state={currentFilm}>
               <FormattedMessage id="actor_card_film_detailed" />
