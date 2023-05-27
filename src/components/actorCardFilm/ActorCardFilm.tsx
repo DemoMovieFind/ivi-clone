@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import Loader from "../loader/Loader";
 import { Button } from "../buttons/Button";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
+import axios from "axios";
 
 export interface ActorCardFilmProps {
   appearance?: "default";
@@ -31,9 +32,8 @@ export const ActorCardFilm = ({
 
   const getCurrentFilm = async (id: number) => {
     setLoading(true)
-    await fetch(`http://188.120.248.77/films/${id}`)
-      .then(res => res.json())
-      .then(data => setCurrentFilm(data))
+    await axios.get(`http://188.120.248.77/films/${id}`)
+      .then(data => setCurrentFilm(data.data))
       .then(() => setLoading(false))
   }
 

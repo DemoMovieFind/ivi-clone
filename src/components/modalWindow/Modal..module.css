@@ -14,6 +14,7 @@
   top: 200px;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 99999;
 }
 
 .modal {
@@ -21,7 +22,6 @@
   min-height: 170px;
   background: white;
   color: white;
-  z-index: 10;
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }

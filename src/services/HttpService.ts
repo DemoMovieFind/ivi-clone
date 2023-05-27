@@ -39,7 +39,7 @@ const useAxios = ({ method, body, token='', url='' }:AxiosPropsType) => {
         setResponse(response.data);
       } catch (error) {
         if(axios.isAxiosError(error)) {
-          setError(error.message);
+          setError(error.response?.data?.message ? error.response?.data?.message : error.message);
         }
       } finally {
         setloaded(true);

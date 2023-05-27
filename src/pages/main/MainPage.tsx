@@ -7,10 +7,13 @@ import { useAppDispatch } from "../../store/hooks";
 import { initFilms } from "../../store/filmsState";
 import SubButton from "../../components/buttons/subButton/SubButton";
 import MultipleRows from "../../components/infinitySlider/InfinitySlider";
-import TestCarousel from "../../components/filmsCarousel/testCarousel";
+import Carousel from "../../components/carousel/Carousel";
 import { useIntl } from "react-intl";
 import { getGenres } from "../../store/genresState";
 import CardTopFilm from "../../components/cardTopFilm/CardTopFilm";
+import useAxios from "../../services/HttpService";
+import Loader from "../../components/loader/Loader";
+import Modal from "../../components/modalWindow/Modal";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
@@ -32,22 +35,25 @@ const MainPage = () => {
   };
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
+  const { response, error, loaded, clearError } = useAxios({
+    method:'get',
+    url:'/films?order=ASC&page=1&take=18&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222'
+  })
 
   useEffect(() => {
-    fetch(
-      `http://188.120.248.77/films?order=ASC&page=1&take=18&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setFilms(data);
-      })
-      .catch((error) => {
-        console.error(error, "error");
-      });
-  }, []);
+    if (response) {
+      setFilms(response)
+    }
+  }, [response]);
+
+  const handleModalClose = () => {
+    clearError();
+  }
 
   return (
     <div>
+      {!loaded && <Loader/>}
+      {error.length > 0 && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={error} />}
       <MultipleRows />
       <SubButton />
       {films && (
@@ -73,9 +79,7 @@ const MainPage = () => {
           nameCategory={intl.formatMessage({ id: "nav_list_comedies" })}
         />
       )}
-      <TestCarousel
-        nameCategory={intl.formatMessage({ id: "nav_list_comedies" })}
-      />
+      <Carousel nameCategory={intl.formatMessage({ id: 'nav_list_comedies' })} />
     </div>
   );
 };

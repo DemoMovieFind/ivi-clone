@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
-
 import { FilterBar } from "../../components/filterBar/FilterBar";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { CardFilm } from "../../components/cardFilm/cardFilm";
@@ -21,21 +20,17 @@ const FilmsPage = () => {
   const params = Object.fromEntries(urlParams.entries());
   const [isVisible, setIsVisible] = useState(false);
   const intl = useIntl();
-
   const [loading, setLoading] = useState(false)
-
   const [films, setFilms] = useState<FilmMainCard[]>([]);
   const [currentActors, setCurrentActors] = useState<string[]>([])
   const [currentDirectors, setCurrentDirectors] = useState<string[]>([])
-
   const lang = localStorage.getItem('lang');
   const [numberPage, setNumberPage] = useState(1);
 
   useEffect(() => {
-    fetch(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
-      .then((response) => response.json())
+    axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
       .then((data) => {
-        setFilms(data);
+        setFilms(data.data);
       })
       .then(() => getPersons(films))
       .catch((error) => {
@@ -131,7 +126,6 @@ const FilmsPage = () => {
       .then(() => setLoading(false))
   }
 
-
   const getPersons = (list: FilmMainCard[]) => {
     const actors: string[] = [];
     const directors: string[] = [];
@@ -151,7 +145,6 @@ const FilmsPage = () => {
           setCurrentDirectors(directors)
         })
     })
-
   }
 
   const [sortText, setSortText] = useState(lang == 'ru-RU' ? 'По количеству оценок' : 'By the number of ratings')

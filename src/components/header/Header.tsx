@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import AuthIcon from "../AuthIcon/AuthIcon";
+import AuthIcon from "../authIcon/AuthIcon";
 import styles from "./Header.module.css";
 import LanguageSwitch from "../languageSwitch/LanguageSwitch";
 
