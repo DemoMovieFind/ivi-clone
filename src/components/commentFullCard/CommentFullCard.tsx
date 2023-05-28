@@ -4,8 +4,8 @@ import { FormattedMessage } from 'react-intl';
 import { Button } from '../buttons/Button';
 import CommentAnswerFrom from '../commentAnswerForm/CommentAnswerFrom';
 import { AuthService } from '../../services/AuthService';
-import axios from 'axios';
 import clsx from 'clsx';
+import { api } from '../../services/HttpService';
 
 export interface CommentFullCardPropsType {
   userId?: number;
@@ -55,7 +55,7 @@ const CommentFullCard = ({
   })
 
   const deleteComment = async (commentId: number) => {
-    await axios.delete(`http://188.120.248.77/reviews/${commentId}`, {
+    await api.delete(`/reviews/${commentId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Accept': 'application/json',

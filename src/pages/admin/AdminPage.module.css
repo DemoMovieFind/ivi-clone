@@ -55,3 +55,8 @@
   color: white;
   outline: none;
 }
+
+.titleButtonWrapper {
+  display: flex;
+  gap: 10px;
+}

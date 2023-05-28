@@ -17,6 +17,8 @@ import PersonCard from "./components/personCard/PersonCard";
 import AboutFilmContainer from "./pages/aboutFilmContainer/AboutFilmContainer";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import CreatePage from "./pages/create/CreatePage";
+import GenreAddPage from "./pages/genres/GenreAddPage";
+import GenreDeletePage from "./pages/genres/GenreDeletePage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -36,6 +38,8 @@ root.render(
               <Route path='/admin' element={<Template isAdminPage={true} content={<AdminPage />} />} />
               <Route path='/admin/:id' element={<Template isAdminPage={true} content={<ChangePage />} />} />
               <Route path='/create' element={<Template isAdminPage={true} content={<CreatePage />} />} />
+              <Route path='/genreadd' element={<Template isAdminPage={true} content={<GenreAddPage />} />} />
+              <Route path='/genredelete' element={<Template isAdminPage={true} content={<GenreDeletePage />} />} />
             </Route>
             <Route path="/movies/:id" element={<Template content={<FilmWatchCard />} />} />
             <Route path="/movies/:id/comments" element={<Template content={<AboutFilmContainer props={'comments'} />} />} />

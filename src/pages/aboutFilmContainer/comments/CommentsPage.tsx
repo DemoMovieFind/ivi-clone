@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AuthService } from '../../../services/AuthService';
-import axios from 'axios';
 import Loader from '../../../components/loader/Loader';
+import { api } from '../../../services/HttpService';
 
 type Inputs = {
   comment?: string;
@@ -37,7 +37,7 @@ const CommentsPage = () => {
 
   const getReviews = async (id: number) => {
     setLoading(true)
-    await axios.get(`http://188.120.248.77/reviews/film/${id}`)
+    await api.get(`/reviews/film/${id}`)
       .then(res => {
         setCurrentReviews(res.data)
       })
@@ -45,7 +45,7 @@ const CommentsPage = () => {
   }
 
   const postReview = async (commentText: Inputs, userId: number, filmId: number, token: string, parent?: number,) => {
-    await axios.post(`http://188.120.248.77/reviews`,
+    await api.post(`/reviews`,
       { "text": commentText.comment, "user_id": userId, "film_id": filmId, "parent": parent },
       {
         headers: {

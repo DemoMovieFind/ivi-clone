@@ -125,7 +125,7 @@ const ChangePage = () => {
                     control={control}
                     key={field.id}
                     render={
-                      ({ field }) => <Select name={`genres.${index}`} defaultValue={{value: field.value.value, label: field.value.value}} options={genresState.genres.map(genre=>{return {value:genre,label:genre}})} onChange={field.onChange}/>
+                      ({ field }) => <Select name={`genres.${index}`} defaultValue={{value: field.value.value, label: field.value.value}} options={genresState.genres.map(genre=>{return {value:genre.name,label:genre.name}})} onChange={field.onChange}/>
                     }
                   />
                 </div>
