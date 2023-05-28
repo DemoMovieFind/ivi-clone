@@ -58,7 +58,8 @@ const GenreAddPage = () => {
           id="name_en"
           className={styles.input} 
           title={intl.formatMessage({id:'genre_name_en'})}
-          {...register("name_en")} />
+          {...register("name_en",{ required: true })} />
+          { errors.name_en && <span className={styles.error}>{intl.formatMessage({id:'change_error'})}</span> }
         <Button 
           appearance="default" 
           type="submit" 
