@@ -21,11 +21,7 @@ const AdminPage = () => {
   const FILMS_PER_PAGE = 10;
   const pageCount = Math.ceil(filmState.totalFilms / FILMS_PER_PAGE);
   const intl  = useIntl();
-    const {
-      handleSubmit,
-      formState: { errors },
-      register,
-    } = useForm();
+  const { handleSubmit, formState: { errors }, register } = useForm();
 
   const onHandleSearch = (data:FieldValues) => {
     if (data.search.length === 0) {
@@ -53,14 +49,30 @@ const AdminPage = () => {
     dispatch(clearError());
   };
 
+  const handleGenreAdd = () => {
+    navigate('/genreadd');
+  }
+
+  const handleGenreDelete = () => {
+    navigate('/genredelete');
+  }
+
   return (
     <>
     <h1 className={styles.title}>{intl.formatMessage({id:'admin_title'})}</h1>
     {filmState.status === 'loading' && <Loader/>}
     {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error} />}
-    <Button type="button" appearance="default" onPointerDown={handleAddFilm}
+    <div className={styles.titleButtonWrapper}>
+      <Button type="button" appearance="default" onPointerDown={handleAddFilm}
             children={intl.formatMessage({id:'add_film_title'})}
-    />
+      />
+      <Button type="button" appearance="default" onPointerDown={handleGenreAdd}
+            children={intl.formatMessage({id:'add_genre_title'})}
+      />
+      <Button type="button" appearance="default" onPointerDown={handleGenreDelete}
+            children={intl.formatMessage({id:'delete_genre_title'})}
+      />
+    </div>
     <form className={styles.form} onSubmit={handleSubmit(onHandleSearch)}>
         <label 
           htmlFor="email" 

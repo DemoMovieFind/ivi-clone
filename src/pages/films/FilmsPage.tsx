@@ -8,11 +8,11 @@ import { BreadCrumbs } from "../../components/breadCrumbs/BreadCrumbs";
 import { TitlePage } from "../titlePage/TitlePage";
 import { ParametersInfo } from "../../components/parametersInfo/ParametersInfo";
 import { FilmMainCard } from "../../types/entities/FilmMainCard";
-import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useClickAway } from 'react-use';
 import SortPlank from "../../components/sort/sortPlank/SortPlank";
+import { api } from "../../services/HttpService";
 
 const FilmsPage = () => {
   const [searchParams] = useSearchParams();
@@ -28,7 +28,7 @@ const FilmsPage = () => {
   const [numberPage, setNumberPage] = useState(1);
 
   useEffect(() => {
-    axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
+    api.get(`/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
       .then((data) => {
         setFilms(data.data);
       })
@@ -120,7 +120,7 @@ const FilmsPage = () => {
     }
 
     setLoading(true)
-    await axios.get(`http://188.120.248.77/films?order=ASC&page=${numberPage}&take=21&orderBy=scoreAVG${genresString}${countriesString}&actors=${actor}&directors=${director}&ratingStart=${ratingStart}&ratingEnd=${ratingEnd}&minCountScore=${currentScore}&yearStart=${minYear}&yearEnd=${maxYear}`)
+    await api.get(`/films?order=ASC&page=${numberPage}&take=21&orderBy=scoreAVG${genresString}${countriesString}&actors=${actor}&directors=${director}&ratingStart=${ratingStart}&ratingEnd=${ratingEnd}&minCountScore=${currentScore}&yearStart=${minYear}&yearEnd=${maxYear}`)
       .then(res => numberPage >= 2 ? setFilms([...films, ...res.data]) : setFilms(res.data))
       .then(() => getPersons(films))
       .then(() => setLoading(false))
@@ -135,7 +135,7 @@ const FilmsPage = () => {
         setCurrentDirectors(directors);
         return
       }
-      axios.get(`http://188.120.248.77/films/${film.id}`)
+      api.get(`/films/${film.id}`)
         .then(res => {
           res.data.actors.map((actor: any) => actors.push(actor.name))
           res.data.directors.map((director: any) => directors.push(director.name))

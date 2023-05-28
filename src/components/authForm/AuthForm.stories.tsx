@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Meta, StoryObj } from "@storybook/react";
 
-import AuthForm, { OutputAuthForm } from "./AuthForm";
-import ComponentWrapper from "../../../tests/ComponentWrapper";
+import AuthForm from "./AuthForm";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
@@ -26,7 +25,7 @@ export const Default: Story = {
               handleGoogle={args.handleGoogle}
               handleSubmit={args.handleSubmit}
             />
-          </MemoryRouter>
+          </MemoryRouter>            
         </GoogleOAuthProvider>
       </Provider>
     );

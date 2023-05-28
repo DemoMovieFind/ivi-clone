@@ -1,7 +1,7 @@
 
 import jwt_decode from "jwt-decode";
 import { api } from "./HttpService";
-import { OutputAuthForm } from "../components/AuthForm/AuthForm";
+import { OutputAuthForm } from "../components/authForm/AuthForm";
 import axios from "axios";
 
 export type JWTTokenDecodedType = {

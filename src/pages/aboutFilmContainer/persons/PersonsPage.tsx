@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './PersonsPage.module.css'
 import { useLocation } from 'react-router-dom';
 import PersonContainer from '../../../components/personContainer/PersonContainer';
@@ -8,24 +7,24 @@ const PersonsPage = () => {
   const { state } = useLocation();
 
   const directorsNames = []
-  for (let i = 0; i < state.directors.length; i++) {
-    directorsNames.push(state.directors[i].name)
+  for (let i = 0; i < state?.directors?.length; i++) {
+    directorsNames.push(state?.directors[i].name)
   }
   const actorsNames = []
-  for (let i = 0; i < state.actors.length; i++) {
-    actorsNames.push(state.actors[i].name)
+  for (let i = 0; i < state?.actors?.length; i++) {
+    actorsNames.push(state?.actors[i].name)
   }
   const compositorsNames = []
-  for (let i = 0; i < state.compositors.length; i++) {
-    compositorsNames.push(state.compositors[i].name)
+  for (let i = 0; i < state?.compositors.length; i++) {
+    compositorsNames.push(state?.compositors[i].name)
   }
   const artistsNames = []
-  for (let i = 0; i < state.artists.length; i++) {
-    artistsNames.push(state.artists[i].name)
+  for (let i = 0; i < state?.artists.length; i++) {
+    artistsNames.push(state?.artists[i].name)
   }
   const scenarioNames = []
-  for (let i = 0; i < state.scenario.length; i++) {
-    scenarioNames.push(state.scenario[i].name)
+  for (let i = 0; i < state?.scenario.length; i++) {
+    scenarioNames.push(state?.scenario[i].name)
   }
   const operatorsNames = []
   for (let i = 0; i < state.operators.length; i++) {

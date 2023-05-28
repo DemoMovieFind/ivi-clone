@@ -5,7 +5,7 @@ import { ActorCardFilm } from '../actorCardFilm/ActorCardFilm';
 import { useLocation } from 'react-router';
 import { FilmWatchCardType } from '../../types/entities/FilmWatchCardType';
 import Loader from '../loader/Loader';
-import axios from 'axios';
+import { api } from '../../services/HttpService';
 
 export interface PersonCardPropsType {
   image?: string;
@@ -38,7 +38,7 @@ const PersonCard = ({
   }, [])
 
   const getFilms = async () => {
-    await axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=10&orderBy=scoreAVG&${profession}=${name}`)
+    await api.get(`/films?order=ASC&page=1&take=10&orderBy=scoreAVG&${profession}=${name}`)
       .then(data => setCurrentFilms(profession == 'actors' || profession == 'directors' ? data.data : film))
       .then(() => setLoading(false))
   }

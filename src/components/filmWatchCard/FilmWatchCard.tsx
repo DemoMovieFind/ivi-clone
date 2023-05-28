@@ -12,7 +12,7 @@ import PersonContainer from "../personContainer/PersonContainer";
 import { GalleryCarousel } from "../galleryCarousel/GalleryCarousel";
 import CommentCard from "../commentCard/CommentCard";
 import Loader from "../loader/Loader";
-import axios from "axios";
+import { api } from "../../services/HttpService";
 
 export interface CurrentReviewsType {
   text?: string;
@@ -45,7 +45,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
 
   const getInfoAboutFilm = async (id?: number) => {
 
-    await axios.get(`http://188.120.248.77/films/${id}`)
+    await api.get(`/films/${id}`)
       .then(res => {
         setCurrentFilm(res.data);
       })
@@ -101,7 +101,7 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
 
   const getReviews = async (id: number) => {
     setLoading(true)
-    await axios.get(`http://188.120.248.77/reviews/film/${id}`)
+    await api.get(`/reviews/film/${id}`)
       .then(res => {
         res.data.reverse()
         setCurrentReviews(res.data)

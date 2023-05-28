@@ -4,8 +4,8 @@ import { FilmMainCard } from "../../types/entities/FilmMainCard";
 import { CardFilm } from "../cardFilm/cardFilm";
 
 import "./CarouselStyle.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { api } from "../../services/HttpService";
 
 interface CarouselProps<T> {
   items?: T[];
@@ -16,7 +16,7 @@ const Carousel = <T,>({ nameCategory }: CarouselProps<T>) => {
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
   useEffect(() => {
-    axios.get(`http://188.120.248.77/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
+    api.get(`/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
       .then((data) => {
         setFilms(data.data);
       })
@@ -64,7 +64,7 @@ const Carousel = <T,>({ nameCategory }: CarouselProps<T>) => {
       <div className="title">{nameCategory}</div>
       <Slider {...settings}>
         {films.map((film) => (
-          <Link to={film.name}>
+          <Link key={film.id} to={film.name}>
             <CardFilm key={film.id} film={film} className="card-film" />
           </Link>
         ))}

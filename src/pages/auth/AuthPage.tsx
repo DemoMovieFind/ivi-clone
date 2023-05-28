@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import AuthForm from "../../components/AuthForm/AuthForm";
-import { OutputAuthForm } from "../../components/AuthForm/AuthForm";
+import AuthForm, { OutputAuthForm } from "../../components/authForm/AuthForm";
 import { clearError, selectAuth, sendAuth } from "../../store/authState";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import styles from "./AuthPage.module.css";

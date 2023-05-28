@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import CommentFullCard from '../commentFullCard/CommentFullCard';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { AuthService } from '../../services/AuthService';
-import axios from 'axios';
+import { api } from '../../services/HttpService';
 
 type Inputs = {
   text?: string
@@ -34,7 +34,7 @@ const CommentAnswerFrom = ({ parentId, filmId }: CommentAnswerFromPropsType) => 
 
 
   const postReview = async (commentText: Inputs, userId: number, filmId: number, token: string, parent?: number,) => {
-    await axios.post(`http://188.120.248.77/reviews`,
+    await api.post(`/reviews`,
       { "text": commentText.text, "user_id": userId, "film_id": filmId, "parent": parent },
       {
         headers: {
