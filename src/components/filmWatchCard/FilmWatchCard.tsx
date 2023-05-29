@@ -18,6 +18,9 @@ export interface CurrentReviewsType {
   text?: string;
   user_id?: number;
   filmId?: number;
+  id?:number;
+  user_email?:string;
+  createdAt?:string;
 }
 
 export interface FilmWatchCardPropsType {
@@ -113,13 +116,12 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
   const ratingFirstNum = ratingNum?.toString()[0];
   const ratingSecondNum = ratingNum?.toString()[2];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const CardCommentItem: React.FC<{ item: any }> = (item: any) => {
+  const CardCommentItem = (item: {item:{id?:number,text?:string,createdAt?:string,user_id?:number,user_email?:string}}) => {
     return <CommentCard
-      text={item.item.text}
-      userId={item.item.user_id}
-      date={item.item.createdAt}
-      name={item.item.user_email}
+      text={item.item?.text}
+      userId={item.item?.user_id}
+      date={item.item?.createdAt}
+      name={item.item?.user_email}
     />;
   }
 
@@ -159,7 +161,6 @@ const FilmWatchCard = ({ film }: FilmWatchCardPropsType) => {
         <div className={styles.filmWatchMovieSide}>
           <div className={clsx(styles.filmWatchMovieContainer, styles.noFilm)}>
             <img src={currentFilm?.mainImg} alt="" />
-            {/* Movie */}
           </div>
           <div className={styles.filmWatchButtonsContainer}>
             <Button
