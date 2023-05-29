@@ -31,8 +31,8 @@ export const getGenres = createAsyncThunk(
   }
 )
 
-export const addGenre = createAsyncThunk(
-  'genres/addGenre',
+export const addGenreOnServer = createAsyncThunk(
+  'genres/addGenreOnServer',
   async (payload:{genre_ru:string,genre_en:string},{ rejectWithValue }) => {
     try {
       const {genre_ru,genre_en} = payload;
@@ -107,14 +107,14 @@ export const genresReducer = createSlice({
       state.status = 'rejected';
       state.error = action.payload;
     }),
-    builder.addCase(addGenre.pending, (state) => {
+    builder.addCase(addGenreOnServer.pending, (state) => {
       state.status = 'loading';
       state.error = null;
     }),
-    builder.addCase(addGenre.fulfilled, (state) => {
+    builder.addCase(addGenreOnServer.fulfilled, (state) => {
       state.status = 'resolved';
     }),
-    builder.addCase(addGenre.rejected, (state,action) => {
+    builder.addCase(addGenreOnServer.rejected, (state,action) => {
       state.status = 'rejected';
       state.error = action.payload;
     }),

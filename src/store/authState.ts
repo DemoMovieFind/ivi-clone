@@ -8,8 +8,7 @@ export type AuthState = {
   token: string,
   refreshToken: string,
   status: null | 'loading' | 'resolved' | 'rejected',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  error: null | any,
+  error: null | string,
   isAuthenticated: boolean,
   decoded: JWTTokenDecodedType | null,
 }
@@ -90,7 +89,7 @@ export const authReducer = createSlice({
       }),
       builder.addCase(sendAuth.rejected, (state, action) => {
         state.status = 'rejected';
-        state.error = action.payload;
+        state.error = action.payload as string;
       })
   },
 });

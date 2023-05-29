@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import styles from "./GenreIcon.module.css";
 import { clsx } from "clsx";
@@ -27,12 +26,13 @@ export const GenreIcon = ({ className, genre }: GenreIconProps) => {
 
   const [isActive, setIsActive] = useState(false);
 
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e: React.SyntheticEvent) => {
     let currentTargetValue = "";
-    e.target.textContent.length != 0
-      ? (currentTargetValue = e.target.textContent)
+    const target = e.target as HTMLInputElement;
+    target.textContent?.length != 0
+      ? (currentTargetValue = target.textContent??'')
       : (currentTargetValue =
-        e.target.parentElement.parentElement.children[1].textContent);
+        target.parentElement?.parentElement?.children[1].textContent??'');
 
     if (
       params["genres"] &&

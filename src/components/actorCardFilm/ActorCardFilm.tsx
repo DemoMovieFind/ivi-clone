@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ActorCardFilm.module.css";
 import clsx from "clsx";
 import { Info } from "./info/Info";
@@ -22,7 +22,6 @@ export const ActorCardFilm = ({
   film,
   ...props
 }: ActorCardFilmProps) => {
-
   const [currentFilm, setCurrentFilm] = useState<FilmMainCard>()
   const [loading, setLoading] = useState(false)
 

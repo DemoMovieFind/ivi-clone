@@ -6,8 +6,7 @@ import { FilmMainCard } from '../types/entities/FilmMainCard';
 
 export type FilmsState = {
   status: null | 'loading' | 'resolved' | 'rejected',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  error: null | any,
+  error: null | string,
   isInitialized:boolean,
   films:FilmMainCard[],
   film:FilmMainCard|null,
@@ -69,6 +68,7 @@ export const deleteFilmFromServer = createAsyncThunk(
       if (response.status === 200) {
         dispatch(initFilms());
       }
+      return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data?.message ? error.response?.data?.message : error.message);
@@ -184,12 +184,12 @@ export const filmsReducer = createSlice({
     }),
     builder.addCase(initFilms.rejected, (state, action) => {
       state.status = 'rejected';
-      state.error = action.payload;
+      state.error = action.payload as string;
       state.isInitialized = false;
     }),
     builder.addCase(createFilmOnServer.rejected, (state, action) => {
       state.status = 'rejected';
-      state.error = action.payload;
+      state.error = action.payload as string;
     }),
     builder.addCase(createFilmOnServer.pending, (state) => {
       state.status = 'loading';
@@ -203,11 +203,10 @@ export const filmsReducer = createSlice({
     }),
     builder.addCase(deleteFilmFromServer.rejected, (state, action) => {
       state.status = 'rejected';
-      state.error = action.payload;
+      state.error = action.payload as string;
     }),
-    builder.addCase(deleteFilmFromServer.pending, (state,action) => {
+    builder.addCase(deleteFilmFromServer.pending, (state) => {
       state.status = 'loading';
-      state.error = action.payload;
     }),
     builder.addCase(deleteFilmFromServer.fulfilled, (state) => {
       state.status = 'resolved';
@@ -215,11 +214,10 @@ export const filmsReducer = createSlice({
     }),
     builder.addCase(searchFilmOnServer.rejected, (state,action) => {
       state.status = 'rejected';
-      state.error = action.payload;
+      state.error = action.payload as string;
     }),
-    builder.addCase(searchFilmOnServer.pending, (state,action) => {
+    builder.addCase(searchFilmOnServer.pending, (state) => {
       state.status = 'loading';
-      state.error = action.payload;
     }),
     builder.addCase(searchFilmOnServer.fulfilled, (state,action) => {
       state.status = 'resolved';
@@ -231,11 +229,10 @@ export const filmsReducer = createSlice({
     }),
     builder.addCase(getFilmsPage.rejected, (state,action) => {
       state.status = 'rejected';
-      state.error = action.payload;
+      state.error = action.payload as string;
     }),
-    builder.addCase(getFilmsPage.pending, (state,action) => {
+    builder.addCase(getFilmsPage.pending, (state) => {
       state.status = 'loading';
-      state.error = action.payload;
     }),
     builder.addCase(getFilmsPage.fulfilled, (state,action) => {
       state.status = 'resolved';
@@ -247,11 +244,10 @@ export const filmsReducer = createSlice({
     }),
     builder.addCase(getFilmFromServer.rejected, (state,action) => {
       state.status = 'rejected';
-      state.error = action.payload;
+      state.error = action.payload as string;
     }),
-    builder.addCase(getFilmFromServer.pending, (state,action) => {
+    builder.addCase(getFilmFromServer.pending, (state) => {
       state.status = 'loading';
-      state.error = action.payload;
     }),
     builder.addCase(getFilmFromServer.fulfilled, (state,action) => {
       state.status = 'resolved';
@@ -261,11 +257,10 @@ export const filmsReducer = createSlice({
       }
     }),builder.addCase(updateFilmOnServer.rejected, (state,action) => {
       state.status = 'rejected';
-      state.error = action.payload;
+      state.error = action.payload as string;
     }),
-    builder.addCase(updateFilmOnServer.pending, (state,action) => {
+    builder.addCase(updateFilmOnServer.pending, (state) => {
       state.status = 'loading';
-      state.error = action.payload;
     }),
     builder.addCase(updateFilmOnServer.fulfilled, (state) => {
       state.status = 'resolved';

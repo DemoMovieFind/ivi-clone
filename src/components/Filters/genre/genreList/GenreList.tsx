@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./GenreList.module.css";
 import { clsx } from "clsx";
 import { LiElement } from "../../liElement/LiElement";
@@ -44,10 +43,11 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
   const urlParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlParams.entries())
 
-  const handleOnChange = (e: any) => {
-    if (params["genres"] && params["genres"].split(' ').includes(e.target.value)) {
+  const handleOnChange = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    if (params["genres"] && params["genres"].split(' ').includes(target.value)) {
       const currentParams = params["genres"].split(' ');
-      currentParams.splice(currentParams.indexOf(e.target.value), 1);
+      currentParams.splice(currentParams.indexOf(target.value), 1);
       currentParams.length != 0 ?
         setSearchParams({ ...params, genres: currentParams.join(' ') })
         :
@@ -55,9 +55,9 @@ export const GenreList = ({ appearance = "", className }: GenreListProps) => {
     } else {
       let currentValue = '';
       if (params["genres"]) {
-        currentValue = `${params["genres"]} ${e.target.value}`
+        currentValue = `${params["genres"]} ${target.value}`
       } else {
-        currentValue = `${e.target.value}`
+        currentValue = `${target.value}`
       }
       setSearchParams({ ...params, genres: currentValue })
     }
