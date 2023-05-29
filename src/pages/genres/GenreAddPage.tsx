@@ -8,7 +8,7 @@ import Loader from "../../components/loader/Loader";
 import { useState } from "react";
 import Modal from "../../components/modalWindow/Modal";
 import { clearError } from "../../store/filmsState";
-import { addGenre, selectGenres } from "../../store/genresState";
+import { addGenreOnServer, selectGenres } from "../../store/genresState";
 
 type Inputs = {
   name_ru:string,
@@ -25,7 +25,7 @@ const GenreAddPage = () => {
 
   const onSubmit = async (data:FieldValues) => {
     setRequestWasSent(true);
-    dispatch(addGenre({genre_ru:data.name_ru,genre_en:data.name_ru}));
+    dispatch(addGenreOnServer({genre_ru:data.name_ru,genre_en:data.name_ru}));
   }
 
   const handleModalClose = () => {

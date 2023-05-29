@@ -16,7 +16,7 @@ export const Default: Story = {
   args: {
     appearance: "default",
     film: {
-      id: 498500,
+      id: 498,
       name: "Двойная петля",
       mainImg: "https://thumbs.dfs.ivi.ru/storage37/contents/2/2/29f0af23c55d95f2c205549d25feaa.jpg/234x360/?q=85",
       rating: {

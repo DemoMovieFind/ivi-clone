@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./CounterList.module.css";
 import { clsx } from "clsx";
 import { LiElement } from "../../liElement/LiElement";
@@ -57,10 +56,11 @@ export const CounterList = ({
   const params = Object.fromEntries(urlParams.entries())
 
 
-  const handleOnChange = (e: any) => {
-    if (params["countries"] && params["countries"].split(' ').includes(e.target.value)) {
+  const handleOnChange = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    if (params["countries"] && params["countries"].split(' ').includes(target.value)) {
       const currentParams = params["countries"].split(' ');
-      currentParams.splice(currentParams.indexOf(e.target.value), 1);
+      currentParams.splice(currentParams.indexOf(target.value), 1);
       currentParams.length != 0 ?
         setSearchParams({ ...params, countries: currentParams.join(' ') })
         :
@@ -68,9 +68,9 @@ export const CounterList = ({
     } else {
       let currentValue = '';
       if (params["countries"]) {
-        currentValue = `${params["countries"]} ${e.target.value}`
+        currentValue = `${params["countries"]} ${target.value}`
       } else {
-        currentValue = `${e.target.value}`
+        currentValue = `${target.value}`
       }
       setSearchParams({ ...params, countries: currentValue })
     }

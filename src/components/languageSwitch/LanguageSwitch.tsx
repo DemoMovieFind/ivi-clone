@@ -14,8 +14,7 @@ const lang: Array<{
 const LanguageSwitch = (props: React.SelectHTMLAttributes<HTMLSelectElement>) => {
   const langState = useAppSelector(selectLang);
   const intl = useIntl();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const dispatch: any = useAppDispatch();
+  const dispatch = useAppDispatch();
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     dispatch(setLang(event.target.value))
   }

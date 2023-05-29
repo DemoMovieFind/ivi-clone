@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./YearsFilter.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import { FontIcon } from "../../icons/FontIcon";
@@ -57,24 +56,25 @@ const YearsFilter = ({
 
   const intl = useIntl();
 
-  const addChecked = (e: any) => {
+  const addChecked = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLLIElement;
     document
       .querySelectorAll(`.${styles.checked}`)
       .forEach((elem) => elem.classList.remove(`${styles.checked}`));
-    e.target?.classList.add(`${styles.checked}`);
+    target?.classList.add(`${styles.checked}`);
 
     if (
-      e.target.textContent == "Все годы" ||
-      e.target.textContent == "All years"
+      target.textContent == "Все годы" ||
+      target.textContent == "All years"
     ) {
       setSearchParams({ ...params, year: "all" });
     } else if (
-      e.target.textContent.length == 8 ||
-      e.target.textContent.length == 9
+      target.textContent?.length == 8 ||
+      target.textContent?.length == 9
     ) {
-      setSearchParams({ ...params, year: e.target.textContent.split(" ")[0] });
-    } else if (e.target.textContent.length == 7) {
-      setSearchParams({ ...params, year: e.target.textContent.split(" ")[1] });
+      setSearchParams({ ...params, year: target.textContent.split(" ")[0] });
+    } else if (target.textContent?.length == 7) {
+      setSearchParams({ ...params, year: target.textContent.split(" ")[1] });
     }
   };
 

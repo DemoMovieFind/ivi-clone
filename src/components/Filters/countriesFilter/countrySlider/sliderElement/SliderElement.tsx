@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import styles from "./SliderElement.module.css";
@@ -19,12 +18,13 @@ const SliderElement = ({
   const [isActive, setIsActive] = useState(false);
 
 
-  const pick = (e: any) => {
+  const pick = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLDivElement;
     let currentTargetValue = '';
-    e.target.textContent.length != 0 ?
-      currentTargetValue = e.target.textContent
+    target.textContent?.length != 0 ?
+      currentTargetValue = target.textContent??''
       :
-      currentTargetValue = e.target.children[0].textContent;
+      currentTargetValue = target.children[0].textContent??'';
 
     if (params["countries"] && params["countries"].split(' ').includes(currentTargetValue)) {
       const currentParams = params["countries"].split(' ');

@@ -61,7 +61,7 @@ const AdminPage = () => {
     <>
     <h1 className={styles.title}>{intl.formatMessage({id:'admin_title'})}</h1>
     {filmState.status === 'loading' && <Loader/>}
-    {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error} />}
+    {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error??''} />}
     <div className={styles.titleButtonWrapper}>
       <Button type="button" appearance="default" onPointerDown={handleAddFilm}
             children={intl.formatMessage({id:'add_film_title'})}

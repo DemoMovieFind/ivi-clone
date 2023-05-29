@@ -97,9 +97,10 @@ const CreatePage = () => {
   }
 
   useEffect((()=>{
-    if (genresState.genres.length === 0) {
-      dispatch(getGenres());
-    }
+    dispatch(getGenres());
+  }),[])
+
+  useEffect((()=>{
     if (genresState.genres.length > 0) {
       setGenresNotLoaded(false);
     }
@@ -110,7 +111,7 @@ const CreatePage = () => {
       <h1 className={styles.title}>{intl.formatMessage({id:'add_film_title'})}</h1>
       {genresNotLoaded && <Loader/>}
       {filmState.status === 'loading' && <Loader/>}
-      {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error} />}
+      {(filmState.status === 'rejected') && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={filmState.error??''} />}
       {(filmState.status === 'resolved' && requestWasSent) && <Modal handleClose={handleModalClose} headerId={"modal_success_header"} body={''} />}
       {<form  className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label} htmlFor="name_ru">

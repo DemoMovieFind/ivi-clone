@@ -73,7 +73,7 @@ const AuthPage = () => {
       {authState.status === 'rejected' && <Modal
         handleClose={handleModalClose}
         headerId={"modal_error_header"}
-        body={authState.error} />
+        body={authState.error??''} />
       }
 
     </div>
