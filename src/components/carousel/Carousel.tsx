@@ -16,7 +16,8 @@ const Carousel = <T,>({ nameCategory }: CarouselProps<T>) => {
   const [films, setFilms] = useState<FilmMainCard[]>([]);
 
   useEffect(() => {
-    api.get(`/films?order=ASC&page=1&take=21&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222`)
+    api
+      .get(`/films?genres=комедия`)
       .then((data) => {
         setFilms(data.data);
       })
@@ -64,7 +65,7 @@ const Carousel = <T,>({ nameCategory }: CarouselProps<T>) => {
       <div className="title">{nameCategory}</div>
       <Slider {...settings}>
         {films.map((film) => (
-          <Link key={film.id} to={film.name}>
+          <Link key={film.id} to={`/movies/${film.name}`}>
             <CardFilm key={film.id} film={film} className="card-film" />
           </Link>
         ))}

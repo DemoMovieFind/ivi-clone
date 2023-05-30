@@ -36,24 +36,30 @@ const MainPage = () => {
 
   const [films, setFilms] = useState<FilmMainCard[]>([]);
   const { response, error, loaded, clearError } = useAxios({
-    method:'get',
-    url:'/films?order=ASC&page=1&take=18&orderBy=scoreAVG&minCountScore=0&yearStart=0&yearEnd=2222'
-  })
+    method: "get",
+    url: `/films?genres=биография`,
+  });
 
   useEffect(() => {
     if (response) {
-      setFilms(response)
+      setFilms(response);
     }
   }, [response]);
 
   const handleModalClose = () => {
     clearError();
-  }
+  };
 
   return (
     <div>
-      {!loaded && <Loader/>}
-      {error.length > 0 && <Modal handleClose={handleModalClose} headerId={"modal_error_header"} body={error} />}
+      {!loaded && <Loader />}
+      {error.length > 0 && (
+        <Modal
+          handleClose={handleModalClose}
+          headerId={"modal_error_header"}
+          body={error}
+        />
+      )}
       <MultipleRows />
       <SubButton />
       {films && (
@@ -72,14 +78,10 @@ const MainPage = () => {
           nameCategory={intl.formatMessage({ id: "film_top_slider" })}
         />
       )}
-      {films && (
-        <GalleryCarousel
-          items={films}
-          itemComponent={CardFilmItem}
-          nameCategory={intl.formatMessage({ id: "nav_list_comedies" })}
-        />
-      )}
-      <Carousel nameCategory={intl.formatMessage({ id: 'nav_list_comedies' })} />
+
+      <Carousel
+        nameCategory={intl.formatMessage({ id: "nav_list_comedies" })}
+      />
     </div>
   );
 };
