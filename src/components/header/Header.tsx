@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import AuthIcon from "../authIcon/AuthIcon";
+
 import styles from "./Header.module.css";
 import LanguageSwitch from "../languageSwitch/LanguageSwitch";
 
@@ -17,6 +17,7 @@ import {
 } from "./list";
 import { FormattedMessage } from "react-intl";
 import clsx from "clsx";
+import AuthIcon from "../AuthIcon/AuthIcon";
 
 export type HeaderPropsType = {
   languageSwitchHandler: (event: ChangeEvent<HTMLSelectElement>) => void;
